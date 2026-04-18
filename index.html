@@ -1,0 +1,2706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1A2744">
+
+<!-- SEO -->
+<title>Puzzler Consulting &amp; Advisory Services | Making the Pieces Fit</title>
+<meta name="description" content="Puzzler Consulting &amp; Advisory Services works alongside nonprofits, for-profits, grantmakers, small businesses, and agencies to deliver partnered transformation, winning funding strategies, and human-centered AI adoption.">
+<meta name="author" content="Puzzler Consulting &amp; Advisory Services">
+<link rel="canonical" href="https://puzzlerconsultingadvisory.com/">
+
+<!-- Open Graph / Social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://puzzlerconsultingadvisory.com/">
+<meta property="og:title" content="Puzzler Consulting &amp; Advisory Services | Making the Pieces Fit">
+<meta property="og:description" content="Partnered transformation, winning funding strategies, and human-centered AI adoption — for nonprofits, for-profits, grantmakers, small businesses, and agencies.">
+<meta property="og:site_name" content="Puzzler Consulting &amp; Advisory Services">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Puzzler Consulting &amp; Advisory Services">
+<meta name="twitter:description" content="Partnered. Not prescribed. Puzzler partners with mission-driven organizations on leadership, workforce, funding, and human-centered AI.">
+
+<!-- Performance: DNS preconnect to font CDN -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Performance: Async font load with fallback stack -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@400;500;600;700&display=swap"></noscript>
+
+<style>
+:root {
+  --pz-navy: #1A2744;
+  --pz-cream: #FFF8EC;
+  --pz-cream-2: #FFF2DC;
+  --pz-orange: #FF8558;
+  --pz-orange-bright: #FF6B3D;
+  --pz-gold: #FFC947;
+  --pz-teal: #1DD6B5;
+  --pz-teal-bright: #00E5C0;
+  --pz-green: #85D67A;
+  --pz-pink: #FF9EAA;
+  --pz-purple: #B8A4E8;
+  --pz-blue: #7BC6E8;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Performance: defer rendering of below-fold sections until scroll */
+.outcomes,
+.routing,
+.problem,
+.pillars,
+.method,
+.why,
+.consortium,
+.final-cta,
+.footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+/* Skip to content link - accessibility */
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 16px;
+  background: var(--pz-navy);
+  color: var(--pz-cream);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  z-index: 10000;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 16px;
+  outline: 3px solid var(--pz-teal);
+  outline-offset: 2px;
+}
+
+/* Visible focus states for keyboard users */
+a:focus-visible,
+button:focus-visible,
+.routing-tab:focus-visible,
+.nav-toggle:focus-visible {
+  outline: 3px solid var(--pz-teal);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Reduced motion - respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Hide decorative floating/bobbing pieces entirely for motion-sensitive users */
+  .hero-float,
+  .pz-accent-piece,
+  .cluster-piece,
+  .positioning-inner svg {
+    animation: none !important;
+  }
+
+  html { scroll-behavior: auto; }
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--pz-navy);
+  background: var(--pz-cream);
+  line-height: 1.6;
+  font-size: 17px;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+/* ============================================ */
+/* PUZZLE PATTERN — Repeating background        */
+/* ============================================ */
+.puzzle-bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%231A2744'%3E%3Cpath d='M20 20 L55 20 L55 42 Q55 34 63 34 Q75 34 75 46 Q75 58 63 58 Q55 58 55 50 L55 75 L20 75 Z'/%3E%3Cpath d='M80 80 L115 80 L115 102 Q115 94 123 94 Q135 94 135 106 Q135 118 123 118 Q115 118 115 110 L115 135 L80 135 Z' opacity='0.6'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ============================================ */
+/* NAVIGATION                                   */
+/* ============================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 16px 0;
+  transition: all 0.3s ease;
+}
+
+.nav.scrolled {
+  background: rgba(255, 248, 236, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 24px rgba(26, 39, 68, 0.06);
+}
+
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--pz-navy);
+  letter-spacing: -0.02em;
+}
+
+.nav-logo svg {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-logo:hover svg {
+  transform: rotate(360deg);
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--pz-navy);
+  position: relative;
+  padding: 8px 4px;
+}
+
+.nav-links a:not(.nav-cta):hover {
+  color: var(--pz-orange-bright);
+}
+
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  right: 4px;
+  height: 3px;
+  background: var(--pz-teal);
+  border-radius: 2px;
+}
+
+.nav-cta {
+  background: var(--pz-navy);
+  color: white !important;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.2s;
+  box-shadow: 4px 4px 0 var(--pz-teal);
+}
+
+.nav-cta:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--pz-teal);
+  color: white;
+}
+
+.nav-toggle { display: none; }
+
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-toggle {
+    display: block;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    background: var(--pz-navy);
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--pz-cream);
+    margin: 5px 0;
+  }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 16px;
+    right: 16px;
+    background: var(--pz-cream);
+    padding: 24px;
+    gap: 16px;
+    border-radius: 20px;
+    border: 2px solid var(--pz-navy);
+    box-shadow: 6px 6px 0 var(--pz-teal);
+  }
+}
+
+/* ============================================ */
+/* HERO                                         */
+/* ============================================ */
+.hero {
+  position: relative;
+  padding: 140px 0 100px;
+  background: var(--pz-cream);
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 5;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Floating hero pieces - decorative */
+.hero-float {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  animation: hero-float-in 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.hero-float-1 { top: 10%; left: 5%; animation-delay: 0.1s; }
+.hero-float-2 { top: 18%; right: 8%; animation-delay: 0.3s; }
+.hero-float-3 { top: 55%; left: 3%; animation-delay: 0.5s; }
+.hero-float-4 { bottom: 15%; right: 6%; animation-delay: 0.7s; }
+.hero-float-5 { top: 30%; left: 12%; animation-delay: 0.9s; }
+.hero-float-6 { bottom: 25%; left: 8%; animation-delay: 1.1s; }
+.hero-float-7 { top: 14%; right: 18%; animation-delay: 0.4s; }
+.hero-float-8 { bottom: 10%; right: 20%; animation-delay: 0.8s; }
+
+.hero-float svg {
+  display: block;
+  animation: bob 6s ease-in-out infinite;
+}
+.hero-float-1 svg { animation-delay: 0s; }
+.hero-float-2 svg { animation-delay: 1s; }
+.hero-float-3 svg { animation-delay: 2s; }
+.hero-float-4 svg { animation-delay: 3s; }
+.hero-float-5 svg { animation-delay: 0.5s; }
+.hero-float-6 svg { animation-delay: 2.5s; }
+.hero-float-7 svg { animation-delay: 1.5s; }
+.hero-float-8 svg { animation-delay: 3.5s; }
+
+@keyframes hero-float-in {
+  from { opacity: 0; transform: scale(0.5) rotate(-30deg); }
+  to { opacity: 1; transform: scale(1) rotate(var(--rot, 0deg)); }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-16px) rotate(calc(var(--rot, 0deg) + 5deg)); }
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--pz-navy);
+  letter-spacing: 0.06em;
+  margin-bottom: 28px;
+  border: 2px solid var(--pz-navy);
+  box-shadow: 3px 3px 0 var(--pz-gold);
+  opacity: 0;
+  animation: pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.2s;
+}
+
+.hero-tag .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pz-teal);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(29, 214, 181, 0.5); }
+  50% { box-shadow: 0 0 0 8px rgba(29, 214, 181, 0); }
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.hero h1 {
+  font-size: clamp(56px, 9vw, 130px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fade-up 0.8s ease forwards 0.4s;
+}
+
+.hero h1 .word {
+  display: inline-block;
+}
+
+.hero h1 .pieces {
+  position: relative;
+  color: var(--pz-orange-bright);
+  font-style: italic;
+  font-weight: 800;
+}
+
+.hero h1 .pieces::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: -4px;
+  right: -4px;
+  height: 14px;
+  background: var(--pz-gold);
+  z-index: -1;
+  transform: rotate(-1.5deg);
+  border-radius: 4px;
+  opacity: 0;
+  animation: underline-swipe 0.8s ease forwards 1.4s;
+}
+
+@keyframes underline-swipe {
+  from { opacity: 0; transform: rotate(-1.5deg) scaleX(0); transform-origin: left; }
+  to { opacity: 1; transform: rotate(-1.5deg) scaleX(1); }
+}
+
+.hero h1 .fit {
+  color: var(--pz-navy);
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-sub {
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.55;
+  color: var(--pz-navy);
+  opacity: 0.85;
+  max-width: 720px;
+  margin: 0 auto 44px;
+  opacity: 0;
+  animation: fade-up 0.8s ease forwards 0.6s;
+}
+
+.hero-sub { opacity: 0.85; } /* cascade hack */
+.hero-sub.animated { animation: fade-up 0.8s ease forwards 0.6s; }
+
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  opacity: 0;
+  animation: fade-up 0.8s ease forwards 0.8s;
+}
+
+/* Operating Principles Strip - hero promise band */
+.principles-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 56px;
+  opacity: 0;
+  animation: fade-up 0.8s ease forwards 1s;
+}
+
+.principle-piece {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px 10px 12px;
+  background: var(--pz-cream);
+  border: 2px solid var(--pz-navy);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--pz-navy);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 3px 3px 0 var(--pz-navy);
+}
+
+.principle-piece svg {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.principle-piece:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--pz-navy);
+  background: white;
+}
+
+.principle-piece:hover svg {
+  transform: rotate(-15deg) scale(1.1);
+}
+
+@media (max-width: 720px) {
+  .principles-strip { gap: 10px; }
+  .principle-piece { padding: 8px 16px 8px 10px; font-size: 13px; }
+  .principle-piece svg { width: 22px; height: 22px; }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 32px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: var(--font-body);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: 2.5px solid var(--pz-navy);
+}
+
+.btn-primary {
+  background: var(--pz-navy);
+  color: var(--pz-cream);
+  box-shadow: 5px 5px 0 var(--pz-orange);
+}
+
+.btn-primary:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 var(--pz-orange);
+}
+
+.btn-secondary {
+  background: var(--pz-cream);
+  color: var(--pz-navy);
+  box-shadow: 5px 5px 0 var(--pz-teal);
+}
+
+.btn-secondary:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 var(--pz-teal);
+}
+
+.btn-arrow {
+  transition: transform 0.2s;
+  font-size: 20px;
+}
+.btn:hover .btn-arrow { transform: translateX(4px); }
+
+/* Hero credential proof band */
+.hero-proof {
+  margin-top: 72px;
+  opacity: 0;
+  animation: fade-up 0.8s ease forwards 1.2s;
+  text-align: center;
+}
+
+.hero-proof-metrics {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 48px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.proof-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.proof-metric-number {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(36px, 5vw, 52px);
+  color: var(--pz-navy);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  position: relative;
+  display: inline-block;
+}
+
+.proof-metric-number::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: -3px;
+  right: -3px;
+  height: 8px;
+  z-index: -1;
+  border-radius: 3px;
+  transform: rotate(-1.2deg);
+}
+
+.proof-metric:nth-child(1) .proof-metric-number::after { background: var(--pz-orange); }
+.proof-metric:nth-child(2) .proof-metric-number::after { background: var(--pz-gold); }
+.proof-metric:nth-child(3) .proof-metric-number::after { background: var(--pz-teal); }
+
+.proof-metric-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pz-navy);
+  opacity: 0.65;
+}
+
+.hero-proof-agencies {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--pz-navy);
+  opacity: 0.82;
+  line-height: 1.55;
+  max-width: 760px;
+  margin: 0 auto;
+  padding-top: 22px;
+  border-top: 2px solid rgba(26, 39, 68, 0.1);
+  letter-spacing: -0.005em;
+}
+
+.hero-proof-agencies strong {
+  color: var(--pz-navy);
+  opacity: 1;
+  font-weight: 800;
+  font-style: italic;
+}
+
+@media (max-width: 720px) {
+  .hero-proof-metrics { gap: 28px; }
+  .proof-metric-number { font-size: 32px; }
+  .hero-proof-agencies { font-size: 14px; padding-top: 16px; }
+}
+
+/* ============================================ */
+/* PUZZLE DIVIDER                               */
+/* ============================================ */
+.puzzle-divider {
+  position: relative;
+  height: 80px;
+  overflow: hidden;
+  background: var(--pz-cream);
+}
+
+.puzzle-divider.to-orange { background: var(--pz-cream); }
+.puzzle-divider.to-orange::after { background: var(--pz-orange); }
+
+.puzzle-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+}
+
+.puzzle-divider-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================ */
+/* POSITIONING                                  */
+/* ============================================ */
+.positioning {
+  background: var(--pz-orange);
+  color: var(--pz-navy);
+  padding: 60px 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid var(--pz-navy);
+  border-bottom: 3px solid var(--pz-navy);
+}
+
+.positioning-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.positioning-inner svg {
+  flex-shrink: 0;
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+.positioning-inner svg:last-child { animation-delay: 1.5s; }
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
+
+.positioning-line {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(22px, 3.2vw, 38px);
+  letter-spacing: -0.02em;
+  font-style: italic;
+}
+
+/* Marquee-style background */
+.positioning .puzzle-bg {
+  opacity: 0.1;
+}
+
+/* ============================================ */
+/* OUTCOME STRIP (social proof)                 */
+/* ============================================ */
+.outcomes {
+  background: var(--pz-navy);
+  color: var(--pz-cream);
+  padding: 72px 0;
+  border-top: 3px solid var(--pz-navy);
+  border-bottom: 3px solid var(--pz-navy);
+  position: relative;
+  overflow: hidden;
+}
+
+.outcomes .puzzle-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%23FFF8EC'%3E%3Cpath d='M20 20 L55 20 L55 42 Q55 34 63 34 Q75 34 75 46 Q75 58 63 58 Q55 58 55 50 L55 75 L20 75 Z'/%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.04;
+}
+
+.outcomes-header {
+  text-align: center;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.outcomes-header .section-eyebrow {
+  background: var(--pz-teal);
+  color: var(--pz-navy);
+}
+
+.outcomes-header h3 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 800;
+  color: var(--pz-cream);
+  margin-top: 20px;
+  line-height: 1.15;
+}
+
+.outcomes-header h3 .highlight {
+  color: var(--pz-gold);
+  font-style: italic;
+}
+
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.outcome-card {
+  border-left: 4px solid var(--pz-teal);
+  padding: 8px 0 8px 24px;
+  transition: border-color 0.3s;
+}
+
+.outcome-card:nth-child(2) { border-left-color: var(--pz-orange); }
+.outcome-card:nth-child(3) { border-left-color: var(--pz-gold); }
+
+.outcome-metric {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 4.5vw, 54px);
+  font-weight: 900;
+  font-style: italic;
+  line-height: 1;
+  color: var(--pz-teal);
+  margin-bottom: 10px;
+  letter-spacing: -0.03em;
+}
+
+.outcome-card:nth-child(2) .outcome-metric { color: var(--pz-orange); }
+.outcome-card:nth-child(3) .outcome-metric { color: var(--pz-gold); }
+
+.outcome-text {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--pz-cream);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.outcome-label {
+  font-size: 12px;
+  color: rgba(255, 248, 236, 0.55);
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .outcomes-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.outcomes-footnote {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 248, 236, 0.45);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================ */
+/* AUDIENCE ROUTING                             */
+/* ============================================ */
+.routing {
+  background: var(--pz-cream-2);
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.routing .puzzle-bg { opacity: 0.04; }
+
+.routing-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 56px;
+  position: relative;
+  z-index: 2;
+}
+
+.routing-header p {
+  font-size: 18px;
+  color: var(--pz-navy);
+  opacity: 0.78;
+  line-height: 1.55;
+  margin-top: 16px;
+}
+
+.routing-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  max-width: 1100px;
+  margin: 0 auto 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.routing-tab {
+  background: var(--pz-cream);
+  border: 2.5px solid var(--pz-navy);
+  border-radius: 18px;
+  padding: 24px 16px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-align: center;
+  font-family: var(--font-body);
+  position: relative;
+}
+
+.routing-tab svg {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 12px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.routing-tab:hover { transform: translate(-2px, -2px); }
+.routing-tab:hover svg { transform: rotate(-12deg) scale(1.1); }
+
+.routing-tab[data-segment="nonprofit"] { box-shadow: 4px 4px 0 var(--pz-orange); }
+.routing-tab[data-segment="nonprofit"]:hover,
+.routing-tab[data-segment="nonprofit"].active { box-shadow: 6px 6px 0 var(--pz-orange); background: var(--pz-orange); }
+
+.routing-tab[data-segment="forprofit"] { box-shadow: 4px 4px 0 var(--pz-gold); }
+.routing-tab[data-segment="forprofit"]:hover,
+.routing-tab[data-segment="forprofit"].active { box-shadow: 6px 6px 0 var(--pz-gold); background: var(--pz-gold); }
+
+.routing-tab[data-segment="smallbiz"] { box-shadow: 4px 4px 0 var(--pz-teal); }
+.routing-tab[data-segment="smallbiz"]:hover,
+.routing-tab[data-segment="smallbiz"].active { box-shadow: 6px 6px 0 var(--pz-teal); background: var(--pz-teal); }
+
+.routing-tab[data-segment="statelocal"] { box-shadow: 4px 4px 0 var(--pz-green); }
+.routing-tab[data-segment="statelocal"]:hover,
+.routing-tab[data-segment="statelocal"].active { box-shadow: 6px 6px 0 var(--pz-green); background: var(--pz-green); }
+
+.routing-tab[data-segment="federal"] { box-shadow: 4px 4px 0 var(--pz-purple); }
+.routing-tab[data-segment="federal"]:hover,
+.routing-tab[data-segment="federal"].active { box-shadow: 6px 6px 0 var(--pz-purple); background: var(--pz-purple); }
+
+.routing-tab-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--pz-navy);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.routing-tab.active { transform: translate(-2px, -2px); }
+
+.routing-panel {
+  background: var(--pz-cream);
+  border: 2.5px solid var(--pz-navy);
+  border-radius: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 48px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 8px 8px 0 var(--pz-navy);
+  overflow: hidden;
+}
+
+.routing-panel-inner {
+  display: none;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  animation: panel-fade 0.5s ease;
+}
+
+.routing-panel-inner.active { display: grid; }
+
+@keyframes panel-fade {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.routing-panel-pains h3 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.2vw, 38px);
+  font-weight: 800;
+  color: var(--pz-navy);
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.routing-panel-pains h3 .accent {
+  color: var(--pz-orange-bright);
+  font-style: italic;
+}
+
+.routing-panel-pains ul {
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.routing-panel-pains li {
+  position: relative;
+  padding: 10px 0 10px 32px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--pz-navy);
+  opacity: 0.85;
+}
+
+.routing-panel-pains li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M 2,2 L 11,2 L 11,7 Q 11,5 13,5 Q 17,5 17,8 Q 17,12 13,12 Q 11,12 11,10 L 11,17 L 2,17 Z' fill='%231DD6B5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.routing-panel-promise {
+  background: var(--pz-navy);
+  color: var(--pz-cream);
+  padding: 36px 32px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.routing-panel-promise::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 160px;
+  height: 160px;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cpath d='M 20,20 L 96,20 L 96,56 Q 96,44 108,44 Q 132,44 132,68 Q 132,92 108,92 Q 96,92 96,80 L 96,140 L 20,140 Z' fill='%231DD6B5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+}
+
+.routing-panel-promise-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pz-teal);
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.routing-panel-promise h4 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--pz-cream);
+  line-height: 1.2;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.routing-panel-promise h4 .accent {
+  color: var(--pz-gold);
+  font-style: italic;
+}
+
+.routing-panel-promise p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 248, 236, 0.85);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.routing-panel-promise .promise-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--pz-teal);
+  color: var(--pz-navy);
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.2s;
+  position: relative;
+  z-index: 1;
+  border: 2px solid var(--pz-navy);
+}
+
+.routing-panel-promise .promise-cta:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--pz-gold);
+  color: var(--pz-navy);
+}
+
+@media (max-width: 900px) {
+  .routing-tabs { grid-template-columns: repeat(3, 1fr); }
+  .routing-panel-inner.active { grid-template-columns: 1fr; gap: 32px; }
+  .routing-panel { padding: 36px 24px; }
+}
+
+@media (max-width: 540px) {
+  .routing-tabs { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================================ */
+/* PROBLEM — with big playful pieces           */
+/* ============================================ */
+.problem {
+  background: var(--pz-cream);
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.problem .puzzle-bg { opacity: 0.04; }
+
+.problem-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 72px;
+  position: relative;
+  z-index: 2;
+}
+
+.problem-header p {
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--pz-navy);
+  opacity: 0.82;
+  margin-top: 16px;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 72px;
+  position: relative;
+  z-index: 2;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 24px;
+  padding: 36px 28px;
+  border: 2.5px solid var(--pz-navy);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.stat-card:nth-child(1) { box-shadow: 5px 5px 0 var(--pz-orange); }
+.stat-card:nth-child(2) { box-shadow: 5px 5px 0 var(--pz-gold); }
+.stat-card:nth-child(3) { box-shadow: 5px 5px 0 var(--pz-teal); }
+
+.stat-card:hover { transform: translate(-3px, -3px); }
+.stat-card:nth-child(1):hover { box-shadow: 8px 8px 0 var(--pz-orange); }
+.stat-card:nth-child(2):hover { box-shadow: 8px 8px 0 var(--pz-gold); }
+.stat-card:nth-child(3):hover { box-shadow: 8px 8px 0 var(--pz-teal); }
+
+.stat-card .stat-piece {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 16px;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--pz-navy);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--pz-navy);
+  margin-bottom: 12px;
+}
+
+.stat-source {
+  font-size: 12px;
+  color: var(--pz-navy);
+  opacity: 0.55;
+  font-style: italic;
+}
+
+.value-add-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 56px 48px;
+  background: var(--pz-navy);
+  color: var(--pz-cream);
+  border-radius: 32px;
+  position: relative;
+  z-index: 2;
+  border: 3px solid var(--pz-navy);
+  box-shadow: 8px 8px 0 var(--pz-teal);
+}
+
+.value-add-inner h3 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 24px;
+  line-height: 1.15;
+}
+
+.value-add-inner h3 .highlight {
+  color: var(--pz-teal);
+  font-style: italic;
+}
+
+.value-add-inner p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #ffffff;
+  margin-bottom: 0;
+}
+
+.value-add-inner p strong {
+  color: var(--pz-gold);
+  font-weight: 700;
+}
+
+.value-add-inner .closing-triad {
+  display: block;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 2px solid rgba(29, 214, 181, 0.3);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--pz-teal);
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 900px) {
+  .stats-row { grid-template-columns: 1fr; }
+  .value-add-inner { padding: 40px 28px; }
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--pz-navy);
+  color: var(--pz-cream);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.section-eyebrow .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pz-orange);
+}
+
+h2.big-title {
+  font-size: clamp(42px, 6vw, 78px);
+  font-weight: 900;
+  margin-bottom: 28px;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+h2.big-title .highlight {
+  position: relative;
+  display: inline-block;
+  color: var(--pz-orange-bright);
+  font-style: italic;
+}
+
+h2.big-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -4px;
+  right: -4px;
+  height: 12px;
+  background: var(--pz-gold);
+  z-index: -1;
+  border-radius: 4px;
+  transform: rotate(-1deg);
+}
+
+.problem p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--pz-navy);
+  opacity: 0.82;
+  margin-bottom: 18px;
+}
+
+.problem p.conclusion {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  color: var(--pz-navy);
+  font-size: 24px;
+  margin-top: 32px;
+  opacity: 1;
+}
+
+.problem-visual {
+  position: relative;
+  height: 500px;
+}
+
+.problem-visual .piece-absolute {
+  position: absolute;
+  transition: transform 0.4s ease;
+}
+
+.pv-1 { top: 0; left: 20%; animation: bob 5s ease-in-out infinite 0s; }
+.pv-2 { top: 15%; right: 5%; animation: bob 6s ease-in-out infinite 1s; }
+.pv-3 { top: 45%; left: 0; animation: bob 7s ease-in-out infinite 0.5s; }
+.pv-4 { bottom: 20%; right: 20%; animation: bob 5.5s ease-in-out infinite 2s; }
+.pv-5 { bottom: 0; left: 30%; animation: bob 6.5s ease-in-out infinite 1.5s; }
+
+.piece-absolute:hover {
+  cursor: grab;
+  z-index: 10;
+}
+
+@media (max-width: 900px) {
+  .problem-inner { grid-template-columns: 1fr; gap: 60px; }
+  .problem-visual { height: 380px; }
+}
+
+/* ============================================ */
+/* PILLARS — bright cards with personality      */
+/* ============================================ */
+.pillars {
+  background: var(--pz-navy);
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.pillars .puzzle-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%23FFF8EC'%3E%3Cpath d='M20 20 L55 20 L55 42 Q55 34 63 34 Q75 34 75 46 Q75 58 63 58 Q55 58 55 50 L55 75 L20 75 Z'/%3E%3Cpath d='M80 80 L115 80 L115 102 Q115 94 123 94 Q135 94 135 106 Q135 118 123 118 Q115 118 115 110 L115 135 L80 135 Z' opacity='0.6'/%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.05;
+}
+
+.pillars-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 72px;
+  position: relative;
+  z-index: 2;
+  color: var(--pz-cream);
+}
+
+.pillars-header .section-eyebrow {
+  background: var(--pz-teal);
+  color: var(--pz-navy);
+}
+
+.pillars-header h2 {
+  color: var(--pz-cream);
+  margin-bottom: 20px;
+}
+
+.pillars-header h2 .highlight {
+  color: var(--pz-gold);
+}
+
+.pillars-header h2 .highlight::after {
+  background: var(--pz-orange-bright);
+}
+
+.pillars-header p {
+  font-size: 20px;
+  color: rgba(255, 248, 236, 0.8);
+  line-height: 1.55;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.pillar-card {
+  position: relative;
+  border-radius: 32px;
+  padding: 44px 36px 36px;
+  color: var(--pz-navy);
+  overflow: hidden;
+  min-height: 440px;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid var(--pz-navy);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+
+.pillar-card.capable { background: var(--pz-orange); box-shadow: 8px 8px 0 var(--pz-gold); }
+.pillar-card.competitive { background: var(--pz-gold); box-shadow: 8px 8px 0 var(--pz-teal); }
+.pillar-card.resilient { background: var(--pz-teal); box-shadow: 8px 8px 0 var(--pz-orange); }
+
+.pillar-card:hover {
+  transform: translate(-5px, -5px) rotate(-1deg);
+}
+
+.pillar-card.capable:hover { box-shadow: 13px 13px 0 var(--pz-gold); }
+.pillar-card.competitive:hover { box-shadow: 13px 13px 0 var(--pz-teal); }
+.pillar-card.resilient:hover { box-shadow: 13px 13px 0 var(--pz-orange); }
+
+.pillar-card .big-piece {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 220px;
+  height: 220px;
+  opacity: 0.22;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pillar-card:hover .big-piece {
+  transform: rotate(25deg) scale(1.15);
+}
+
+.pillar-number {
+  display: inline-block;
+  background: var(--pz-navy);
+  color: var(--pz-cream);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  margin-bottom: 20px;
+  align-self: flex-start;
+}
+
+.pillar-card h3 {
+  font-size: 56px;
+  font-weight: 900;
+  margin-bottom: 4px;
+  letter-spacing: -0.04em;
+  font-style: italic;
+}
+
+.pillar-card .subtitle {
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0.75;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pillar-card .description {
+  font-size: 15px;
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.pillar-card .learn-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--pz-navy);
+  color: var(--pz-cream);
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  align-self: flex-start;
+  transition: gap 0.2s;
+}
+
+.pillar-card:hover .learn-more { gap: 14px; }
+
+@media (max-width: 900px) {
+  .pillars-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================ */
+/* THE PUZZLER METHOD                           */
+/* ============================================ */
+.method {
+  background: var(--pz-cream-2);
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.method .puzzle-bg { opacity: 0.04; }
+
+.method-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 64px;
+  position: relative;
+  z-index: 2;
+}
+
+.method-header p {
+  font-size: 19px;
+  color: var(--pz-navy);
+  opacity: 0.8;
+  line-height: 1.55;
+  margin-top: 16px;
+}
+
+.method-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.method-step {
+  background: var(--pz-cream);
+  border-radius: 24px;
+  padding: 36px 28px;
+  border: 2.5px solid var(--pz-navy);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.method-step:nth-child(1) { box-shadow: 5px 5px 0 var(--pz-orange); }
+.method-step:nth-child(2) { box-shadow: 5px 5px 0 var(--pz-gold); }
+.method-step:nth-child(3) { box-shadow: 5px 5px 0 var(--pz-teal); }
+.method-step:nth-child(4) { box-shadow: 5px 5px 0 var(--pz-green); }
+.method-step:nth-child(5) { box-shadow: 5px 5px 0 var(--pz-purple); }
+.method-step:nth-child(6) { box-shadow: 5px 5px 0 var(--pz-pink); }
+
+.method-step:hover {
+  transform: translate(-3px, -3px);
+}
+
+.method-step:nth-child(1):hover { box-shadow: 8px 8px 0 var(--pz-orange); }
+.method-step:nth-child(2):hover { box-shadow: 8px 8px 0 var(--pz-gold); }
+.method-step:nth-child(3):hover { box-shadow: 8px 8px 0 var(--pz-teal); }
+.method-step:nth-child(4):hover { box-shadow: 8px 8px 0 var(--pz-green); }
+.method-step:nth-child(5):hover { box-shadow: 8px 8px 0 var(--pz-purple); }
+.method-step:nth-child(6):hover { box-shadow: 8px 8px 0 var(--pz-pink); }
+
+.method-step-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.method-step-num {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--pz-navy);
+  opacity: 0.3;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.method-step svg {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.method-step h4 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--pz-navy);
+  margin-bottom: 10px;
+  line-height: 1.15;
+}
+
+.method-step p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--pz-navy);
+  opacity: 0.78;
+}
+
+@media (max-width: 900px) {
+  .method-steps { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .method-steps { grid-template-columns: 1fr; }
+}
+
+/* ============================================ */
+/* WHY — big pieces with credentials            */
+/* ============================================ */
+.why {
+  background: var(--pz-cream);
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.why .puzzle-bg { opacity: 0.04; }
+
+.why-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 72px;
+  position: relative;
+  z-index: 2;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.why-item {
+  text-align: center;
+  position: relative;
+  padding: 40px 24px;
+}
+
+.why-item-piece {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 24px;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.why-item:hover .why-item-piece {
+  transform: rotate(15deg) scale(1.1);
+}
+
+.why-item h4 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  color: var(--pz-navy);
+}
+
+.why-item p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--pz-navy);
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .why-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================ */
+/* CONSORTIUM                                   */
+/* ============================================ */
+.consortium {
+  background: var(--pz-teal);
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid var(--pz-navy);
+  border-bottom: 3px solid var(--pz-navy);
+}
+
+.consortium .puzzle-bg { opacity: 0.08; }
+
+.consortium-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.consortium h2.big-title .highlight {
+  color: var(--pz-navy);
+  font-style: italic;
+}
+
+.consortium h2.big-title .highlight::after {
+  background: var(--pz-cream);
+}
+
+.consortium p {
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--pz-navy);
+  opacity: 0.92;
+  margin-bottom: 36px;
+}
+
+.consortium .link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--pz-navy);
+  color: var(--pz-cream);
+  padding: 16px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.2s;
+  border: 2.5px solid var(--pz-navy);
+  box-shadow: 4px 4px 0 var(--pz-cream);
+}
+
+.consortium .link-pill:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--pz-cream);
+  color: var(--pz-cream);
+}
+
+.consortium-visual {
+  position: relative;
+  height: 400px;
+}
+
+.consortium-visual .cluster-piece {
+  position: absolute;
+  filter: drop-shadow(0 6px 0 rgba(26, 39, 68, 0.15));
+}
+
+.cluster-center { top: 35%; left: 35%; animation: bob 6s ease-in-out infinite; }
+.cluster-top { top: 5%; left: 30%; animation: bob 5s ease-in-out infinite 1s; }
+.cluster-left { top: 30%; left: 5%; animation: bob 7s ease-in-out infinite 0.5s; }
+.cluster-right { top: 30%; right: 5%; animation: bob 5.5s ease-in-out infinite 2s; }
+.cluster-bottom { bottom: 5%; right: 20%; animation: bob 6.5s ease-in-out infinite 1.5s; }
+
+@media (max-width: 900px) {
+  .consortium-inner { grid-template-columns: 1fr; gap: 40px; }
+  .consortium-visual { height: 340px; }
+}
+
+/* ============================================ */
+/* FINAL CTA                                    */
+/* ============================================ */
+.final-cta {
+  background: var(--pz-cream);
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.final-cta .puzzle-bg { opacity: 0.05; }
+
+.final-cta-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.final-pieces {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.final-pieces svg {
+  width: 72px;
+  height: 72px;
+  animation: bob 4s ease-in-out infinite;
+}
+.final-pieces svg:nth-child(1) { animation-delay: 0s; }
+.final-pieces svg:nth-child(2) { animation-delay: 0.5s; }
+.final-pieces svg:nth-child(3) { animation-delay: 1s; }
+.final-pieces svg:nth-child(4) { animation-delay: 1.5s; }
+
+.final-cta h2 {
+  font-size: clamp(48px, 7vw, 92px);
+  color: var(--pz-navy);
+  margin-bottom: 24px;
+  line-height: 0.95;
+}
+
+.final-cta h2 .highlight {
+  color: var(--pz-orange-bright);
+  font-style: italic;
+}
+
+.final-cta h2 .highlight::after {
+  background: var(--pz-gold);
+}
+
+.final-cta p {
+  font-size: 20px;
+  color: var(--pz-navy);
+  opacity: 0.82;
+  line-height: 1.6;
+  margin-bottom: 44px;
+}
+
+.final-cta .hero-ctas { justify-content: center; }
+
+/* ============================================ */
+/* FOOTER                                       */
+/* ============================================ */
+.footer {
+  background: var(--pz-navy);
+  color: rgba(255, 248, 236, 0.75);
+  padding: 100px 0 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer .puzzle-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%23FFF8EC'%3E%3Cpath d='M20 20 L55 20 L55 42 Q55 34 63 34 Q75 34 75 46 Q75 58 63 58 Q55 58 55 50 L55 75 L20 75 Z'/%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.04;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.3fr 1fr;
+  gap: 48px;
+  margin-bottom: 64px;
+  position: relative;
+  z-index: 2;
+}
+
+.footer h5 {
+  font-family: var(--font-display);
+  color: var(--pz-cream);
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+}
+
+.footer p, .footer li, .footer a {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255, 248, 236, 0.65);
+}
+
+.footer ul { list-style: none; }
+.footer a:hover { color: var(--pz-teal); }
+
+.footer-brand-line {
+  color: var(--pz-teal);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 18px;
+  margin: 16px 0 8px;
+}
+
+.footer-strip {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 40px 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-strip svg { width: 56px; height: 56px; }
+
+.footer-bottom {
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 248, 236, 0.1);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: rgba(255, 248, 236, 0.45);
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 860px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 540px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+<!-- Structured data for search engines -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Puzzler Consulting & Advisory Services",
+  "description": "Partnered transformation, winning funding strategies, and human-centered AI adoption for nonprofits, for-profits, grantmakers, small businesses, and agencies.",
+  "url": "https://puzzlerconsultingadvisory.com",
+  "email": "info@puzzlerconsultingadvisory.com",
+  "telephone": "+1-410-970-6539",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1125 West Street, Suite 200 #348",
+    "addressLocality": "Annapolis",
+    "addressRegion": "MD",
+    "postalCode": "21401",
+    "addressCountry": "US"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Mark D. Williams",
+    "jobTitle": "Managing Partner & Chief Capacity Builder"
+  },
+  "areaServed": "United States",
+  "slogan": "Making the pieces fit."
+}
+</script>
+
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg viewBox="0 0 40 40">
+        <path d="M 3,3 L 22,3 L 22,13 Q 22,9 26,9 Q 33,9 33,15 Q 33,21 26,21 Q 22,21 22,17 L 22,37 L 3,37 Z" fill="#FF6B3D"/>
+      </svg>
+      Puzzler
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="nav-cta">Say Hello →</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main id="main-content">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+
+  <!-- Floating decorative pieces -->
+  <!-- HERO FLOATING PIECES — 8 distinct shapes from the puzzle library -->
+  <div class="hero-float hero-float-1" style="--rot: -15deg;" aria-hidden="true">
+    <!-- Tab-right (classic edge piece) -->
+    <svg width="80" height="80" viewBox="0 0 80 80">
+      <path d="M 5,5 L 50,5 L 50,25 Q 50,17 58,17 Q 70,17 70,30 Q 70,42 58,42 Q 50,42 50,35 L 50,75 L 5,75 Z" fill="#FFC947"/>
+    </svg>
+  </div>
+  <div class="hero-float hero-float-2" style="--rot: 25deg;" aria-hidden="true">
+    <!-- Two-tab horizontal (connector piece) -->
+    <svg width="100" height="100" viewBox="0 0 100 100">
+      <path d="M 30,5 L 75,5 L 75,30 Q 75,22 83,22 Q 95,22 95,37 Q 95,52 83,52 Q 75,52 75,45 L 75,95 L 30,95 L 30,75 Q 30,83 22,83 Q 8,83 8,68 Q 8,53 22,53 Q 30,53 30,60 Z" fill="#1DD6B5"/>
+    </svg>
+  </div>
+  <div class="hero-float hero-float-3" style="--rot: 10deg;" aria-hidden="true">
+    <!-- Tab-top (tab pointing up) -->
+    <svg width="70" height="70" viewBox="0 0 70 70">
+      <path d="M 4,30 L 4,66 L 66,66 L 66,30 L 44,30 Q 50,30 50,22 Q 50,10 38,10 Q 26,10 26,22 Q 26,30 32,30 Z" fill="#FF8558"/>
+    </svg>
+  </div>
+  <div class="hero-float hero-float-4" style="--rot: -20deg;" aria-hidden="true">
+    <!-- Tab-blank combo (tab right, socket left — the "middle of work" piece) -->
+    <svg width="90" height="90" viewBox="0 0 90 90">
+      <path d="M 5,5 L 5,30 Q 5,22 13,22 Q 25,22 25,37 Q 25,52 13,52 Q 5,52 5,45 L 5,85 L 58,85 L 58,65 Q 58,73 66,73 Q 80,73 80,58 Q 80,43 66,43 Q 58,43 58,52 L 58,5 Z" fill="#85D67A"/>
+    </svg>
+  </div>
+  <div class="hero-float hero-float-5" style="--rot: 18deg;" aria-hidden="true">
+    <!-- Tab-bottom (tab pointing down) -->
+    <svg width="60" height="60" viewBox="0 0 60 60">
+      <path d="M 4,4 L 4,38 L 22,38 Q 18,38 18,42 Q 18,52 28,52 Q 38,52 38,42 Q 38,38 34,38 L 56,38 L 56,4 Z" fill="#B8A4E8"/>
+    </svg>
+  </div>
+  <div class="hero-float hero-float-6" style="--rot: -12deg;" aria-hidden="true">
+    <!-- Two-tab vertical (top + bottom tabs) -->
+    <svg width="75" height="75" viewBox="0 0 75 75">
+      <path d="M 5,28 L 5,48 L 22,48 Q 18,48 18,53 Q 18,65 32,65 Q 46,65 46,53 Q 46,48 42,48 L 70,48 L 70,28 L 50,28 Q 56,28 56,22 Q 56,10 40,10 Q 24,10 24,22 Q 24,28 30,28 Z" fill="#FF9EAA"/>
+    </svg>
+  </div>
+  <div class="hero-float hero-float-7" style="--rot: 22deg;" aria-hidden="true">
+    <!-- Corner piece (flat on top + left, tabs on right + bottom) -->
+    <svg width="55" height="55" viewBox="0 0 55 55">
+      <path d="M 4,4 L 35,4 L 35,17 Q 35,13 39,13 Q 50,13 50,24 Q 50,33 39,33 Q 35,33 35,29 L 35,38 Q 35,34 31,34 Q 22,34 22,44 Q 22,52 31,52 Q 35,52 35,48 L 35,52 L 4,52 Z" fill="#7BC6E8"/>
+    </svg>
+  </div>
+  <div class="hero-float hero-float-8" style="--rot: -8deg;" aria-hidden="true">
+    <!-- Tab-left (mirror of classic) -->
+    <svg width="85" height="85" viewBox="0 0 85 85">
+      <path d="M 5,5 L 5,30 Q 5,22 13,22 Q 27,22 27,37 Q 27,52 13,52 Q 5,52 5,45 L 5,80 L 80,80 L 80,5 Z" fill="#FFC947"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-tag">
+        <span class="dot"></span>
+        PARTNERED. NOT PRESCRIBED.
+      </div>
+
+      <h1>
+        <span class="word">Making the</span><br>
+        <span class="word pieces">pieces</span> <span class="word fit">fit.</span>
+      </h1>
+
+      <p class="hero-sub">
+        Puzzler makes the pieces fit — <strong>leadership, workforce, funding, and AI.</strong> We partner with mission-driven organizations to develop, strengthen, win, and adopt — on your terms.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="contact.html" class="btn btn-primary">
+          Book a 30-min Discovery Call
+          <span class="btn-arrow">→</span>
+        </a>
+        <a href="services.html" class="btn btn-secondary">
+          See How We Work
+        </a>
+      </div>
+
+      <!-- OPERATING PRINCIPLES STRIP -->
+      <div class="principles-strip" aria-label="Our operating principles">
+        <div class="principle-piece">
+          <!-- Tab-right (classic) - Efficient -->
+          <svg viewBox="0 0 36 36" aria-hidden="true">
+            <path d="M 3,3 L 22,3 L 22,11 Q 22,8 25,8 Q 32,8 32,15 Q 32,22 25,22 Q 22,22 22,19 L 22,33 L 3,33 Z" fill="#FF8558" stroke="#1A2744" stroke-width="2"/>
+          </svg>
+          <span>Efficient</span>
+        </div>
+        <div class="principle-piece">
+          <!-- Tab-top - Scalable (growth points up) -->
+          <svg viewBox="0 0 36 36" aria-hidden="true">
+            <path d="M 3,15 L 3,33 L 33,33 L 33,15 L 22,15 Q 25,15 25,11 Q 25,4 19,4 Q 13,4 13,11 Q 13,15 16,15 Z" fill="#FFC947" stroke="#1A2744" stroke-width="2"/>
+          </svg>
+          <span>Scalable</span>
+        </div>
+        <div class="principle-piece">
+          <!-- Two-tab horizontal connector - Open & Evident (visible from both sides) -->
+          <svg viewBox="0 0 42 36" aria-hidden="true">
+            <path d="M 14,3 L 30,3 L 30,11 Q 30,8 33,8 Q 39,8 39,15 Q 39,22 33,22 Q 30,22 30,19 L 30,33 L 14,33 L 14,25 Q 14,28 11,28 Q 4,28 4,21 Q 4,14 11,14 Q 14,14 14,17 Z" fill="#1DD6B5" stroke="#1A2744" stroke-width="2"/>
+          </svg>
+          <span>Open &amp; Evident</span>
+        </div>
+        <div class="principle-piece">
+          <!-- Two-tab vertical - Collaborative (connects up and down) -->
+          <svg viewBox="0 0 36 42" aria-hidden="true">
+            <path d="M 3,15 L 3,25 L 12,25 Q 9,25 9,28 Q 9,35 18,35 Q 27,35 27,28 Q 27,25 24,25 L 33,25 L 33,15 L 24,15 Q 27,15 27,11 Q 27,4 18,4 Q 9,4 9,11 Q 9,15 12,15 Z" fill="#85D67A" stroke="#1A2744" stroke-width="2"/>
+          </svg>
+          <span>Collaborative</span>
+        </div>
+      </div>
+
+      <!-- Credential proof band - numbers first, agencies below -->
+      <div class="hero-proof">
+        <div class="hero-proof-metrics">
+          <div class="proof-metric">
+            <div class="proof-metric-number">20+</div>
+            <div class="proof-metric-label">Years</div>
+          </div>
+          <div class="proof-metric">
+            <div class="proof-metric-number">$800M</div>
+            <div class="proof-metric-label">Operating Budgets</div>
+          </div>
+          <div class="proof-metric">
+            <div class="proof-metric-number">$5.6B</div>
+            <div class="proof-metric-label">Grants Portfolios</div>
+          </div>
+        </div>
+        <div class="hero-proof-agencies">
+          Two decades making decisions at the intersection of <strong>capability, compliance, and transformation</strong> — in environments where stakes are public, scrutiny is constant, and execution is non-negotiable.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POSITIONING STRIP -->
+<section class="positioning">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="positioning-inner">
+      <svg width="60" height="60" viewBox="0 0 60 60">
+        <path d="M 5,5 L 38,5 L 38,22 Q 38,16 44,16 Q 54,16 54,26 Q 54,36 44,36 Q 38,36 38,30 L 38,56 L 5,56 Z" fill="#1A2744"/>
+      </svg>
+      <div class="positioning-line">
+        Built to compete. Positioned to win.<br>Made to fit.
+      </div>
+      <svg width="60" height="60" viewBox="0 0 60 60">
+        <path d="M 5,5 L 38,5 L 38,22 Q 38,16 44,16 Q 54,16 54,26 Q 54,36 44,36 Q 38,36 38,30 L 38,56 L 5,56 Z" fill="#1A2744"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES STRIP -->
+<section class="outcomes">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="outcomes-header">
+      <div class="section-eyebrow">
+        <span class="dot" style="background:#1A2744;"></span>
+        The Kind of Work We Do
+      </div>
+      <h3>What <span class="highlight">partnered transformation</span> looks like.</h3>
+    </div>
+
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-metric">$2.4M</div>
+        <div class="outcome-text">First multi-year federal grant secured by a mid-size nonprofit — from pursuit to award in under 90 days.</div>
+        <div class="outcome-label">— Winning Funding Strategy engagement</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-metric">130+</div>
+        <div class="outcome-text">Staff onboarded through documented operations playbooks that replaced tribal knowledge with scalable systems.</div>
+        <div class="outcome-label">— Partnered Transformation engagement</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-metric">6 wks</div>
+        <div class="outcome-text">From AI skeptics to confident, policy-aligned adopters — through a human-centered AI pilot that built internal champions.</div>
+        <div class="outcome-label">— Human-Centered AI engagement</div>
+      </div>
+    </div>
+
+    <div class="outcomes-footnote">
+      Composite results illustrating typical sprint engagement outcomes. Your results will be specific to your organization.
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE ROUTING -->
+<section class="routing">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="routing-header">
+      <div class="section-eyebrow">
+        <span class="dot"></span>
+        Where Do You Fit?
+      </div>
+      <h2 class="big-title">Pick your <span class="highlight">piece.</span></h2>
+      <p>Every sector faces its own version of the capacity, funding, and AI challenge. Tell us who you are — and we'll show you how we fit.</p>
+    </div>
+
+    <div class="routing-tabs" role="tablist">
+      <button class="routing-tab active" data-segment="nonprofit" role="tab" aria-selected="true">
+        <svg viewBox="0 0 44 44">
+          <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#FF8558" stroke="#1A2744" stroke-width="2"/>
+        </svg>
+        <div class="routing-tab-label">Nonprofits</div>
+      </button>
+
+      <button class="routing-tab" data-segment="forprofit" role="tab" aria-selected="false">
+        <svg viewBox="0 0 44 44">
+          <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#FFC947" stroke="#1A2744" stroke-width="2"/>
+        </svg>
+        <div class="routing-tab-label">For-Profits &amp; Grantmakers</div>
+      </button>
+
+      <button class="routing-tab" data-segment="smallbiz" role="tab" aria-selected="false">
+        <svg viewBox="0 0 44 44">
+          <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#1DD6B5" stroke="#1A2744" stroke-width="2"/>
+        </svg>
+        <div class="routing-tab-label">Small Businesses</div>
+      </button>
+
+      <button class="routing-tab" data-segment="statelocal" role="tab" aria-selected="false">
+        <svg viewBox="0 0 44 44">
+          <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#85D67A" stroke="#1A2744" stroke-width="2"/>
+        </svg>
+        <div class="routing-tab-label">State &amp; Local Agencies</div>
+      </button>
+
+      <button class="routing-tab" data-segment="federal" role="tab" aria-selected="false">
+        <svg viewBox="0 0 44 44">
+          <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#B8A4E8" stroke="#1A2744" stroke-width="2"/>
+        </svg>
+        <div class="routing-tab-label">Federal Agencies</div>
+      </button>
+    </div>
+
+    <div class="routing-panel">
+      <!-- NONPROFIT PANEL -->
+      <div class="routing-panel-inner active" data-panel="nonprofit">
+        <div class="routing-panel-pains">
+          <h3>If you lead a <span class="accent">nonprofit</span>, you know:</h3>
+          <ul>
+            <li>Demand is rising faster than your capacity — and 52% of nonprofits have ≤3 months cash on hand</li>
+            <li>Institutional knowledge lives in your longest-tenured staff, and every departure costs you</li>
+            <li>Grant competition is sharper than ever — funders want evidence of operational strength, not just mission</li>
+            <li>AI feels out of reach, but your board keeps asking about it</li>
+            <li>You don't need another strategic plan that lives in a drawer</li>
+          </ul>
+        </div>
+        <div class="routing-panel-promise">
+          <div class="routing-panel-promise-eyebrow">How We Partner</div>
+          <h4>We <span class="accent">build alongside you</span> — not instead of you.</h4>
+          <p>You don't need another outside firm telling your team what to do. You need a partner in the work. That's why Puzzler embeds with your staff — developing leaders, strengthening workforces, documenting programs, positioning grant pursuits, and bringing human-centered AI into the room at a pace you can absorb. Every sprint leaves your organization stronger than we found it.</p>
+          <a href="contact.html" class="promise-cta">Book a Discovery Call <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- FOR-PROFITS & GRANTMAKERS PANEL -->
+      <div class="routing-panel-inner" data-panel="forprofit">
+        <div class="routing-panel-pains">
+          <h3>If you run a <span class="accent">for-profit or grantmaker</span>, you're facing:</h3>
+          <ul>
+            <li>Growth outpacing your operational infrastructure — or funding flow outpacing your program design</li>
+            <li>Institutional knowledge trapped in silos, with no way to scale what works</li>
+            <li>Pressure to modernize acquisition, procurement, or grantmaking without breaking what's working</li>
+            <li>AI adoption without a governance strategy — and without a team fluent in it yet</li>
+            <li>Board and investor expectations climbing while execution bandwidth stays flat</li>
+          </ul>
+        </div>
+        <div class="routing-panel-promise">
+          <div class="routing-panel-promise-eyebrow">How We Partner</div>
+          <h4>Growth without the <span class="accent">organizational debt.</span></h4>
+          <p>The fastest-growing organizations are often the most fragile ones. Puzzler helps you develop executive talent, strengthen team effectiveness, document what's working, design smarter funding systems, and adopt AI in ways that amplify your people rather than create new dependencies. Scale without the cracks.</p>
+          <a href="contact.html" class="promise-cta">Book a Discovery Call <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- SMALL BUSINESS PANEL -->
+      <div class="routing-panel-inner" data-panel="smallbiz">
+        <div class="routing-panel-pains">
+          <h3>If you're a <span class="accent">small business</span>, you're navigating:</h3>
+          <ul>
+            <li>The FAR overhaul rolling out new rules every few weeks through June 2026</li>
+            <li>A 49% drop in small business federal market participation since FY2010</li>
+            <li>SBA 8(a), VOSB/SDVOSB, HUBZone, or VSBE certification decisions with big downstream consequences</li>
+            <li>Positioning for SAM.gov, capture planning, and proposal development with a lean team</li>
+            <li>The difference between winning your first contract and winning your next ten</li>
+          </ul>
+        </div>
+        <div class="routing-panel-promise">
+          <div class="routing-panel-promise-eyebrow">How We Partner</div>
+          <h4>From eligible to <span class="accent">awarded.</span></h4>
+          <p>Certification is the starting line, not the finish. Puzzler partners with small businesses on certifications, SAM.gov and capture strategy, proposal development, and acquisition positioning — grounded in what federal buyers actually evaluate. We've sat on the other side of the contract. Now we sit on yours.</p>
+          <a href="contact.html" class="promise-cta">Book a Discovery Call <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- STATE & LOCAL PANEL -->
+      <div class="routing-panel-inner" data-panel="statelocal">
+        <div class="routing-panel-pains">
+          <h3>If you lead at the <span class="accent">state or local</span> level, you're managing:</h3>
+          <ul>
+            <li>Expiring ARPA dollars, shrinking federal support, and constituents expecting more</li>
+            <li>Modernization mandates with staffing shortages and legacy systems</li>
+            <li>Federal AI policy shifts creating state-level regulatory uncertainty</li>
+            <li>Grants management demands climbing while compliance scrutiny intensifies</li>
+            <li>Workforce strategy tangled with recruitment, retention, and upskilling pressure</li>
+          </ul>
+        </div>
+        <div class="routing-panel-promise">
+          <div class="routing-panel-promise-eyebrow">How We Partner</div>
+          <h4>Modernization the <span class="accent">public can stand behind.</span></h4>
+          <p>Public trust is earned in how you modernize, not just what you modernize into. Puzzler helps state, county, and municipal teams develop leaders, strengthen workforces, document operations, position federal funding pursuits, and pilot AI in ways your constituents, your oversight bodies, and your staff can all defend. Practitioner-led. Transparency-first.</p>
+          <a href="contact.html" class="promise-cta">Book a Discovery Call <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- FEDERAL PANEL -->
+      <div class="routing-panel-inner" data-panel="federal">
+        <div class="routing-panel-pains">
+          <h3>If you lead at a <span class="accent">federal agency</span>, you're up against:</h3>
+          <ul>
+            <li>44% of federal leaders citing workforce skill gaps as the top AI adoption barrier</li>
+            <li>Data readiness blocking the jump from AI pilots to enterprise deployment</li>
+            <li>Budget constraints, aging systems, and shrinking talent pipelines all at once</li>
+            <li>FAR overhaul reshaping acquisition faster than your team can absorb</li>
+            <li>A governance landscape where transparency and trust are now the measure of success</li>
+          </ul>
+        </div>
+        <div class="routing-panel-promise">
+          <div class="routing-panel-promise-eyebrow">How We Partner</div>
+          <h4>Fed-inside fluency, without the <span class="accent">fed-consultant playbook.</span></h4>
+          <p>Most federal consulting is built to deliver reports. Yours needs to deliver change. Puzzler brings 20+ years of senior federal executive experience to leadership development, workforce capacity, grants and acquisition modernization, and human-centered AI adoption. We don't consult from outside. We've sat in the chair.</p>
+          <a href="contact.html" class="promise-cta">Book a Discovery Call <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY THIS MATTERS NOW - grounded in 2026 data -->
+<section class="problem">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+
+    <div class="problem-header">
+      <div class="section-eyebrow">
+        <span class="dot"></span>
+        Why This Matters Now
+      </div>
+      <h2 class="big-title">
+        Three pressures. <span class="highlight">One moment.</span>
+      </h2>
+      <p>Organizations across every sector are being asked to do more with less — while funding shifts, systems strain, and new technology rewrites how work gets done. The pieces don't always fit. We help put them together.</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <svg class="stat-piece" viewBox="0 0 44 44">
+          <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#FF8558" stroke="#1A2744" stroke-width="2"/>
+        </svg>
+        <div class="stat-number">52%</div>
+        <div class="stat-label">of nonprofits have three months or less of cash on hand — while 85% expect demand for their services to increase.</div>
+        <div class="stat-source">Nonprofit Finance Fund, 2025 State of the Sector</div>
+      </div>
+
+      <div class="stat-card">
+        <svg class="stat-piece" viewBox="0 0 44 44">
+          <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#FFC947" stroke="#1A2744" stroke-width="2"/>
+        </svg>
+        <div class="stat-number">49%</div>
+        <div class="stat-label">fewer small businesses are participating in the federal market than in FY2010 — even as the FAR overhaul rolls out new rules every few weeks.</div>
+        <div class="stat-source">Deltek Federal Contracting Outlook, 2026</div>
+      </div>
+
+      <div class="stat-card">
+        <svg class="stat-piece" viewBox="0 0 44 44">
+          <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#1DD6B5" stroke="#1A2744" stroke-width="2"/>
+        </svg>
+        <div class="stat-number">44%</div>
+        <div class="stat-label">of federal leaders cite workforce skill gaps as the top barrier to AI adoption — with data readiness and governance close behind.</div>
+        <div class="stat-source">EY Federal Trends Report, FY2026</div>
+      </div>
+    </div>
+
+    <div class="value-add-inner">
+      <h3>Where <span class="highlight">Puzzler</span> fits in.</h3>
+      <p>
+        Most consultants hand you a deliverable and disappear. We stay in the work. We develop leaders because strategy without strong people is theater. We strengthen workforces so institutional knowledge lives in your systems, not your people's heads. We position you to win funding in tighter markets and sharper procurement rules. And we bring human-centered AI into the room — not as a shortcut, but as a tool your team learns to wield.
+      </p>
+      <span class="closing-triad">Partnered. Practitioner-led. On your terms.</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="pillars-header">
+      <div class="section-eyebrow">
+        <span class="dot" style="background:#1A2744;"></span>
+        What We Do
+      </div>
+      <h2 class="big-title">
+        Three pillars.<br><span class="highlight">One outcome.</span>
+      </h2>
+      <p>Every Puzzler engagement is built around three interlocking services. Start with one — or fit them all together.</p>
+    </div>
+
+    <div class="pillars-grid">
+      <a href="services.html#capable" class="pillar-card capable">
+        <svg class="big-piece" viewBox="0 0 220 220">
+          <path d="M 20,20 L 130,20 L 130,75 Q 130,60 145,60 Q 180,60 180,95 Q 180,130 145,130 Q 130,130 130,115 L 130,200 L 20,200 Z" fill="#1A2744"/>
+        </svg>
+        <div class="pillar-number">PILLAR ONE</div>
+        <h3>Capable.</h3>
+        <div class="subtitle">Partnered Transformation</div>
+        <p class="description">Strong organizations are built on strong people and strong systems. We develop leaders, strengthen workforces, design operations, and bring human-centered AI into the room — delivered through coaching, training, team effectiveness, succession planning, governance, and workforce strategy. Built in from day one. Never bolted on.</p>
+        <span class="learn-more">Learn more →</span>
+      </a>
+
+      <a href="services.html#competitive" class="pillar-card competitive">
+        <svg class="big-piece" viewBox="0 0 220 220">
+          <path d="M 20,20 L 130,20 L 130,75 Q 130,60 145,60 Q 180,60 180,95 Q 180,130 145,130 Q 130,130 130,115 L 130,200 L 20,200 Z" fill="#1A2744"/>
+        </svg>
+        <div class="pillar-number">PILLAR TWO</div>
+        <h3>Competitive.</h3>
+        <div class="subtitle">Winning Funding Strategies</div>
+        <p class="description">Winning takes more than a good idea — it takes positioning, discipline, and inside knowledge of what buyers actually evaluate. We help you pursue and win federal contracts and grants — through capture strategy, SAM.gov readiness, proposal development, and the certifications that open the door. Grounded in what it takes to win from people who've evaluated both sides.</p>
+        <span class="learn-more">Learn more →</span>
+      </a>
+
+      <a href="services.html#resilient" class="pillar-card resilient">
+        <svg class="big-piece" viewBox="0 0 220 220">
+          <path d="M 20,20 L 130,20 L 130,75 Q 130,60 145,60 Q 180,60 180,95 Q 180,130 145,130 Q 130,130 130,115 L 130,200 L 20,200 Z" fill="#1A2744"/>
+        </svg>
+        <div class="pillar-number">PILLAR THREE</div>
+        <h3>Resilient.</h3>
+        <div class="subtitle">Risk &amp; Compliance</div>
+        <p class="description">The biggest threats to an organization are often the quietest ones — a weak control, a missed deadline, a compliance gap. We see risk early, correct it before it becomes loss, and build the systems that hold up under audit — FAR, 2 CFR 200, internal controls, and the policies that make scrutiny survivable. Risk correction as a discipline. Not a reaction.</p>
+        <span class="learn-more">Learn more →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- THE PUZZLER METHOD -->
+<section class="method">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="method-header">
+      <div class="section-eyebrow">
+        <span class="dot"></span>
+        The Puzzler Method
+      </div>
+      <h2 class="big-title">The method behind <span class="highlight">the method.</span></h2>
+      <p>Every engagement starts with a conversation — and runs on a six-step discipline we've refined across two decades of federal, nonprofit, and private-sector operations. Here's how we work.</p>
+    </div>
+
+    <div class="method-steps">
+      <div class="method-step">
+        <div class="method-step-header">
+          <div class="method-step-num">01</div>
+          <svg viewBox="0 0 44 44">
+            <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#FF8558" stroke="#1A2744" stroke-width="2"/>
+          </svg>
+        </div>
+        <h4>Start With The Edge</h4>
+        <p>Every puzzle starts with the border. We establish the frame first — who you are, where you are, where you're going, and what's in the way. No assumptions.</p>
+      </div>
+
+      <div class="method-step">
+        <div class="method-step-header">
+          <div class="method-step-num">02</div>
+          <svg viewBox="0 0 44 44">
+            <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#FFC947" stroke="#1A2744" stroke-width="2"/>
+          </svg>
+        </div>
+        <h4>Build The Frame</h4>
+        <p>A rapid three-week diagnostic — capacity gaps, execution gaps, and priorities — built on openness, availability, and real-time observation of how your team actually works.</p>
+      </div>
+
+      <div class="method-step">
+        <div class="method-step-header">
+          <div class="method-step-num">03</div>
+          <svg viewBox="0 0 44 44">
+            <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#1DD6B5" stroke="#1A2744" stroke-width="2"/>
+          </svg>
+        </div>
+        <h4>Sort The Pieces</h4>
+        <p>People, processes, resources, and opportunities — sorted into what's working, what's missing, and what's next. The output is a sprint-ready Action Blueprint.</p>
+      </div>
+
+      <div class="method-step">
+        <div class="method-step-header">
+          <div class="method-step-num">04</div>
+          <svg viewBox="0 0 44 44">
+            <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#85D67A" stroke="#1A2744" stroke-width="2"/>
+          </svg>
+        </div>
+        <h4>Use Visual Cues</h4>
+        <p>Operators don't run on memory. We build visual tools — execution frameworks, performance maps, priority trackers — that your team can see, update, and trust.</p>
+      </div>
+
+      <div class="method-step">
+        <div class="method-step-header">
+          <div class="method-step-num">05</div>
+          <svg viewBox="0 0 44 44">
+            <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#B8A4E8" stroke="#1A2744" stroke-width="2"/>
+          </svg>
+        </div>
+        <h4>Take Breaks</h4>
+        <p>Sustained momentum requires intentional pauses. Structured sprint reviews and reset points keep the team oriented, recalibrated, and energized for what's next.</p>
+      </div>
+
+      <div class="method-step">
+        <div class="method-step-header">
+          <div class="method-step-num">06</div>
+          <svg viewBox="0 0 44 44">
+            <path d="M 4,4 L 26,4 L 26,14 Q 26,10 30,10 Q 38,10 38,18 Q 38,26 30,26 Q 26,26 26,22 L 26,40 L 4,40 Z" fill="#FF9EAA" stroke="#1A2744" stroke-width="2"/>
+          </svg>
+        </div>
+        <h4>Avoid Common Mistakes</h4>
+        <p>Risk correction happens continuously — proactive when we see it coming, reactive when it appears. Spoken or written. Always in the open. Always on the table.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PUZZLER -->
+<section class="why">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="why-header">
+      <div class="section-eyebrow">
+        <span class="dot"></span>
+        Why Puzzler
+      </div>
+      <h2 class="big-title">Three things we believe. <span class="highlight">Every engagement reflects them.</span></h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-item">
+        <!-- Corner piece (foundation) - Experience That Translates anchors the firm -->
+        <svg class="why-item-piece" viewBox="0 0 100 100">
+          <path d="M 8,8 L 60,8 L 60,36 Q 60,28 68,28 Q 82,28 82,42 Q 82,56 68,56 Q 60,56 60,48 L 60,68 Q 60,60 56,60 Q 44,60 44,72 Q 44,84 56,84 Q 60,84 60,80 L 60,92 L 8,92 Z" fill="#FF8558" stroke="#1A2744" stroke-width="3"/>
+        </svg>
+        <h4>Experience That Translates</h4>
+        <p>We don't theorize about operations at scale. We've run them — $800M budgets, $5.6B grants portfolios, 130+ staff, under public scrutiny. That experience doesn't stay federal. It translates directly into how nonprofits sustain, how businesses scale, and how agencies modernize.</p>
+      </div>
+
+      <div class="why-item">
+        <!-- Two-tab horizontal connector - Translation Across Sectors connects everything -->
+        <svg class="why-item-piece" viewBox="0 0 110 100">
+          <path d="M 28,8 L 70,8 L 70,36 Q 70,28 78,28 Q 92,28 92,42 Q 92,56 78,56 Q 70,56 70,48 L 70,92 L 28,92 L 28,72 Q 28,80 20,80 Q 8,80 8,66 Q 8,52 20,52 Q 28,52 28,60 Z" fill="#FFC947" stroke="#1A2744" stroke-width="3"/>
+        </svg>
+        <h4>Translation Across Sectors</h4>
+        <p>Most consulting firms are fluent in one world and visitors in the others. We've been responsible operators across federal, nonprofit, business, and grantmaking environments. We don't translate concepts — we translate outcomes. Your strategy lands the same whether the audience is a CEO, a program officer, or a Congressional committee.</p>
+      </div>
+
+      <div class="why-item">
+        <!-- Two-tab vertical - AI in Service of Your People amplifies up + down through the org -->
+        <svg class="why-item-piece" viewBox="0 0 100 110">
+          <path d="M 8,38 L 8,68 L 32,68 Q 26,68 26,75 Q 26,90 44,90 Q 62,90 62,75 Q 62,68 56,68 L 92,68 L 92,38 L 68,38 Q 74,38 74,30 Q 74,12 50,12 Q 26,12 26,30 Q 26,38 32,38 Z" fill="#1DD6B5" stroke="#1A2744" stroke-width="3"/>
+        </svg>
+        <h4>AI in Service of Your People</h4>
+        <p>We believe AI should amplify the humans doing the work — not automate them out of it. That means piloting it thoughtfully, building staff fluency, aligning it to your mission, and making sure your board, your regulators, and your people can all defend how you use it. Human-centered AI isn't a feature. It's a commitment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSORTIUM -->
+<section class="consortium">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="consortium-inner">
+      <div>
+        <div class="section-eyebrow" style="background:#1A2744;">
+          <span class="dot" style="background:#FFC947;"></span>
+          The Puzzler Consortium Network
+        </div>
+        <h2 class="big-title">Stronger <span class="highlight">together.</span></h2>
+        <p>We don't work alone — and we don't ask you to either. Through the Puzzler Consortium Network, we team with subject-matter experts, practitioners, and trusted firms to bring the right people to every engagement. Collaboration is how the pieces fit.</p>
+        <a href="about.html" class="link-pill">
+          Meet Our Partners
+          <span>→</span>
+        </a>
+      </div>
+
+      <div class="consortium-visual">
+        <div class="cluster-piece cluster-center" style="--rot: 0deg;">
+          <svg width="140" height="140" viewBox="0 0 140 140">
+            <path d="M 10,10 L 88,10 L 88,45 Q 88,34 98,34 Q 116,34 116,52 Q 116,70 98,70 Q 88,70 88,59 L 88,130 L 10,130 Z" fill="#1A2744" stroke="#1A2744" stroke-width="3"/>
+            <text x="50" y="80" text-anchor="middle" fill="#1DD6B5" font-family="Fraunces, serif" font-size="16" font-weight="900">P</text>
+          </svg>
+        </div>
+        <div class="cluster-piece cluster-top" style="--rot: -15deg;">
+          <!-- Two-tab horizontal connector — partner reaching in from above -->
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <path d="M 30,6 L 80,6 L 80,30 Q 80,22 88,22 Q 100,22 100,36 Q 100,50 88,50 Q 80,50 80,42 L 80,85 L 30,85 L 30,65 Q 30,73 22,73 Q 8,73 8,58 Q 8,43 22,43 Q 30,43 30,52 Z" fill="#FF8558" stroke="#1A2744" stroke-width="3"/>
+          </svg>
+        </div>
+        <div class="cluster-piece cluster-left" style="--rot: 20deg;">
+          <!-- Tab-bottom — partner with downward connector -->
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <path d="M 6,6 L 6,64 L 36,64 Q 28,64 28,72 Q 28,88 44,88 Q 60,88 60,72 Q 60,64 52,64 L 94,64 L 94,6 Z" fill="#FFC947" stroke="#1A2744" stroke-width="3"/>
+          </svg>
+        </div>
+        <div class="cluster-piece cluster-right" style="--rot: -12deg;">
+          <!-- Tab-top piece -->
+          <svg width="95" height="95" viewBox="0 0 95 95">
+            <path d="M 6,40 L 6,90 L 90,90 L 90,40 L 60,40 Q 68,40 68,30 Q 68,14 52,14 Q 36,14 36,30 Q 36,40 44,40 Z" fill="#85D67A" stroke="#1A2744" stroke-width="3"/>
+          </svg>
+        </div>
+        <div class="cluster-piece cluster-bottom" style="--rot: 18deg;">
+          <!-- Tab-left mirror -->
+          <svg width="85" height="85" viewBox="0 0 85 85">
+            <path d="M 5,5 L 5,30 Q 5,22 13,22 Q 27,22 27,40 Q 27,55 13,55 Q 5,55 5,48 L 5,80 L 80,80 L 80,5 Z" fill="#B8A4E8" stroke="#1A2744" stroke-width="3"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="final-cta-inner">
+      <div class="final-pieces">
+        <!-- Tab-right (orange) — "where you start" -->
+        <svg viewBox="0 0 72 72"><path d="M 6,6 L 44,6 L 44,24 Q 44,18 50,18 Q 62,18 62,30 Q 62,42 50,42 Q 44,42 44,36 L 44,66 L 6,66 Z" fill="#FF8558" stroke="#1A2744" stroke-width="3"/></svg>
+        <!-- Two-tab horizontal (gold) — "the connector" -->
+        <svg viewBox="0 0 80 72"><path d="M 26,6 L 60,6 L 60,24 Q 60,18 66,18 Q 78,18 78,30 Q 78,42 66,42 Q 60,42 60,36 L 60,66 L 26,66 L 26,52 Q 26,58 20,58 Q 8,58 8,46 Q 8,34 20,34 Q 26,34 26,40 Z" fill="#FFC947" stroke="#1A2744" stroke-width="3"/></svg>
+        <!-- Two-tab vertical (teal) — "the hub" -->
+        <svg viewBox="0 0 72 80"><path d="M 6,28 L 6,46 L 22,46 Q 18,46 18,52 Q 18,64 32,64 Q 46,64 46,52 Q 46,46 42,46 L 66,46 L 66,28 L 50,28 Q 56,28 56,22 Q 56,8 38,8 Q 22,8 22,22 Q 22,28 28,28 Z" fill="#1DD6B5" stroke="#1A2744" stroke-width="3"/></svg>
+        <!-- Tab-left (green) — "where you finish" -->
+        <svg viewBox="0 0 72 72"><path d="M 6,6 L 6,24 Q 6,18 12,18 Q 24,18 24,30 Q 24,42 12,42 Q 6,42 6,36 L 6,66 L 66,66 L 66,6 Z" fill="#85D67A" stroke="#1A2744" stroke-width="3"/></svg>
+      </div>
+      <h2>Let's make the <span class="highlight">pieces fit.</span></h2>
+      <p>Every engagement begins the same way — with a conversation. Tell us where you are, where you want to be, and what's standing in the way. We'll bring the pieces together.</p>
+      <div class="hero-ctas">
+        <a href="contact.html" class="btn btn-primary">
+          Start a Conversation
+          <span class="btn-arrow">→</span>
+        </a>
+        <a href="mailto:info@puzzlerconsultingadvisory.com" class="btn btn-secondary">
+          Email Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="color:var(--pz-cream);">
+          <svg viewBox="0 0 40 40" width="40" height="40">
+            <path d="M 3,3 L 22,3 L 22,13 Q 22,9 26,9 Q 33,9 33,15 Q 33,21 26,21 Q 22,21 22,17 L 22,37 L 3,37 Z" fill="#1DD6B5"/>
+          </svg>
+          Puzzler
+        </div>
+        <p class="footer-brand-line">Making the pieces fit.</p>
+        <p>Built to compete. Positioned to win. Made to fit.</p>
+      </div>
+
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Contact</h5>
+        <p><a href="mailto:info@puzzlerconsultingadvisory.com">info@puzzlerconsultingadvisory.com</a></p>
+        <p><a href="tel:+14109706539">(410) 970-6539</a></p>
+        <p>1125 West Street, Suite 200 #348<br>Annapolis, MD 21401</p>
+      </div>
+
+      <div>
+        <h5>Connect</h5>
+        <p><a href="#">LinkedIn</a></p>
+      </div>
+    </div>
+
+    <div class="footer-strip">
+      <svg viewBox="0 0 40 40"><path d="M 0,0 L 30,0 L 30,10 Q 30,6 34,6 Q 40,6 40,12 Q 40,18 34,18 Q 30,18 30,14 L 30,40 L 0,40 Z" fill="#FF8558"/></svg>
+      <svg viewBox="0 0 40 40"><path d="M 0,10 Q 0,6 4,6 Q 10,6 10,12 Q 10,18 4,18 Q 0,18 0,22 L 0,40 L 30,40 L 30,6 Q 30,10 34,10 Q 40,10 40,16 Q 40,22 34,22 Q 30,22 30,18 L 30,40 L 0,40 Z" fill="#FFC947"/></svg>
+      <svg viewBox="0 0 40 40"><path d="M 0,14 Q 0,10 4,10 Q 10,10 10,16 Q 10,22 4,22 Q 0,22 0,26 L 0,40 L 40,40 L 40,0 L 0,0 Z" fill="#1DD6B5"/></svg>
+      <svg viewBox="0 0 40 40"><path d="M 0,0 L 30,0 L 30,40 L 0,40 Z" fill="#85D67A"/></svg>
+      <svg viewBox="0 0 40 40"><path d="M 0,0 L 40,0 L 40,40 L 0,40 Z" fill="#B8A4E8"/></svg>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Puzzler Consulting &amp; Advisory Services. All rights reserved.</div>
+      <div><a href="#">Privacy</a> • <a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll state
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Mobile nav toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+}
+
+// Audience Routing - tab switching
+const routingTabs = document.querySelectorAll('.routing-tab');
+const routingPanels = document.querySelectorAll('.routing-panel-inner');
+
+routingTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const segment = tab.dataset.segment;
+
+    // Update tab states
+    routingTabs.forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+
+    // Update panel states
+    routingPanels.forEach(p => {
+      p.classList.remove('active');
+      if (p.dataset.panel === segment) {
+        p.classList.add('active');
+      }
+    });
+  });
+
+  // Keyboard support
+  tab.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      tab.click();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
