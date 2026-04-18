@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1A2744">
+
+<title>About | Puzzler Consulting &amp; Advisory Services</title>
+<meta name="description" content="Meet Mark D. Williams, founder of Puzzler Consulting &amp; Advisory Services. 20+ years of senior federal executive experience across State, USDA, DHS/FEMA, and DoD.">
+<link rel="canonical" href="https://puzzlerconsultingadvisory.com/about">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="About | Puzzler Consulting &amp; Advisory Services">
+<meta property="og:description" content="Practitioner-led consulting founded by Mark D. Williams, drawing on 20+ years of senior federal executive experience.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@400;500;600;700&display=swap"></noscript>
+
+<style>
+:root {
+  --pz-navy: #1A2744; --pz-cream: #FFF8EC; --pz-cream-2: #FFF2DC;
+  --pz-orange: #FF8558; --pz-orange-bright: #FF6B3D; --pz-gold: #FFC947;
+  --pz-teal: #1DD6B5; --pz-green: #85D67A; --pz-pink: #FF9EAA; --pz-purple: #B8A4E8;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+.skip-link { position: absolute; top: -48px; left: 16px; background: var(--pz-navy); color: var(--pz-cream); padding: 12px 20px; border-radius: 10px; font-weight: 700; font-size: 14px; text-decoration: none; z-index: 10000; transition: top 0.2s; }
+.skip-link:focus { top: 16px; outline: 3px solid var(--pz-teal); outline-offset: 2px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--pz-teal); outline-offset: 3px; border-radius: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  html { scroll-behavior: auto; }
+}
+
+body { font-family: var(--font-body); color: var(--pz-navy); background: var(--pz-cream); line-height: 1.6; font-size: 17px; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: var(--font-display); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+.puzzle-bg { position: absolute; inset: 0; opacity: 0.06; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%231A2744'%3E%3Cpath d='M20 20 L55 20 L55 42 Q55 34 63 34 Q75 34 75 46 Q75 58 63 58 Q55 58 55 50 L55 75 L20 75 Z'/%3E%3Cpath d='M80 80 L115 80 L115 102 Q115 94 123 94 Q135 94 135 106 Q135 118 123 118 Q115 118 115 110 L115 135 L80 135 Z' opacity='0.6'/%3E%3C/g%3E%3C/svg%3E"); background-size: 200px 200px; }
+
+/* NAV */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; transition: all 0.3s ease; }
+.nav.scrolled { background: rgba(255, 248, 236, 0.95); backdrop-filter: blur(12px); box-shadow: 0 4px 24px rgba(26, 39, 68, 0.06); }
+.nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 900; font-size: 24px; color: var(--pz-navy); letter-spacing: -0.02em; }
+.nav-logo svg { width: 40px; height: 40px; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.nav-logo:hover svg { transform: rotate(360deg); }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { font-size: 15px; font-weight: 600; color: var(--pz-navy); position: relative; padding: 8px 4px; }
+.nav-links a:not(.nav-cta):hover { color: var(--pz-orange-bright); }
+.nav-links a.active::after { content: ''; position: absolute; bottom: 0; left: 4px; right: 4px; height: 3px; background: var(--pz-teal); border-radius: 2px; }
+.nav-cta { background: var(--pz-navy); color: white !important; padding: 12px 22px; border-radius: 999px; font-size: 14px; font-weight: 700; transition: all 0.2s; box-shadow: 4px 4px 0 var(--pz-teal); }
+.nav-cta:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--pz-teal); color: white; }
+.nav-toggle { display: none; cursor: pointer; background: none; border: none; }
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; width: 44px; height: 44px; padding: 10px; background: var(--pz-navy); border-radius: 12px; }
+  .nav-toggle span { display: block; width: 100%; height: 2px; background: var(--pz-cream); margin: 5px 0; }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 16px; right: 16px; background: var(--pz-cream); padding: 24px; gap: 16px; border-radius: 20px; border: 2px solid var(--pz-navy); box-shadow: 6px 6px 0 var(--pz-teal); }
+}
+
+/* HERO */
+.page-hero { position: relative; padding: 160px 0 120px; background: var(--pz-cream); overflow: hidden; text-align: center; }
+.hero-float { position: absolute; pointer-events: none; opacity: 0.75; }
+.hf-1 { top: 18%; left: 8%; }
+.hf-2 { top: 25%; right: 10%; }
+.hf-3 { bottom: 20%; left: 12%; }
+.hf-4 { bottom: 25%; right: 8%; }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.hero-float svg { animation: bob 6s ease-in-out infinite; }
+.hf-2 svg { animation-delay: 1s; }
+.hf-3 svg { animation-delay: 2s; }
+.hf-4 svg { animation-delay: 3s; }
+
+.page-hero-inner { position: relative; z-index: 5; max-width: 880px; margin: 0 auto; }
+.hero-tag { display: inline-flex; align-items: center; gap: 10px; background: white; padding: 8px 18px; border-radius: 999px; font-size: 13px; font-weight: 700; color: var(--pz-navy); letter-spacing: 0.08em; margin-bottom: 28px; border: 2px solid var(--pz-navy); box-shadow: 3px 3px 0 var(--pz-gold); }
+.hero-tag .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pz-teal); }
+.page-hero h1 { font-size: clamp(48px, 7vw, 96px); font-weight: 900; line-height: 0.95; margin-bottom: 28px; letter-spacing: -0.04em; }
+.page-hero h1 .accent { color: var(--pz-orange-bright); font-style: italic; font-weight: 800; position: relative; }
+.page-hero h1 .accent::after { content: ''; position: absolute; bottom: 6px; left: -4px; right: -4px; height: 12px; background: var(--pz-gold); z-index: -1; border-radius: 4px; transform: rotate(-1.5deg); }
+.page-hero p.subhead { font-size: clamp(18px, 2vw, 22px); line-height: 1.55; color: var(--pz-navy); opacity: 0.85; max-width: 720px; margin: 0 auto; }
+
+/* BIO */
+.bio { padding: 120px 0; background: var(--pz-cream-2); position: relative; overflow: hidden; content-visibility: auto; contain-intrinsic-size: 1px 800px; }
+.bio .puzzle-bg { opacity: 0.04; }
+.bio-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 380px 1fr; gap: 80px; align-items: start; }
+.bio-portrait { position: relative; }
+.bio-portrait-wrap { position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 4/5; background: var(--pz-navy); display: flex; align-items: center; justify-content: center; border: 3px solid var(--pz-navy); box-shadow: 8px 8px 0 var(--pz-teal); }
+.portrait-piece { width: 72%; height: auto; position: relative; z-index: 1; }
+.bio-portrait-badge { position: absolute; bottom: -20px; right: -20px; background: var(--pz-gold); color: var(--pz-navy); padding: 14px 22px; border-radius: 14px; font-family: var(--font-display); font-weight: 800; font-size: 14px; border: 2.5px solid var(--pz-navy); box-shadow: 4px 4px 0 var(--pz-navy); font-style: italic; }
+.bio-content .bio-name { font-size: clamp(38px, 4vw, 52px); font-weight: 900; margin-bottom: 8px; letter-spacing: -0.03em; line-height: 1; }
+.bio-title { color: var(--pz-navy); font-family: var(--font-display); font-weight: 700; font-style: italic; font-size: 17px; margin-bottom: 32px; opacity: 0.7; }
+.bio-body p { font-size: 17px; line-height: 1.75; color: var(--pz-navy); opacity: 0.85; margin-bottom: 20px; }
+.bio-body p strong { color: var(--pz-navy); font-weight: 700; opacity: 1; }
+
+/* Founder Statement heading */
+.founder-eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pz-orange-bright);
+  margin-bottom: 14px;
+  padding: 5px 12px;
+  background: rgba(255, 107, 61, 0.08);
+  border-radius: 6px;
+}
+
+/* West Wing pull-quote block */
+.bio-pullquote {
+  margin: 28px 0 28px 0;
+  padding: 24px 28px;
+  border-left: 4px solid var(--pz-teal);
+  background: rgba(29, 214, 181, 0.06);
+  border-radius: 0 12px 12px 0;
+}
+.bio-pullquote p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--pz-navy);
+  opacity: 1;
+  margin-bottom: 10px;
+}
+.bio-pullquote p:last-child { margin-bottom: 0; }
+.bio-pullquote em {
+  font-style: italic;
+  color: var(--pz-orange-bright);
+  font-weight: 700;
+}
+
+/* Career chapters list */
+.career-chapters {
+  margin: 24px 0;
+  padding: 0;
+  list-style: none;
+}
+.career-chapters li {
+  position: relative;
+  padding: 14px 0 14px 28px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--pz-navy);
+  opacity: 0.9;
+  border-bottom: 1px solid rgba(26, 39, 68, 0.08);
+}
+.career-chapters li:last-child { border-bottom: none; }
+.career-chapters li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 22px;
+  width: 14px;
+  height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M 2,2 L 9,2 L 9,5 Q 9,4 10,4 Q 13,4 13,7 Q 13,10 10,10 Q 9,10 9,9 L 9,13 L 2,13 Z' fill='%231DD6B5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.career-chapters li strong {
+  font-weight: 800;
+  color: var(--pz-navy);
+  opacity: 1;
+}
+
+/* Founder sign-off */
+.bio-signoff {
+  margin-top: 16px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--pz-orange-bright);
+  opacity: 1 !important;
+}
+
+/* Visual divider between Founder Statement and Credential Summary */
+.bio-divider {
+  margin: 48px 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.bio-divider::before,
+.bio-divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: rgba(26, 39, 68, 0.15);
+}
+.bio-divider-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pz-navy);
+  opacity: 0.6;
+}
+
+/* Speaking engagements callout */
+.speaking-callout {
+  margin-top: 28px;
+  padding: 22px 24px;
+  background: var(--pz-navy);
+  color: var(--pz-cream);
+  border-radius: 14px;
+  border: 2.5px solid var(--pz-navy);
+  box-shadow: 5px 5px 0 var(--pz-gold);
+}
+.speaking-callout-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pz-gold);
+  margin-bottom: 10px;
+}
+.speaking-callout p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--pz-cream);
+  opacity: 0.92;
+  margin-bottom: 10px;
+}
+.speaking-callout p:last-child { margin-bottom: 0; }
+.speaking-callout a {
+  color: var(--pz-teal);
+  font-weight: 700;
+  border-bottom: 2px solid var(--pz-teal);
+  padding-bottom: 2px;
+}
+.speaking-callout a:hover { color: var(--pz-gold); border-bottom-color: var(--pz-gold); }
+
+.bio-credentials { margin-top: 40px; display: flex; gap: 10px; flex-wrap: wrap; }
+.credential-badge { background: white; border: 2px solid var(--pz-navy); padding: 10px 18px; border-radius: 12px; font-size: 13px; font-weight: 700; color: var(--pz-navy); box-shadow: 3px 3px 0 var(--pz-navy); transition: all 0.25s; }
+.credential-badge:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--pz-teal); }
+@media (max-width: 900px) { .bio-inner { grid-template-columns: 1fr; gap: 40px; } .bio-portrait { max-width: 340px; margin: 0 auto; } }
+
+/* PRINCIPLES */
+.approach { padding: 120px 0; background: var(--pz-cream); position: relative; overflow: hidden; content-visibility: auto; contain-intrinsic-size: 1px 600px; }
+.approach .puzzle-bg { opacity: 0.04; }
+.approach-header { text-align: center; max-width: 680px; margin: 0 auto 64px; position: relative; z-index: 2; }
+.section-eyebrow { display: inline-flex; align-items: center; gap: 10px; background: var(--pz-navy); color: var(--pz-cream); padding: 8px 16px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 24px; }
+.section-eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pz-orange); }
+h2.big-title { font-size: clamp(36px, 5vw, 60px); font-weight: 900; line-height: 1; letter-spacing: -0.03em; margin-bottom: 20px; }
+h2.big-title .highlight { color: var(--pz-orange-bright); font-style: italic; position: relative; display: inline-block; }
+h2.big-title .highlight::after { content: ''; position: absolute; bottom: 0; left: -4px; right: -4px; height: 10px; background: var(--pz-gold); z-index: -1; border-radius: 4px; transform: rotate(-1deg); }
+.approach-header p { font-size: 18px; color: var(--pz-navy); opacity: 0.78; line-height: 1.6; margin-top: 16px; }
+.principles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; z-index: 2; }
+.principle-card { background: white; border: 2.5px solid var(--pz-navy); border-radius: 20px; padding: 36px 24px; position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.principle-card:nth-child(1) { box-shadow: 5px 5px 0 var(--pz-orange); }
+.principle-card:nth-child(2) { box-shadow: 5px 5px 0 var(--pz-gold); }
+.principle-card:nth-child(3) { box-shadow: 5px 5px 0 var(--pz-teal); }
+.principle-card:nth-child(4) { box-shadow: 5px 5px 0 var(--pz-green); }
+.principle-card:hover { transform: translate(-3px, -3px); }
+.principle-card:nth-child(1):hover { box-shadow: 8px 8px 0 var(--pz-orange); }
+.principle-card:nth-child(2):hover { box-shadow: 8px 8px 0 var(--pz-gold); }
+.principle-card:nth-child(3):hover { box-shadow: 8px 8px 0 var(--pz-teal); }
+.principle-card:nth-child(4):hover { box-shadow: 8px 8px 0 var(--pz-green); }
+.principle-icon { width: 52px; height: 52px; margin-bottom: 20px; }
+.principle-card h4 { font-family: var(--font-display); font-size: 20px; font-weight: 800; margin-bottom: 12px; color: var(--pz-navy); line-height: 1.15; }
+.principle-card p { font-size: 14px; line-height: 1.6; color: var(--pz-navy); opacity: 0.78; }
+@media (max-width: 900px) { .principles-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .principles-grid { grid-template-columns: 1fr; } }
+
+/* MISSION */
+.mission { background: var(--pz-navy); color: var(--pz-cream); padding: 140px 0; text-align: center; position: relative; overflow: hidden; border-top: 3px solid var(--pz-navy); border-bottom: 3px solid var(--pz-navy); content-visibility: auto; contain-intrinsic-size: 1px 500px; }
+.mission .puzzle-bg { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%23FFF8EC'%3E%3Cpath d='M20 20 L55 20 L55 42 Q55 34 63 34 Q75 34 75 46 Q75 58 63 58 Q55 58 55 50 L55 75 L20 75 Z'/%3E%3C/g%3E%3C/svg%3E"); opacity: 0.05; }
+.mission-inner { position: relative; z-index: 2; max-width: 780px; margin: 0 auto; }
+.mission .section-eyebrow { background: var(--pz-teal); color: var(--pz-navy); }
+.mission .section-eyebrow .dot { background: var(--pz-navy); }
+.mission h2 { font-size: clamp(40px, 5vw, 68px); color: var(--pz-cream); margin-bottom: 32px; line-height: 1; }
+.mission h2 .highlight { color: var(--pz-teal); font-style: italic; position: relative; display: inline-block; }
+.mission h2 .highlight::after { content: ''; position: absolute; bottom: 0; left: -4px; right: -4px; height: 10px; background: var(--pz-gold); z-index: -1; border-radius: 4px; transform: rotate(-1deg); }
+.mission p { font-size: 20px; line-height: 1.65; color: rgba(255, 248, 236, 0.88); margin-bottom: 20px; }
+.mission p.pull-quote { font-family: var(--font-display); font-weight: 700; font-style: italic; color: var(--pz-gold); font-size: 24px; margin-top: 40px; }
+
+/* FINAL CTA */
+.final-cta { background: var(--pz-cream); padding: 140px 0; position: relative; overflow: hidden; text-align: center; content-visibility: auto; contain-intrinsic-size: 1px 500px; }
+.final-cta .puzzle-bg { opacity: 0.05; }
+.final-cta-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 2; }
+.final-pieces { display: flex; justify-content: center; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; }
+.final-pieces svg { width: 64px; height: 64px; animation: bob 4s ease-in-out infinite; }
+.final-pieces svg:nth-child(2) { animation-delay: 0.5s; }
+.final-pieces svg:nth-child(3) { animation-delay: 1s; }
+.final-pieces svg:nth-child(4) { animation-delay: 1.5s; }
+.final-cta h2 { font-size: clamp(42px, 6vw, 80px); color: var(--pz-navy); margin-bottom: 24px; line-height: 0.95; }
+.final-cta h2 .highlight { color: var(--pz-orange-bright); font-style: italic; position: relative; display: inline-block; }
+.final-cta h2 .highlight::after { content: ''; position: absolute; bottom: 0; left: -4px; right: -4px; height: 10px; background: var(--pz-gold); z-index: -1; border-radius: 4px; transform: rotate(-1deg); }
+.final-cta p { font-size: 19px; color: var(--pz-navy); opacity: 0.82; line-height: 1.6; margin-bottom: 44px; }
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 18px 32px; border-radius: 999px; font-weight: 700; font-size: 16px; font-family: var(--font-body); transition: all 0.25s ease; cursor: pointer; border: 2.5px solid var(--pz-navy); }
+.btn-primary { background: var(--pz-navy); color: var(--pz-cream); box-shadow: 5px 5px 0 var(--pz-orange); }
+.btn-primary:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--pz-orange); }
+.btn-secondary { background: var(--pz-cream); color: var(--pz-navy); box-shadow: 5px 5px 0 var(--pz-teal); }
+.btn-secondary:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--pz-teal); }
+.btn-arrow { transition: transform 0.2s; font-size: 20px; }
+.btn:hover .btn-arrow { transform: translateX(4px); }
+
+/* FOOTER */
+.footer { background: var(--pz-navy); color: rgba(255, 248, 236, 0.75); padding: 100px 0 40px; position: relative; overflow: hidden; content-visibility: auto; contain-intrinsic-size: 1px 500px; }
+.footer .puzzle-bg { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%23FFF8EC'%3E%3Cpath d='M20 20 L55 20 L55 42 Q55 34 63 34 Q75 34 75 46 Q75 58 63 58 Q55 58 55 50 L55 75 L20 75 Z'/%3E%3C/g%3E%3C/svg%3E"); opacity: 0.04; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1.3fr 1fr; gap: 48px; margin-bottom: 64px; position: relative; z-index: 2; }
+.footer h5 { font-family: var(--font-display); color: var(--pz-cream); font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px; }
+.footer p, .footer li, .footer a { font-size: 14px; line-height: 1.8; color: rgba(255, 248, 236, 0.65); }
+.footer ul { list-style: none; }
+.footer a:hover { color: var(--pz-teal); }
+.footer-brand-line { color: var(--pz-teal); font-family: var(--font-display); font-weight: 800; font-style: italic; font-size: 18px; margin: 16px 0 8px; }
+.footer-strip { display: flex; justify-content: center; gap: 0; margin: 40px 0 24px; position: relative; z-index: 2; }
+.footer-strip svg { width: 56px; height: 56px; }
+.footer-bottom { padding-top: 24px; border-top: 1px solid rgba(255, 248, 236, 0.1); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 13px; color: rgba(255, 248, 236, 0.45); position: relative; z-index: 2; }
+@media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+@media (max-width: 540px) { .footer-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M 3,3 L 22,3 L 22,13 Q 22,9 26,9 Q 33,9 33,15 Q 33,21 26,21 Q 22,21 22,17 L 22,37 L 3,37 Z" fill="#FF6B3D"/></svg>
+      Puzzler
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="nav-cta">Say Hello →</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main id="main-content">
+
+<section class="page-hero">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="hero-float hf-1" aria-hidden="true"><svg width="70" height="70" viewBox="0 0 70 70"><path d="M 5,5 L 44,5 L 44,22 Q 44,16 50,16 Q 62,16 62,27 Q 62,38 50,38 Q 44,38 44,32 L 44,66 L 5,66 Z" fill="#FFC947"/></svg></div>
+  <div class="hero-float hf-2" aria-hidden="true"><svg width="80" height="80" viewBox="0 0 80 80"><path d="M 5,28 L 5,75 L 75,75 L 75,28 L 50,28 Q 56,28 56,20 Q 56,8 40,8 Q 24,8 24,20 Q 24,28 30,28 Z" fill="#1DD6B5"/></svg></div>
+  <div class="hero-float hf-3" aria-hidden="true"><svg width="75" height="75" viewBox="0 0 75 75"><path d="M 22,5 L 70,5 L 70,28 Q 70,22 76,22 Q 88,22 88,32 Q 88,42 76,42 Q 70,42 70,36 L 70,70 L 22,70 L 22,55 Q 22,61 16,61 Q 5,61 5,51 Q 5,41 16,41 Q 22,41 22,47 Z" fill="#FF8558"/></svg></div>
+  <div class="hero-float hf-4" aria-hidden="true"><svg width="65" height="65" viewBox="0 0 65 65"><path d="M 5,5 L 5,28 Q 5,22 10,22 Q 22,22 22,32 Q 22,42 10,42 Q 5,42 5,38 L 5,60 L 60,60 L 60,5 Z" fill="#B8A4E8"/></svg></div>
+
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="hero-tag"><span class="dot"></span>ABOUT PUZZLER</div>
+      <h1>Built by a<br>practitioner.<br><span class="accent">For practitioners.</span></h1>
+      <p class="subhead">The best consulting comes from people who've made the decisions — not just studied them. Puzzler was built to bring that experience alongside the organizations doing the work that matters.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bio">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="bio-inner">
+      <div class="bio-portrait">
+        <div class="bio-portrait-wrap">
+          <svg class="portrait-piece" viewBox="0 0 200 240" aria-hidden="true">
+            <path d="M 20,30 L 110,30 L 110,80 Q 110,68 122,68 Q 142,68 142,88 Q 142,108 122,108 Q 110,108 110,96 L 110,210 L 20,210 Z" fill="#1DD6B5"/>
+            <text x="65" y="130" text-anchor="middle" fill="#1A2744" font-family="Fraunces, serif" font-size="15" font-weight="900" font-style="italic">MARK D.</text>
+            <text x="65" y="152" text-anchor="middle" fill="#1A2744" font-family="Fraunces, serif" font-size="15" font-weight="900" font-style="italic">WILLIAMS</text>
+          </svg>
+        </div>
+        <div class="bio-portrait-badge">Founder</div>
+      </div>
+
+      <div class="bio-content">
+        <h2 class="bio-name">Mark D. Williams</h2>
+        <div class="bio-title">Founder · Managing Partner · Chief Capacity Builder</div>
+
+        <div class="bio-body">
+          <div class="founder-eyebrow">A Note from Mark</div>
+
+          <p>People remember FEMA for the emergencies. I remember it for what came after.</p>
+
+          <p>As an emergency manager, I learned that the work that really matters isn't the response — it's helping people find their way back to a new normal. Not their old life. A new one. You can't hand someone a plan and call that help. You have to get down where they are, see what they see, and stay with them until the ground feels steady again.</p>
+
+          <div class="bio-pullquote">
+            <p>There's a scene from <em>The West Wing</em> I think about. A guy is stuck in a hole. A friend jumps in beside him. The guy says: <em>"What the hell are you doing? Now we're both in the hole."</em> The friend says: <em>"Yeah, but I've been down here before. I know the way out."</em></p>
+            <p>That's what I learned at FEMA. It's what Puzzler is built to do.</p>
+          </div>
+
+          <p>I've spent two decades thriving in complex, high-priority environments — and in the smaller, more meaningful engagements where systems and processes actually get modernized. Each chapter of that career taught me something I carry into Puzzler:</p>
+
+          <ul class="career-chapters">
+            <li>At the <strong>Joint Staff / Department of Defense</strong>, I served as an action officer engaging the highest levels of defense leadership — and learned how consequential decisions actually get made at the top.</li>
+            <li>At <strong>FEMA</strong>, I held what remains my coolest title: <em>Gatekeeper to the Joint Requirements Council</em>. I built FEMA's capability and requirements development function from the ground up — and learned that real modernization starts with asking the right questions, not buying the latest tools.</li>
+            <li>At the <strong>USDA's Food Safety and Inspection Service</strong>, I worked alongside the people who feed our communities and keep the food safe — and learned that mission clarity at the front line is worth more than any strategy deck.</li>
+            <li>At the <strong>U.S. Department of State</strong>, I now facilitate the exchange programs that enable people-to-people diplomacy across the world — and see every day what happens when strangers are given the chance to meet as humans.</li>
+          </ul>
+
+          <p>What ties those chapters together is simple. Organizations don't fail because their strategy is wrong. They fail because no one stays in the hole with them long enough to get them out. Puzzler was built to be the partner that stays.</p>
+
+          <p>I care deeply about the people inside institutions. That's why I advocate for <strong>adoption</strong>, particularly for older children whom the system too often overlooks, and for <strong>mental health</strong> — because the strength of any organization rests on the strength of the humans inside it. This work isn't separate from Puzzler. It's the same work at a different scale.</p>
+
+          <p>Every engagement begins the same way: with a conversation. Tell us where you are, where you're trying to get to, and what's in the way. We'll get in the hole with you — and help you find your new normal.</p>
+
+          <p class="bio-signoff">— Mark</p>
+
+          <div class="bio-divider">
+            <span class="bio-divider-label">For the Record</span>
+          </div>
+
+          <p>Mark D. Williams is the founder of Puzzler Consulting &amp; Advisory Services. He currently serves as Deputy Executive Director at the U.S. Department of State's Bureau of Educational and Cultural Affairs, where he oversees a staff of 130+, a budget exceeding <strong>$800 million</strong>, and a <strong>multi-billion-dollar grants portfolio</strong>.</p>
+
+          <p>His two-decade federal career spans senior leadership roles at the <strong>U.S. Department of Agriculture's Food Safety and Inspection Service</strong>, the <strong>Department of Homeland Security's FEMA</strong>, and the <strong>Joint Staff at the Department of Defense</strong> — shaping leadership development, workforce planning, grants operations, acquisition modernization, and organizational capacity across the federal enterprise.</p>
+
+          <p>He holds a B.A. from <strong>Howard University</strong> and is a vocal advocate for safe, accessible, and human-centered AI adoption across the public and nonprofit sectors.</p>
+
+          <div class="speaking-callout">
+            <div class="speaking-callout-label">Speaking Engagements</div>
+            <p>Mark is available for speaking on leadership in moments of institutional disruption, capacity building in mission-driven organizations, human-centered AI adoption, adoption advocacy (particularly for older children in the foster system), and mental health in the workplace and beyond.</p>
+            <p>Inquiries: <a href="mailto:info@puzzlerconsultingadvisory.com">info@puzzlerconsultingadvisory.com</a></p>
+          </div>
+        </div>
+
+        <div class="bio-credentials">
+          <div class="credential-badge">U.S. Dept. of State</div>
+          <div class="credential-badge">USDA / FSIS</div>
+          <div class="credential-badge">DHS / FEMA</div>
+          <div class="credential-badge">DoD / Joint Staff</div>
+          <div class="credential-badge">Howard University</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="approach">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="approach-header">
+      <div class="section-eyebrow"><span class="dot"></span>How We Work</div>
+      <h2 class="big-title">Four principles. <span class="highlight">Every engagement.</span></h2>
+      <p>Not values on a wall. Not slogans in a deck. These are how Puzzler shows up on day one — and every day after.</p>
+    </div>
+
+    <div class="principles-grid">
+      <div class="principle-card">
+        <!-- Tab-right - Embedded -->
+        <svg class="principle-icon" viewBox="0 0 52 52" aria-hidden="true"><path d="M 5,5 L 30,5 L 30,16 Q 30,12 34,12 Q 44,12 44,22 Q 44,32 34,32 Q 30,32 30,28 L 30,47 L 5,47 Z" fill="#FF8558" stroke="#1A2744" stroke-width="2.5"/></svg>
+        <h4>Embedded, not detached.</h4>
+        <p>We sit alongside your team — not above it. Our best work happens in the room.</p>
+      </div>
+      <div class="principle-card">
+        <!-- Tab-top (growth/momentum points up) - Quick wins -->
+        <svg class="principle-icon" viewBox="0 0 52 52" aria-hidden="true"><path d="M 5,22 L 5,47 L 47,47 L 47,22 L 32,22 Q 36,22 36,16 Q 36,6 26,6 Q 16,6 16,16 Q 16,22 20,22 Z" fill="#FFC947" stroke="#1A2744" stroke-width="2.5"/></svg>
+        <h4>Quick wins, then scale.</h4>
+        <p>Tangible movement in weeks, not quarters. Momentum before systems.</p>
+      </div>
+      <div class="principle-card">
+        <!-- Two-tab horizontal (people-connectors) - People-centered -->
+        <svg class="principle-icon" viewBox="0 0 60 52" aria-hidden="true"><path d="M 18,5 L 38,5 L 38,16 Q 38,12 42,12 Q 52,12 52,22 Q 52,32 42,32 Q 38,32 38,28 L 38,47 L 18,47 L 18,36 Q 18,40 14,40 Q 4,40 4,30 Q 4,20 14,20 Q 18,20 18,24 Z" fill="#1DD6B5" stroke="#1A2744" stroke-width="2.5"/></svg>
+        <h4>People-centered.</h4>
+        <p>Organizations are only as strong as the people inside them. Leadership and workforce development are built in — not bolted on.</p>
+      </div>
+      <div class="principle-card">
+        <!-- Tab-left (mirror) - Practitioner-first -->
+        <svg class="principle-icon" viewBox="0 0 52 52" aria-hidden="true"><path d="M 5,5 L 5,16 Q 5,12 9,12 Q 19,12 19,22 Q 19,32 9,32 Q 5,32 5,28 L 5,47 L 47,47 L 47,5 Z" fill="#85D67A" stroke="#1A2744" stroke-width="2.5"/></svg>
+        <h4>Practitioner-first.</h4>
+        <p>Theory is useful. Experience is decisive. We lead with what works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mission">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="mission-inner">
+      <div class="section-eyebrow"><span class="dot"></span>Our Mission</div>
+      <h2>Strengthen people. <span class="highlight">Scale what works.</span></h2>
+      <p>We partner with the organizations doing the most important work — and we help them develop the leaders, strengthen the workforces, win the funding, and adopt the AI that their missions actually require. Not theoretically. Not eventually. Now.</p>
+      <p class="pull-quote">Because when the pieces fit, everything works.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="final-cta-inner">
+      <div class="final-pieces">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M 5,5 L 40,5 L 40,22 Q 40,16 46,16 Q 58,16 58,28 Q 58,40 46,40 Q 40,40 40,34 L 40,60 L 5,60 Z" fill="#FF8558" stroke="#1A2744" stroke-width="3"/></svg>
+        <svg viewBox="0 0 72 64" aria-hidden="true"><path d="M 24,5 L 54,5 L 54,22 Q 54,16 60,16 Q 70,16 70,28 Q 70,40 60,40 Q 54,40 54,34 L 54,60 L 24,60 L 24,46 Q 24,52 18,52 Q 5,52 5,40 Q 5,28 18,28 Q 24,28 24,34 Z" fill="#FFC947" stroke="#1A2744" stroke-width="3"/></svg>
+        <svg viewBox="0 0 64 72" aria-hidden="true"><path d="M 5,24 L 5,42 L 22,42 Q 16,42 16,48 Q 16,60 32,60 Q 48,60 48,48 Q 48,42 42,42 L 60,42 L 60,24 L 42,24 Q 48,24 48,18 Q 48,5 32,5 Q 16,5 16,18 Q 16,24 22,24 Z" fill="#1DD6B5" stroke="#1A2744" stroke-width="3"/></svg>
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M 5,5 L 5,22 Q 5,16 10,16 Q 22,16 22,28 Q 22,40 10,40 Q 5,40 5,34 L 5,60 L 60,60 L 60,5 Z" fill="#85D67A" stroke="#1A2744" stroke-width="3"/></svg>
+      </div>
+      <h2>Let's make the <span class="highlight">pieces fit.</span></h2>
+      <p>Every engagement begins the same way — with a conversation. Tell us where you are, where you want to be, and what's standing in the way.</p>
+      <div class="hero-ctas">
+        <a href="contact.html" class="btn btn-primary">Book a 30-min Discovery Call <span class="btn-arrow">→</span></a>
+        <a href="services.html" class="btn btn-secondary">See How We Work</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="puzzle-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="color:var(--pz-cream);">
+          <svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><path d="M 3,3 L 22,3 L 22,13 Q 22,9 26,9 Q 33,9 33,15 Q 33,21 26,21 Q 22,21 22,17 L 22,37 L 3,37 Z" fill="#1DD6B5"/></svg>
+          Puzzler
+        </div>
+        <p class="footer-brand-line">Making the pieces fit.</p>
+        <p>Built to compete. Positioned to win. Made to fit.</p>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <p><a href="mailto:info@puzzlerconsultingadvisory.com">info@puzzlerconsultingadvisory.com</a></p>
+        <p><a href="tel:+14109706539">(410) 970-6539</a></p>
+        <p>1125 West Street, Suite 200 #348<br>Annapolis, MD 21401</p>
+      </div>
+      <div><h5>Connect</h5><p><a href="#">LinkedIn</a></p></div>
+    </div>
+    <div class="footer-strip" aria-hidden="true">
+      <svg viewBox="0 0 40 40"><path d="M 0,0 L 30,0 L 30,10 Q 30,6 34,6 Q 40,6 40,12 Q 40,18 34,18 Q 30,18 30,14 L 30,40 L 0,40 Z" fill="#FF8558"/></svg>
+      <svg viewBox="0 0 40 40"><path d="M 0,10 Q 0,6 4,6 Q 10,6 10,12 Q 10,18 4,18 Q 0,18 0,22 L 0,40 L 30,40 L 30,6 Q 30,10 34,10 Q 40,10 40,16 Q 40,22 34,22 Q 30,22 30,18 L 30,40 L 0,40 Z" fill="#FFC947"/></svg>
+      <svg viewBox="0 0 40 40"><path d="M 0,14 Q 0,10 4,10 Q 10,10 10,16 Q 10,22 4,22 Q 0,22 0,26 L 0,40 L 40,40 L 40,0 L 0,0 Z" fill="#1DD6B5"/></svg>
+      <svg viewBox="0 0 40 40"><path d="M 0,0 L 30,0 L 30,40 L 0,40 Z" fill="#85D67A"/></svg>
+      <svg viewBox="0 0 40 40"><path d="M 0,0 L 40,0 L 40,40 L 0,40 Z" fill="#B8A4E8"/></svg>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Puzzler Consulting &amp; Advisory Services. All rights reserved.</div>
+      <div><a href="#">Privacy</a> • <a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); });
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+if (navToggle && navLinks) navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+</script>
+
+</body>
+</html>
