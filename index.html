@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1A1A2E">
+<title>Puzzler Consulting &amp; Advisory Services — Practitioners, not vendors.</title>
+<meta name="description" content="Puzzler helps people and organizations find their new normal — before, during, and after transformative events. Practitioner-led capacity, compliance, and leadership advisory for mission-driven organizations.">
+
+<meta property="og:title" content="Puzzler Consulting &amp; Advisory Services">
+<meta property="og:description" content="Practitioners, not vendors. Making the pieces fit for mission-driven organizations.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #1A1A2E;
+    --navy-light: #2A2A45;
+    --navy-deep: #0F0F1F;
+    --teal: #30A396;
+    --teal-dark: #287F76;
+    --teal-glow: #4FC0B3;
+    --coral: #E94F4A;
+    --orange: #F39C4A;
+    --yellow: #F5CF48;
+    --green: #7ABF5F;
+    --dark-text: #1F1F1F;
+    --soft-gray: #5C5C5C;
+    --pale-gray: #F4F4F8;
+    --accent-bg: #EAF6F4;
+    --white: #FFFFFF;
+    --max-width: 1100px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--dark-text);
+    line-height: 1.6;
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .signature-bar { display: flex; height: 8px; width: 100%; }
+  .signature-bar > div { flex: 1; }
+  .signature-bar .s1 { background: var(--coral); }
+  .signature-bar .s2 { background: var(--orange); }
+  .signature-bar .s3 { background: var(--yellow); }
+  .signature-bar .s4 { background: var(--green); }
+  .signature-bar .s5 { background: var(--teal); }
+
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.75rem; }
+
+  .hero { background: var(--navy); color: var(--white); padding: 5rem 0 6.5rem; position: relative; overflow: hidden; }
+  .hero-grid { display: block; position: relative; z-index: 1; }
+  .hero-text { text-align: left; max-width: 760px; }
+  .wordmark-lockup { display: flex; align-items: center; gap: clamp(1rem, 1.6vw, 1.5rem); margin-bottom: 0.5rem; }
+  .wordmark-mark { width: clamp(78px, 9vw, 108px); height: auto; flex-shrink: 0; filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.4)); }
+  .wordmark-text { display: flex; flex-direction: column; }
+  .wordmark { font-weight: 800; font-size: clamp(2.4rem, 5.6vw, 3.7rem); letter-spacing: 0.06em; line-height: 1; }
+  .wordmark-descriptor { font-weight: 600; font-size: clamp(0.78rem, 1.05vw, 0.95rem); letter-spacing: 0.20em; color: var(--white); opacity: 0.92; margin-top: 0.55rem; }
+  .hero-divider { width: 60px; height: 4px; background: var(--teal); margin-bottom: 1.75rem; border-radius: 2px; }
+  .positioning { font-style: italic; font-weight: 400; font-size: clamp(1rem, 1.7vw, 1.15rem); color: var(--white); opacity: 0.8; margin-bottom: 1.5rem; line-height: 1.5; }
+  .value-prop { font-weight: 500; font-size: clamp(1.25rem, 2.6vw, 1.7rem); line-height: 1.4; margin-bottom: 2.5rem; color: var(--white); }
+  .value-prop strong { font-weight: 700; color: var(--teal-glow); }
+
+  .cta-button { display: inline-block; background: var(--teal); color: var(--white); padding: 1.05rem 2.5rem; font-family: inherit; font-weight: 600; font-size: 1rem; letter-spacing: 0.03em; text-decoration: none; border-radius: 4px; transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease; border: none; cursor: pointer; box-shadow: 0 4px 14px rgba(48, 163, 150, 0.25); }
+  .cta-button:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(48, 163, 150, 0.35); }
+  .cta-button.secondary { background: transparent; color: var(--white); border: 2px solid rgba(255, 255, 255, 0.3); box-shadow: none; margin-left: 0.75rem; }
+  .cta-button.secondary:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--white); transform: translateY(-2px); box-shadow: none; }
+
+  .section-label { font-weight: 700; font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.85rem; display: inline-block; }
+  .section-label::before, .section-label::after { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--teal); vertical-align: middle; margin: 0 0.85rem; border-radius: 1px; }
+  .section-heading { font-weight: 700; font-size: clamp(1.65rem, 3.2vw, 2.25rem); color: var(--navy); line-height: 1.25; max-width: 760px; margin: 0 auto; }
+
+  .practice { padding: 5rem 0; background: var(--pale-gray); position: relative; overflow: hidden; }
+  .practice-decoration { position: absolute; top: -40px; right: -60px; width: 280px; height: 280px; opacity: 0.06; pointer-events: none; transform: rotate(20deg); }
+  .practice-intro { margin-bottom: 3rem; text-align: center; }
+  .practice-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .practice-item { background: var(--white); padding: 2rem 1.75rem; border-radius: 8px; border-left: 4px solid var(--teal); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .practice-item:nth-child(1) { border-left-color: var(--coral); }
+  .practice-item:nth-child(2) { border-left-color: var(--orange); }
+  .practice-item:nth-child(3) { border-left-color: var(--yellow); }
+  .practice-item:nth-child(4) { border-left-color: var(--green); }
+  .practice-item:nth-child(5) { border-left-color: var(--teal); }
+  .practice-item:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); }
+  .practice-item h3 { font-weight: 700; font-size: 1.1rem; color: var(--navy); margin-bottom: 0.7rem; line-height: 1.35; }
+  .practice-item p { font-size: 0.95rem; color: var(--dark-text); line-height: 1.6; }
+
+  .outcomes { padding: 4.5rem 0; background: var(--white); border-top: 1px solid rgba(48, 163, 150, 0.08); }
+  .outcomes-intro { text-align: center; margin-bottom: 2.5rem; }
+  .outcomes-list { max-width: 820px; margin: 0 auto; display: grid; gap: 1.25rem; }
+  .outcome-item { background: var(--accent-bg); padding: 1.5rem 1.75rem; border-radius: 8px; border-left: 4px solid var(--teal); display: flex; align-items: flex-start; gap: 1rem; }
+  .outcome-item:nth-child(1) { border-left-color: var(--coral); }
+  .outcome-item:nth-child(2) { border-left-color: var(--orange); }
+  .outcome-item:nth-child(3) { border-left-color: var(--green); }
+  .outcome-marker { flex-shrink: 0; width: 32px; height: 32px; background: var(--navy); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
+  .outcome-text { font-size: 0.98rem; line-height: 1.6; color: var(--dark-text); }
+  .outcome-text strong { color: var(--navy); font-weight: 700; }
+
+  .practitioner { padding: 5rem 0; background: var(--white); position: relative; overflow: hidden; }
+  .practitioner-intro { margin-bottom: 2.5rem; text-align: center; }
+  .practitioner-content { max-width: 820px; margin: 0 auto; }
+  .practitioner-content > p { margin-bottom: 1.15rem; font-size: 1rem; line-height: 1.75; }
+
+  .founder-eyebrow { display: inline-block; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.20em; text-transform: uppercase; color: var(--coral); margin-bottom: 0.85rem; padding: 0.35rem 0.8rem; background: rgba(233, 79, 74, 0.08); border-radius: 4px; }
+
+  .west-wing-quote { margin: 2rem 0; padding: 1.75rem 2rem; border-left: 4px solid var(--teal); background: var(--accent-bg); border-radius: 0 8px 8px 0; }
+  .west-wing-quote p { font-style: italic; font-size: 1rem; line-height: 1.65; color: var(--dark-text); margin-bottom: 0.85rem; }
+  .west-wing-quote p:last-child { margin-bottom: 0; }
+  .west-wing-quote em.dialogue { font-style: italic; color: var(--teal-dark); font-weight: 700; }
+
+  .career-chapters { margin: 1.75rem 0; padding: 0; list-style: none; }
+  .career-chapters li { position: relative; padding: 0.95rem 0 0.95rem 1.5rem; font-size: 1rem; line-height: 1.75; color: var(--dark-text); border-bottom: 1px solid rgba(48, 163, 150, 0.12); }
+  .career-chapters li:last-child { border-bottom: none; }
+  .career-chapters li::before { content: ''; position: absolute; left: 0; top: 1.4rem; width: 8px; height: 8px; background: var(--teal); border-radius: 2px; transform: rotate(45deg); }
+  .career-chapters li strong { font-weight: 700; color: var(--navy); }
+  .career-chapters li em { font-style: italic; color: var(--teal-dark); font-weight: 600; }
+  .career-chapters .takeaway { display: block; margin-top: 0.4rem; font-style: italic; color: var(--teal-dark); font-size: 0.95rem; line-height: 1.6; opacity: 0.95; }
+
+  .coolest-title-line { margin: 1.5rem 0 1.75rem !important; padding: 0.85rem 1rem; background: rgba(243, 156, 74, 0.08); border-left: 3px solid var(--orange); border-radius: 0 4px 4px 0; font-style: italic; font-size: 0.97rem !important; line-height: 1.55 !important; color: var(--dark-text); }
+  .coolest-title-line strong { font-style: normal; font-weight: 700; color: var(--navy); }
+
+  .bio-signoff { margin-top: 1rem !important; margin-bottom: 1.75rem !important; font-style: italic; font-weight: 700; font-size: 1.15rem; color: var(--coral); }
+
+  .bio-record-divider { margin: 2.75rem 0 1.75rem; display: flex; align-items: center; gap: 1rem; }
+  .bio-record-divider::before, .bio-record-divider::after { content: ''; flex: 1; height: 1px; background: rgba(48, 163, 150, 0.25); }
+  .bio-record-label { font-weight: 700; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--soft-gray); }
+
+  .results-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2.5rem 0; padding: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 8px 28px rgba(26, 26, 46, 0.12); }
+  .result-card { padding: 2rem 1.25rem; text-align: center; color: var(--white); position: relative; }
+  .result-card.r1 { background: var(--coral); }
+  .result-card.r2 { background: var(--navy); }
+  .result-card.r3 { background: var(--teal); }
+  .result-card .number { display: block; font-weight: 800; font-size: clamp(1.65rem, 2.8vw, 2.1rem); line-height: 1; margin-bottom: 0.5rem; }
+  .result-card .label { font-size: 0.82rem; line-height: 1.4; opacity: 0.95; font-weight: 500; letter-spacing: 0.02em; }
+
+  .speaking-callout { margin-top: 2rem; padding: 1.5rem 1.75rem; background: var(--navy); color: var(--white); border-radius: 8px; border-left: 4px solid var(--yellow); }
+  .speaking-callout-label { font-weight: 700; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.85rem; }
+  .speaking-callout p { font-size: 0.95rem; line-height: 1.65; color: var(--white); opacity: 0.92; margin-bottom: 0.7rem !important; }
+  .speaking-callout p:last-child { margin-bottom: 0 !important; }
+  .speaking-callout a { color: var(--teal-glow); text-decoration: none; font-weight: 600; border-bottom: 1px solid rgba(79, 192, 179, 0.5); transition: border-color 0.2s ease; }
+  .speaking-callout a:hover { border-bottom-color: var(--teal-glow); }
+
+  .pull-quote { border-left: 4px solid var(--teal); background: var(--pale-gray); padding: 1.75rem 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.08rem; color: var(--dark-text); line-height: 1.65; border-radius: 0 6px 6px 0; }
+  .pull-quote-attribution { display: block; margin-top: 0.85rem; font-style: normal; font-weight: 600; font-size: 0.85rem; color: var(--soft-gray); letter-spacing: 0.05em; text-transform: uppercase; }
+
+  .contact { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%); color: var(--white); padding: 5.5rem 0 4.5rem; text-align: center; position: relative; overflow: hidden; }
+  .contact-decoration { position: absolute; pointer-events: none; }
+  .contact-decoration.cd1 { top: -60px; right: -80px; width: 260px; height: 260px; opacity: 0.05; transform: rotate(12deg); }
+  .contact-decoration.cd2 { bottom: -100px; left: -100px; width: 320px; height: 320px; opacity: 0.04; transform: rotate(-18deg); }
+  .contact-inner { position: relative; z-index: 1; }
+  .contact .section-label { color: var(--yellow); }
+  .contact .section-label::before, .contact .section-label::after { background: var(--yellow); }
+  .contact h2 { font-weight: 700; font-size: clamp(1.85rem, 3.8vw, 2.6rem); margin-bottom: 1.25rem; line-height: 1.25; }
+  .contact p.contact-lead { font-size: 1.08rem; max-width: 620px; margin: 0 auto 2.5rem; opacity: 0.85; line-height: 1.65; }
+  .contact-details { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(255, 255, 255, 0.15); font-size: 0.93rem; opacity: 0.8; line-height: 1.85; }
+  .contact-details strong { font-weight: 600; color: var(--white); opacity: 1; }
+  .contact-details a { color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.3); transition: border-color 0.2s ease; }
+  .contact-details a:hover { border-bottom-color: var(--white); }
+
+  .not-for { margin: 2rem auto 0; max-width: 640px; font-size: 0.85rem; line-height: 1.55; color: rgba(255, 255, 255, 0.6); font-style: italic; padding: 0 1rem; }
+
+  .brand-close { background: var(--navy-deep); color: var(--white); padding: 2rem 0; text-align: center; }
+  .brand-close-text { font-style: italic; font-weight: 500; font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--teal-glow); letter-spacing: 0.01em; line-height: 1.5; }
+
+  .footer { background: var(--navy-deep); color: var(--white); padding: 1.5rem 0; text-align: center; font-size: 0.78rem; opacity: 0.55; }
+
+  .section-handoff { margin-top: 2.5rem; text-align: center; font-style: italic; font-weight: 500; font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--teal); letter-spacing: 0.01em; }
+  .outcomes-handoff { margin: 2.5rem auto 0; max-width: 720px; text-align: center; font-weight: 500; font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--navy); line-height: 1.5; }
+  .outcomes-handoff em { font-style: normal; color: var(--teal); font-weight: 600; }
+
+  @media (max-width: 900px) {
+    .hero-text { text-align: center; margin-left: auto; margin-right: auto; }
+    .wordmark-lockup { justify-content: center; flex-wrap: wrap; gap: 1rem; }
+    .wordmark-text { align-items: center; }
+    .hero-divider { margin-left: auto; margin-right: auto; }
+    .practice-list { gap: 1.25rem; }
+    .practice-decoration { width: 180px; height: 180px; opacity: 0.04; }
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 3.5rem 0 4rem; }
+    .practice, .practitioner, .contact, .outcomes { padding: 3.5rem 0; }
+    .practice-list { grid-template-columns: 1fr; gap: 1rem; }
+    .results-strip { grid-template-columns: 1fr; gap: 0; box-shadow: none; }
+    .result-card { border-radius: 0; }
+    .result-card.r1 { border-radius: 8px 8px 0 0; }
+    .result-card.r3 { border-radius: 0 0 8px 8px; }
+    .container { padding: 0 1.25rem; }
+    .pull-quote { padding: 1.25rem 1.5rem; font-size: 1rem; }
+    .west-wing-quote { padding: 1.25rem 1.5rem; }
+    .speaking-callout { padding: 1.25rem 1.5rem; }
+    .cta-button.secondary { display: block; margin: 1rem auto 0; max-width: 240px; }
+    .section-label::before, .section-label::after { width: 16px; margin: 0 0.6rem; }
+    .practice-item:hover { transform: none; box-shadow: none; }
+    .cta-button:hover { transform: none; }
+    .cta-button { min-height: 48px; padding: 0.95rem 2rem; }
+  }
+
+  @media (max-width: 380px) {
+    .container { padding: 0 1rem; }
+    .wordmark { font-size: 1.95rem; }
+    .wordmark-mark { width: 64px; }
+    .wordmark-descriptor { font-size: 0.7rem; letter-spacing: 0.16em; }
+    .pull-quote { padding: 1rem 1.25rem; }
+    .west-wing-quote { padding: 1rem 1.25rem; }
+    .practice-item { padding: 1.5rem 1.25rem; }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.18em; }
+    .section-label::before, .section-label::after { width: 12px; margin: 0 0.4rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="signature-bar" role="presentation">
+  <div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="s4"></div><div class="s5"></div>
+</div>
+
+<!-- ACT 0 — HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="wordmark-lockup">
+          <svg class="wordmark-mark" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Puzzler Consulting and Advisory Services">
+            <polygon points="45,45 140,45 140,76.35 164.7,76.35 164.7,108.65 140,108.65 140,140 108.65,140 108.65,164.7 76.35,164.7 76.35,140 45,140" fill="#E94F4A"/>
+            <polygon points="140,45 235,45 235,140 203.65,140 203.65,164.7 171.35,164.7 171.35,140 140,140 140,108.65 164.7,108.65 164.7,76.35 140,76.35" fill="#F5CF48"/>
+            <polygon points="45,140 76.35,140 76.35,164.7 108.65,164.7 108.65,140 140,140 140,171.35 164.7,171.35 164.7,203.65 140,203.65 140,235 45,235" fill="#7ABF5F"/>
+            <polygon points="140,140 171.35,140 171.35,164.7 203.65,164.7 203.65,140 235,140 235,235 140,235 140,203.65 164.7,203.65 164.7,171.35 140,171.35" fill="#30A396"/>
+          </svg>
+          <div class="wordmark-text">
+            <div class="wordmark">PUZZLER</div>
+            <div class="wordmark-descriptor">CONSULTING &amp; ADVISORY SERVICES</div>
+          </div>
+        </div>
+        <div class="hero-divider"></div>
+        <p class="positioning">Practitioners, not vendors.</p>
+        <p class="value-prop">Helping people and organizations find their <strong>new normal</strong> &mdash; before, during, and after transformative events.</p>
+        <a href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min" target="_blank" rel="noopener" class="cta-button">Book a Fit Call</a>
+        <a href="#who-we-are" class="cta-button secondary">Meet the practitioner</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACT 1 — WHO WE ARE (founder voice) -->
+<section class="practitioner" id="who-we-are">
+  <div class="container">
+    <div class="practitioner-intro">
+      <span class="section-label">Twenty years inside the work</span>
+      <h2 class="section-heading">A career spent helping people and organizations find their new normal.</h2>
+    </div>
+
+    <div class="practitioner-content">
+      <div class="founder-eyebrow">A Note from Mark</div>
+
+      <p>People remember FEMA for the emergencies. I remember it for what came after.</p>
+
+      <p>As an emergency manager, I learned that the work that really matters isn&rsquo;t the response &mdash; it&rsquo;s helping people find their way back to a new normal. Not their old life. A new one. You can&rsquo;t hand someone a plan and call that help. You have to get down where they are, see what they see, and stay with them until the ground feels steady again.</p>
+
+      <div class="west-wing-quote">
+        <p>There&rsquo;s a scene from <em>The West Wing</em> I think about. A guy is stuck in a hole. A friend jumps in beside him. The guy says: <em class="dialogue">&ldquo;What the hell are you doing? Now we&rsquo;re both in the hole.&rdquo;</em> The friend says: <em class="dialogue">&ldquo;Yeah, but I&rsquo;ve been down here before. I know the way out.&rdquo;</em></p>
+        <p>That&rsquo;s what I learned at FEMA. It&rsquo;s what Puzzler is built to do.</p>
+      </div>
+
+      <p>I&rsquo;ve spent two decades building, modernizing, and stewarding the systems mission-driven organizations rely on. <strong>Four examples of what that work looks like:</strong></p>
+
+      <ul class="career-chapters">
+        <li><strong>Translated complex operations into clear, decision-ready briefs</strong> for the highest levels of senior leadership. <span class="takeaway">Your board, your funders, your CEO get the answer they need to act &mdash; without losing what matters in translation.</span></li>
+        <li><strong>Built a federal agency&rsquo;s capability and requirements function from the ground up</strong> &mdash; designing how the agency identifies what it needs to do better and gets the resources to do it. <span class="takeaway">I help you move from &ldquo;we know we have gaps&rdquo; to &ldquo;we have a prioritized, fundable plan to close them.&rdquo;</span></li>
+        <li><strong>Modernized operations alongside the people delivering the mission</strong> at the front line. <span class="takeaway">I strengthen the people who do your work &mdash; not the bureaucracy that slows them down.</span></li>
+        <li><strong>Now oversee a $5.6B grants portfolio and $741M operating budget</strong> at federal scale. <span class="takeaway">I run, monitor, and steward complex funding &mdash; including the compliance and subrecipient monitoring discipline that determines whether you keep what you win.</span></li>
+      </ul>
+
+      <p class="coolest-title-line">And the coolest job title I&rsquo;ll probably ever hold &mdash; <strong>Gatekeeper to the Joint Requirements Council</strong>.</p>
+
+      <p>What ties those chapters together is simple. Organizations don&rsquo;t fail because their strategy is wrong. They fail because no one stays in the hole with them long enough to get them out. Puzzler was built to be the partner that stays.</p>
+
+      <p>I care deeply about the people inside institutions. That&rsquo;s why I advocate for <strong>adoption</strong> &mdash; particularly for older children whom the system too often overlooks &mdash; for <strong>internship-based workforce development</strong> that opens doors for the next generation, for <strong>hidden disabilities visibility</strong>, and for <strong>mental health</strong> in workplaces and communities. Because the strength of any organization rests on the strength of the humans inside it. This work isn&rsquo;t separate from Puzzler. It&rsquo;s the same work at a different scale.</p>
+
+      <p>Every engagement begins the same way: with a conversation. Tell us where you are, where you&rsquo;re trying to get to, and what&rsquo;s in the way. We&rsquo;ll get in the hole with you &mdash; and help you find your new normal.</p>
+
+      <p class="bio-signoff">&mdash; Mark</p>
+
+      <div class="bio-record-divider">
+        <span class="bio-record-label">For the Record</span>
+      </div>
+
+      <p>Mark D. Williams brings twenty years of senior federal leadership across the U.S. Department of State, U.S. Department of Agriculture, U.S. Department of Homeland Security, and the Department of Defense. The current scope of direct responsibility:</p>
+
+      <div class="results-strip" role="group" aria-label="Current scope of direct operational responsibility">
+        <div class="result-card r1">
+          <span class="number">130+</span>
+          <span class="label">team members<br>direct responsibility</span>
+        </div>
+        <div class="result-card r2">
+          <span class="number">$741M</span>
+          <span class="label">annual budget<br>directly overseen</span>
+        </div>
+        <div class="result-card r3">
+          <span class="number">$5.6B</span>
+          <span class="label">grants portfolio<br>delivered worldwide</span>
+        </div>
+      </div>
+
+      <p>A native of Houston, Texas and a graduate of <strong>Howard University</strong>.</p>
+
+      <div class="speaking-callout">
+        <div class="speaking-callout-label">Speaking Engagements</div>
+        <p>Mark is available to speak on leadership in moments of institutional disruption, capacity building in mission-driven organizations, human-centered AI adoption, older-child adoption advocacy, internship-based workforce development, hidden disabilities visibility, and mental health in the workplace and beyond.</p>
+        <p>Inquiries: <a href="mailto:info@puzzlerconsultingadvisory.com">info@puzzlerconsultingadvisory.com</a></p>
+      </div>
+
+      <div class="pull-quote">
+        Title is a vehicle for responsibility, not a destination. Strategy is the plan; execution is the work; strategy without execution is theater.
+        <span class="pull-quote-attribution">— Mark D. Williams</span>
+      </div>
+
+      <p class="section-handoff">Here&rsquo;s how that work shows up.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACT 2 — WHAT WE DO -->
+<section class="practice" id="what-we-do">
+  <svg class="practice-decoration" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <polygon points="45,45 140,45 140,76.35 164.7,76.35 164.7,108.65 140,108.65 140,140 108.65,140 108.65,164.7 76.35,164.7 76.35,140 45,140" fill="#1A1A2E"/>
+    <polygon points="140,45 235,45 235,140 203.65,140 203.65,164.7 171.35,164.7 171.35,140 140,140 140,108.65 164.7,108.65 164.7,76.35 140,76.35" fill="#1A1A2E"/>
+    <polygon points="45,140 76.35,140 76.35,164.7 108.65,164.7 108.65,140 140,140 140,171.35 164.7,171.35 164.7,203.65 140,203.65 140,235 45,235" fill="#1A1A2E"/>
+    <polygon points="140,140 171.35,140 171.35,164.7 203.65,164.7 203.65,140 235,140 235,235 140,235 140,203.65 164.7,203.65 164.7,171.35 140,171.35" fill="#1A1A2E"/>
+  </svg>
+  <div class="container">
+    <div class="practice-intro">
+      <span class="section-label">What we do</span>
+      <h2 class="section-heading">The work mission-driven organizations bring to us &mdash; across every funding mechanism.</h2>
+    </div>
+    <div class="practice-list">
+      <div class="practice-item">
+        <h3>Organizational restructuring and transition support</h3>
+        <p>Reorganizations, mergers, leadership transitions, post-funding-shift redesigns, and program portfolio rationalizations. The structural work that determines whether an organization can do its job for the next decade &mdash; built on enterprise reorganizations led at federal scale.</p>
+      </div>
+      <div class="practice-item">
+        <h3>Funding strategy across every mechanism</h3>
+        <p>Grants, cooperative agreements, contracts, and gifts &mdash; and the compliance regimes that come with each. Most mid-sized mission-driven organizations run all four simultaneously. Puzzler is built to work the whole portfolio.</p>
+      </div>
+      <div class="practice-item">
+        <h3>Capacity building that holds</h3>
+        <p>Operational governance, FP&amp;A, shared services design, customer experience inside service delivery, and the unglamorous infrastructure that determines whether mission gets executed. The kind of capacity that doesn&rsquo;t unravel when the next transformative event arrives.</p>
+      </div>
+      <div class="practice-item">
+        <h3>Program effectiveness and accountability</h3>
+        <p>Compliance monitoring and program review for grants and contracts &mdash; including site visits and subrecipient monitoring across federal pass-through portfolios. Built around the operational disciplines that produce strong year-over-year outcomes, not just clean audits.</p>
+      </div>
+      <div class="practice-item">
+        <h3>Leadership and workforce development</h3>
+        <p>Executive coaching, organizational governance, succession planning, tailored workshops, and workforce training. The customized development of leaders and teams who can actually do the work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACT 3 — WHAT CHANGES -->
+<section class="outcomes">
+  <div class="container">
+    <div class="outcomes-intro">
+      <span class="section-label">Six months in</span>
+      <h2 class="section-heading">Three things every engagement builds.</h2>
+    </div>
+    <div class="outcomes-list">
+      <div class="outcome-item">
+        <div class="outcome-marker">1</div>
+        <div class="outcome-text"><strong>A structural problem actually resolved</strong> &mdash; a reorganization that holds, a transition navigated, a merger integrated, or an org chart redesigned around the work.</div>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-marker">2</div>
+        <div class="outcome-text"><strong>A funding strategy across every mechanism</strong> &mdash; grants and contracts, cooperative agreements, and gifts &mdash; with the monitoring and compliance discipline that holds it together year over year.</div>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-marker">3</div>
+        <div class="outcome-text"><strong>Capabilities matched deliberately to the people who can deliver them</strong> &mdash; so the organization stops improvising the bridge between where it is and where it wants to be.</div>
+      </div>
+    </div>
+    <p class="outcomes-handoff">If your organization is navigating something hard &mdash; that&rsquo;s the conversation Puzzler is built for.</p>
+  </div>
+</section>
+
+<!-- ACT 4 — START HERE -->
+<section class="contact" id="contact">
+  <svg class="contact-decoration cd1" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <polygon points="45,45 140,45 140,76.35 164.7,76.35 164.7,108.65 140,108.65 140,140 108.65,140 108.65,164.7 76.35,164.7 76.35,140 45,140" fill="#FFFFFF"/>
+    <polygon points="140,45 235,45 235,140 203.65,140 203.65,164.7 171.35,164.7 171.35,140 140,140 140,108.65 164.7,108.65 164.7,76.35 140,76.35" fill="#FFFFFF"/>
+    <polygon points="45,140 76.35,140 76.35,164.7 108.65,164.7 108.65,140 140,140 140,171.35 164.7,171.35 164.7,203.65 140,203.65 140,235 45,235" fill="#FFFFFF"/>
+    <polygon points="140,140 171.35,140 171.35,164.7 203.65,164.7 203.65,140 235,140 235,235 140,235 140,203.65 164.7,203.65 164.7,171.35 140,171.35" fill="#FFFFFF"/>
+  </svg>
+  <svg class="contact-decoration cd2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <polygon points="25,25 41.5,25 41.5,38 58.5,38 58.5,25 75,25 75,41.5 88,41.5 88,58.5 75,58.5 75,75 58.5,75 58.5,88 41.5,88 41.5,75 25,75 25,58.5 38,58.5 38,41.5 25,41.5" fill="#FFFFFF"/>
+  </svg>
+  <div class="container contact-inner">
+    <span class="section-label">Start here</span>
+    <h2>Tell us what you&rsquo;re working on.</h2>
+    <p class="contact-lead">Every Puzzler engagement begins with a 30-minute Fit Call &mdash; a focused conversation about what your organization is navigating and whether Puzzler is the right partner for the work. You&rsquo;ll leave with a clear sense of fit, and at minimum one specific suggestion you can act on regardless of whether we work together. No pitch, no commitment. Just a real conversation.</p>
+    <a href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min" target="_blank" rel="noopener" class="cta-button">Book a Fit Call</a>
+
+    <p class="not-for">Not the right fit for federal contract advocacy on behalf of clients (we advise; we don&rsquo;t lobby), financial-distress turnarounds, executive search, or organizations under $2M in annual revenue. We can refer you to people who do that work well.</p>
+
+    <div class="contact-details">
+      <p><strong>Puzzler Consulting &amp; Advisory Services LLC</strong><br>
+      <a href="mailto:info@puzzlerconsultingadvisory.com">info@puzzlerconsultingadvisory.com</a><br>
+      <a href="tel:+14109706539">(410) 970-6539</a></p>
+      <p style="margin-top: 1.25rem;">1125 West Street, Suite 200 #348<br>Annapolis, MD 21401</p>
+      <p style="margin-top: 1.25rem;"><a href="https://www.linkedin.com/company/puzzlerconsultingadvisory" target="_blank" rel="noopener">LinkedIn &rarr;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="brand-close">
+  <div class="container">
+    <p class="brand-close-text">Making the pieces fit for mission-driven organizations.</p>
+  </div>
+</section>
+
+<div class="signature-bar" role="presentation">
+  <div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="s4"></div><div class="s5"></div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2026 Puzzler Consulting &amp; Advisory Services LLC &middot; All rights reserved</p>
+  </div>
+</footer>
+
+</body>
+</html>
