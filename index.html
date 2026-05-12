@@ -9,24 +9,32 @@
 <title>Puzzler Consulting &amp; Advisory Services — Practitioners, not vendors.</title>
 <meta name="description" content="Puzzler helps people and organizations find their new normal — before, during, and after transformative events. Practitioner-led capacity, compliance, and leadership advisory for mission-driven organizations.">
 
+<link rel="canonical" href="https://puzzlerconsultingadvisory.com/">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
 <meta property="og:title" content="Puzzler Consulting &amp; Advisory Services">
 <meta property="og:description" content="Practitioners, not vendors. Making the pieces fit for mission-driven organizations.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://puzzlerconsultingadvisory.com">
+<meta property="og:url" content="https://puzzlerconsultingadvisory.com/">
 <meta property="og:image" content="https://puzzlerconsultingadvisory.com/social-preview.png">
-<meta property="og:image:width" content="1280">
-<meta property="og:image:height" content="640">
+<meta property="og:image:width" content="640">
+<meta property="og:image:height" content="320">
 <meta property="og:image:alt" content="Puzzler Consulting and Advisory Services — Practitioners, not vendors. Making the pieces fit for mission-driven organizations.">
 <meta property="og:site_name" content="Puzzler Consulting &amp; Advisory Services">
- 
+
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Puzzler Consulting &amp; Advisory Services">
 <meta name="twitter:description" content="Practitioners, not vendors. Making the pieces fit for mission-driven organizations.">
 <meta name="twitter:image" content="https://puzzlerconsultingadvisory.com/social-preview.png">
- 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.usefathom.com/script.js" data-site="LHOTKOPA" defer></script>
 
 <style>
   :root {
@@ -182,7 +190,18 @@
   .brand-close { background: var(--navy-deep); color: var(--white); padding: 2rem 0; text-align: center; }
   .brand-close-text { font-style: italic; font-weight: 500; font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--teal-glow); letter-spacing: 0.01em; line-height: 1.5; }
 
-  .footer { background: var(--navy-deep); color: var(--white); padding: 1.5rem 0; text-align: center; font-size: 0.78rem; opacity: 0.55; }
+  .footer { background: var(--navy-deep); color: var(--white); padding: 1.5rem 0; text-align: center; font-size: 0.78rem; opacity: 0.7; }
+
+  .practice-intro-audience { margin-top: 1.1rem; font-size: 1rem; line-height: 1.6; color: var(--soft-gray); max-width: 720px; margin-left: auto; margin-right: auto; }
+
+  .engagements { padding: 4rem 0; background: var(--white); border-top: 1px solid rgba(48, 163, 150, 0.15); text-align: center; }
+  .engagements .section-label { margin-bottom: 1rem; }
+  .engagements-note { font-style: italic; font-weight: 500; font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--soft-gray); max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+  .contact-channels { display: flex; flex-direction: column; gap: 0.65rem; align-items: center; margin-bottom: 1.25rem; }
+  .contact-channel { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--white); text-decoration: none; font-size: 0.98rem; font-weight: 500; line-height: 1.5; border-bottom: 1px solid rgba(255, 255, 255, 0.3); transition: border-color 0.2s ease; padding-bottom: 1px; }
+  .contact-channel:hover { border-bottom-color: var(--white); }
+  .contact-channel svg { width: 18px; height: 18px; flex-shrink: 0; fill: currentColor; }
 
   .section-handoff { margin-top: 2.5rem; text-align: center; font-style: italic; font-weight: 500; font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--teal); letter-spacing: 0.01em; }
   .outcomes-handoff { margin: 2.5rem auto 0; max-width: 720px; text-align: center; font-weight: 500; font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--navy); line-height: 1.5; }
@@ -227,11 +246,15 @@
     .practice-item { padding: 1.5rem 1.25rem; }
     .section-label { font-size: 0.72rem; letter-spacing: 0.18em; }
     .section-label::before, .section-label::after { width: 12px; margin: 0 0.4rem; }
+    .result-card { padding: 1.5rem 1rem; }
+    .result-card .label br { display: none; }
+    .result-card .label { font-size: 0.8rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     html { scroll-behavior: auto; }
+    .cta-button:hover, .practice-item:hover { transform: none !important; }
   }
 </style>
 </head>
@@ -246,18 +269,18 @@
   <div class="container">
     <div class="hero-grid">
       <div class="hero-text">
-        <div class="wordmark-lockup">
-          <svg class="wordmark-mark" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Puzzler Consulting and Advisory Services">
+        <h1 class="wordmark-lockup">
+          <svg class="wordmark-mark" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
             <polygon points="45,45 140,45 140,76.35 164.7,76.35 164.7,108.65 140,108.65 140,140 108.65,140 108.65,164.7 76.35,164.7 76.35,140 45,140" fill="#E94F4A"/>
             <polygon points="140,45 235,45 235,140 203.65,140 203.65,164.7 171.35,164.7 171.35,140 140,140 140,108.65 164.7,108.65 164.7,76.35 140,76.35" fill="#F5CF48"/>
             <polygon points="45,140 76.35,140 76.35,164.7 108.65,164.7 108.65,140 140,140 140,171.35 164.7,171.35 164.7,203.65 140,203.65 140,235 45,235" fill="#7ABF5F"/>
             <polygon points="140,140 171.35,140 171.35,164.7 203.65,164.7 203.65,140 235,140 235,235 140,235 140,203.65 164.7,203.65 164.7,171.35 140,171.35" fill="#30A396"/>
           </svg>
-          <div class="wordmark-text">
-            <div class="wordmark">PUZZLER</div>
-            <div class="wordmark-descriptor">CONSULTING &amp; ADVISORY SERVICES</div>
-          </div>
-        </div>
+          <span class="wordmark-text">
+            <span class="wordmark">PUZZLER</span>
+            <span class="wordmark-descriptor">CONSULTING &amp; ADVISORY SERVICES</span>
+          </span>
+        </h1>
         <div class="hero-divider"></div>
         <p class="positioning">Practitioners, not vendors.</p>
         <p class="value-prop">Helping people and organizations find their <strong>new normal</strong> &mdash; before, during, and after transformative events.</p>
@@ -351,6 +374,7 @@
     <div class="practice-intro">
       <span class="section-label">What we do</span>
       <h2 class="section-heading">The work mission-driven organizations bring to us &mdash; across every funding mechanism.</h2>
+      <p class="practice-intro-audience">For nonprofits, state and local government agencies, mission-driven for-profits, and the foundations and corporate givers who underwrite mission-driven work.</p>
     </div>
     <div class="practice-list">
       <div class="practice-item">
@@ -367,7 +391,7 @@
       </div>
       <div class="practice-item">
         <h3>Program effectiveness and accountability</h3>
-        <p>Compliance monitoring and program review for grants and contracts &mdash; including site visits and subrecipient monitoring across federal pass-through portfolios. Built around the operational disciplines that produce strong year-over-year outcomes, not just clean audits.</p>
+        <p>Compliance monitoring and program review for grants and contracts &mdash; including site visits and subrecipient monitoring across federal pass-through portfolios. Built around the operational disciplines that produce strong year-over-year outcomes, not just clean audits &mdash; including helping grantees deliver on the specific terms of the grants they&rsquo;ve accepted.</p>
       </div>
       <div class="practice-item">
         <h3>Leadership and workforce development</h3>
@@ -402,6 +426,14 @@
   </div>
 </section>
 
+<!-- ACT 3.5 — ENGAGEMENTS -->
+<section class="engagements" id="engagements">
+  <div class="container">
+    <span class="section-label">Engagements</span>
+    <p class="engagements-note">Case studies from Puzzler&rsquo;s work will be published as engagements close in 2026.</p>
+  </div>
+</section>
+
 <!-- ACT 4 — START HERE -->
 <section class="contact" id="contact">
   <svg class="contact-decoration cd1" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -422,11 +454,22 @@
     <p class="not-for">Not the right fit for federal contract advocacy on behalf of clients (we advise; we don&rsquo;t lobby), financial-distress turnarounds, executive search, or organizations under $2M in annual revenue. We can refer you to people who do that work well.</p>
 
     <div class="contact-details">
-      <p><strong>Puzzler Consulting &amp; Advisory Services LLC</strong><br>
-      <a href="mailto:info@puzzlerconsultingadvisory.com">info@puzzlerconsultingadvisory.com</a><br>
-      <a href="tel:+14109706539">(410) 970-6539</a></p>
-      <p style="margin-top: 1.25rem;">1125 West Street, Suite 200 #348<br>Annapolis, MD 21401</p>
-      <p style="margin-top: 1.25rem;"><a href="https://www.linkedin.com/company/puzzlerconsultingadvisory" target="_blank" rel="noopener">LinkedIn &rarr;</a></p>
+      <p><strong>Puzzler Consulting &amp; Advisory Services LLC</strong></p>
+      <div class="contact-channels">
+        <a class="contact-channel" href="mailto:info@puzzlerconsultingadvisory.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm10 9.07L3.4 6h17.2L12 13.07ZM3 7.79V18h18V7.79l-9 7.42-9-7.42Z"/></svg>
+          <span>info@puzzlerconsultingadvisory.com</span>
+        </a>
+        <a class="contact-channel" href="tel:+14109706539">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z"/></svg>
+          <span>(410) 970-6539</span>
+        </a>
+        <a class="contact-channel" href="https://www.linkedin.com/company/puzzlerconsultingadvisory" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.98 3.5A2.5 2.5 0 1 1 4.97 8.5a2.5 2.5 0 0 1 .01-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.83v1.54h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.13V21h-4v-5.07c0-1.21-.02-2.77-1.69-2.77-1.69 0-1.95 1.32-1.95 2.68V21h-4V9.75Z"/></svg>
+          <span>LinkedIn</span>
+        </a>
+      </div>
+      <p>1125 West Street, Suite 200 #348<br>Annapolis, MD 21401</p>
     </div>
   </div>
 </section>
