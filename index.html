@@ -198,6 +198,10 @@
   .brand-close-text { font-style: italic; font-weight: 500; font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--teal-glow); letter-spacing: 0.01em; line-height: 1.5; }
 
   .footer { background: var(--navy-deep); color: var(--white); padding: 1.5rem 0; text-align: center; font-size: 0.78rem; opacity: 0.7; }
+  .footer-links { margin-top: 0.5rem; }
+  .footer-links a { color: var(--white); text-decoration: none; opacity: 0.85; margin: 0 0.5rem; transition: opacity 0.2s; }
+  .footer-links a:hover { opacity: 1; text-decoration: underline; }
+  .footer-links .sep { opacity: 0.4; margin: 0 0.25rem; }
 
   .practice-intro-audience { margin-top: 1.1rem; font-size: 1rem; line-height: 1.6; color: var(--soft-gray); max-width: 720px; margin-left: auto; margin-right: auto; }
 
@@ -498,6 +502,9 @@
 <footer class="footer">
   <div class="container">
     <p>&copy; 2026 Puzzler Consulting &amp; Advisory Services LLC &middot; All rights reserved</p>
+    <p class="footer-links">
+      <a href="/privacy.html">Privacy Policy</a><span class="sep">&middot;</span><a href="/terms.html">Terms of Use</a>
+    </p>
   </div>
 </footer>
 
