@@ -383,16 +383,23 @@
 
   .work-intro {
     margin-bottom: 56px;
-    max-width: 880px;
+    max-width: 720px;
   }
   .work-intro p {
     font-family: var(--font);
     font-weight: 400;
     font-size: clamp(17px, 1.7vw, 21px);
-    line-height: 1.6;
+    line-height: 1.7;
     color: rgba(255, 255, 255, 0.86);
-    margin-bottom: 14px;
+    margin-bottom: 26px;
     letter-spacing: -0.003em;
+    text-wrap: pretty;
+  }
+  .work-intro p.audience {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: clamp(16px, 1.5vw, 19px);
+    margin-bottom: 32px;
   }
   .work-intro p:last-child { margin-bottom: 0; }
   .work-intro p em {
@@ -826,8 +833,9 @@
       <span class="work-label">ii. What we do</span>
       <h2>Five practices. <em>One operating discipline.</em></h2>
       <div class="work-intro">
-        <p>For nonprofits, state and local government, foundations, and mission-driven for-profits.</p>
-        <p>Puzzler is the partner that <em>gets in the hole and stays</em> — practitioners doing the work, not vendors selling it.</p>
+        <p>Most engagements start at a threshold — a new leader, an audit finding, a capital project turning harder than planned, a funding mechanism that just got more complicated.</p>
+        <p class="audience">Nonprofits. State and local agencies. Foundations. Mission-driven for-profits.</p>
+        <p>What ties them together is simple: we do the work <em>alongside</em> the people responsible for it, not at a distance from them.</p>
       </div>
       <ol class="work-list">
         <li>
