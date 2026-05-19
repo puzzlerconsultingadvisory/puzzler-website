@@ -2,24 +2,54 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Puzzler Consulting &amp; Advisory</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Puzzler Consulting &amp; Advisory — Practitioners, not vendors.</title>
 <meta name="description" content="Practitioners, not vendors. Helping people and organizations find their new normal — before, during, and after transformative events." />
+<meta name="theme-color" content="#1A1A2E" />
+<link rel="canonical" href="https://puzzlerconsultingadvisory.com/" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://puzzlerconsultingadvisory.com/" />
+<meta property="og:site_name" content="Puzzler Consulting &amp; Advisory" />
+<meta property="og:title" content="Puzzler Consulting &amp; Advisory — Practitioners, not vendors." />
+<meta property="og:description" content="Helping people and organizations find their new normal — before, during, and after transformative events." />
+<meta property="og:image" content="https://puzzlerconsultingadvisory.com/social-preview.png" />
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="320" />
+<meta property="og:image:alt" content="Puzzler Consulting &amp; Advisory — Practitioners, not vendors." />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Puzzler Consulting &amp; Advisory" />
+<meta name="twitter:description" content="Helping people and organizations find their new normal — before, during, and after transformative events." />
+<meta name="twitter:image" content="https://puzzlerconsultingadvisory.com/social-preview.png" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper:      #f1ebdc;
-    --ink:        #16130e;
-    --ink-soft:   #4a4338;
-    --ink-faded:  #8a8170;
-    --teal:       #1f6e63;
-    --rule:       rgba(22, 19, 14, 0.16);
+    --navy:       #1A1A2E;
+    --navy-light: #2A2A45;
+    --navy-mid:   #2E3450;
+    --navy-deep:  #0F0F1F;
+    --teal:       #30A396;
+    --teal-dark:  #287F76;
+    --teal-glow:  #4FC0B3;
+    --coral:      #E94F4A;
+    --orange:     #F39C4A;
+    --yellow:     #F5CF48;
+    --green:      #7ABF5F;
+    --white:      #FFFFFF;
+    --pale:       #F4F4F8;
+    --soft:       #5C5C5C;
+    --dark:       #1F1F1F;
+    --rule-dark:  rgba(255, 255, 255, 0.14);
+    --rule-light: rgba(31, 31, 31, 0.12);
+    --accent-bg:  #EAF6F4;
 
-    --serif:      'Fraunces', 'Times New Roman', serif;
-    --body:       'EB Garamond', Georgia, serif;
-    --mono:       'JetBrains Mono', ui-monospace, monospace;
+    --font: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,141 +57,201 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--body);
+    background: var(--white);
+    color: var(--dark);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
 
-  ::selection { background: var(--teal); color: var(--paper); }
+  ::selection { background: var(--teal); color: var(--white); }
 
   a { color: inherit; text-decoration: none; }
 
-  /* ──────────────────────────────────────────────────────────
-     TOP BAR
-     ────────────────────────────────────────────────────────── */
+  /* ─── Five-color signature bar ──────────────────────────────────── */
+  .signature-bar {
+    display: flex;
+    height: 6px;
+    width: 100%;
+  }
+  .signature-bar > div { flex: 1; }
+  .signature-bar .s1 { background: var(--coral); }
+  .signature-bar .s2 { background: var(--orange); }
+  .signature-bar .s3 { background: var(--yellow); }
+  .signature-bar .s4 { background: var(--green); }
+  .signature-bar .s5 { background: var(--teal); }
+
+  /* ─── Top nav ──────────────────────────────────────────────────── */
   .top {
     position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 10;
+    top: 6px;
+    left: 0; right: 0;
+    z-index: 50;
     padding: 22px 40px;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    font-family: var(--mono);
+    align-items: center;
+    pointer-events: none;
+    color: var(--white);
+    transition: color 0.4s ease;
+  }
+  .top.dark-mode { color: var(--white); }
+  .top > * { pointer-events: auto; }
+  .top .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
     font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--ink-soft);
-    pointer-events: none;
   }
-  .top > * { pointer-events: auto; }
-  .top .wordmark { color: var(--ink); font-weight: 500; }
-  .top .meta { color: var(--ink-faded); }
+  .top .wordmark svg { width: 16px; height: 16px; }
+  .top .meta {
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.65;
+  }
 
-  /* ──────────────────────────────────────────────────────────
-     SCREEN 1 — THE STATEMENT
-     ────────────────────────────────────────────────────────── */
+  /* ─── SCREEN 1 — NAVY HERO ─────────────────────────────────────── */
   .statement {
+    background: var(--navy);
+    color: var(--white);
     min-height: 100vh;
-    padding: 120px 60px 100px;
+    padding: 130px 60px 100px;
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
+  }
+
+  /* Ghost puzzle decorations */
+  .statement::before {
+    content: "";
+    position: absolute;
+    top: -100px; right: -120px;
+    width: 520px; height: 520px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 280'><polygon points='45,45 140,45 140,76.35 164.7,76.35 164.7,108.65 140,108.65 140,140 108.65,140 108.65,164.7 76.35,164.7 76.35,140 45,140' fill='%23ffffff' opacity='0.04'/><polygon points='140,45 235,45 235,140 203.65,140 203.65,164.7 171.35,164.7 171.35,140 140,140 140,108.65 164.7,108.65 164.7,76.35 140,76.35' fill='%23ffffff' opacity='0.04'/><polygon points='45,140 76.35,140 76.35,164.7 108.65,164.7 108.65,140 140,140 140,171.35 164.7,171.35 164.7,203.65 140,203.65 140,235 45,235' fill='%23ffffff' opacity='0.04'/><polygon points='140,140 171.35,140 171.35,164.7 203.65,164.7 203.65,140 235,140 235,235 140,235 140,203.65 164.7,203.65 164.7,171.35 140,171.35' fill='%23ffffff' opacity='0.04'/></svg>");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: rotate(12deg);
+    pointer-events: none;
+  }
+  .statement::after {
+    content: "";
+    position: absolute;
+    bottom: -80px; left: -100px;
+    width: 320px; height: 320px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='25,25 41.5,25 41.5,38 58.5,38 58.5,25 75,25 75,41.5 88,41.5 88,58.5 75,58.5 75,75 58.5,75 58.5,88 41.5,88 41.5,75 25,75 25,58.5 38,58.5 38,41.5 25,41.5' fill='%23ffffff' opacity='0.03'/></svg>");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: rotate(-18deg);
+    pointer-events: none;
   }
 
   .statement-inner {
+    position: relative;
+    z-index: 2;
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
     opacity: 0;
-    animation: rise 1.6s cubic-bezier(.16,.84,.30,1) 0.2s forwards;
+    animation: rise 1.5s cubic-bezier(.16,.84,.30,1) 0.2s forwards;
   }
 
   .positioning {
-    font-family: var(--serif);
-    font-weight: 300;
+    font-family: var(--font);
     font-style: italic;
-    font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 1;
-    font-size: clamp(64px, 14vw, 220px);
-    line-height: 0.86;
-    letter-spacing: -0.035em;
-    color: var(--ink);
-    margin-bottom: 56px;
+    font-weight: 400;
+    font-size: clamp(60px, 13vw, 200px);
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    margin-bottom: 48px;
   }
 
   .subtagline {
-    font-family: var(--serif);
+    font-family: var(--font);
     font-style: italic;
-    font-weight: 350;
-    font-variation-settings: "opsz" 144, "SOFT" 40;
-    font-size: clamp(18px, 2vw, 28px);
-    line-height: 1.35;
-    color: var(--teal);
+    font-weight: 400;
+    font-size: clamp(18px, 1.9vw, 26px);
+    line-height: 1.4;
+    color: var(--teal-glow);
     letter-spacing: -0.005em;
-    max-width: 1080px;
+    max-width: 1000px;
   }
 
-  /* Bottom anchor: byline + single CTA */
+  /* Bottom anchor: byline + CTA */
   .anchor {
     position: absolute;
     left: 60px; right: 60px;
-    bottom: 36px;
+    bottom: 40px;
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    font-family: var(--mono);
+    flex-wrap: wrap;
+    gap: 18px;
     font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: rgba(255, 255, 255, 0.7);
     opacity: 0;
-    animation: rise 1.4s cubic-bezier(.16,.84,.30,1) 1.2s forwards;
+    animation: rise 1.3s cubic-bezier(.16,.84,.30,1) 1.0s forwards;
   }
-  .anchor .byline strong { color: var(--ink); font-weight: 500; }
-  .anchor .byline .sep { color: var(--ink-faded); margin: 0 12px; }
+  .anchor .byline strong { color: var(--white); font-weight: 600; }
+  .anchor .byline .sep { opacity: 0.45; margin: 0 10px; }
 
   .cta {
-    color: var(--ink);
+    color: var(--white);
     display: inline-flex;
     align-items: baseline;
     gap: 10px;
-    padding-bottom: 4px;
-    border-bottom: 1px solid var(--ink);
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--white);
     transition: color 0.25s, border-color 0.25s, gap 0.25s;
+    font-weight: 500;
   }
-  .cta:hover { color: var(--teal); border-bottom-color: var(--teal); gap: 18px; }
-  .cta .arrow { color: var(--teal); }
+  .cta:hover {
+    color: var(--teal-glow);
+    border-bottom-color: var(--teal-glow);
+    gap: 18px;
+  }
+  .cta .arrow { color: var(--teal-glow); }
 
   @keyframes rise {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(28px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
   .scroll-cue {
     position: absolute;
-    bottom: 36px;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
-    font-family: var(--mono);
     font-size: 9px;
     letter-spacing: 0.4em;
     text-transform: uppercase;
-    color: var(--ink-faded);
+    color: rgba(255, 255, 255, 0.45);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     pointer-events: none;
+    z-index: 2;
     opacity: 0;
-    animation: rise 1.2s ease 1.8s forwards;
+    animation: rise 1.2s ease 1.6s forwards;
+    font-weight: 500;
   }
   .scroll-cue::after {
     content: "↓";
-    color: var(--teal);
+    color: var(--teal-glow);
     animation: bob 2.4s ease-in-out infinite;
   }
   @keyframes bob {
@@ -169,21 +259,24 @@
     50%      { transform: translateY(3px); }
   }
 
-  /* ──────────────────────────────────────────────────────────
-     SCREEN 2 — THE NOTE
-     ────────────────────────────────────────────────────────── */
+  /* ─── SCREEN 2 — NAVY-MID NOTE ─────────────────────────────────── */
   .note {
+    background: var(--navy-mid);
+    color: var(--white);
     min-height: 100vh;
     padding: 140px 60px;
     display: flex;
     align-items: center;
-    border-top: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
   }
 
   .note-inner {
     max-width: 760px;
     margin: 0 auto;
     width: 100%;
+    position: relative;
+    z-index: 2;
   }
 
   .note-head {
@@ -191,11 +284,11 @@
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 56px;
-    font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--teal);
+    font-weight: 500;
+    color: var(--teal-glow);
   }
   .note-head .left {
     display: inline-flex;
@@ -204,148 +297,188 @@
   }
   .note-head .left::before {
     content: "";
-    width: 28px; height: 1px;
-    background: var(--teal);
+    width: 28px; height: 2px;
+    background: var(--teal-glow);
   }
-  .note-head .right { color: var(--ink-faded); }
+  .note-head .right { color: rgba(255, 255, 255, 0.5); font-weight: 400; }
 
   .note p {
-    font-family: var(--body);
+    font-family: var(--font);
     font-weight: 400;
-    font-size: clamp(19px, 1.9vw, 22px);
-    line-height: 1.7;
-    color: var(--ink);
+    font-size: clamp(18px, 1.8vw, 21px);
+    line-height: 1.72;
+    color: rgba(255, 255, 255, 0.92);
     margin-bottom: 26px;
     letter-spacing: -0.003em;
   }
   .note p:last-of-type { margin-bottom: 0; }
-  .note p em { font-style: italic; color: var(--ink); }
+  .note p em {
+    font-style: italic;
+    color: var(--teal-glow);
+    font-weight: 500;
+  }
 
   .note .signature {
     margin-top: 44px;
-    font-family: var(--serif);
+    font-family: var(--font);
     font-style: italic;
-    font-weight: 400;
-    font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 1;
-    font-size: clamp(26px, 2.8vw, 36px);
-    color: var(--ink);
-    letter-spacing: -0.008em;
+    font-weight: 500;
+    font-size: clamp(22px, 2.4vw, 30px);
+    color: var(--white);
+    letter-spacing: -0.01em;
   }
 
-  /* ──────────────────────────────────────────────────────────
-     SCREEN 3 — THE WORK
-     ────────────────────────────────────────────────────────── */
+  /* ─── SCREEN 3 — NAVY-MID WORK ─────────────────────────────────── */
   .work {
+    background: var(--navy-mid);
+    color: var(--white);
     min-height: 100vh;
-    padding: 120px 60px;
+    padding: 130px 60px;
     display: flex;
     align-items: center;
-    border-top: 1px solid var(--rule);
+    border-top: 1px solid var(--rule-dark);
+    position: relative;
+    overflow: hidden;
   }
   .work-inner {
     max-width: 1100px;
     margin: 0 auto;
     width: 100%;
+    position: relative;
+    z-index: 2;
   }
 
   .work-label {
-    font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 56px;
+    color: var(--teal-glow);
+    margin-bottom: 48px;
     display: inline-flex;
     align-items: center;
     gap: 14px;
+    font-weight: 500;
   }
   .work-label::before {
     content: "";
-    width: 28px; height: 1px;
-    background: var(--teal);
+    width: 28px; height: 2px;
+    background: var(--teal-glow);
   }
 
   .work h2 {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-style: italic;
-    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
-    font-size: clamp(34px, 4.6vw, 64px);
-    line-height: 1.1;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-    margin-bottom: 64px;
-    max-width: 920px;
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: clamp(34px, 4.6vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--white);
+    margin-bottom: 32px;
+    max-width: 880px;
   }
-  .work h2 em { color: var(--teal); }
+  .work h2 em {
+    font-style: italic;
+    color: var(--teal-glow);
+    font-weight: 500;
+  }
+
+  .work-intro {
+    margin-bottom: 56px;
+    max-width: 880px;
+  }
+  .work-intro p {
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: clamp(17px, 1.7vw, 21px);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.86);
+    margin-bottom: 14px;
+    letter-spacing: -0.003em;
+  }
+  .work-intro p:last-child { margin-bottom: 0; }
+  .work-intro p em {
+    font-style: italic;
+    color: var(--teal-glow);
+    font-weight: 500;
+  }
 
   .work-list {
     list-style: none;
     counter-reset: w;
-    border-top: 1px solid var(--rule);
   }
   .work-list li {
     counter-increment: w;
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule-dark);
+    border-left: 4px solid;
+    transition: padding-left 0.4s ease, border-left-color 0.4s ease;
   }
+  .work-list li:first-child { border-top: 1px solid var(--rule-dark); }
+
+  /* Practice colors — matches original site */
+  .work-list li:nth-child(1) { border-left-color: var(--coral); }
+  .work-list li:nth-child(2) { border-left-color: var(--orange); }
+  .work-list li:nth-child(3) { border-left-color: var(--yellow); }
+  .work-list li:nth-child(4) { border-left-color: var(--green); }
+  .work-list li:nth-child(5) { border-left-color: var(--teal); }
+
   .work-list summary {
-    padding: 28px 0;
+    padding: 30px 24px 30px 32px;
     display: grid;
-    grid-template-columns: 60px 1fr auto;
-    gap: 32px;
+    grid-template-columns: 56px 1fr auto;
+    gap: 28px;
     align-items: baseline;
     cursor: pointer;
     list-style: none;
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 400;
-    font-variation-settings: "opsz" 144, "SOFT" 40;
-    font-size: clamp(22px, 2.4vw, 32px);
-    line-height: 1.2;
-    color: var(--ink);
-    letter-spacing: -0.005em;
-    transition: padding 0.4s ease;
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: clamp(20px, 2.2vw, 28px);
+    line-height: 1.25;
+    color: var(--white);
+    letter-spacing: -0.015em;
+    transition: padding 0.4s ease, background 0.4s ease;
   }
   .work-list summary::-webkit-details-marker { display: none; }
   .work-list summary::before {
     content: counter(w, decimal-leading-zero);
-    font-family: var(--mono);
-    font-style: normal;
-    font-weight: 400;
+    font-family: var(--font);
     font-size: 13px;
-    letter-spacing: 0.2em;
-    color: var(--ink-faded);
+    letter-spacing: 0.22em;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 500;
     transition: color 0.4s ease;
   }
   .work-list summary::after {
     content: "+";
-    font-family: var(--mono);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    color: var(--ink-faded);
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.5);
     transition: transform 0.35s cubic-bezier(.16,.84,.30,1), color 0.3s ease;
     line-height: 1;
     transform-origin: center;
   }
-  .work-list summary:hover { padding-left: 12px; }
+  .work-list summary:hover {
+    padding-left: 44px;
+    background: linear-gradient(90deg, rgba(79, 192, 179, 0.10), transparent);
+  }
   .work-list summary:hover::before,
-  .work-list summary:hover::after { color: var(--teal); }
-  .work-list details[open] summary { padding-left: 12px; }
-  .work-list details[open] summary::before { color: var(--teal); }
+  .work-list summary:hover::after { color: var(--teal-glow); }
+  .work-list details[open] summary {
+    padding-left: 44px;
+    background: linear-gradient(90deg, rgba(79, 192, 179, 0.14), transparent);
+  }
+  .work-list details[open] summary::before { color: var(--teal-glow); }
   .work-list details[open] summary::after {
     transform: rotate(45deg);
-    color: var(--teal);
+    color: var(--teal-glow);
   }
   .work-blurb {
-    padding: 0 0 36px 92px;
-    font-family: var(--body);
-    font-style: normal;
-    font-size: clamp(16px, 1.5vw, 19px);
-    line-height: 1.65;
-    color: var(--ink-soft);
-    max-width: 720px;
-    letter-spacing: 0;
+    padding: 0 24px 36px 116px;
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: clamp(16px, 1.5vw, 18px);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 820px;
     animation: blurb-in 0.4s cubic-bezier(.16,.84,.30,1);
   }
   @keyframes blurb-in {
@@ -353,189 +486,251 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ──────────────────────────────────────────────────────────
-     SCREEN 4 — CONTACT
-     ────────────────────────────────────────────────────────── */
+  /* ─── Free-floating puzzle pieces (note + work backgrounds) ─── */
+  /* ─── Large Watermark (Option C) — architectural, static, low-opacity ─── */
+  .watermark {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    overflow: visible;
+  }
+  .watermark svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+  }
+  .watermark svg path { fill: var(--white); }
+
+  /* Large center piece bleeding off the right edge */
+  .watermark.wm-large {
+    top: 50%;
+    right: -200px;
+    width: 820px; height: 820px;
+    transform: translateY(-50%) rotate(8deg);
+    opacity: 0.045;
+  }
+  /* Smaller mixed piece anchoring the lower-left */
+  .watermark.wm-small {
+    bottom: -140px;
+    left: -160px;
+    width: 380px; height: 380px;
+    transform: rotate(-22deg);
+    opacity: 0.06;
+  }
+
+  @media (max-width: 900px) {
+    .watermark.wm-large { width: 620px; height: 620px; right: -160px; }
+    .watermark.wm-small { width: 280px; height: 280px; bottom: -100px; left: -120px; }
+  }
+  @media (max-width: 560px) {
+    .watermark.wm-large { width: 480px; height: 480px; right: -140px; }
+    .watermark.wm-small { width: 220px; height: 220px; bottom: -80px; left: -90px; }
+  }
+
+  /* ─── SCREEN 4 — NAVY CONTACT ──────────────────────────────────── */
   .contact {
+    background: var(--navy);
+    color: var(--white);
     min-height: 100vh;
-    padding: 120px 60px;
+    padding: 130px 60px;
     display: flex;
     align-items: center;
-    border-top: 1px solid var(--rule);
     position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: "";
+    position: absolute;
+    top: -100px; right: -150px;
+    width: 480px; height: 480px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 280'><polygon points='140,140 171.35,140 171.35,164.7 203.65,164.7 203.65,140 235,140 235,235 140,235 140,203.65 164.7,203.65 164.7,171.35 140,171.35' fill='%23ffffff' opacity='0.04'/><polygon points='45,140 76.35,140 76.35,164.7 108.65,164.7 108.65,140 140,140 140,171.35 164.7,171.35 164.7,203.65 140,203.65 140,235 45,235' fill='%23ffffff' opacity='0.04'/></svg>");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: rotate(20deg);
+    pointer-events: none;
   }
   .contact-inner {
+    position: relative;
+    z-index: 2;
     max-width: 1100px;
     margin: 0 auto;
     width: 100%;
   }
 
   .contact-label {
-    font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 56px;
+    color: var(--teal-glow);
+    margin-bottom: 48px;
     display: inline-flex;
     align-items: center;
     gap: 14px;
+    font-weight: 500;
   }
   .contact-label::before {
     content: "";
-    width: 28px; height: 1px;
-    background: var(--teal);
+    width: 28px; height: 2px;
+    background: var(--teal-glow);
   }
 
   .contact h2 {
-    font-family: var(--serif);
-    font-weight: 300;
+    font-family: var(--font);
+    font-weight: 600;
     font-style: italic;
-    font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 1;
-    font-size: clamp(40px, 6vw, 96px);
+    font-size: clamp(40px, 6vw, 92px);
     line-height: 1;
-    letter-spacing: -0.025em;
-    color: var(--ink);
+    letter-spacing: -0.03em;
+    color: var(--white);
     margin-bottom: 28px;
   }
 
   .contact .lead {
-    font-family: var(--body);
+    font-family: var(--font);
+    font-weight: 400;
     font-size: clamp(17px, 1.8vw, 21px);
-    line-height: 1.55;
-    color: var(--ink-soft);
-    max-width: 580px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 620px;
     margin-bottom: 56px;
   }
 
   .primary-link {
     display: inline-flex;
     align-items: baseline;
-    gap: 14px;
-    font-family: var(--serif);
+    gap: 16px;
+    font-family: var(--font);
     font-style: italic;
-    font-weight: 400;
-    font-size: clamp(28px, 3.6vw, 48px);
-    color: var(--ink);
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 6px;
+    font-weight: 500;
+    font-size: clamp(26px, 3.4vw, 44px);
+    color: var(--white);
+    border-bottom: 2px solid var(--white);
+    padding-bottom: 8px;
     transition: color 0.25s, border-color 0.25s, gap 0.3s;
-    font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 1;
+    letter-spacing: -0.015em;
   }
   .primary-link:hover {
-    color: var(--teal);
-    border-bottom-color: var(--teal);
-    gap: 22px;
+    color: var(--teal-glow);
+    border-bottom-color: var(--teal-glow);
+    gap: 24px;
   }
   .primary-link .arrow {
-    font-family: var(--mono);
     font-style: normal;
-    font-size: 0.6em;
-    color: var(--teal);
+    font-size: 0.7em;
+    color: var(--teal-glow);
   }
 
   .contact-secondary {
     margin-top: 64px;
-    padding-top: 32px;
-    border-top: 1px solid var(--rule);
+    padding-top: 36px;
+    border-top: 1px solid var(--rule-dark);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
-    font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.7;
+    font-weight: 500;
   }
   .contact-secondary .item .head {
-    color: var(--ink-faded);
+    color: rgba(255, 255, 255, 0.45);
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-weight: 400;
   }
   .contact-secondary .item a,
   .contact-secondary .item span {
-    color: var(--ink);
+    color: var(--white);
     border-bottom: 1px solid transparent;
     transition: color 0.2s, border-color 0.2s;
   }
-  .contact-secondary .item a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+  .contact-secondary .item a:hover { color: var(--teal-glow); border-bottom-color: var(--teal-glow); }
 
   .fit-note {
     margin-top: 56px;
-    font-family: var(--body);
+    font-family: var(--font);
     font-style: italic;
+    font-weight: 400;
     font-size: 14px;
-    line-height: 1.6;
-    color: var(--ink-faded);
-    max-width: 580px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 620px;
   }
 
-  /* ──────────────────────────────────────────────────────────
-     BRAND CLOSE + FOOTER
-     ────────────────────────────────────────────────────────── */
+  /* ─── BRAND CLOSE ─────────────────────────────────────────────── */
   .brand-close-block {
-    border-top: 1px solid var(--rule);
+    background: var(--navy-deep);
+    color: var(--white);
     padding: 80px 60px 56px;
+    text-align: left;
   }
   .brand-close-inner {
     max-width: 1100px;
     margin: 0 auto;
   }
   .brand-close-inner p {
-    font-family: var(--serif);
+    font-family: var(--font);
     font-style: italic;
-    font-weight: 350;
-    font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 1;
+    font-weight: 400;
     font-size: clamp(24px, 3vw, 38px);
     line-height: 1.3;
-    color: var(--teal);
-    letter-spacing: -0.008em;
-    max-width: 880px;
+    color: var(--teal-glow);
+    letter-spacing: -0.015em;
+    max-width: 900px;
   }
 
+  /* ─── FOOTER ──────────────────────────────────────────────────── */
   .foot {
-    border-top: 1px solid var(--rule);
-    padding: 22px 40px 28px;
+    background: var(--navy-deep);
+    color: rgba(255, 255, 255, 0.45);
+    padding: 22px 40px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 14px;
-    font-family: var(--mono);
     font-size: 10px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--ink-faded);
+    font-weight: 500;
+    border-top: 1px solid var(--rule-dark);
   }
   .foot a {
-    color: var(--ink-faded);
+    color: rgba(255, 255, 255, 0.5);
     border-bottom: 1px solid transparent;
     transition: color 0.2s, border-color 0.2s;
   }
-  .foot a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+  .foot a:hover { color: var(--teal-glow); border-bottom-color: var(--teal-glow); }
   .foot .right a { margin-left: 22px; }
 
-  /* ──────────────────────────────────────────────────────────
-     RESPONSIVE
-     ────────────────────────────────────────────────────────── */
+  /* ─── Responsive ──────────────────────────────────────────────── */
   @media (max-width: 760px) {
     .top, .foot { padding-left: 24px; padding-right: 24px; }
-    .statement, .work, .contact { padding-left: 24px; padding-right: 24px; padding-top: 100px; padding-bottom: 80px; }
+    .statement, .work, .contact { padding-left: 24px; padding-right: 24px; padding-top: 110px; padding-bottom: 90px; }
     .note { padding: 110px 24px; }
     .brand-close-block { padding: 60px 24px 40px; }
-    .anchor { left: 24px; right: 24px; bottom: 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+    .anchor { left: 24px; right: 24px; bottom: 24px; flex-direction: column; align-items: flex-start; gap: 14px; }
     .scroll-cue { display: none; }
-    .positioning { font-size: 56px; margin-bottom: 36px; }
+    .positioning { font-size: 52px; margin-bottom: 32px; }
     .subtagline { font-size: 17px; }
-    .note p { font-size: 18px; }
-    .note .signature { font-size: 24px; }
+    .note p { font-size: 17px; }
+    .note .signature { font-size: 22px; }
     .note-head { flex-direction: column; gap: 10px; align-items: flex-start; margin-bottom: 36px; }
     .work h2 { font-size: 28px; }
-    .work-list summary { font-size: 19px; grid-template-columns: 44px 1fr auto; gap: 18px; padding: 22px 0; }
-    .work-list summary::after { font-size: 20px; }
-    .work-blurb { padding: 0 0 26px 62px; font-size: 16px; }
-    .contact h2 { font-size: 40px; }
+    .work-list summary {
+      font-size: 18px;
+      grid-template-columns: 40px 1fr auto;
+      gap: 16px;
+      padding: 22px 18px 22px 22px;
+    }
+    .work-list summary:hover,
+    .work-list details[open] summary { padding-left: 30px; }
+    .work-list summary::after { font-size: 24px; }
+    .work-blurb { padding: 0 18px 26px 78px; font-size: 15px; }
+    .contact h2 { font-size: 42px; }
     .primary-link { font-size: 26px; }
     .contact-secondary { grid-template-columns: 1fr 1fr; gap: 22px; }
     .brand-close-inner p { font-size: 22px; }
@@ -553,13 +748,38 @@
 </head>
 <body>
 
-  <!-- ─── Top bar ────────────────────────────────────────────── -->
+  <!-- ─── Puzzle-piece symbol definitions (curved lollipop tabs) ─── -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- Center piece: tabs on all four sides (the classic interior shape) -->
+      <symbol id="piece-center" viewBox="-50 -50 200 200">
+        <path d="M 0 0 L 35 0 C -15 -65, 115 -65, 65 0 L 100 0 L 100 35 C 165 -15, 165 115, 100 65 L 100 100 L 65 100 C 115 165, -15 165, 35 100 L 0 100 L 0 65 C -65 115, -65 -15, 0 35 L 0 0 Z"/>
+      </symbol>
+      <!-- Mixed piece: tabs on top and bottom, notches on left and right -->
+      <symbol id="piece-mixed" viewBox="-50 -50 200 200">
+        <path d="M 0 0 L 35 0 C -15 -65, 115 -65, 65 0 L 100 0 L 100 35 C 35 -15, 35 115, 100 65 L 100 100 L 65 100 C 115 165, -15 165, 35 100 L 0 100 L 0 65 C 65 115, 65 -15, 0 35 L 0 0 Z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Five-color signature bar (top) -->
+  <div class="signature-bar" role="presentation">
+    <div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="s4"></div><div class="s5"></div>
+  </div>
+
+  <!-- Top nav -->
   <header class="top">
-    <span class="wordmark">Puzzler · Consulting &amp; Advisory</span>
+    <span class="wordmark">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 2 L12 2 L12 5.4 L14.6 5.4 L14.6 8.6 L12 8.6 L12 12 L8.6 12 L8.6 14.6 L5.4 14.6 L5.4 12 L2 12 Z" fill="#4FC0B3"/>
+        <path d="M12 12 L14.6 12 L14.6 14.6 L17.4 14.6 L17.4 12 L22 12 L22 22 L12 22 L12 17.4 L14.6 17.4 L14.6 14.6 L12 14.6 Z" fill="#ffffff" opacity="0.6"/>
+      </svg>
+      Puzzler · Consulting &amp; Advisory
+    </span>
     <span class="meta">MMXXVI</span>
   </header>
 
-  <!-- ─── SCREEN 1 — THE STATEMENT ───────────────────────────── -->
+  <!-- SCREEN 1 — STATEMENT -->
   <main class="statement">
     <div class="statement-inner">
       <p class="positioning">Practitioners,<br>not vendors.</p>
@@ -574,8 +794,12 @@
     <div class="scroll-cue">Continue</div>
   </main>
 
-  <!-- ─── SCREEN 2 — THE NOTE ────────────────────────────────── -->
+  <!-- SCREEN 2 — THE NOTE -->
   <section class="note">
+
+    <div class="watermark wm-large"><svg><use href="#piece-center"/></svg></div>
+    <div class="watermark wm-small"><svg><use href="#piece-mixed"/></svg></div>
+
     <div class="note-inner">
       <div class="note-head">
         <span class="left">i. A note from Mark</span>
@@ -592,11 +816,19 @@
     </div>
   </section>
 
-  <!-- ─── SCREEN 3 — THE WORK ────────────────────────────────── -->
+  <!-- SCREEN 3 — THE WORK -->
   <section class="work">
+
+    <div class="watermark wm-large"><svg><use href="#piece-center"/></svg></div>
+    <div class="watermark wm-small"><svg><use href="#piece-mixed"/></svg></div>
+
     <div class="work-inner">
       <span class="work-label">ii. What we do</span>
       <h2>Five practices. <em>One operating discipline.</em></h2>
+      <div class="work-intro">
+        <p>For nonprofits, state and local government, foundations, and mission-driven for-profits.</p>
+        <p>Puzzler is the partner that <em>gets in the hole and stays</em> — practitioners doing the work, not vendors selling it.</p>
+      </div>
       <ol class="work-list">
         <li>
           <details>
@@ -642,7 +874,7 @@
     </div>
   </section>
 
-  <!-- ─── SCREEN 4 — CONTACT ─────────────────────────────────── -->
+  <!-- SCREEN 4 — CONTACT -->
   <section class="contact">
     <div class="contact-inner">
       <span class="contact-label">iii. To begin</span>
@@ -674,14 +906,19 @@
     </div>
   </section>
 
-  <!-- ─── Brand close ────────────────────────────────────────── -->
+  <!-- Brand close -->
   <section class="brand-close-block">
     <div class="brand-close-inner">
       <p>Making the pieces fit for mission-driven organizations.</p>
     </div>
   </section>
 
-  <!-- ─── Footer ─────────────────────────────────────────────── -->
+  <!-- Five-color signature bar (bottom) -->
+  <div class="signature-bar" role="presentation">
+    <div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="s4"></div><div class="s5"></div>
+  </div>
+
+  <!-- Footer -->
   <footer class="foot">
     <span>© MMXXVI · Puzzler Consulting &amp; Advisory Services LLC · All rights reserved</span>
     <span class="right">
