@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Mark D. Williams — Puzzler Consulting &amp; Advisory</title>
+<meta name="description" content="Mark D. Williams · Managing Partner &amp; Chief Capacity Builder · Puzzler Consulting &amp; Advisory" />
+<meta name="theme-color" content="#0F0F1F" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<link rel="canonical" href="https://puzzlerconsultingadvisory.com/puzzler_card.html" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="profile" />
+<meta property="og:url" content="https://puzzlerconsultingadvisory.com/puzzler_card.html" />
+<meta property="og:title" content="Mark D. Williams — Puzzler Consulting &amp; Advisory" />
+<meta property="og:description" content="Managing Partner &amp; Chief Capacity Builder. Practitioners, not vendors." />
+<meta property="og:site_name" content="Puzzler Consulting &amp; Advisory" />
+<meta property="og:image" content="https://puzzlerconsultingadvisory.com/social-preview.png" />
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="320" />
+<meta property="og:image:alt" content="Puzzler Consulting &amp; Advisory — Practitioners, not vendors." />
+<meta property="profile:first_name" content="Mark" />
+<meta property="profile:last_name" content="Williams" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Mark D. Williams" />
+<meta name="twitter:description" content="Managing Partner &amp; Chief Capacity Builder · Puzzler Consulting &amp; Advisory" />
+<meta name="twitter:image" content="https://puzzlerconsultingadvisory.com/social-preview.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy:       #1A1A2E;
+    --navy-mid:   #2E3450;
+    --navy-deep:  #0F0F1F;
+    --teal:       #30A396;
+    --teal-glow:  #4FC0B3;
+    --coral:      #E94F4A;
+    --orange:     #F39C4A;
+    --yellow:     #F5CF48;
+    --green:      #7ABF5F;
+    --white:      #FFFFFF;
+    --soft:       rgba(255, 255, 255, 0.72);
+    --faded:      rgba(255, 255, 255, 0.5);
+    --rule:       rgba(255, 255, 255, 0.12);
+    --rule-strong:rgba(255, 255, 255, 0.22);
+    --font:       'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--navy-deep);
+    color: var(--white);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--teal); color: var(--white); }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 45%,
+        rgba(48, 163, 150, 0.07) 0%,
+        rgba(48, 163, 150, 0) 60%),
+      var(--navy-deep);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .stage {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 18px;
+  }
+
+  .flying-wrap {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  .flying-logo {
+    width: min(380px, 70vw);
+    height: min(380px, 70vw);
+    opacity: 0;
+    transform: scale(0.25) rotate(-50deg);
+    transition:
+      transform 0.85s cubic-bezier(.34, 1.56, .64, 1),
+      opacity 0.55s ease;
+    filter:
+      drop-shadow(-12px -12px 32px rgba(233, 79, 74, 0.38))
+      drop-shadow(12px -12px 32px rgba(245, 207, 72, 0.38))
+      drop-shadow(-12px 12px 32px rgba(122, 191, 95, 0.38))
+      drop-shadow(12px 12px 32px rgba(48, 163, 150, 0.45))
+      drop-shadow(0 20px 48px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+    transform-origin: center center;
+  }
+  .flying-logo.visible {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  .flying-logo svg { width: 100%; height: 100%; display: block; }
+
+  .flying-logo.pulsing {
+    animation: glow-breathe 1.4s ease-in-out infinite;
+  }
+  @keyframes glow-breathe {
+    0%, 100% {
+      filter:
+        drop-shadow(-12px -12px 32px rgba(233, 79, 74, 0.38))
+        drop-shadow(12px -12px 32px rgba(245, 207, 72, 0.38))
+        drop-shadow(-12px 12px 32px rgba(122, 191, 95, 0.38))
+        drop-shadow(12px 12px 32px rgba(48, 163, 150, 0.45))
+        drop-shadow(0 20px 48px rgba(0, 0, 0, 0.55))
+        drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+    }
+    50% {
+      filter:
+        drop-shadow(-14px -14px 44px rgba(233, 79, 74, 0.58))
+        drop-shadow(14px -14px 44px rgba(245, 207, 72, 0.58))
+        drop-shadow(-14px 14px 44px rgba(122, 191, 95, 0.58))
+        drop-shadow(14px 14px 44px rgba(48, 163, 150, 0.62))
+        drop-shadow(0 20px 48px rgba(0, 0, 0, 0.55))
+        drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+    }
+  }
+
+  .arrival-flash {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: conic-gradient(
+      from 0deg,
+      rgba(233, 79, 74, 0.6) 0deg,
+      rgba(245, 207, 72, 0.6) 90deg,
+      rgba(48, 163, 150, 0.6) 180deg,
+      rgba(122, 191, 95, 0.6) 270deg,
+      rgba(233, 79, 74, 0.6) 360deg
+    );
+    opacity: 0;
+    filter: blur(8px);
+  }
+  .arrival-flash.active {
+    animation: flash-burst 0.9s cubic-bezier(.2, .6, .4, 1) forwards;
+  }
+  @keyframes flash-burst {
+    0% {
+      transform: translate(-50%, -50%) scale(0) rotate(0deg);
+      opacity: 1;
+    }
+    40% {
+      transform: translate(-50%, -50%) scale(8) rotate(120deg);
+      opacity: 0.85;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(14) rotate(180deg);
+      opacity: 0;
+    }
+  }
+
+  .card {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    background: var(--navy-mid);
+    box-shadow:
+      0 24px 60px rgba(0, 0, 0, 0.55),
+      0 6px 16px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(56px) scale(0.94);
+    transition:
+      opacity 0.85s cubic-bezier(.16, .84, .30, 1),
+      transform 0.85s cubic-bezier(.16, .84, .30, 1);
+  }
+  .card.revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .card-watermark {
+    position: absolute;
+    bottom: -180px;
+    right: -160px;
+    width: 460px;
+    height: 460px;
+    opacity: 0.07;
+    pointer-events: none;
+    z-index: 0;
+    transform: rotate(14deg);
+  }
+  .card-watermark svg { width: 100%; height: 100%; display: block; }
+
+  .sig-bar {
+    display: flex;
+    height: 5px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  .sig-bar > div {
+    flex: 1;
+    animation: stripe-pulse 30s linear infinite;
+  }
+  .sig-bar .s1 { background: var(--coral);  animation-delay: 5.0s; }
+  .sig-bar .s2 { background: var(--orange); animation-delay: 5.1s; }
+  .sig-bar .s3 { background: var(--yellow); animation-delay: 5.2s; }
+  .sig-bar .s4 { background: var(--green);  animation-delay: 5.3s; }
+  .sig-bar .s5 { background: var(--teal);   animation-delay: 5.4s; }
+
+  @keyframes stripe-pulse {
+    0%   { filter: brightness(1)   saturate(1); }
+    1.5% { filter: brightness(1.9) saturate(1.4); }
+    3.5% { filter: brightness(1)   saturate(1); }
+    100% { filter: brightness(1)   saturate(1); }
+  }
+
+  .card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 30px 22px;
+    gap: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .firm {
+    font-weight: 600;
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--soft);
+    line-height: 1.4;
+  }
+  .firm .firm-accent { color: var(--teal-glow); padding: 0 4px; }
+
+  #cardMark {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(.34, 1.56, .64, 1);
+  }
+  #cardMark.punch {
+    opacity: 1;
+    transform: scale(1);
+  }
+  #cardMark svg { width: 100%; height: 100%; display: block; }
+
+  .identity {
+    padding: 6px 30px 22px;
+    position: relative;
+    z-index: 1;
+  }
+  .name {
+    font-weight: 600;
+    font-size: clamp(30px, 6vw, 38px);
+    line-height: 1.05;
+    letter-spacing: -0.022em;
+    margin-bottom: 12px;
+  }
+  .name em {
+    font-style: italic;
+    color: var(--teal-glow);
+    font-weight: 500;
+  }
+  .title {
+    font-weight: 500;
+    font-size: 10.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--soft);
+    line-height: 1.55;
+  }
+
+  .pitch {
+    padding: 22px 30px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .positioning {
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(18px, 3.6vw, 21px);
+    line-height: 1.3;
+    color: var(--teal-glow);
+    margin-bottom: 10px;
+  }
+  .brand-close {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--soft);
+    text-wrap: pretty;
+  }
+  .brand-close em {
+    font-style: italic;
+    color: var(--teal-glow);
+    font-weight: 500;
+  }
+
+  .contact {
+    padding: 22px 30px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .contact a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 13.5px;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+    transition: transform 0.2s ease, color 0.2s ease;
+    word-break: break-word;
+  }
+  .contact a:hover {
+    color: var(--teal-glow);
+    transform: translateX(3px);
+  }
+  .contact .icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--teal-glow);
+    opacity: 0.85;
+  }
+  .contact .icon svg { width: 100%; height: 100%; display: block; }
+
+  .actions {
+    padding: 18px 30px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    position: relative;
+    z-index: 1;
+  }
+  .action {
+    padding: 14px 22px;
+    text-align: center;
+    font-family: var(--font);
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s ease;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+  }
+  .action.primary {
+    background: var(--teal);
+    color: var(--white);
+  }
+  .action.primary:hover {
+    background: var(--teal-glow);
+    color: var(--navy-deep);
+    transform: translateY(-1px);
+  }
+  .action.secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--rule-strong);
+  }
+  .action.secondary:hover {
+    background: rgba(79, 192, 179, 0.08);
+    border-color: var(--teal-glow);
+    color: var(--teal-glow);
+  }
+
+  .card-foot {
+    padding: 18px 30px 22px;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .card-foot .tagline {
+    font-style: italic;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--teal-glow);
+    margin-bottom: 4px;
+    letter-spacing: 0.01em;
+  }
+  .card-foot small {
+    font-weight: 500;
+    font-size: 8.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--faded);
+    display: block;
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--teal);
+    color: var(--white);
+    padding: 14px 22px;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+    max-width: min(360px, calc(100vw - 32px));
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(48, 163, 150, 0.4);
+    border-radius: 4px;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 480px) {
+    .stage { padding: 24px 14px; }
+    .card-head { padding: 24px 22px 18px; }
+    .identity { padding: 4px 22px 18px; }
+    .pitch { padding: 18px 22px; }
+    .contact { padding: 18px 22px 6px; }
+    .actions { padding: 14px 22px 18px; }
+    .card-foot { padding: 16px 22px 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flying-wrap { display: none; }
+    .card {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    #cardMark { opacity: 1; transform: none; }
+    .sig-bar > div { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="puzzler-logo" viewBox="0 0 280 280">
+        <polygon points="45,45 140,45 140,76.35 164.7,76.35 164.7,108.65 140,108.65 140,140 108.65,140 108.65,164.7 76.35,164.7 76.35,140 45,140" fill="#E94F4A"/>
+        <polygon points="140,45 235,45 235,140 203.65,140 203.65,164.7 171.35,164.7 171.35,140 140,140 140,108.65 164.7,108.65 164.7,76.35 140,76.35" fill="#F5CF48"/>
+        <polygon points="45,140 76.35,140 76.35,164.7 108.65,164.7 108.65,140 140,140 140,171.35 164.7,171.35 164.7,203.65 140,203.65 140,235 45,235" fill="#7ABF5F"/>
+        <polygon points="140,140 171.35,140 171.35,164.7 203.65,164.7 203.65,140 235,140 235,235 140,235 140,203.65 164.7,203.65 164.7,171.35 140,171.35" fill="#30A396"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="flying-wrap" aria-hidden="true">
+    <div class="flying-logo" id="flying">
+      <svg><use href="#puzzler-logo"/></svg>
+    </div>
+  </div>
+
+  <div class="arrival-flash" id="flash" aria-hidden="true"></div>
+
+  <main class="stage">
+
+    <article class="card" id="card">
+
+      <div class="card-watermark" aria-hidden="true">
+        <svg><use href="#puzzler-logo"/></svg>
+      </div>
+
+      <div class="sig-bar" role="presentation">
+        <div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="s4"></div><div class="s5"></div>
+      </div>
+
+      <header class="card-head">
+        <div class="firm">Puzzler<span class="firm-accent">·</span>Consulting &amp; Advisory</div>
+        <div id="cardMark">
+          <svg><use href="#puzzler-logo"/></svg>
+        </div>
+      </header>
+
+      <section class="identity">
+        <h1 class="name">Mark <em>D.</em> Williams</h1>
+        <p class="title">Managing Partner &amp; Chief Capacity Builder</p>
+      </section>
+
+      <section class="pitch">
+        <p class="positioning">Practitioners, not vendors.</p>
+        <p class="brand-close">Helping mission-driven organizations find their <em>new normal</em> — before, during, and after transformative events.</p>
+      </section>
+
+      <section class="contact">
+        <a href="mailto:markdwilliams@puzzlerconsultingadvisory.com" aria-label="Email Mark">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="1.5" y="3" width="13" height="10" rx="1"/>
+              <path d="M2 4l6 5 6-5"/>
+            </svg>
+          </span>
+          <span>markdwilliams@puzzlerconsultingadvisory.com</span>
+        </a>
+        <a href="tel:+14109706539" aria-label="Call Mark">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 2.5h2l1.5 3-1.5 1c.8 1.6 2.4 3.2 4 4l1-1.5 3 1.5v2c0 .8-.7 1.5-1.5 1.5C6 14 2 10 2 4c0-.8.7-1.5 1.5-1.5z"/>
+            </svg>
+          </span>
+          <span>(410) 970-6539</span>
+        </a>
+        <a href="https://puzzlerconsultingadvisory.com" target="_blank" rel="noopener" aria-label="Visit website">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="8" cy="8" r="6"/>
+              <path d="M2 8h12M8 2c2 2 2 10 0 12M8 2c-2 2-2 10 0 12"/>
+            </svg>
+          </span>
+          <span>puzzlerconsultingadvisory.com</span>
+        </a>
+        <a href="https://www.linkedin.com/company/puzzlerconsultingadvisory" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="currentColor">
+              <path d="M3 1.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM1.6 5.5h2.8v9H1.6zM6 5.5h2.7v1.3c.4-.7 1.4-1.5 2.8-1.5 3 0 3.5 2 3.5 4.5v4.7h-2.8V10.4c0-1-.2-2.3-1.5-2.3-1.4 0-1.7 1-1.7 2.2v4.2H6z"/>
+            </svg>
+          </span>
+          <span>linkedin.com/company/puzzlerconsultingadvisory</span>
+        </a>
+      </section>
+
+      <section class="actions">
+        <button class="action primary" onclick="saveContact()" type="button">
+          Save to Contacts
+        </button>
+        <a href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min" class="action secondary" target="_blank" rel="noopener">
+          Book a Fit Call →
+        </a>
+      </section>
+
+      <footer class="card-foot">
+        <p class="tagline">Making the pieces fit for mission-driven organizations.</p>
+        <small>© MMXXVI · Puzzler Consulting &amp; Advisory LLC</small>
+      </footer>
+
+      <div class="sig-bar" role="presentation">
+        <div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="s4"></div><div class="s5"></div>
+      </div>
+
+    </article>
+
+  </main>
+
+  <div class="toast" id="toast">vCard downloaded — open it to add Mark to your contacts</div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+
+      const flyingWrap = document.querySelector('.flying-wrap');
+      const flying = document.getElementById('flying');
+      const card = document.getElementById('card');
+      const cardMark = document.getElementById('cardMark');
+      const flash = document.getElementById('flash');
+
+      setTimeout(() => {
+        flying.classList.add('visible');
+      }, 200);
+
+      setTimeout(() => {
+        flying.classList.add('pulsing');
+      }, 1050);
+
+      setTimeout(() => {
+        flying.classList.remove('pulsing');
+
+        const wrapRect = flyingWrap.getBoundingClientRect();
+        const markRect = cardMark.getBoundingClientRect();
+
+        const flyingCenterX = wrapRect.left + wrapRect.width / 2;
+        const flyingCenterY = wrapRect.top + wrapRect.height / 2;
+        const markCenterX = markRect.left + markRect.width / 2;
+        const markCenterY = markRect.top + markRect.height / 2;
+
+        const dx = markCenterX - flyingCenterX;
+        const dy = markCenterY - flyingCenterY;
+        const scale = markRect.width / wrapRect.width;
+
+        flying.style.transition = 'transform 1.1s cubic-bezier(.55, -.05, .25, 1)';
+        flying.style.transform = `translate(${dx}px, ${dy}px) scale(${scale}) rotate(720deg)`;
+
+        card.classList.add('revealed');
+      }, 1450);
+
+      setTimeout(() => {
+        const markRect = cardMark.getBoundingClientRect();
+        flash.style.left = (markRect.left + markRect.width / 2) + 'px';
+        flash.style.top = (markRect.top + markRect.height / 2) + 'px';
+        flash.classList.add('active');
+      }, 2350);
+
+      setTimeout(() => {
+        flying.style.transition = 'transform 1.1s cubic-bezier(.55, -.05, .25, 1), opacity 0.35s ease';
+        flying.style.opacity = '0';
+        cardMark.classList.add('punch');
+      }, 2400);
+    });
+
+    function saveContact() {
+      const vcard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'N:Williams;Mark;D.;;',
+        'FN:Mark D. Williams',
+        'ORG:Puzzler Consulting & Advisory LLC',
+        'TITLE:Managing Partner & Chief Capacity Builder',
+        'EMAIL;TYPE=WORK:markdwilliams@puzzlerconsultingadvisory.com',
+        'TEL;TYPE=WORK,VOICE:+14109706539',
+        'ADR;TYPE=WORK:;;5000 Thayer Center STE C;Oakland;MD;21550;USA',
+        'URL:https://puzzlerconsultingadvisory.com',
+        'URL;TYPE=LinkedIn:https://www.linkedin.com/company/puzzlerconsultingadvisory',
+        'NOTE:Practitioners, not vendors. Helping mission-driven organizations find their new normal — before, during, and after transformative events.',
+        'END:VCARD'
+      ].join('\r\n');
+
+      const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Mark_D_Williams.vcf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3600);
+    }
+  </script>
+
+</body>
+</html>
