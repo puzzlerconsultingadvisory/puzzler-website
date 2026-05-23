@@ -78,12 +78,22 @@
     height: 6px;
     width: 100%;
   }
-  .signature-bar > div { flex: 1; }
-  .signature-bar .s1 { background: var(--coral); }
-  .signature-bar .s2 { background: var(--orange); }
-  .signature-bar .s3 { background: var(--yellow); }
-  .signature-bar .s4 { background: var(--green); }
-  .signature-bar .s5 { background: var(--teal); }
+  .signature-bar > div {
+    flex: 1;
+    animation: stripe-pulse 30s linear infinite;
+  }
+  .signature-bar .s1 { background: var(--coral);  animation-delay: 5.0s; }
+  .signature-bar .s2 { background: var(--orange); animation-delay: 5.1s; }
+  .signature-bar .s3 { background: var(--yellow); animation-delay: 5.2s; }
+  .signature-bar .s4 { background: var(--green);  animation-delay: 5.3s; }
+  .signature-bar .s5 { background: var(--teal);   animation-delay: 5.4s; }
+
+  @keyframes stripe-pulse {
+    0%   { filter: brightness(1)   saturate(1); }
+    1.5% { filter: brightness(1.9) saturate(1.4); }
+    3.5% { filter: brightness(1)   saturate(1); }
+    100% { filter: brightness(1)   saturate(1); }
+  }
 
   /* ─── Top nav ──────────────────────────────────────────────────── */
   .top {
@@ -166,15 +176,17 @@
     animation: rise 1.5s cubic-bezier(.16,.84,.30,1) 0.2s forwards;
   }
 
-  .positioning {
+  .wordmark-display {
     font-family: var(--font);
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(60px, 13vw, 200px);
-    line-height: 0.88;
-    letter-spacing: -0.03em;
+    font-weight: 800;
+    font-size: clamp(72px, 16vw, 240px);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
     color: var(--white);
     margin-bottom: 48px;
+  }
+  .wordmark-display .accent {
+    color: var(--teal-glow);
   }
 
   .subtagline {
@@ -535,6 +547,57 @@
     .watermark.wm-small { width: 220px; height: 220px; bottom: -80px; left: -90px; }
   }
 
+  /* ─── Floating pieces (hero) ───────────────────────────────────── */
+  .floating-piece {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .floating-piece svg {
+    width: 100%; height: 100%;
+    display: block;
+    overflow: visible;
+  }
+  .floating-piece svg path { fill: var(--white); }
+
+  .floating-piece.fp1 {
+    top: 18%; right: 9%;
+    width: 90px; height: 90px;
+    opacity: 0.07;
+    animation: drift1 22s ease-in-out infinite;
+  }
+  .floating-piece.fp2 {
+    top: 55%; left: 7%;
+    width: 64px; height: 64px;
+    opacity: 0.06;
+    animation: drift2 26s ease-in-out infinite;
+  }
+  .floating-piece.fp3 {
+    bottom: 22%; right: 26%;
+    width: 110px; height: 110px;
+    opacity: 0.05;
+    animation: drift3 30s ease-in-out infinite;
+  }
+
+  @keyframes drift1 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-18px) rotate(4deg); }
+  }
+  @keyframes drift2 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(14px) rotate(-3deg); }
+  }
+  @keyframes drift3 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-22px) rotate(5deg); }
+  }
+
+  @media (max-width: 760px) {
+    .floating-piece.fp1 { width: 54px; height: 54px; }
+    .floating-piece.fp2 { width: 42px; height: 42px; }
+    .floating-piece.fp3 { width: 70px; height: 70px; }
+  }
+
   /* ─── SCREEN 4 — NAVY CONTACT ──────────────────────────────────── */
   .contact {
     background: var(--navy);
@@ -721,7 +784,7 @@
     .brand-close-block { padding: 60px 24px 40px; }
     .anchor { left: 24px; right: 24px; bottom: 24px; flex-direction: column; align-items: flex-start; gap: 14px; }
     .scroll-cue { display: none; }
-    .positioning { font-size: 52px; margin-bottom: 32px; }
+    .wordmark-display { font-size: 64px; margin-bottom: 32px; }
     .subtagline { font-size: 17px; }
     .note p { font-size: 17px; }
     .note .signature { font-size: 22px; }
@@ -788,8 +851,13 @@
 
   <!-- SCREEN 1 — STATEMENT -->
   <main class="statement">
+
+    <div class="floating-piece fp1" aria-hidden="true"><svg><use href="#piece-center"/></svg></div>
+    <div class="floating-piece fp2" aria-hidden="true"><svg><use href="#piece-mixed"/></svg></div>
+    <div class="floating-piece fp3" aria-hidden="true"><svg><use href="#piece-center"/></svg></div>
+
     <div class="statement-inner">
-      <p class="positioning">Practitioners,<br>not vendors.</p>
+      <h1 class="wordmark-display">PU<span class="accent">ZZ</span>LER</h1>
       <p class="subtagline">Helping people and organizations find their new normal — before, during, and after transformative events.</p>
     </div>
 
