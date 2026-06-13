@@ -36,471 +36,1007 @@
 <script src="https://cdn.usefathom.com/script.js" data-site="LHOTKOPA" defer></script>
 <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 
-<style>
-  @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/poppins-400.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-  @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; font-display: optional; src: url('/fonts/poppins-500.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-  @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; font-display: optional; src: url('/fonts/poppins-600.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-  @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 700; font-display: optional; src: url('/fonts/poppins-700.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-  @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 800; font-display: optional; src: url('/fonts/poppins-800.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Puzzler Consulting &amp; Advisory — Practitioners, not vendors.</title>
+<meta name="description" content="Practitioners, not vendors. Helping people and organizations find their new normal — before, during, and after transformative events." />
+<meta name="theme-color" content="#1A1A2E" />
+<link rel="canonical" href="https://puzzlerconsultingadvisory.com/" />
 
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://puzzlerconsultingadvisory.com/" />
+<meta property="og:site_name" content="Puzzler Consulting &amp; Advisory" />
+<meta property="og:title" content="Puzzler Consulting &amp; Advisory — Practitioners, not vendors." />
+<meta property="og:description" content="Helping people and organizations find their new normal — before, during, and after transformative events." />
+<meta property="og:image" content="https://puzzlerconsultingadvisory.com/social-preview.png" />
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="320" />
+<meta property="og:image:alt" content="Puzzler Consulting &amp; Advisory — Practitioners, not vendors." />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Puzzler Consulting &amp; Advisory" />
+<meta name="twitter:description" content="Helping people and organizations find their new normal — before, during, and after transformative events." />
+<meta name="twitter:image" content="https://puzzlerconsultingadvisory.com/social-preview.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
   :root {
-    --navy: #1A1A2E;
+    --navy:       #1A1A2E;
     --navy-light: #2A2A45;
-    --navy-deep: #0F0F1F;
-    --teal: #30A396;
-    --teal-dark: #287F76;
-    --teal-deeper: #1F665F;
-    --teal-glow: #4FC0B3;
-    --coral: #E94F4A;
-    --coral-deep: #B73C37;
-    --orange: #F39C4A;
-    --yellow: #F5CF48;
-    --green: #7ABF5F;
-    --dark-text: #1F1F1F;
-    --soft-gray: #5C5C5C;
-    --pale-gray: #F4F4F8;
-    --accent-bg: #EAF6F4;
-    --white: #FFFFFF;
-    --max-width: 1100px;
+    --navy-mid:   #2E3450;
+    --navy-deep:  #0F0F1F;
+    --teal:       #30A396;
+    --teal-dark:  #287F76;
+    --teal-glow:  #4FC0B3;
+    --coral:      #E94F4A;
+    --orange:     #F39C4A;
+    --yellow:     #F5CF48;
+    --green:      #7ABF5F;
+    --white:      #FFFFFF;
+    --pale:       #F4F4F8;
+    --soft:       #5C5C5C;
+    --dark:       #1F1F1F;
+    --rule-dark:  rgba(255, 255, 255, 0.14);
+    --rule-light: rgba(31, 31, 31, 0.12);
+    --accent-bg:  #EAF6F4;
+
+    --font: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
   html { scroll-behavior: smooth; }
+
   body {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: var(--dark-text);
-    line-height: 1.6;
     background: var(--white);
+    color: var(--dark);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
 
-  .signature-bar { display: flex; height: 8px; width: 100%; }
-  .signature-bar > div { flex: 1; }
-  .signature-bar .s1 { background: var(--coral); }
-  .signature-bar .s2 { background: var(--orange); }
-  .signature-bar .s3 { background: var(--yellow); }
-  .signature-bar .s4 { background: var(--green); }
-  .signature-bar .s5 { background: var(--teal); }
+  ::selection { background: var(--teal); color: var(--white); }
 
-  .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.75rem; }
+  a { color: inherit; text-decoration: none; }
 
-  .hero { background: var(--navy); color: var(--white); padding: 5rem 0 6.5rem; position: relative; overflow: hidden; }
-  .hero-grid { display: block; position: relative; z-index: 1; }
-  .hero-text { text-align: left; max-width: 760px; }
-  .wordmark-lockup { display: flex; align-items: center; gap: clamp(1rem, 1.6vw, 1.5rem); margin-bottom: 0.5rem; }
-  .wordmark-mark { width: clamp(78px, 9vw, 108px); height: auto; flex-shrink: 0; filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.4)); }
-  .wordmark-text { display: flex; flex-direction: column; }
-  .wordmark { font-weight: 800; font-size: clamp(2.4rem, 5.6vw, 3.7rem); letter-spacing: 0.06em; line-height: 1; }
-  .wordmark-descriptor { font-weight: 600; font-size: clamp(0.78rem, 1.05vw, 0.95rem); letter-spacing: 0.20em; color: var(--white); opacity: 0.92; margin-top: 0.55rem; }
-  .hero-divider { width: 60px; height: 4px; background: var(--teal); margin-bottom: 1.75rem; border-radius: 2px; }
-  .positioning { font-style: italic; font-weight: 400; font-size: clamp(1rem, 1.7vw, 1.15rem); color: var(--white); opacity: 0.8; margin-bottom: 1.5rem; line-height: 1.5; }
-  .value-prop { font-weight: 500; font-size: clamp(1.25rem, 2.6vw, 1.7rem); line-height: 1.4; margin-bottom: 2.5rem; color: var(--white); }
-  .value-prop strong { font-weight: 700; color: var(--teal-glow); }
+  /* ─── Five-color signature bar ──────────────────────────────────── */
+  .signature-bar {
+    display: flex;
+    height: 6px;
+    width: 100%;
+  }
+  .signature-bar > div {
+    flex: 1;
+    animation: stripe-pulse 30s linear infinite;
+  }
+  .signature-bar .s1 { background: var(--coral);  animation-delay: 5.0s; }
+  .signature-bar .s2 { background: var(--orange); animation-delay: 5.1s; }
+  .signature-bar .s3 { background: var(--yellow); animation-delay: 5.2s; }
+  .signature-bar .s4 { background: var(--green);  animation-delay: 5.3s; }
+  .signature-bar .s5 { background: var(--teal);   animation-delay: 5.4s; }
 
-  .cta-button { display: inline-block; background: var(--teal-dark); color: var(--white); padding: 1.05rem 2.5rem; font-family: inherit; font-weight: 600; font-size: 1rem; letter-spacing: 0.03em; text-decoration: none; border-radius: 4px; transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease; border: none; cursor: pointer; box-shadow: 0 4px 14px rgba(40, 127, 118, 0.3); }
-  .cta-button:hover { background: var(--teal-deeper); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(31, 102, 95, 0.4); }
-  .cta-button.secondary { background: transparent; color: var(--white); border: 2px solid rgba(255, 255, 255, 0.3); box-shadow: none; margin-left: 0.75rem; }
-  .cta-button.secondary:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--white); transform: translateY(-2px); box-shadow: none; }
+  @keyframes stripe-pulse {
+    0%   { filter: brightness(1)   saturate(1); }
+    1.5% { filter: brightness(1.9) saturate(1.4); }
+    3.5% { filter: brightness(1)   saturate(1); }
+    100% { filter: brightness(1)   saturate(1); }
+  }
 
-  .section-label { font-weight: 700; font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--teal-deeper); margin-bottom: 0.85rem; display: inline-block; }
-  .section-label::before, .section-label::after { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--teal-deeper); vertical-align: middle; margin: 0 0.85rem; border-radius: 1px; }
-  .section-heading { font-weight: 700; font-size: clamp(1.65rem, 3.2vw, 2.25rem); color: var(--navy); line-height: 1.25; max-width: 760px; margin: 0 auto; }
+  /* ─── Top nav ──────────────────────────────────────────────────── */
+  .top {
+    position: fixed;
+    top: 6px;
+    left: 0; right: 0;
+    z-index: 50;
+    padding: 22px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    color: var(--white);
+    transition: color 0.4s ease;
+  }
+  .top.dark-mode { color: var(--white); }
+  .top > * { pointer-events: auto; }
+  .top .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .top .wordmark svg { width: 16px; height: 16px; }
+  .top .meta {
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.65;
+  }
 
-  .practice { padding: 5rem 0; background: var(--pale-gray); position: relative; overflow: hidden; }
-  .practice-decoration { position: absolute; top: -40px; right: -60px; width: 280px; height: 280px; opacity: 0.06; pointer-events: none; transform: rotate(20deg); }
-  .practice-intro { margin-bottom: 3rem; text-align: center; }
-  .practice-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-  .practice-item { background: var(--white); padding: 2rem 1.75rem; border-radius: 8px; border-left: 4px solid var(--teal); transition: transform 0.2s ease, box-shadow 0.2s ease; }
-  .practice-item:nth-child(1) { border-left-color: var(--coral); }
-  .practice-item:nth-child(2) { border-left-color: var(--orange); }
-  .practice-item:nth-child(3) { border-left-color: var(--yellow); }
-  .practice-item:nth-child(4) { border-left-color: var(--green); }
-  .practice-item:nth-child(5) { border-left-color: var(--teal); }
-  .practice-item:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); }
-  .practice-item h3 { font-weight: 700; font-size: 1.1rem; color: var(--navy); margin-bottom: 0.7rem; line-height: 1.35; }
-  .practice-item p { font-size: 0.95rem; color: var(--dark-text); line-height: 1.6; }
+  /* ─── SCREEN 1 — NAVY HERO ─────────────────────────────────────── */
+  .statement {
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    padding: 130px 60px 100px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
-  .outcomes { padding: 4.5rem 0; background: var(--white); border-top: 1px solid rgba(48, 163, 150, 0.08); }
-  .outcomes-intro { text-align: center; margin-bottom: 2.5rem; }
-  .outcomes-list { max-width: 820px; margin: 0 auto; display: grid; gap: 1.25rem; }
-  .outcome-item { background: var(--accent-bg); padding: 1.5rem 1.75rem; border-radius: 8px; border-left: 4px solid var(--teal); display: flex; align-items: flex-start; gap: 1rem; }
-  .outcome-item:nth-child(1) { border-left-color: var(--coral); }
-  .outcome-item:nth-child(2) { border-left-color: var(--orange); }
-  .outcome-item:nth-child(3) { border-left-color: var(--green); }
-  .outcome-marker { flex-shrink: 0; width: 32px; height: 32px; background: var(--navy); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
-  .outcome-text { font-size: 0.98rem; line-height: 1.6; color: var(--dark-text); }
-  .outcome-text strong { color: var(--navy); font-weight: 700; }
+  /* Ghost puzzle decorations */
+  .statement::before {
+    content: "";
+    position: absolute;
+    top: -100px; right: -120px;
+    width: 520px; height: 520px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 280'><polygon points='45,45 140,45 140,76.35 164.7,76.35 164.7,108.65 140,108.65 140,140 108.65,140 108.65,164.7 76.35,164.7 76.35,140 45,140' fill='%23ffffff' opacity='0.04'/><polygon points='140,45 235,45 235,140 203.65,140 203.65,164.7 171.35,164.7 171.35,140 140,140 140,108.65 164.7,108.65 164.7,76.35 140,76.35' fill='%23ffffff' opacity='0.04'/><polygon points='45,140 76.35,140 76.35,164.7 108.65,164.7 108.65,140 140,140 140,171.35 164.7,171.35 164.7,203.65 140,203.65 140,235 45,235' fill='%23ffffff' opacity='0.04'/><polygon points='140,140 171.35,140 171.35,164.7 203.65,164.7 203.65,140 235,140 235,235 140,235 140,203.65 164.7,203.65 164.7,171.35 140,171.35' fill='%23ffffff' opacity='0.04'/></svg>");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: rotate(12deg);
+    pointer-events: none;
+  }
+  .statement::after {
+    content: "";
+    position: absolute;
+    bottom: -80px; left: -100px;
+    width: 320px; height: 320px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='25,25 41.5,25 41.5,38 58.5,38 58.5,25 75,25 75,41.5 88,41.5 88,58.5 75,58.5 75,75 58.5,75 58.5,88 41.5,88 41.5,75 25,75 25,58.5 38,58.5 38,41.5 25,41.5' fill='%23ffffff' opacity='0.03'/></svg>");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: rotate(-18deg);
+    pointer-events: none;
+  }
 
-  .practitioner { padding: 5rem 0; background: var(--white); position: relative; overflow: hidden; }
-  .practitioner-intro { margin-bottom: 2.5rem; text-align: center; }
-  .practitioner-content { max-width: 820px; margin: 0 auto; }
-  .practitioner-content > p { margin-bottom: 1.15rem; font-size: 1rem; line-height: 1.75; }
+  .statement-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    opacity: 0;
+    animation: rise 1.5s cubic-bezier(.16,.84,.30,1) 0.2s forwards;
+  }
 
-  .founder-eyebrow { display: inline-block; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.20em; text-transform: uppercase; color: var(--coral-deep); margin-bottom: 0.85rem; padding: 0.35rem 0.8rem; background: rgba(183, 60, 55, 0.08); border-radius: 4px; }
+  .wordmark-display {
+    font-family: var(--font);
+    font-weight: 800;
+    font-size: clamp(72px, 16vw, 240px);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 48px;
+  }
+  .wordmark-display .accent {
+    color: var(--teal-glow);
+  }
 
-  .west-wing-quote { margin: 2rem 0; padding: 1.75rem 2rem; border-left: 4px solid var(--teal); background: var(--accent-bg); border-radius: 0 8px 8px 0; }
-  .west-wing-quote p { font-style: italic; font-size: 1rem; line-height: 1.65; color: var(--dark-text); margin-bottom: 0.85rem; }
-  .west-wing-quote p:last-child { margin-bottom: 0; }
-  .west-wing-quote em.dialogue { font-style: italic; color: var(--teal-dark); font-weight: 700; }
+  .subtagline {
+    font-family: var(--font);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 1.9vw, 26px);
+    line-height: 1.4;
+    color: var(--teal-glow);
+    letter-spacing: -0.005em;
+    max-width: 1000px;
+  }
 
-  .career-chapters { margin: 1.75rem 0; padding: 0; list-style: none; }
-  .career-chapters li { position: relative; padding: 0.95rem 0 0.95rem 1.5rem; font-size: 1rem; line-height: 1.75; color: var(--dark-text); border-bottom: 1px solid rgba(48, 163, 150, 0.12); }
-  .career-chapters li:last-child { border-bottom: none; }
-  .career-chapters li::before { content: ''; position: absolute; left: 0; top: 1.4rem; width: 8px; height: 8px; background: var(--teal); border-radius: 2px; transform: rotate(45deg); }
-  .career-chapters li strong { font-weight: 700; color: var(--navy); }
-  .career-chapters li em { font-style: italic; color: var(--teal-dark); font-weight: 600; }
-  .career-chapters .takeaway { display: block; margin-top: 0.4rem; font-style: italic; color: var(--teal-dark); font-size: 0.95rem; line-height: 1.6; }
+  /* Bottom anchor: byline + CTA */
+  .anchor {
+    position: absolute;
+    left: 60px; right: 60px;
+    bottom: 40px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 0;
+    animation: rise 1.3s cubic-bezier(.16,.84,.30,1) 1.0s forwards;
+  }
+  .anchor .byline strong { color: var(--white); font-weight: 600; }
+  .anchor .byline .sep { opacity: 0.45; margin: 0 10px; }
 
-  .coolest-title-line { margin: 1.5rem 0 1.75rem !important; padding: 0.85rem 1rem; background: rgba(243, 156, 74, 0.08); border-left: 3px solid var(--orange); border-radius: 0 4px 4px 0; font-style: italic; font-size: 0.97rem !important; line-height: 1.55 !important; color: var(--dark-text); }
-  .coolest-title-line strong { font-style: normal; font-weight: 700; color: var(--navy); }
+  .cta {
+    color: var(--white);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--white);
+    transition: color 0.25s, border-color 0.25s, gap 0.25s;
+    font-weight: 500;
+  }
+  .cta:hover {
+    color: var(--teal-glow);
+    border-bottom-color: var(--teal-glow);
+    gap: 18px;
+  }
+  .cta .arrow { color: var(--teal-glow); }
 
-  .bio-signoff { margin-top: 1rem !important; margin-bottom: 1.75rem !important; font-style: italic; font-weight: 700; font-size: 1.15rem; color: var(--coral-deep); }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-  .bio-record-divider { margin: 2.75rem 0 1.75rem; display: flex; align-items: center; gap: 1rem; }
-  .bio-record-divider::before, .bio-record-divider::after { content: ''; flex: 1; height: 1px; background: rgba(48, 163, 150, 0.25); }
-  .bio-record-label { font-weight: 700; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--soft-gray); }
+  .scroll-cue {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    animation: rise 1.2s ease 1.6s forwards;
+    font-weight: 500;
+  }
+  .scroll-cue::after {
+    content: "↓";
+    color: var(--teal-glow);
+    animation: bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(3px); }
+  }
 
-  .results-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2.5rem 0; padding: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 8px 28px rgba(26, 26, 46, 0.12); }
-  .result-card { padding: 2rem 1.25rem; text-align: center; color: var(--white); position: relative; }
-  .result-card.r1 { background: var(--coral-deep); }
-  .result-card.r2 { background: var(--navy); }
-  .result-card.r3 { background: var(--teal-dark); }
-  .result-card .number { display: block; font-weight: 800; font-size: clamp(1.65rem, 2.8vw, 2.1rem); line-height: 1; margin-bottom: 0.5rem; }
-  .result-card .label { font-size: 0.82rem; line-height: 1.4; opacity: 0.95; font-weight: 500; letter-spacing: 0.02em; }
+  /* ─── SCREEN 2 — NAVY-MID NOTE ─────────────────────────────────── */
+  .note {
+    background: var(--navy-mid);
+    color: var(--white);
+    min-height: 100vh;
+    padding: 140px 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
 
-  .speaking-callout { margin-top: 2rem; padding: 1.5rem 1.75rem; background: var(--navy); color: var(--white); border-radius: 8px; border-left: 4px solid var(--yellow); }
-  .speaking-callout-label { font-weight: 700; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.85rem; }
-  .speaking-callout p { font-size: 0.95rem; line-height: 1.65; color: var(--white); opacity: 0.92; margin-bottom: 0.7rem !important; }
-  .speaking-callout p:last-child { margin-bottom: 0 !important; }
-  .speaking-callout a { color: var(--teal-glow); text-decoration: none; font-weight: 600; border-bottom: 1px solid rgba(79, 192, 179, 0.5); transition: border-color 0.2s ease; }
-  .speaking-callout a:hover { border-bottom-color: var(--teal-glow); }
+  .note-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
 
-  .pull-quote { border-left: 4px solid var(--teal); background: var(--pale-gray); padding: 1.75rem 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.08rem; color: var(--dark-text); line-height: 1.65; border-radius: 0 6px 6px 0; }
-  .pull-quote-attribution { display: block; margin-top: 0.85rem; font-style: normal; font-weight: 600; font-size: 0.85rem; color: var(--soft-gray); letter-spacing: 0.05em; text-transform: uppercase; }
+  .note-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 56px;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--teal-glow);
+  }
+  .note-head .left {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .note-head .left::before {
+    content: "";
+    width: 28px; height: 2px;
+    background: var(--teal-glow);
+  }
+  .note-head .right { color: rgba(255, 255, 255, 0.5); font-weight: 400; }
 
-  .contact { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%); color: var(--white); padding: 5.5rem 0 4.5rem; text-align: center; position: relative; overflow: hidden; }
-  .contact-decoration { position: absolute; pointer-events: none; }
-  .contact-decoration.cd1 { top: -60px; right: -80px; width: 260px; height: 260px; opacity: 0.05; transform: rotate(12deg); }
-  .contact-decoration.cd2 { bottom: -100px; left: -100px; width: 320px; height: 320px; opacity: 0.04; transform: rotate(-18deg); }
-  .contact-inner { position: relative; z-index: 1; }
-  .contact .section-label { color: var(--yellow); }
-  .contact .section-label::before, .contact .section-label::after { background: var(--yellow); }
-  .contact h2 { font-weight: 700; font-size: clamp(1.85rem, 3.8vw, 2.6rem); margin-bottom: 1.25rem; line-height: 1.25; }
-  .contact p.contact-lead { font-size: 1.08rem; max-width: 620px; margin: 0 auto 2.5rem; opacity: 0.85; line-height: 1.65; }
-  .contact-details { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(255, 255, 255, 0.15); font-size: 0.93rem; opacity: 0.8; line-height: 1.85; }
-  .contact-details strong { font-weight: 600; color: var(--white); opacity: 1; }
-  .contact-details a { color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.3); transition: border-color 0.2s ease; }
-  .contact-details a:hover { border-bottom-color: var(--white); }
+  .note p {
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: clamp(18px, 1.8vw, 21px);
+    line-height: 1.72;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 26px;
+    letter-spacing: -0.003em;
+  }
+  .note p:last-of-type { margin-bottom: 0; }
+  .note p em {
+    font-style: italic;
+    color: var(--teal-glow);
+    font-weight: 500;
+  }
 
-  .not-for { margin: 2rem auto 0; max-width: 640px; font-size: 0.85rem; line-height: 1.55; color: rgba(255, 255, 255, 0.6); font-style: italic; padding: 0 1rem; }
+  .note .signature {
+    margin-top: 44px;
+    font-family: var(--font);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(22px, 2.4vw, 30px);
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
 
-  .brand-close { background: var(--navy-deep); color: var(--white); padding: 2rem 0; text-align: center; }
-  .brand-close-text { font-style: italic; font-weight: 500; font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--teal-glow); letter-spacing: 0.01em; line-height: 1.5; }
+  /* ─── SCREEN 3 — NAVY-MID WORK ─────────────────────────────────── */
+  .work {
+    background: var(--navy-mid);
+    color: var(--white);
+    min-height: 100vh;
+    padding: 130px 60px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid var(--rule-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .work-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
 
-  .footer { background: var(--navy-deep); color: var(--white); padding: 1.5rem 0; text-align: center; font-size: 0.78rem; opacity: 0.7; }
+  .work-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal-glow);
+    margin-bottom: 48px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 500;
+  }
+  .work-label::before {
+    content: "";
+    width: 28px; height: 2px;
+    background: var(--teal-glow);
+  }
 
-  .practice-intro-audience { margin-top: 1.1rem; font-size: 1rem; line-height: 1.6; color: var(--soft-gray); max-width: 720px; margin-left: auto; margin-right: auto; }
+  .work h2 {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: clamp(34px, 4.6vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--white);
+    margin-bottom: 32px;
+    max-width: 880px;
+  }
+  .work h2 em {
+    font-style: italic;
+    color: var(--teal-glow);
+    font-weight: 500;
+  }
 
-  .engagements { padding: 4rem 0; background: var(--white); border-top: 1px solid rgba(48, 163, 150, 0.15); text-align: center; }
-  .engagements .section-label { margin-bottom: 1rem; }
-  .engagements-note { font-style: italic; font-weight: 500; font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--soft-gray); max-width: 600px; margin: 0 auto; line-height: 1.6; }
+  .work-intro {
+    margin-bottom: 56px;
+    max-width: 720px;
+  }
+  .work-intro p {
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: clamp(17px, 1.7vw, 21px);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.86);
+    margin-bottom: 26px;
+    letter-spacing: -0.003em;
+    text-wrap: pretty;
+  }
+  .work-intro p.audience {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: clamp(16px, 1.5vw, 19px);
+    margin-bottom: 32px;
+  }
+  .work-intro p:last-child { margin-bottom: 0; }
+  .work-intro p em {
+    font-style: italic;
+    color: var(--teal-glow);
+    font-weight: 500;
+  }
 
-  .contact-channels { display: flex; flex-direction: column; gap: 0.65rem; align-items: center; margin-bottom: 1.25rem; }
-  .contact-channel { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--white); text-decoration: none; font-size: 0.98rem; font-weight: 500; line-height: 1.5; border-bottom: 1px solid rgba(255, 255, 255, 0.3); transition: border-color 0.2s ease; padding-bottom: 1px; }
-  .contact-channel:hover { border-bottom-color: var(--white); }
-  .contact-channel svg { width: 18px; height: 18px; flex-shrink: 0; fill: currentColor; }
+  .work-list {
+    list-style: none;
+    counter-reset: w;
+  }
+  .work-list li {
+    counter-increment: w;
+    border-bottom: 1px solid var(--rule-dark);
+    border-left: 4px solid;
+    transition: padding-left 0.4s ease, border-left-color 0.4s ease;
+  }
+  .work-list li:first-child { border-top: 1px solid var(--rule-dark); }
 
-  .section-handoff { margin-top: 2.5rem; text-align: center; font-style: italic; font-weight: 500; font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--teal-dark); letter-spacing: 0.01em; }
-  .outcomes-handoff { margin: 2.5rem auto 0; max-width: 720px; text-align: center; font-weight: 500; font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--navy); line-height: 1.5; }
-  .outcomes-handoff em { font-style: normal; color: var(--teal-dark); font-weight: 600; }
+  /* Practice colors — matches original site */
+  .work-list li:nth-child(1) { border-left-color: var(--coral); }
+  .work-list li:nth-child(2) { border-left-color: var(--orange); }
+  .work-list li:nth-child(3) { border-left-color: var(--yellow); }
+  .work-list li:nth-child(4) { border-left-color: var(--green); }
+  .work-list li:nth-child(5) { border-left-color: var(--teal); }
+
+  .work-list summary {
+    padding: 30px 24px 30px 32px;
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 28px;
+    align-items: baseline;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: clamp(20px, 2.2vw, 28px);
+    line-height: 1.25;
+    color: var(--white);
+    letter-spacing: -0.015em;
+    transition: padding 0.4s ease, background 0.4s ease;
+  }
+  .work-list summary::-webkit-details-marker { display: none; }
+  .work-list summary::before {
+    content: counter(w, decimal-leading-zero);
+    font-family: var(--font);
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 500;
+    transition: color 0.4s ease;
+  }
+  .work-list summary::after {
+    content: "+";
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: transform 0.35s cubic-bezier(.16,.84,.30,1), color 0.3s ease;
+    line-height: 1;
+    transform-origin: center;
+  }
+  .work-list summary:hover {
+    padding-left: 44px;
+    background: linear-gradient(90deg, rgba(79, 192, 179, 0.10), transparent);
+  }
+  .work-list summary:hover::before,
+  .work-list summary:hover::after { color: var(--teal-glow); }
+  .work-list details[open] summary {
+    padding-left: 44px;
+    background: linear-gradient(90deg, rgba(79, 192, 179, 0.14), transparent);
+  }
+  .work-list details[open] summary::before { color: var(--teal-glow); }
+  .work-list details[open] summary::after {
+    transform: rotate(45deg);
+    color: var(--teal-glow);
+  }
+  .work-blurb {
+    padding: 0 24px 36px 116px;
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: clamp(16px, 1.5vw, 18px);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 820px;
+    animation: blurb-in 0.4s cubic-bezier(.16,.84,.30,1);
+  }
+  @keyframes blurb-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── Free-floating puzzle pieces (note + work backgrounds) ─── */
+  /* ─── Large Watermark (Option C) — architectural, static, low-opacity ─── */
+  .watermark {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    overflow: visible;
+  }
+  .watermark svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+  }
+  .watermark svg path { fill: var(--white); }
+
+  /* Large center piece bleeding off the right edge */
+  .watermark.wm-large {
+    top: 50%;
+    right: -200px;
+    width: 820px; height: 820px;
+    transform: translateY(-50%) rotate(8deg);
+    opacity: 0.045;
+  }
+  /* Smaller mixed piece anchoring the lower-left */
+  .watermark.wm-small {
+    bottom: -140px;
+    left: -160px;
+    width: 380px; height: 380px;
+    transform: rotate(-22deg);
+    opacity: 0.06;
+  }
 
   @media (max-width: 900px) {
-    .hero-text { text-align: center; margin-left: auto; margin-right: auto; }
-    .wordmark-lockup { justify-content: center; flex-wrap: wrap; gap: 1rem; }
-    .wordmark-text { align-items: center; }
-    .hero-divider { margin-left: auto; margin-right: auto; }
-    .practice-list { gap: 1.25rem; }
-    .practice-decoration { width: 180px; height: 180px; opacity: 0.04; }
+    .watermark.wm-large { width: 620px; height: 620px; right: -160px; }
+    .watermark.wm-small { width: 280px; height: 280px; bottom: -100px; left: -120px; }
+  }
+  @media (max-width: 560px) {
+    .watermark.wm-large { width: 480px; height: 480px; right: -140px; }
+    .watermark.wm-small { width: 220px; height: 220px; bottom: -80px; left: -90px; }
   }
 
-  @media (max-width: 640px) {
-    .hero { padding: 3.5rem 0 4rem; }
-    .practice, .practitioner, .contact, .outcomes { padding: 3.5rem 0; }
-    .practice-list { grid-template-columns: 1fr; gap: 1rem; }
-    .results-strip { grid-template-columns: 1fr; gap: 0; box-shadow: none; }
-    .result-card { border-radius: 0; }
-    .result-card.r1 { border-radius: 8px 8px 0 0; }
-    .result-card.r3 { border-radius: 0 0 8px 8px; }
-    .container { padding: 0 1.25rem; }
-    .pull-quote { padding: 1.25rem 1.5rem; font-size: 1rem; }
-    .west-wing-quote { display: none; }
-    .coolest-title-line { display: none; }
-    .speaking-callout { padding: 1.25rem 1.5rem; }
-    .cta-button.secondary { display: block; margin: 1rem auto 0; max-width: 240px; }
-    .section-label::before, .section-label::after { width: 16px; margin: 0 0.6rem; }
-    .practice-item:hover { transform: none; box-shadow: none; }
-    .cta-button:hover { transform: none; }
-    .cta-button { min-height: 48px; padding: 0.95rem 2rem; }
+  /* ─── Floating pieces (hero) ───────────────────────────────────── */
+  .floating-piece {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .floating-piece svg {
+    width: 100%; height: 100%;
+    display: block;
+    overflow: visible;
+  }
+  .floating-piece svg path { fill: var(--white); }
+
+  .floating-piece.fp1 {
+    top: 18%; right: 9%;
+    width: 90px; height: 90px;
+    opacity: 0.07;
+    animation: drift1 22s ease-in-out infinite;
+  }
+  .floating-piece.fp2 {
+    top: 55%; left: 7%;
+    width: 64px; height: 64px;
+    opacity: 0.06;
+    animation: drift2 26s ease-in-out infinite;
+  }
+  .floating-piece.fp3 {
+    bottom: 22%; right: 26%;
+    width: 110px; height: 110px;
+    opacity: 0.05;
+    animation: drift3 30s ease-in-out infinite;
   }
 
-  @media (max-width: 380px) {
-    .container { padding: 0 1rem; }
-    .wordmark { font-size: 1.95rem; }
-    .wordmark-mark { width: 64px; }
-    .wordmark-descriptor { font-size: 0.7rem; letter-spacing: 0.16em; }
-    .pull-quote { padding: 1rem 1.25rem; }
-    .west-wing-quote { padding: 1rem 1.25rem; }
-    .practice-item { padding: 1.5rem 1.25rem; }
-    .section-label { font-size: 0.72rem; letter-spacing: 0.18em; }
-    .section-label::before, .section-label::after { width: 12px; margin: 0 0.4rem; }
-    .result-card { padding: 1.5rem 1rem; }
-    .result-card .label br { display: none; }
-    .result-card .label { font-size: 0.8rem; }
+  @keyframes drift1 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-18px) rotate(4deg); }
+  }
+  @keyframes drift2 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(14px) rotate(-3deg); }
+  }
+  @keyframes drift3 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-22px) rotate(5deg); }
+  }
+
+  @media (max-width: 760px) {
+    .floating-piece.fp1 { width: 54px; height: 54px; }
+    .floating-piece.fp2 { width: 42px; height: 42px; }
+    .floating-piece.fp3 { width: 70px; height: 70px; }
+  }
+
+  /* ─── SCREEN 4 — NAVY CONTACT ──────────────────────────────────── */
+  .contact {
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    padding: 130px 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: "";
+    position: absolute;
+    top: -100px; right: -150px;
+    width: 480px; height: 480px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 280'><polygon points='140,140 171.35,140 171.35,164.7 203.65,164.7 203.65,140 235,140 235,235 140,235 140,203.65 164.7,203.65 164.7,171.35 140,171.35' fill='%23ffffff' opacity='0.04'/><polygon points='45,140 76.35,140 76.35,164.7 108.65,164.7 108.65,140 140,140 140,171.35 164.7,171.35 164.7,203.65 140,203.65 140,235 45,235' fill='%23ffffff' opacity='0.04'/></svg>");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: rotate(20deg);
+    pointer-events: none;
+  }
+  .contact-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .contact-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal-glow);
+    margin-bottom: 48px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 500;
+  }
+  .contact-label::before {
+    content: "";
+    width: 28px; height: 2px;
+    background: var(--teal-glow);
+  }
+
+  .contact h2 {
+    font-family: var(--font);
+    font-weight: 600;
+    font-style: italic;
+    font-size: clamp(40px, 6vw, 92px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+
+  .contact .lead {
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: clamp(17px, 1.8vw, 21px);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 620px;
+    margin-bottom: 56px;
+  }
+
+  .primary-link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 16px;
+    font-family: var(--font);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(26px, 3.4vw, 44px);
+    color: var(--white);
+    border-bottom: 2px solid var(--white);
+    padding-bottom: 8px;
+    transition: color 0.25s, border-color 0.25s, gap 0.3s;
+    letter-spacing: -0.015em;
+  }
+  .primary-link:hover {
+    color: var(--teal-glow);
+    border-bottom-color: var(--teal-glow);
+    gap: 24px;
+  }
+  .primary-link .arrow {
+    font-style: normal;
+    font-size: 0.7em;
+    color: var(--teal-glow);
+  }
+
+  .contact-secondary {
+    margin-top: 64px;
+    padding-top: 36px;
+    border-top: 1px solid var(--rule-dark);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+    font-weight: 500;
+  }
+  .contact-secondary .item .head {
+    color: rgba(255, 255, 255, 0.45);
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .contact-secondary .item a,
+  .contact-secondary .item span {
+    color: var(--white);
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .contact-secondary .item a:hover { color: var(--teal-glow); border-bottom-color: var(--teal-glow); }
+
+  .fit-note {
+    margin-top: 56px;
+    font-family: var(--font);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 620px;
+  }
+
+  /* ─── BRAND CLOSE ─────────────────────────────────────────────── */
+  .brand-close-block {
+    background: var(--navy-deep);
+    color: var(--white);
+    padding: 80px 60px 56px;
+    text-align: left;
+  }
+  .brand-close-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .brand-close-inner p {
+    font-family: var(--font);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 38px);
+    line-height: 1.3;
+    color: var(--teal-glow);
+    letter-spacing: -0.015em;
+    max-width: 900px;
+  }
+
+  /* ─── FOOTER ──────────────────────────────────────────────────── */
+  .foot {
+    background: var(--navy-deep);
+    color: rgba(255, 255, 255, 0.45);
+    padding: 22px 40px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-top: 1px solid var(--rule-dark);
+  }
+  .foot a {
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .foot a:hover { color: var(--teal-glow); border-bottom-color: var(--teal-glow); }
+  .foot .right a { margin-left: 22px; }
+
+  /* ─── Responsive ──────────────────────────────────────────────── */
+  @media (max-width: 760px) {
+    .top, .foot { padding-left: 24px; padding-right: 24px; }
+    .statement, .work, .contact { padding-left: 24px; padding-right: 24px; padding-top: 110px; padding-bottom: 90px; }
+    .note { padding: 110px 24px; }
+    .brand-close-block { padding: 60px 24px 40px; }
+    .anchor { left: 24px; right: 24px; bottom: 24px; flex-direction: column; align-items: flex-start; gap: 14px; }
+    .scroll-cue { display: none; }
+    .wordmark-display { font-size: 64px; margin-bottom: 32px; }
+    .subtagline { font-size: 17px; }
+    .note p { font-size: 17px; }
+    .note .signature { font-size: 22px; }
+    .note-head { flex-direction: column; gap: 10px; align-items: flex-start; margin-bottom: 36px; }
+    .work h2 { font-size: 28px; }
+    .work-list summary {
+      font-size: 18px;
+      grid-template-columns: 40px 1fr auto;
+      gap: 16px;
+      padding: 22px 18px 22px 22px;
+    }
+    .work-list summary:hover,
+    .work-list details[open] summary { padding-left: 30px; }
+    .work-list summary::after { font-size: 24px; }
+    .work-blurb { padding: 0 18px 26px 78px; font-size: 15px; }
+    .contact h2 { font-size: 42px; }
+    .primary-link { font-size: 26px; }
+    .contact-secondary { grid-template-columns: 1fr 1fr; gap: 22px; }
+    .brand-close-inner p { font-size: 22px; }
+    .foot .right { width: 100%; }
+    .foot .right a { margin-left: 0; margin-right: 18px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    html { scroll-behavior: auto; }
-    .cta-button:hover, .practice-item:hover { transform: none !important; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 </style>
 </head>
 <body>
 
-<div class="signature-bar" role="presentation">
-  <div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="s4"></div><div class="s5"></div>
-</div>
+  <!-- ─── Puzzle-piece symbol definitions (curved lollipop tabs) ─── -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- Center piece: tabs on all four sides (the classic interior shape) -->
+      <symbol id="piece-center" viewBox="-50 -50 200 200">
+        <path d="M 0 0 L 35 0 C -15 -65, 115 -65, 65 0 L 100 0 L 100 35 C 165 -15, 165 115, 100 65 L 100 100 L 65 100 C 115 165, -15 165, 35 100 L 0 100 L 0 65 C -65 115, -65 -15, 0 35 L 0 0 Z"/>
+      </symbol>
+      <!-- Mixed piece: tabs on top and bottom, notches on left and right -->
+      <symbol id="piece-mixed" viewBox="-50 -50 200 200">
+        <path d="M 0 0 L 35 0 C -15 -65, 115 -65, 65 0 L 100 0 L 100 35 C 35 -15, 35 115, 100 65 L 100 100 L 65 100 C 115 165, -15 165, 35 100 L 0 100 L 0 65 C 65 115, 65 -15, 0 35 L 0 0 Z"/>
+      </symbol>
+    </defs>
+  </svg>
 
-<main>
-
-<!-- ACT 0 — HERO -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-text">
-        <h1 class="wordmark-lockup">
-          <svg class="wordmark-mark" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-            <polygon points="45,45 140,45 140,76.35 164.7,76.35 164.7,108.65 140,108.65 140,140 108.65,140 108.65,164.7 76.35,164.7 76.35,140 45,140" fill="#E94F4A"/>
-            <polygon points="140,45 235,45 235,140 203.65,140 203.65,164.7 171.35,164.7 171.35,140 140,140 140,108.65 164.7,108.65 164.7,76.35 140,76.35" fill="#F5CF48"/>
-            <polygon points="45,140 76.35,140 76.35,164.7 108.65,164.7 108.65,140 140,140 140,171.35 164.7,171.35 164.7,203.65 140,203.65 140,235 45,235" fill="#7ABF5F"/>
-            <polygon points="140,140 171.35,140 171.35,164.7 203.65,164.7 203.65,140 235,140 235,235 140,235 140,203.65 164.7,203.65 164.7,171.35 140,171.35" fill="#30A396"/>
-          </svg>
-          <span class="wordmark-text">
-            <span class="wordmark">PUZZLER</span>
-            <span class="wordmark-descriptor">CONSULTING &amp; ADVISORY SERVICES</span>
-          </span>
-        </h1>
-        <div class="hero-divider"></div>
-        <p class="positioning">Practitioners, not vendors.</p>
-        <p class="value-prop">Helping people and organizations find their <strong>new normal</strong> &mdash; before, during, and after transformative events.</p>
-        <a href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min" target="_blank" rel="noopener" class="cta-button">Book a Fit Call</a>
-        <a href="#who-we-are" class="cta-button secondary">Meet the practitioner</a>
-      </div>
-    </div>
+  <!-- Five-color signature bar (top) -->
+  <div class="signature-bar" role="presentation">
+    <div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="s4"></div><div class="s5"></div>
   </div>
-</section>
 
-<!-- ACT 1 — WHO WE ARE (founder voice) -->
-<section class="practitioner" id="who-we-are">
-  <div class="container">
-    <div class="practitioner-intro">
-      <span class="section-label">Twenty years inside the work</span>
-      <h2 class="section-heading">A career spent helping people and organizations find their new normal.</h2>
+  <!-- Top nav -->
+  <header class="top">
+    <span class="wordmark">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 2 L12 2 L12 5.4 L14.6 5.4 L14.6 8.6 L12 8.6 L12 12 L8.6 12 L8.6 14.6 L5.4 14.6 L5.4 12 L2 12 Z" fill="#4FC0B3"/>
+        <path d="M12 12 L14.6 12 L14.6 14.6 L17.4 14.6 L17.4 12 L22 12 L22 22 L12 22 L12 17.4 L14.6 17.4 L14.6 14.6 L12 14.6 Z" fill="#ffffff" opacity="0.6"/>
+      </svg>
+      Puzzler · Consulting &amp; Advisory Services
+    </span>
+    <span class="meta">MMXXVI</span>
+  </header>
+
+  <!-- SCREEN 1 — STATEMENT -->
+  <main class="statement">
+
+    <div class="floating-piece fp1" aria-hidden="true"><svg><use href="#piece-center"/></svg></div>
+    <div class="floating-piece fp2" aria-hidden="true"><svg><use href="#piece-mixed"/></svg></div>
+    <div class="floating-piece fp3" aria-hidden="true"><svg><use href="#piece-center"/></svg></div>
+
+    <div class="statement-inner">
+      <h1 class="wordmark-display">PU<span class="accent">ZZ</span>LER</h1>
+      <p class="subtagline">Helping people and organizations find their new normal — before, during, and after transformative events.</p>
     </div>
 
-    <div class="practitioner-content">
-      <div class="founder-eyebrow">A Note from Mark</div>
+    <div class="anchor">
+      <span class="byline"><strong>Mark D. Williams</strong> <span class="sep">·</span> Managing Partner &amp; Chief Capacity Builder</span>
+      <a href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min" class="cta">Book a Fit Call <span class="arrow">→</span></a>
+    </div>
+
+    <div class="scroll-cue">Continue</div>
+  </main>
+
+  <!-- SCREEN 2 — THE NOTE -->
+  <section class="note">
+
+    <div class="watermark wm-large"><svg><use href="#piece-center"/></svg></div>
+    <div class="watermark wm-small"><svg><use href="#piece-mixed"/></svg></div>
+
+    <div class="note-inner">
+      <div class="note-head">
+        <span class="left">i. A note from Mark</span>
+        <span class="right">Spring 2026</span>
+      </div>
 
       <p>People remember FEMA for the emergencies. I remember it for what came after.</p>
 
-      <p>As an emergency manager, I learned that the work that really matters isn&rsquo;t the response &mdash; it&rsquo;s helping people find their way back to a new normal. Not their old life. A new one. You can&rsquo;t hand someone a plan and call that help. You have to get down where they are, see what they see, and stay with them until the ground feels steady again.</p>
+      <p>As an emergency manager, I learned that the work that really matters isn't the response — it's helping people find their way back to a <em>new normal</em>. Not their old life. A new one. You can't hand someone a plan and call that help. You have to get down where they are, see what they see, and stay with them until the ground feels steady again. I've spent two decades building, modernizing, and stewarding the systems mission-driven organizations rely on. What ties those chapters together is simple. Organizations don't fail because their strategy is wrong. They fail because no one <em>stays in the hole</em> with them long enough to get them out. Puzzler was built to be the partner that stays.</p>
 
-      <div class="west-wing-quote">
-        <p>There&rsquo;s a scene from <em>The West Wing</em> I think about. A guy is stuck in a hole. A friend jumps in beside him. The guy says: <em class="dialogue">&ldquo;What the hell are you doing? Now we&rsquo;re both in the hole.&rdquo;</em> The friend says: <em class="dialogue">&ldquo;Yeah, but I&rsquo;ve been down here before. I know the way out.&rdquo;</em></p>
-        <p>That&rsquo;s what I learned at FEMA. It&rsquo;s what Puzzler is built to do.</p>
+      <p>Every engagement begins the same way: with a conversation. Tell us where you are, where you're trying to get to, and what's in the way. We'll get in the hole with you — and help you find your way to a new normal.</p>
+
+      <p class="signature">— Mark</p>
+    </div>
+  </section>
+
+  <!-- SCREEN 3 — THE WORK -->
+  <section class="work">
+
+    <div class="watermark wm-large"><svg><use href="#piece-center"/></svg></div>
+    <div class="watermark wm-small"><svg><use href="#piece-mixed"/></svg></div>
+
+    <div class="work-inner">
+      <span class="work-label">ii. What we do</span>
+      <h2>Five practices. <em>One operating discipline.</em></h2>
+      <div class="work-intro">
+        <p>Most engagements start at a threshold — a new leader, an audit finding, a capital project turning harder than planned, a funding mechanism that just got more complicated.</p>
+        <p class="audience">Nonprofits. State and local agencies. Foundations. Mission-driven for-profits.</p>
+        <p>What ties them together is simple: we do the work <em>alongside</em> the people responsible for it, not at a distance from them.</p>
       </div>
+      <ol class="work-list">
+        <li>
+          <details>
+            <summary>Organizational restructuring and transition support.</summary>
+            <div class="work-blurb">
+              Reorganizations, mergers, leadership transitions, and program portfolio rationalizations. The structural work that determines whether an organization can do its job for the next decade — built on enterprise reorganizations led at federal scale.
+            </div>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>Funding strategy across every mechanism.</summary>
+            <div class="work-blurb">
+              Grants, cooperative agreements, contracts, and gifts — and the compliance regimes that come with each. Most mid-sized mission-driven organizations run all four at once. We're built to work the whole portfolio.
+            </div>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>Capacity building that holds.</summary>
+            <div class="work-blurb">
+              Operational governance, financial planning and analysis, shared-services design, and the unglamorous infrastructure that determines whether mission gets executed. The kind of capacity that doesn't unravel when the next transformative event arrives.
+            </div>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>Program effectiveness and accountability.</summary>
+            <div class="work-blurb">
+              Compliance monitoring and program review for grants and contracts. Site visits, subrecipient monitoring, and the operational disciplines that produce strong year-over-year outcomes — not just clean audits.
+            </div>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>Leadership and workforce development.</summary>
+            <div class="work-blurb">
+              Executive coaching, succession planning, tailored workshops, and workforce training. The customized development of leaders and teams who can actually do the work.
+            </div>
+          </details>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-      <p>I&rsquo;ve spent two decades building, modernizing, and stewarding the systems mission-driven organizations rely on. <strong>Four examples of what that work looks like:</strong></p>
+  <!-- SCREEN 4 — CONTACT -->
+  <section class="contact">
+    <div class="contact-inner">
+      <span class="contact-label">iii. To begin</span>
+      <h2>Tell us what you're working on.</h2>
+      <p class="lead">Every engagement begins with a 30-minute Fit Call. No pitch, no commitment. You'll leave with a clear sense of fit and one specific suggestion you can act on — regardless of whether we work together.</p>
 
-      <ul class="career-chapters">
-        <li><strong>Translated complex operations into clear, decision-ready briefs</strong> for the highest levels of senior leadership. <span class="takeaway">Your board, your funders, your CEO get the answer they need to act &mdash; without losing what matters in translation.</span></li>
-        <li><strong>Built a federal agency&rsquo;s capability and requirements function from the ground up</strong> &mdash; designing how the agency identifies what it needs to do better and gets the resources to do it. <span class="takeaway">I help you move from &ldquo;we know we have gaps&rdquo; to &ldquo;we have a prioritized, fundable plan to close them.&rdquo;</span></li>
-        <li><strong>Modernized operations alongside the people delivering the mission</strong> at the front line. <span class="takeaway">I strengthen the people who do your work &mdash; not the bureaucracy that slows them down.</span></li>
-        <li><strong>Now oversee a $5.6B grants portfolio and $741M operating budget</strong> at federal scale. <span class="takeaway">I run, monitor, and steward complex funding &mdash; including the compliance and subrecipient monitoring discipline that determines whether you keep what you win.</span></li>
-      </ul>
+      <a href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min" class="primary-link">
+        Book a Fit Call <span class="arrow">→</span>
+      </a>
 
-      <p class="coolest-title-line">And the coolest job title I&rsquo;ll probably ever hold &mdash; <strong>Gatekeeper to the Joint Requirements Council</strong>.</p>
-
-      <p>What ties those chapters together is simple. Organizations don&rsquo;t fail because their strategy is wrong. They fail because no one stays in the hole with them long enough to get them out. Puzzler was built to be the partner that stays.</p>
-     
-      <p>Every engagement begins the same way: with a conversation. Tell us where you are, where you&rsquo;re trying to get to, and what&rsquo;s in the way. We&rsquo;ll get in the hole with you &mdash; and help you find your way to a new normal.</p>
-
-      <p class="bio-signoff">&mdash; Mark</p>
-
-      <div class="bio-record-divider">
-        <span class="bio-record-label">For the Record</span>
-      </div>
-
-      <p>Mark D. Williams brings twenty years of senior federal leadership across the U.S. Department of State, U.S. Department of Agriculture, U.S. Department of Homeland Security, and the Department of Defense. The current scope of direct responsibility:</p>
-
-      <div class="results-strip" role="group" aria-label="Current scope of direct operational responsibility">
-        <div class="result-card r1">
-          <span class="number">130+</span>
-          <span class="label">team members<br>direct responsibility</span>
+      <div class="contact-secondary">
+        <div class="item">
+          <span class="head">Direct</span>
+          <a href="mailto:info@puzzlerconsultingadvisory.com">info@puzzlerconsulting<br>advisory.com</a>
         </div>
-        <div class="result-card r2">
-          <span class="number">$741M</span>
-          <span class="label">annual budget<br>directly overseen</span>
+        <div class="item">
+          <span class="head">By phone</span>
+          <a href="tel:+14109706539">(410) 970-6539</a>
         </div>
-        <div class="result-card r3">
-          <span class="number">$5.6B</span>
-          <span class="label">grants portfolio<br>delivered worldwide</span>
+        <div class="item">
+          <span class="head">In writing</span>
+          <a href="https://www.linkedin.com/company/puzzlerconsultingadvisory" target="_blank" rel="noopener">LinkedIn →</a>
         </div>
       </div>
 
-      <p>A native of Houston, Texas and a graduate of <strong>Howard University</strong>.</p>
-
-      <div class="speaking-callout">
-        <div class="speaking-callout-label">Speaking Engagements</div>
-        <p>Mark is available to speak on leadership in moments of institutional disruption, capacity building in mission-driven organizations, human-centered AI adoption, older-child adoption advocacy, internship-based workforce development, hidden disabilities visibility, and mental health in the workplace and beyond.</p>
-        <p>Inquiries: <a href="mailto:info@puzzlerconsultingadvisory.com">info@puzzlerconsultingadvisory.com</a></p>
-      </div>
-
-      <p class="section-handoff">Here&rsquo;s how that work shows up.</p>
+      <p class="fit-note">
+        Not the right firm for federal contract advocacy on behalf of clients, financial-distress turnarounds, executive search, or organizations under $2M in annual revenue. We can refer you to people who do that work well.
+      </p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ACT 2 — WHAT WE DO -->
-<section class="practice" id="what-we-do">
-  <svg class="practice-decoration" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <polygon points="45,45 140,45 140,76.35 164.7,76.35 164.7,108.65 140,108.65 140,140 108.65,140 108.65,164.7 76.35,164.7 76.35,140 45,140" fill="#1A1A2E"/>
-    <polygon points="140,45 235,45 235,140 203.65,140 203.65,164.7 171.35,164.7 171.35,140 140,140 140,108.65 164.7,108.65 164.7,76.35 140,76.35" fill="#1A1A2E"/>
-    <polygon points="45,140 76.35,140 76.35,164.7 108.65,164.7 108.65,140 140,140 140,171.35 164.7,171.35 164.7,203.65 140,203.65 140,235 45,235" fill="#1A1A2E"/>
-    <polygon points="140,140 171.35,140 171.35,164.7 203.65,164.7 203.65,140 235,140 235,235 140,235 140,203.65 164.7,203.65 164.7,171.35 140,171.35" fill="#1A1A2E"/>
-  </svg>
-  <div class="container">
-    <div class="practice-intro">
-      <span class="section-label">What we do</span>
-      <h2 class="section-heading">The work mission-driven organizations bring to us &mdash; across every funding mechanism.</h2>
-      <p class="practice-intro-audience">For nonprofits, state and local government agencies, mission-driven for-profits, and the foundations and corporate givers who underwrite mission-driven work.</p>
+  <!-- Brand close -->
+  <section class="brand-close-block">
+    <div class="brand-close-inner">
+      <p>Making the pieces fit for mission-driven organizations.</p>
     </div>
-    <div class="practice-list">
-      <div class="practice-item">
-        <h3>Organizational restructuring and transition support</h3>
-        <p>Reorganizations, mergers, leadership transitions, post-funding-shift redesigns, and program portfolio rationalizations. The structural work that determines whether an organization can do its job for the next decade &mdash; built on enterprise reorganizations led at federal scale.</p>
-      </div>
-      <div class="practice-item">
-        <h3>Funding strategy across every mechanism</h3>
-        <p>Grants, cooperative agreements, contracts, and gifts &mdash; and the compliance regimes that come with each. Most mid-sized mission-driven organizations run all four simultaneously. Puzzler is built to work the whole portfolio.</p>
-      </div>
-      <div class="practice-item">
-        <h3>Capacity building that holds</h3>
-        <p>Operational governance, FP&amp;A, shared services design, customer experience inside service delivery, and the unglamorous infrastructure that determines whether mission gets executed. The kind of capacity that doesn&rsquo;t unravel when the next transformative event arrives.</p>
-      </div>
-      <div class="practice-item">
-        <h3>Program effectiveness and accountability</h3>
-        <p>Compliance monitoring and program review for grants and contracts &mdash; including site visits and subrecipient monitoring across federal pass-through portfolios. Built around the operational disciplines that produce strong year-over-year outcomes, not just clean audits &mdash; including helping grantees deliver on the specific terms of the grants they&rsquo;ve accepted.</p>
-      </div>
-      <div class="practice-item">
-        <h3>Leadership and workforce development</h3>
-        <p>Executive coaching, organizational governance, succession planning, tailored workshops, and workforce training. The customized development of leaders and teams who can actually do the work.</p>
-      </div>
-    </div>
+  </section>
+
+  <!-- Five-color signature bar (bottom) -->
+  <div class="signature-bar" role="presentation">
+    <div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="s4"></div><div class="s5"></div>
   </div>
-</section>
 
-<!-- ACT 3 — WHAT CHANGES -->
-<section class="outcomes">
-  <div class="container">
-    <div class="outcomes-intro">
-      <span class="section-label">Six months in</span>
-      <h2 class="section-heading">Three things every engagement builds.</h2>
-    </div>
-    <div class="outcomes-list">
-      <div class="outcome-item">
-        <div class="outcome-marker">1</div>
-        <div class="outcome-text"><strong>A structural problem actually resolved</strong> &mdash; a reorganization that holds, a transition navigated, a merger integrated, or an org chart redesigned around the work.</div>
-      </div>
-      <div class="outcome-item">
-        <div class="outcome-marker">2</div>
-        <div class="outcome-text"><strong>A funding strategy across every mechanism</strong> &mdash; grants and contracts, cooperative agreements, and gifts &mdash; with the monitoring and compliance discipline that holds it together year over year.</div>
-      </div>
-      <div class="outcome-item">
-        <div class="outcome-marker">3</div>
-        <div class="outcome-text"><strong>Capabilities matched deliberately to the people who can deliver them</strong> &mdash; so the organization stops improvising the bridge between where it is and where it wants to be.</div>
-      </div>
-    </div>
-    <p class="outcomes-handoff">If your organization is navigating something hard &mdash; that&rsquo;s the conversation Puzzler is built for.</p>
-  </div>
-</section>
-
-<!-- ACT 3.5 — ENGAGEMENTS -->
-<section class="engagements" id="engagements">
-  <div class="container">
-    <span class="section-label">Engagements</span>
-    <p class="engagements-note">Case studies from Puzzler&rsquo;s work will be published as engagements close in 2026.</p>
-  </div>
-</section>
-
-<!-- ACT 4 — START HERE -->
-<section class="contact" id="contact">
-  <svg class="contact-decoration cd1" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <polygon points="45,45 140,45 140,76.35 164.7,76.35 164.7,108.65 140,108.65 140,140 108.65,140 108.65,164.7 76.35,164.7 76.35,140 45,140" fill="#FFFFFF"/>
-    <polygon points="140,45 235,45 235,140 203.65,140 203.65,164.7 171.35,164.7 171.35,140 140,140 140,108.65 164.7,108.65 164.7,76.35 140,76.35" fill="#FFFFFF"/>
-    <polygon points="45,140 76.35,140 76.35,164.7 108.65,164.7 108.65,140 140,140 140,171.35 164.7,171.35 164.7,203.65 140,203.65 140,235 45,235" fill="#FFFFFF"/>
-    <polygon points="140,140 171.35,140 171.35,164.7 203.65,164.7 203.65,140 235,140 235,235 140,235 140,203.65 164.7,203.65 164.7,171.35 140,171.35" fill="#FFFFFF"/>
-  </svg>
-  <svg class="contact-decoration cd2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <polygon points="25,25 41.5,25 41.5,38 58.5,38 58.5,25 75,25 75,41.5 88,41.5 88,58.5 75,58.5 75,75 58.5,75 58.5,88 41.5,88 41.5,75 25,75 25,58.5 38,58.5 38,41.5 25,41.5" fill="#FFFFFF"/>
-  </svg>
-  <div class="container contact-inner">
-    <span class="section-label">Start here</span>
-    <h2>Tell us what you&rsquo;re working on.</h2>
-    <p class="contact-lead">Every Puzzler engagement begins with a 30-minute Fit Call &mdash; a focused conversation about what your organization is navigating and whether Puzzler is the right partner for the work. You&rsquo;ll leave with a clear sense of fit, and at minimum one specific suggestion you can act on regardless of whether we work together. No pitch, no commitment. Just a real conversation.</p>
-    <a href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min" target="_blank" rel="noopener" class="cta-button">Book a Fit Call</a>
-
-    <p class="not-for">Not the right fit for federal contract advocacy on behalf of clients (we advise; we don&rsquo;t lobby), financial-distress turnarounds, executive search, or organizations under $2M in annual revenue. We can refer you to people who do that work well.</p>
-
-    <div class="contact-details">
-      <p><strong>Puzzler Consulting &amp; Advisory Services LLC</strong></p>
-      <div class="contact-channels">
-        <a class="contact-channel" href="mailto:info@puzzlerconsultingadvisory.com">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm10 9.07L3.4 6h17.2L12 13.07ZM3 7.79V18h18V7.79l-9 7.42-9-7.42Z"/></svg>
-          <span>info@puzzlerconsultingadvisory.com</span>
-        </a>
-        <a class="contact-channel" href="tel:+14109706539">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z"/></svg>
-          <span>(410) 970-6539</span>
-        </a>
-        <a class="contact-channel" href="https://www.linkedin.com/company/puzzlerconsultingadvisory" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.98 3.5A2.5 2.5 0 1 1 4.97 8.5a2.5 2.5 0 0 1 .01-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.83v1.54h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.13V21h-4v-5.07c0-1.21-.02-2.77-1.69-2.77-1.69 0-1.95 1.32-1.95 2.68V21h-4V9.75Z"/></svg>
-          <span>LinkedIn</span>
-        </a>
-      </div>
-      <p>1125 West Street, Suite 200 #348<br>Annapolis, MD 21401</p>
-    </div>
-  </div>
-</section>
-
-<section class="brand-close">
-  <div class="container">
-    <p class="brand-close-text">Making the pieces fit for mission-driven organizations.</p>
-  </div>
-</section>
-
-</main>
-
-<div class="signature-bar" role="presentation">
-  <div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="s4"></div><div class="s5"></div>
-</div>
-
-<footer class="footer">
-  <div class="container">
-    <p>&copy; 2026 Puzzler Consulting &amp; Advisory Services LLC &middot; All rights reserved</p>
-  </div>
-</footer>
+  <!-- Footer -->
+  <footer class="foot">
+    <span>© MMXXVI · Puzzler Consulting &amp; Advisory Services LLC · All rights reserved</span>
+    <span class="right">
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </span>
+  </footer>
 
 </body>
 </html>
