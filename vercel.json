@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/making-the-pieces-fit", "destination": "/making-the-pieces-fit.html" }
+    { "source": "/making-the-pieces-fit", "destination": "/making-the-pieces-fit.html" },
+    { "source": "/capability-brief", "destination": "/capability-brief.html" }
   ]
 }
