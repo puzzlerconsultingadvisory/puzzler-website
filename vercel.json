@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/making-the-pieces-fit", "destination": "/making-the-pieces-fit.html" }
+  ]
+}
