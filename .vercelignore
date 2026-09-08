@@ -1,0 +1,19 @@
+# Files that must never be served from the public website.
+# Vercel applies this list when building deployments from GitHub.
+.git
+.gitignore
+.vercelignore
+tools/
+scripts/
+docs/
+references/
+review-required/
+source-masters-do-not-publish/
+website-assets/source-reference/
+*.md
+*.txt
+!robots.txt
+*.zip
+*.part
+*.ps1
+*.docx

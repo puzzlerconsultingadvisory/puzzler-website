@@ -1,0 +1,93 @@
+<!-- Derived from puzzler-method-master.svg by tools/build-method-states.mjs. Do not edit by hand. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560" role="img" aria-labelledby="pm-title pm-desc" class="puzzler-method method-sort">
+  <title id="pm-title">The Puzzler Method, step 3: Sort The Pieces</title>
+  <desc id="pm-desc">Interior areas organized into working groups without flying pieces.</desc>
+  <style>#g-grid{opacity:1}#g-marks{opacity:1}#g-corners{opacity:0.6}#g-edge{opacity:0}#g-frame{opacity:1}#g-groups{opacity:1}#g-cells{opacity:1}#g-nodes{opacity:0.5}#g-cues{opacity:0}#g-ruler{opacity:1}#g-checkpoint{opacity:0}#g-risk{opacity:0}#g-correction{opacity:0}#g-complete{opacity:0}</style>
+
+  <g id="g-grid" fill="none" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="1">
+    <path d="M0 40H800M0 80H800M0 120H800M0 160H800M0 200H800M0 240H800M0 280H800M0 320H800M0 360H800M0 400H800M0 440H800M0 480H800M0 520H800"/>
+    <path d="M40 0V560M80 0V560M120 0V560M160 0V560M200 0V560M240 0V560M280 0V560M320 0V560M360 0V560M400 0V560M440 0V560M480 0V560M520 0V560M560 0V560M600 0V560M640 0V560M680 0V560M720 0V560M760 0V560"/>
+  </g>
+
+  <g id="g-marks" fill="none" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="1" stroke-linecap="square">
+    <path d="M120 60H680"/>
+    <path d="M120 54V66M155 57V63M190 57V63M225 57V63M260 54V66M295 57V63M330 57V63M365 57V63M400 54V66M435 57V63M470 57V63M505 57V63M540 54V66M575 57V63M610 57V63M645 57V63M680 54V66"/>
+    <path d="M88 88V472"/>
+    <path d="M82 88H94M85 120H91M85 152H91M85 184H91M82 216H94M85 248H91M85 280H91M85 312H91M82 344H94M85 376H91M85 408H91M85 440H91M82 472H94"/>
+  </g>
+
+  <g id="g-corners" fill="none" stroke="#30A396" stroke-width="2" stroke-linecap="square">
+    <path d="M110 102V78H134"/>
+    <path d="M666 78H690V102"/>
+    <path d="M690 458V482H666"/>
+    <path d="M134 482H110V458"/>
+  </g>
+
+  <g id="g-edge" fill="none" stroke="#30A396" stroke-width="2" stroke-linecap="round">
+    <path d="M120 88H680" pathLength="1"/>
+    <path d="M680 88V472" pathLength="1"/>
+    <path d="M680 472H120" pathLength="1"/>
+    <path d="M120 472V88" pathLength="1"/>
+  </g>
+
+  <g id="g-frame" fill="none" stroke="#FFFFFF" stroke-width="2">
+    <rect x="120" y="88" width="560" height="384"/>
+  </g>
+
+  <g id="g-groups" stroke-width="1.5" stroke-dasharray="5 7" stroke-linecap="round">
+    <rect x="130" y="98" width="260" height="236" rx="2" fill="#F5CF48" fill-opacity="0.05" stroke="#F5CF48" stroke-opacity="0.8"/>
+    <rect x="410" y="98" width="260" height="236" rx="2" fill="#30A396" fill-opacity="0.06" stroke="#30A396" stroke-opacity="0.85"/>
+    <rect x="130" y="354" width="540" height="108" rx="2" fill="#7ABF5F" fill-opacity="0.05" stroke="#7ABF5F" stroke-opacity="0.8"/>
+  </g>
+
+  <g id="g-cells" fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="1.25">
+    <path d="M260 88V472M400 88V472M540 88V472"/>
+    <path d="M120 216H680M120 344H680"/>
+  </g>
+
+  <g id="g-nodes" fill="#1A1A2E" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1.5">
+    <circle cx="260" cy="152" r="6"/><circle cx="400" cy="152" r="6"/><circle cx="540" cy="152" r="6"/>
+    <circle cx="260" cy="280" r="6"/><circle cx="400" cy="280" r="6"/><circle cx="540" cy="280" r="6"/>
+    <circle cx="260" cy="408" r="6"/><circle cx="400" cy="408" r="6"/><circle cx="540" cy="408" r="6"/>
+    <circle cx="190" cy="216" r="6"/><circle cx="330" cy="216" r="6"/><circle cx="470" cy="216" r="6"/><circle cx="610" cy="216" r="6"/>
+    <circle cx="190" cy="344" r="6"/><circle cx="330" cy="344" r="6"/><circle cx="470" cy="344" r="6"/><circle cx="610" cy="344" r="6"/>
+  </g>
+
+  <g id="g-cues">
+    <path d="M260 152V280H400V408" fill="none" stroke="#30A396" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/>
+    <g fill="#30A396" stroke="#1A1A2E" stroke-width="1.5">
+      <circle cx="260" cy="152" r="7"/><circle cx="260" cy="280" r="7"/><circle cx="400" cy="280" r="7"/><circle cx="400" cy="408" r="7"/>
+    </g>
+  </g>
+
+  <g id="g-ruler" fill="none" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="1" stroke-linecap="square">
+    <path d="M120 520H680"/>
+    <path d="M120 514V526M213.33 514V526M306.67 514V526M400 514V526M493.33 514V526M586.67 514V526M680 514V526"/>
+  </g>
+
+  <g id="g-checkpoint">
+    <path d="M493.33 508V88" fill="none" stroke="#F5CF48" stroke-width="1.5" stroke-dasharray="4 6" stroke-opacity="0.8"/>
+    <path d="M493.33 508L503.33 520L493.33 532L483.33 520Z" fill="#F5CF48"/>
+    <path d="M486 296V264M500.66 296V264" fill="none" stroke="#F5CF48" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <g id="g-risk">
+    <circle cx="547" cy="288" r="9" fill="none" stroke="#E94F4A" stroke-width="2" stroke-dasharray="3 3"/>
+    <path d="M540 216V262M547 288L554 344" fill="none" stroke="#E94F4A" stroke-width="1.5" stroke-dasharray="4 4"/>
+  </g>
+
+  <g id="g-correction">
+    <path d="M568 258V302M562 258H574M562 302H574" fill="none" stroke="#30A396" stroke-width="1.5" stroke-linecap="square"/>
+    <path d="M556 280H580" fill="none" stroke="#30A396" stroke-width="1.5"/>
+    <circle cx="540" cy="280" r="7" fill="#30A396" stroke="#1A1A2E" stroke-width="1.5"/>
+    <path d="M534 280l4 4 8-8" fill="none" stroke="#1A1A2E" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g id="g-complete" fill="#30A396" stroke="#1A1A2E" stroke-width="1.5">
+    <circle cx="260" cy="152" r="6"/><circle cx="400" cy="152" r="6"/><circle cx="540" cy="152" r="6"/>
+    <circle cx="260" cy="280" r="6"/><circle cx="400" cy="280" r="6"/><circle cx="540" cy="280" r="6"/>
+    <circle cx="260" cy="408" r="6"/><circle cx="400" cy="408" r="6"/><circle cx="540" cy="408" r="6"/>
+    <circle cx="190" cy="216" r="6"/><circle cx="330" cy="216" r="6"/><circle cx="470" cy="216" r="6"/><circle cx="610" cy="216" r="6"/>
+    <circle cx="190" cy="344" r="6"/><circle cx="330" cy="344" r="6"/><circle cx="470" cy="344" r="6"/><circle cx="610" cy="344" r="6"/>
+  </g>
+</svg>

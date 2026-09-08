@@ -1,0 +1,21 @@
+{
+  "name": "puzzler-website-tools",
+  "private": true,
+  "description": "Verification and derivation tooling for the Puzzler website. Not deployed (see /.vercelignore).",
+  "type": "module",
+  "scripts": {
+    "install:browser": "echo 'Chromium is expected via PLAYWRIGHT_BROWSERS_PATH; run: npx playwright install chromium' ",
+    "build:method": "node build-method-states.mjs",
+    "check:assets": "node check-assets.mjs",
+    "validate": "html-validate --config .htmlvalidate.json ../index.html ../privacy.html ../terms.html ../making-the-pieces-fit.html ../capability-brief.html ../puzzler_card.html",
+    "verify": "node verify.mjs",
+    "test": "npm run check:assets && npm run validate && npm run verify",
+    "build:hero": "node build-hero-layers.mjs",
+    "build": "npm run build:hero && npm run build:method"
+  },
+  "devDependencies": {
+    "axe-core": "4.10.3",
+    "html-validate": "9.5.0",
+    "playwright": "1.56.1"
+  }
+}
