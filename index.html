@@ -391,8 +391,19 @@
   .pim-card .status.link { color: var(--white); font-weight: 600; text-decoration: none; min-height: 44px; border-bottom: 1px solid var(--teal); padding-bottom: 0; }
   .pim-card .status.link::before { background: var(--teal); border-color: var(--teal); }
   .pim-card .status.link:hover { color: var(--teal); }
-  .pim-card .poster-link { display: block; text-decoration: none; color: inherit; }
-  .pim-card .poster-link:hover .poster::before, .pim-card .poster-link:hover .poster::after { border-color: var(--white); }
+  .pim-card .poster.has-media::before, .pim-card .poster.has-media::after { z-index: 2; pointer-events: none; }
+  .pim-card .poster .play {
+    position: absolute; inset: 0; z-index: 1; display: flex; align-items: center; justify-content: center;
+    text-decoration: none; background: linear-gradient(180deg, rgba(15, 15, 31, 0) 55%, rgba(15, 15, 31, 0.45));
+  }
+  .pim-card .poster .play-btn {
+    width: 64px; height: 64px; border-radius: 50%; background: var(--teal); border: 2px solid var(--navy-deep);
+    display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s var(--ease);
+  }
+  .pim-card .poster .play-btn::after { content: ""; width: 0; height: 0; border-style: solid; border-width: 11px 0 11px 20px; border-color: transparent transparent transparent var(--navy); margin-left: 4px; }
+  .pim-card .poster .play:hover .play-btn, .pim-card .poster .play:focus-visible .play-btn { background: var(--white); transform: scale(1.06); }
+  .pim-card .poster .play:focus-visible { outline: 3px solid var(--yellow); outline-offset: -6px; }
+  .pim-card .poster iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 3; }
 
   /* ─── About / founder note ─────────────────────────────────────── */
   .about .wrap { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
@@ -798,40 +809,42 @@
         </div>
         <p class="sub">What we’re building, testing &amp; learning.</p>
       </div>
-      <!-- PIM-01..03: named launch projects. Media, posters, and destination links are pending
-           (see IMPLEMENTATION_STATUS.md §4). No controls are exposed until a real destination exists. -->
+      <!-- PIM-01..03: named launch projects with confirmed YouTube destinations (founder, 2026-09-08).
+           Click-to-play facade: thumbnail + play control; the youtube-nocookie player loads only on
+           activation (no autoplay on page load, no audio until the visitor starts it). Without
+           scripting the control is a plain link to the video. -->
       <div class="pim-grid">
-        <article class="pim-card" data-media="pending">
-          <div class="poster" role="img" aria-label="The Falcon and the Shadow, poster placeholder">
-            <p class="label">The Falcon and the Shadow<small>Digital storytelling</small></p>
+        <article class="pim-card">
+          <div class="poster has-media" data-video="MdvX8wE0pCw" data-title="The Falcon and the Shadow">
+            <img src="https://i.ytimg.com/vi/MdvX8wE0pCw/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()">
+            <a class="play" href="https://youtu.be/MdvX8wE0pCw" rel="noopener" aria-label="Play The Falcon and the Shadow on YouTube"><span class="play-btn" aria-hidden="true"></span></a>
           </div>
           <div class="meta">
             <p class="kind">Digital storytelling</p>
             <h3>The Falcon and the Shadow</h3>
-            <p class="status">Trailer in preparation</p>
+            <a class="status link" href="https://youtu.be/MdvX8wE0pCw" rel="noopener">Watch on YouTube</a>
           </div>
         </article>
-        <!-- PIM-02: published viewing destination confirmed by the founder on 2026-09-08. -->
-        <article class="pim-card" data-media="pending">
-          <a class="poster-link" href="https://youtu.be/fJ6mfYTrP5s" rel="noopener">
-            <div class="poster" role="img" aria-label="LOCK — Engine of Focus, poster placeholder">
-              <p class="label">LOCK<small>Engine of Focus</small></p>
-            </div>
-          </a>
+        <article class="pim-card">
+          <div class="poster has-media" data-video="fJ6mfYTrP5s" data-title="LOCK — Engine of Focus">
+            <img src="https://i.ytimg.com/vi/fJ6mfYTrP5s/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()">
+            <a class="play" href="https://youtu.be/fJ6mfYTrP5s" rel="noopener" aria-label="Play LOCK — Engine of Focus on YouTube"><span class="play-btn" aria-hidden="true"></span></a>
+          </div>
           <div class="meta">
             <p class="kind">Functional audiovisual work</p>
             <h3>LOCK — Engine of Focus</h3>
             <a class="status link" href="https://youtu.be/fJ6mfYTrP5s" rel="noopener">Watch on YouTube</a>
           </div>
         </article>
-        <article class="pim-card" data-media="pending">
-          <div class="poster" role="img" aria-label="QUIET MIND, poster placeholder">
-            <p class="label">Quiet Mind<small>Current experiment</small></p>
+        <article class="pim-card">
+          <div class="poster has-media" data-video="LAh9TsDHnTc" data-title="QUIET MIND">
+            <img src="https://i.ytimg.com/vi/LAh9TsDHnTc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()">
+            <a class="play" href="https://youtu.be/LAh9TsDHnTc" rel="noopener" aria-label="Play QUIET MIND on YouTube"><span class="play-btn" aria-hidden="true"></span></a>
           </div>
           <div class="meta">
             <p class="kind">Current experiment</p>
             <h3>QUIET MIND</h3>
-            <p class="status">Preview in preparation</p>
+            <a class="status link" href="https://youtu.be/LAh9TsDHnTc" rel="noopener">Watch on YouTube</a>
           </div>
         </article>
       </div>
@@ -941,6 +954,25 @@
       if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') { closeNav(); toggle.focus(); }
     });
   }
+
+  /* ── Pieces in Motion: click-to-play YouTube facades ─────────── */
+  document.querySelectorAll('.poster.has-media').forEach(function (poster) {
+    var play = poster.querySelector('.play');
+    if (!play) return;
+    play.addEventListener('click', function (e) {
+      e.preventDefault();
+      var id = poster.getAttribute('data-video');
+      var title = poster.getAttribute('data-title') || 'Video';
+      var frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0';
+      frame.title = title + ' (YouTube video player)';
+      frame.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
+      frame.setAttribute('allowfullscreen', '');
+      poster.classList.add('is-playing');
+      poster.appendChild(frame);
+      frame.focus();
+    });
+  });
 
   /* ── The Puzzler Method stepper ──────────────────────────────── */
   var STEPS = [

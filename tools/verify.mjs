@@ -47,7 +47,7 @@ const PAGES = [
   { path: '/capability-brief', name: 'capability-brief', viewports: [VIEWPORTS[0], VIEWPORTS[2]] },
   { path: '/puzzler_card.html', name: 'card', viewports: [VIEWPORTS[0], VIEWPORTS[2]] },
 ];
-const THIRD_PARTY = /usefathom\.com|vercel-insights\.com|heygen\.com|calendly\.com|linkedin\.com|gstatic|googleapis/;
+const THIRD_PARTY = /usefathom\.com|vercel-insights\.com|heygen\.com|calendly\.com|linkedin\.com|gstatic|googleapis|youtube|ytimg/;
 
 const report = [];
 const failures = [];
@@ -160,6 +160,14 @@ for (const pg of PAGES) {
   await page.screenshot({ path: join(outDir, 'index-laptop-method-step4.png'), fullPage: true, clip: { x: 0, y: (await page.evaluate(() => document.getElementById('method').getBoundingClientRect().top + window.scrollY)), width: 1280, height: 900 } });
   const hidden = await page.evaluate(() => [...document.querySelectorAll('.step-desc')].filter((d) => !d.hidden).map((d) => d.dataset.step));
   if (hidden.join() !== '4') failures.push(`method: visible descriptions expected [4], got [${hidden}]`);
+
+  // Pieces in Motion: play facade swaps in a youtube-nocookie player only on activation.
+  const framesBefore = await page.evaluate(() => document.querySelectorAll('.pim-card iframe').length);
+  if (framesBefore !== 0) failures.push(`pim: ${framesBefore} player iframe(s) loaded before any click`);
+  await page.click('.pim-card .poster.has-media .play');
+  const frameSrc = await page.evaluate(() => { const f = document.querySelector('.pim-card iframe'); return f ? f.src : ''; });
+  if (!/^https:\/\/www\.youtube-nocookie\.com\/embed\/[\w-]+\?autoplay=1/.test(frameSrc)) failures.push(`pim: player did not load on click (${frameSrc})`);
+  report.push(`pim: no player before click, player src on click ok=${/youtube-nocookie/.test(frameSrc)}`);
 
   // Keyboard: tab from top reaches skip link, then brand, then nav; focus ring visible.
   await page.goto(base + '/', { waitUntil: 'load' });
