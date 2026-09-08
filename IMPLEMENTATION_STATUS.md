@@ -2,7 +2,7 @@
 
 **Specification:** `Puzzler_Website_Asset_Map_v1_0.md` (September 8, 2026)
 **Branch:** `claude/puzzler-website-implementation-m2rdqp`
-**Last updated:** 2026-09-08 (cycle 1 merged in PR #11; LOCK destination confirmed)
+**Last updated:** 2026-09-08 (cycle 2: founder copy edits, social links, poster pipeline)
 
 This file is the working record for the controlled implementation of the
 homepage architecture, the Blueprint Puzzle visual system, and the responsive
@@ -180,6 +180,12 @@ Removed: `files short video.zip` (transfer package in the web root).
 2. `assets/pieces-in-motion/Lock - Engine of Focus.png` (PIM-02) → confirm crop, then create a 1280×720 WebP/AVIF derivative for the LOCK card.
 3. `assets/pieces-in-motion/QUIET_MIND_Option_C_20s_Master_Loop.mp4` (PIM-03) → muted, pausable preview + 1280×720 poster.
 4. `docs/Puzzler_Brand_Standards_v1_0.docx`, `references/Puzzler Consulting Blueprint Hero.png`, `review-required/*` for the record.
+
+**Founder edits applied 2026-09-08 (cycle 2)**
+- The "Not the right firm for…" filter line was removed from Who We Serve.
+- The audience phrase "mission-driven organizations" was replaced site-wide with "nonprofits, small businesses, and organizations doing meaningful work" (homepage, metadata, manifest, video/brief pages, card vCard note). "Mission-driven for-profits" in the Who We Serve list became "Small businesses". The legal pages were left untouched (their copy is legal language). The historical social-preview image still carries the old brand line (WEB-03).
+- Social links added to the Fit Call "Follow" column: LinkedIn (existing), Threads `@puzzler_consulting_advisory`, TikTok `@puzzlerconsulting`, YouTube `@puzzlerconsulting`. Profile URLs were built from the supplied handles and could not be fetched from this environment; confirm they resolve.
+- LOCK and *The Falcon and the Shadow* artwork was supplied as inline images, which never reach the repository. Drop the files into `assets/pieces-in-motion/lock/source/` and `assets/pieces-in-motion/falcon-and-shadow/source/`, run `python3 tools/build-posters.py`, and the cards pick up the 1280×720 derivatives on the next edit (poster CSS is already in place).
 
 **Decisions needed**
 - **Earlier link.** `https://youtu.be/v64HNRW10ZM` was supplied in-session before the LOCK link was confirmed and is no longer used anywhere. Say which project it belongs to if it should appear on the site.

@@ -6,7 +6,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#1A1A2E">
 <title>Puzzler Consulting &amp; Advisory Services — Practitioners, not vendors.</title>
-<meta name="description" content="Puzzler helps people and organizations find their new normal — before, during, and after transformative events. Practitioner-led capacity, compliance, and leadership advisory for mission-driven organizations.">
+<meta name="description" content="Puzzler helps people and organizations find their new normal — before, during, and after transformative events. Practitioner-led capacity, compliance, and leadership advisory for nonprofits, small businesses, and organizations doing meaningful work.">
 <link rel="canonical" href="https://puzzlerconsultingadvisory.com/">
 
 <!-- WEB-01 / WEB-02: these icon files predate this build and derive from the single teal piece.
@@ -24,10 +24,10 @@
 <meta property="og:image" content="https://puzzlerconsultingadvisory.com/social-preview.png">
 <meta property="og:image:width" content="640">
 <meta property="og:image:height" content="320">
-<meta property="og:image:alt" content="Puzzler Consulting and Advisory Services — Practitioners, not vendors. Making the pieces fit for mission-driven organizations.">
+<meta property="og:image:alt" content="Puzzler Consulting and Advisory Services — Practitioners, not vendors. Making the pieces fit for nonprofits, small businesses, and organizations doing meaningful work.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Puzzler Consulting &amp; Advisory Services">
-<meta name="twitter:description" content="Practitioners, not vendors. Making the pieces fit for mission-driven organizations.">
+<meta name="twitter:description" content="Practitioners, not vendors. Making the pieces fit for nonprofits, small businesses, and organizations doing meaningful work.">
 <meta name="twitter:image" content="https://puzzlerconsultingadvisory.com/social-preview.png">
 
 <link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-400.woff2" crossorigin>
@@ -363,7 +363,6 @@
   .serve-list { display: grid; gap: 0; border-top: 1px solid var(--rule-light); }
   .serve-list li { padding: 16px 0; border-bottom: 1px solid var(--rule-light); font-weight: 600; font-size: clamp(18px, 1.7vw, 22px); display: flex; gap: 16px; align-items: baseline; }
   .serve-list li::before { content: ""; width: 12px; height: 2px; background: var(--teal); flex: none; transform: translateY(-4px); }
-  .fit-note { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--rule-light); color: var(--ink-mute); font-size: 15px; font-style: italic; }
 
   /* ─── Pieces in Motion ─────────────────────────────────────────── */
   .pim-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 40px; margin-bottom: 40px; }
@@ -419,6 +418,11 @@
   .contact-grid .head { display: block; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--on-dark-mute); margin-bottom: 8px; font-weight: 500; }
   .contact-grid a { display: inline-block; min-height: 44px; line-height: 44px; font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; word-break: break-word; }
   .contact-grid a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+  .contact-grid .social { display: flex; flex-wrap: wrap; gap: 0 18px; }
+  /* Poster images (PIM media) fill the 16:9 frame; source crops are produced by tools/build-posters.py */
+  .pim-card .poster > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .pim-card .poster.has-media { padding: 0; }
+  .pim-card .poster.has-media::before, .pim-card .poster.has-media::after { z-index: 1; }
 
   /* ─── Close + footer ───────────────────────────────────────────── */
   .close { padding-block: clamp(56px, 7vw, 96px) clamp(40px, 5vw, 64px); }
@@ -573,7 +577,7 @@
         <p class="eyebrow">Seven steps · Three phases</p>
         <h2 class="h2" id="method-title">The Puzzler Method</h2>
         <!-- DRAFT COPY: intro sentence pending approval -->
-        <p class="lead">How a practitioner takes a mission-driven organization from a scattered pile of pieces to a finished picture. Select a step to see what it does to the frame.</p>
+        <p class="lead">How a practitioner takes an organization doing meaningful work from a scattered pile of pieces to a finished picture. Select a step to see what it does to the frame.</p>
       </div>
 
       <div class="method-layout">
@@ -683,7 +687,7 @@
     <div class="wrap">
       <p class="eyebrow">Build It to Hold</p>
       <h2 class="h2" id="practices-title">Five practices. <span class="em">One operating discipline.</span></h2>
-      <p class="lead">The work mission-driven organizations bring to us — across every funding mechanism. What ties it together is simple: we do the work alongside the people responsible for it, not at a distance from them.</p>
+      <p class="lead">The work nonprofits, small businesses, and organizations doing meaningful work bring to us — across every funding mechanism. What ties it together is simple: we do the work alongside the people responsible for it, not at a distance from them.</p>
 
       <div class="practices">
         <details class="practice">
@@ -700,7 +704,7 @@
             <span>Funding strategy across every mechanism</span>
             <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
           </summary>
-          <div class="body"><p>Grants, cooperative agreements, contracts, and gifts — and the compliance regimes that come with each. Most mid-sized mission-driven organizations run all four at once. We’re built to work the whole portfolio.</p></div>
+          <div class="body"><p>Grants, cooperative agreements, contracts, and gifts — and the compliance regimes that come with each. Most mid-sized nonprofits, small businesses, and organizations doing meaningful work run all four at once. We’re built to work the whole portfolio.</p></div>
         </details>
         <details class="practice">
           <summary>
@@ -752,13 +756,13 @@
         <a class="way" href="/making-the-pieces-fit">
           <svg focusable="false" class="ico" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="24" height="16" rx="2"/><path d="M3 12h24M3 18h24M9 7v16M21 7v16"/></svg>
           <h3>Watch Making the Pieces Fit</h3>
-          <p>How a practitioner takes a mission-driven organization from a scattered pile of pieces to a finished picture.</p>
+          <p>How a practitioner takes an organization doing meaningful work from a scattered pile of pieces to a finished picture.</p>
           <span class="go">Watch the film →</span>
         </a>
         <a class="way" href="mailto:info@puzzlerconsultingadvisory.com?subject=Speaking%20inquiry">
           <svg focusable="false" class="ico" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="11" y="3" width="8" height="14" rx="4"/><path d="M6 13a9 9 0 0 0 18 0M15 22v5M10 27h10"/></svg>
           <h3>Invite Mark to Speak</h3>
-          <p>Leadership in moments of institutional disruption, capacity building in mission-driven organizations, human-centered AI adoption, and more.</p>
+          <p>Leadership in moments of institutional disruption, capacity building in nonprofits, small businesses, and organizations doing meaningful work, human-centered AI adoption, and more.</p>
           <span class="go">Send a speaking inquiry →</span>
         </a>
       </div>
@@ -770,7 +774,7 @@
     <div class="wrap">
       <div>
         <p class="eyebrow">Who We Serve</p>
-        <h2 class="h2" id="serve-title">Mission-driven organizations navigating something hard.</h2>
+        <h2 class="h2" id="serve-title">Nonprofits, small businesses, and organizations doing meaningful work.</h2>
         <p class="lead">For the organizations that carry a mission — and for the foundations and corporate givers who underwrite mission-driven work.</p>
       </div>
       <div>
@@ -778,9 +782,8 @@
           <li>Nonprofits</li>
           <li>State and local government agencies</li>
           <li>Foundations and corporate givers</li>
-          <li>Mission-driven for-profits</li>
+          <li>Small businesses</li>
         </ul>
-        <p class="fit-note">Not the right firm for federal contract advocacy on behalf of clients, financial-distress turnarounds, executive search, or organizations under $2M in annual revenue. We can refer you to people who do that work well.</p>
       </div>
     </div>
   </section>
@@ -843,7 +846,7 @@
         <p class="eyebrow">A note from Mark</p>
         <h2 class="h2" id="about-title">People remember FEMA for the emergencies. I remember it for what came after.</h2>
         <p>As an emergency manager, I learned that the work that really matters isn’t the response — it’s helping people find their way back to a <span class="em">new normal</span>. Not their old life. A new one. You can’t hand someone a plan and call that help. You have to get down where they are, see what they see, and stay with them until the ground feels steady again.</p>
-        <p>I’ve spent two decades building, modernizing, and stewarding the systems mission-driven organizations rely on. What ties those chapters together is simple. Organizations don’t fail because their strategy is wrong. They fail because no one <span class="em">stays in the hole</span> with them long enough to get them out. Puzzler was built to be the partner that stays.</p>
+        <p>I’ve spent two decades building, modernizing, and stewarding the systems nonprofits, small businesses, and organizations doing meaningful work rely on. What ties those chapters together is simple. Organizations don’t fail because their strategy is wrong. They fail because no one <span class="em">stays in the hole</span> with them long enough to get them out. Puzzler was built to be the partner that stays.</p>
         <p>Every engagement begins the same way: with a conversation. Tell us where you are, where you’re trying to get to, and what’s in the way. We’ll get in the hole with you — and help you find your way to a new normal.</p>
         <p class="sig">— Mark</p>
       </div>
@@ -859,7 +862,7 @@
         </div>
         <div class="record">
           <h3>Speaking engagements</h3>
-          <p>Mark is available to speak on leadership in moments of institutional disruption, capacity building in mission-driven organizations, human-centered AI adoption, older-child adoption advocacy, internship-based workforce development, hidden disabilities visibility, and mental health in the workplace and beyond.</p>
+          <p>Mark is available to speak on leadership in moments of institutional disruption, capacity building in nonprofits, small businesses, and organizations doing meaningful work, human-centered AI adoption, older-child adoption advocacy, internship-based workforce development, hidden disabilities visibility, and mental health in the workplace and beyond.</p>
           <p>Inquiries: <a href="mailto:info@puzzlerconsultingadvisory.com">info@puzzlerconsultingadvisory.com</a></p>
         </div>
       </div>
@@ -884,8 +887,13 @@
           <a href="tel:+14109706539">(410)&nbsp;970&#8209;6539</a>
         </div>
         <div>
-          <span class="head">In writing</span>
-          <a href="https://www.linkedin.com/company/puzzlerconsultingadvisory" rel="noopener">LinkedIn</a>
+          <span class="head">Follow</span>
+          <ul class="social">
+            <li><a href="https://www.linkedin.com/company/puzzlerconsultingadvisory" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.threads.net/@puzzler_consulting_advisory" rel="noopener">Threads</a></li>
+            <li><a href="https://www.tiktok.com/@puzzlerconsulting" rel="noopener">TikTok</a></li>
+            <li><a href="https://www.youtube.com/@puzzlerconsulting" rel="noopener">YouTube</a></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -894,7 +902,7 @@
   <section class="dark deep close" aria-label="Closing statement">
     <div class="wrap">
       <p class="positioning">Practitioners, not vendors.</p>
-      <p class="brand-line">Making the pieces fit for mission-driven organizations.</p>
+      <p class="brand-line">Making the pieces fit for nonprofits, small businesses, and organizations doing meaningful work.</p>
     </div>
   </section>
 </main>
