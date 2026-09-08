@@ -2,7 +2,7 @@
 
 **Specification:** `Puzzler_Website_Asset_Map_v1_0.md` (September 8, 2026)
 **Branch:** `claude/puzzler-website-implementation-m2rdqp`
-**Last updated:** 2026-09-08 (implementation cycle 1 complete)
+**Last updated:** 2026-09-08 (cycle 1 merged in PR #11; LOCK destination confirmed)
 
 This file is the working record for the controlled implementation of the
 homepage architecture, the Blueprint Puzzle visual system, and the responsive
@@ -52,7 +52,7 @@ No framework was introduced.
 | — | `Puzzler_Brand_Standards_v1_0.docx` | **Read in full from Drive.** Its rules were applied (pillar definitions, naming rule, logo-on-background matrix, closing block treatment). Copy the file to `docs/` when the bundle is dropped in. |
 | BP-01 | `Puzzler Consulting Blueprint Hero.png` | Viewed in-session (supplied as an image) and present in Drive `references/`. Used for composition direction only; not on disk, not embedded. |
 | PIM-01 | *The Falcon and the Shadow* trailer + poster | Not in the bundle (no canonical selection). |
-| PIM-02 | `Lock - Engine of Focus.png` | In Drive `public/assets/pieces-in-motion/` (1.6 MB). Too large for the connector channel; copy manually. A destination link was supplied in-session (§4). |
+| PIM-02 | `Lock - Engine of Focus.png` | In Drive `public/assets/pieces-in-motion/` (1.6 MB). Too large for the connector channel; copy manually. Destination link confirmed (§3). |
 | PIM-03 | `QUIET_MIND_Option_C_20s_Master_Loop.mp4` | In Drive (3.8 MB). Copy manually; then produce the 1280×720 poster. |
 | PIM-04 | `IGNITE.mp4` (131 MB, source master) + `IGNITE_keyframe_E_bronze_fall_16x9_candidate.png` (review) | Stay in Drive. Never load the master on the homepage. |
 | — | Mono-white mark variant | Required by Brand Standards §8.1 for any logo on a Navy surface (secondary page headers). Not in the bundle. |
@@ -125,7 +125,7 @@ Every row below was built, passed `npm test` in `tools/` (asset guard, HTML vali
 | Build It to Hold | **Complete** | Five practice areas with approved blurbs; native `<details>`; line icons describe the subject. |
 | Ways to Begin | **Complete** | Four real destinations only: Calendly, `/capability-brief`, `/making-the-pieces-fit`, `mailto:info@…` (approved inquiry address). |
 | Who We Serve | **Complete** | Approved audience list and "not the right firm" filter line. |
-| Pieces in Motion | **Structure complete; media pending** | Locked title and subtitle. Three named cards (Falcon, LOCK, QUIET MIND) using the WEB-04 Navy-frame poster treatment. No filler card. Only LOCK exposes a control (link supplied in-session; see §4). |
+| Pieces in Motion | **Structure complete; media pending** | Locked title and subtitle. Three named cards (Falcon, LOCK, QUIET MIND) using the WEB-04 Navy-frame poster treatment. No filler card. Only LOCK exposes a control: its confirmed published destination. |
 | A Note from Mark | **Complete** (retention to confirm) | Existing approved founder note and record. Not in the handoff's homepage inventory; see §4. |
 | Fit Call | **Complete** | Approved copy, Calendly, email, phone, LinkedIn. |
 | Close + footer | **Complete** | Positioning line in Teal, brand line in Poppins Light faded white (Brand Standards §10.2); legal links. |
@@ -164,6 +164,7 @@ Non-failing notes: `privacy`/`terms` keep one `<section>` outside a landmark and
 | — | `method-states.css` (generated page stylesheet) | `website-assets/blueprint/method/` |
 | — | Poppins 300 regular and 300–600 italic latin subsets (OFL) | `fonts/` |
 | — | Bundle docs | `docs/Puzzler_Website_Asset_Map_v1_0.md`, `docs/Puzzler_Website_Claude_Code_Handoff_v1_0.md` |
+| PIM-02 | LOCK — Engine of Focus published destination, confirmed by the founder 2026-09-08 | `https://youtu.be/fJ6mfYTrP5s` (LOCK card, `index.html`) |
 
 Removed: `files short video.zip` (transfer package in the web root).
 
@@ -178,7 +179,7 @@ Removed: `files short video.zip` (transfer package in the web root).
 4. `docs/Puzzler_Brand_Standards_v1_0.docx`, `references/Puzzler Consulting Blueprint Hero.png`, `review-required/*` for the record.
 
 **Decisions needed**
-- **LOCK destination.** `https://youtu.be/v64HNRW10ZM` was supplied in-session without a label. It is wired to the LOCK card (the only card whose spec calls for a published destination) and marked `data-destination="unconfirmed"`. Confirm, or say which project it belongs to. The proxy blocked fetching the video title.
+- **Earlier link.** `https://youtu.be/v64HNRW10ZM` was supplied in-session before the LOCK link was confirmed and is no longer used anywhere. Say which project it belongs to if it should appear on the site.
 - **Full lockup (BR-03).** Choose candidate A or B, or supply the original vector.
 - **Mono-white mark variant.** Needed for the Navy headers on privacy, terms, making-the-pieces-fit, and the card page (slots are ready and commented).
 - **Founder note on the homepage.** Retained from the approved release; not in the handoff §4 inventory. Keep or move to a future About page.
@@ -208,10 +209,9 @@ npm test                    # all three
 
 Blockers before public launch (nothing here blocks continued development):
 1. Copy the Pieces in Motion media and produce posters/previews (§4 items 2–3); until then the cards show the Navy poster treatment with "in preparation" status.
-2. Confirm the LOCK destination link.
-3. Approve or replace the draft copy.
-4. Select the full lockup and obtain the mono-white mark for the secondary pages.
-5. Produce WEB-01/02/03 derivatives from BR-01 and the final design.
-6. Confirm the scheduling destination (Calendly, existing), analytics (Fathom + Vercel, existing), and privacy/terms copy (existing pages) per handoff §3.
+2. Approve or replace the draft copy.
+3. Select the full lockup and obtain the mono-white mark for the secondary pages.
+4. Produce WEB-01/02/03 derivatives from BR-01 and the final design.
+5. Confirm the scheduling destination (Calendly, existing), analytics (Fathom + Vercel, existing), and privacy/terms copy (existing pages) per handoff §3.
 
 Recommendations: retire or rebuild the dormant off-brand pages `about.html`, `services.html`, `contact.html` (noindex, unlinked) in a later release; add `scope`/landmark fixes to the legal pages when they are next edited.
