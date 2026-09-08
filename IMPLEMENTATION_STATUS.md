@@ -2,7 +2,7 @@
 
 **Specification:** `Puzzler_Website_Asset_Map_v1_0.md` (September 8, 2026)
 **Branch:** `claude/puzzler-website-implementation-m2rdqp`
-**Last updated:** 2026-09-08 (cycle 2: founder copy edits, social links, poster pipeline)
+**Last updated:** 2026-09-08 (cycle 3: Pieces in Motion embeds)
 
 This file is the working record for the controlled implementation of the
 homepage architecture, the Blueprint Puzzle visual system, and the responsive
@@ -126,7 +126,7 @@ Every row below was built, passed `npm test` in `tools/` (asset guard, HTML vali
 | Build It to Hold | **Complete** | Five practice areas with approved blurbs; native `<details>`; line icons describe the subject. |
 | Ways to Begin | **Complete** | Four real destinations only: Calendly, `/capability-brief`, `/making-the-pieces-fit`, `mailto:info@…` (approved inquiry address). |
 | Who We Serve | **Complete** | Approved audience list and "not the right firm" filter line. |
-| Pieces in Motion | **Structure complete; media pending** | Locked title and subtitle. Three named cards (Falcon, LOCK, QUIET MIND) using the WEB-04 Navy-frame poster treatment. No filler card. Only LOCK exposes a control: its confirmed published destination. |
+| Pieces in Motion | **Complete** | Locked title and subtitle. Three named cards (Falcon, LOCK, QUIET MIND), each a click-to-play YouTube facade (thumbnail + play control, `youtube-nocookie` player loads only on activation, plain link without scripting). Destinations confirmed by the founder. No filler card. |
 | A Note from Mark | **Complete** (retention to confirm) | Existing approved founder note and record. Not in the handoff's homepage inventory; see §4. |
 | Fit Call | **Complete** | Approved copy, Calendly, email, phone, LinkedIn. |
 | Close + footer | **Complete** | Positioning line in Teal, brand line in Poppins Light faded white (Brand Standards §10.2); legal links. |
@@ -186,6 +186,9 @@ Removed: `files short video.zip` (transfer package in the web root).
 - The audience phrase "mission-driven organizations" was replaced site-wide with "nonprofits, small businesses, and organizations doing meaningful work" (homepage, metadata, manifest, video/brief pages, card vCard note). "Mission-driven for-profits" in the Who We Serve list became "Small businesses". The legal pages were left untouched (their copy is legal language). The historical social-preview image still carries the old brand line (WEB-03).
 - Social links added to the Fit Call "Follow" column: LinkedIn (existing), Threads `@puzzler_consulting_advisory`, TikTok `@puzzlerconsulting`, YouTube `@puzzlerconsulting`. Profile URLs were built from the supplied handles and could not be fetched from this environment; confirm they resolve.
 - LOCK and *The Falcon and the Shadow* artwork was supplied as inline images, which never reach the repository. Drop the files into `assets/pieces-in-motion/lock/source/` and `assets/pieces-in-motion/falcon-and-shadow/source/`, run `python3 tools/build-posters.py`, and the cards pick up the 1280×720 derivatives on the next edit (poster CSS is already in place).
+
+- Pieces in Motion destinations confirmed: Falcon `https://youtu.be/MdvX8wE0pCw`, LOCK `https://youtu.be/fJ6mfYTrP5s`, QUIET MIND `https://youtu.be/LAh9TsDHnTc`. Cards embed the videos as click-to-play facades. The card thumbnail is YouTube's own frame; drop approved artwork into `assets/pieces-in-motion/<project>/source/` and run `tools/build-posters.py` to replace it with a branded poster.
+- The site now loads YouTube thumbnails and, on click, the `youtube-nocookie.com` player. Confirm whether the Privacy Notice should mention embedded YouTube content (legal copy is not edited here).
 
 **Decisions needed**
 - **Earlier link.** `https://youtu.be/v64HNRW10ZM` was supplied in-session before the LOCK link was confirmed and is no longer used anywhere. Say which project it belongs to if it should appear on the site.
