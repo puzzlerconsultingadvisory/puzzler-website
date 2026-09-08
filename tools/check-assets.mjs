@@ -53,6 +53,9 @@ for (const f of PUBLIC_HTML) {
   if (!a.length || a.join('\n') !== b.join('\n')) failures.push('index.html inline connection overlay drifted from blueprint-connections.svg');
 }
 
+// A root public/ directory would become the Vercel output directory (build-less project) and 404 the site.
+if (existsSync(join(root, 'public'))) failures.push('root public/ directory present: Vercel would serve it as the site root. Keep bundle assets under assets/.');
+
 // Bundle hygiene: source-only / review-required folders are excluded from deployment, and the
 // logo slots must be switched on as soon as the approved mark is on disk.
 {
@@ -60,7 +63,7 @@ for (const f of PUBLIC_HTML) {
   for (const d of ['docs/', 'references/', 'review-required/', 'source-masters-do-not-publish/', 'tools/']) {
     if (!ignore.split('\n').includes(d)) failures.push(`.vercelignore must exclude ${d}`);
   }
-  const logo = join(root, 'public/assets/brand/puzzler_logo_4piece.svg');
+  const logo = join(root, 'assets/brand/puzzler_logo_4piece.svg');
   if (existsSync(logo)) {
     for (const f of PUBLIC_HTML) {
       const html = readFileSync(join(root, f), 'utf8');

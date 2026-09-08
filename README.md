@@ -3,7 +3,7 @@ Puzzler Consulting &amp; Advisory Services — official website.
 
 Static HTML/CSS, no build step, hosted on Vercel. Brand and implementation
 sources live in `docs/`; produced Blueprint Puzzle assets live in
-`website-assets/`; supplied bundle assets go under `public/assets/`.
+`website-assets/`; supplied bundle assets go under `assets/`.
 
 ## Run locally
 

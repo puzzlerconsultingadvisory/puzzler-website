@@ -46,13 +46,13 @@ No framework was introduced.
 
 | Asset map ID | File | Impact |
 |---|---|---|
-| BR-01 | `puzzler_logo_4piece.svg` | **Resolved mid-session.** Retrieved byte-exact from the Drive bundle (6,345 bytes) to `public/assets/brand/`. Now used, unmodified, in the homepage header. |
-| BR-02 | `puzzler_logo_4piece_1024.png` | Present in Drive. Binary transfer through the Drive connector corrupted the file (size mismatch), so it was discarded rather than kept. Copy manually to `public/assets/brand/`. Not required by any page yet. |
+| BR-01 | `puzzler_logo_4piece.svg` | **Resolved mid-session.** Retrieved byte-exact from the Drive bundle (6,345 bytes) to `assets/brand/`. Now used, unmodified, in the homepage header. |
+| BR-02 | `puzzler_logo_4piece_1024.png` | Present in Drive. Binary transfer through the Drive connector corrupted the file (size mismatch), so it was discarded rather than kept. Copy manually to `assets/brand/`. Not required by any page yet. |
 | BR-03 | `puzzler_logo_300_transparent.png`, `_1.png` | Present in Drive under `review-required/full-lockup-candidates/`. Same transfer problem; not on disk. Selection still pending (§4). |
 | — | `Puzzler_Brand_Standards_v1_0.docx` | **Read in full from Drive.** Its rules were applied (pillar definitions, naming rule, logo-on-background matrix, closing block treatment). Copy the file to `docs/` when the bundle is dropped in. |
 | BP-01 | `Puzzler Consulting Blueprint Hero.png` | Viewed in-session (supplied as an image) and present in Drive `references/`. Used for composition direction only; not on disk, not embedded. |
 | PIM-01 | *The Falcon and the Shadow* trailer + poster | Not in the bundle (no canonical selection). |
-| PIM-02 | `Lock - Engine of Focus.png` | In Drive `public/assets/pieces-in-motion/` (1.6 MB). Too large for the connector channel; copy manually. Destination link confirmed (§3). |
+| PIM-02 | `Lock - Engine of Focus.png` | In Drive `assets/pieces-in-motion/` (1.6 MB). Too large for the connector channel; copy manually. Destination link confirmed (§3). |
 | PIM-03 | `QUIET_MIND_Option_C_20s_Master_Loop.mp4` | In Drive (3.8 MB). Copy manually; then produce the 1280×720 poster. |
 | PIM-04 | `IGNITE.mp4` (131 MB, source master) + `IGNITE_keyframe_E_bronze_fall_16x9_candidate.png` (review) | Stay in Drive. Never load the master on the homepage. |
 | — | Mono-white mark variant | Required by Brand Standards §8.1 for any logo on a Navy surface (secondary page headers). Not in the bundle. |
@@ -76,6 +76,7 @@ No missing asset was fabricated, approximated, or silently replaced.
 | C9 | `puzzler_card.html` links Google Fonts and uses email `markdwilliams@…` not used elsewhere. | Only the code-drawn mark, the Google Fonts dependency, and the naming rule were changed. Contact details left as found. |
 | C10 | Brand Standards §3 forbids "Puzzler Consulting & Advisory" without "Services". `capability-brief.html`, `making-the-pieces-fit.html`, and `puzzler_card.html` (including its vCard ORG line) used the forbidden form. | Corrected to "Puzzler Consulting & Advisory Services". |
 | C11 | Brand Standards §8.1 permits the four-colour mark only on white or pale gray. The original design put the header on Navy. | Header moved to a white sticky surface with Navy text. |
+| C13 | A root `public/` folder makes Vercel serve only that folder for build-less projects, producing a site-wide 404. | Bundle assets live at `assets/` instead; `check:assets` fails if a root `public/` directory reappears. |
 | C12 | Handoff §4 lists the homepage sections with The Puzzler Method before Capable/Competitive/Resilient. | Sections reordered to match. |
 
 ### 1.5 Work that can proceed immediately
@@ -152,7 +153,7 @@ Non-failing notes: `privacy`/`terms` keep one `<section>` outside a landmark and
 
 | ID | Produced / resolved | Location |
 |---|---|---|
-| BR-01 | Approved four-piece mark, byte-exact from Drive | `public/assets/brand/puzzler_logo_4piece.svg` |
+| BR-01 | Approved four-piece mark, byte-exact from Drive | `assets/brand/puzzler_logo_4piece.svg` |
 | BR-04 | Signature bar in code | `index.html` and secondary pages |
 | BR-05 | Tokens | `:root` in `index.html` |
 | BP-02 | `blueprint-hero.svg` (text-free field, generated) | `website-assets/blueprint/hero/` |
@@ -172,10 +173,12 @@ Removed: `files short video.zip` (transfer package in the web root).
 
 ## 4. Open items, missing assets, decisions needed
 
+**Bundle path mapping.** This site is served from the repository root with no build step, so Vercel would treat a root `public/` directory as the whole site (this caused a 404 after PR #11). The bundle's `public/assets/…` therefore lives at `assets/…` in the repo and is served at `/assets/…`.
+
 **Assets to copy manually from Drive** (`PUZZLER — SYSTEM OF RECORD/02_BRAND & MARKETING/Website/Puzzler Website Implementation Bundle v1.0`), preserving the bundle paths; `.vercelignore` already excludes `docs/`, `references/`, `review-required/`, and `source-masters-do-not-publish/`:
-1. `public/assets/brand/puzzler_logo_4piece_1024.png` (BR-02, fallback only).
-2. `public/assets/pieces-in-motion/Lock - Engine of Focus.png` (PIM-02) → confirm crop, then create a 1280×720 WebP/AVIF derivative for the LOCK card.
-3. `public/assets/pieces-in-motion/QUIET_MIND_Option_C_20s_Master_Loop.mp4` (PIM-03) → muted, pausable preview + 1280×720 poster.
+1. `assets/brand/puzzler_logo_4piece_1024.png` (BR-02, fallback only).
+2. `assets/pieces-in-motion/Lock - Engine of Focus.png` (PIM-02) → confirm crop, then create a 1280×720 WebP/AVIF derivative for the LOCK card.
+3. `assets/pieces-in-motion/QUIET_MIND_Option_C_20s_Master_Loop.mp4` (PIM-03) → muted, pausable preview + 1280×720 poster.
 4. `docs/Puzzler_Brand_Standards_v1_0.docx`, `references/Puzzler Consulting Blueprint Hero.png`, `review-required/*` for the record.
 
 **Decisions needed**
