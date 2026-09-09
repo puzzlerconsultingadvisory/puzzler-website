@@ -326,8 +326,9 @@
   .step-desc { padding: 0 8px 18px 52px; color: var(--on-dark-soft); font-size: 15.5px; max-width: 52ch; }
   .js .step-desc[hidden] { display: none; }
 
-  /* ─── Build It to Hold ─────────────────────────────────────────── */
-  .practices { margin-top: 44px; border-top: 1px solid var(--rule-light); }
+  /* ─── Build It to Hold (who we serve + how we help) ────────────── */
+  .build-sub { font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); margin-top: 52px; }
+  .practices { margin-top: 18px; border-top: 1px solid var(--rule-light); }
   .practice { border-bottom: 1px solid var(--rule-light); }
   .practice summary {
     list-style: none; cursor: pointer;
@@ -347,6 +348,115 @@
   .practice:nth-child(4) summary { border-left-color: var(--green); }
   .practice:nth-child(5) summary { border-left-color: var(--teal); }
   .practice .body { padding: 0 8px 28px 70px; color: var(--ink-soft); max-width: var(--measure); }
+  /* Practices the current starting point draws on: text badge + rule (not color alone). */
+  .practice .relevant { display: inline-block; vertical-align: middle; margin-left: 10px; padding: 3px 8px; border: 1px solid var(--teal); border-radius: 3px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); white-space: nowrap; }
+  .practice .relevant[hidden] { display: none; }
+  .practice.is-relevant summary { background: var(--accent-bg); }
+
+  /* Find Your Starting Point: Navy blueprint panel inside the light section. */
+  .fysp {
+    margin-top: 56px; padding: clamp(28px, 4vw, 56px);
+    background: url('/website-assets/blueprint/hero/blueprint-grid.svg') 0 0 / 80px 80px repeat, var(--navy);
+    color: var(--on-dark); border-radius: 6px;
+  }
+  .fysp .eyebrow { margin-bottom: 14px; color: var(--teal); }
+  .fysp .btn-primary { background: var(--teal); color: var(--navy); border-color: var(--teal); }
+  .fysp .btn-primary:hover { background: var(--white); border-color: var(--white); color: var(--navy); }
+  .fysp .btn-outline { color: var(--white); border-color: rgba(255, 255, 255, 0.5); }
+  .fysp .btn-outline:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.06); }
+  .fysp-title { font-size: clamp(26px, 3vw, 40px); margin-bottom: 14px; max-width: 20ch; }
+  .fysp-lead { color: var(--on-dark-soft); max-width: var(--measure); font-size: clamp(16px, 1.4vw, 19px); }
+  .fysp-steps { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); margin-top: 40px; }
+  .fysp-step { display: flex; align-items: baseline; gap: 14px; font-size: 17px; font-weight: 600; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-dark); }
+  .fysp-step .num { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); flex: none; }
+  .fysp-options { display: grid; gap: 8px; }
+  .fysp .opt {
+    display: flex; align-items: center; gap: 14px; width: 100%; min-height: 56px; padding: 12px 16px 12px 14px;
+    text-align: left; font-size: 15.5px; font-weight: 500; line-height: 1.35; color: var(--on-dark-soft);
+    background: rgba(15, 15, 31, 0.55); border: 1px solid var(--rule-dark); border-left: 3px solid transparent; border-radius: 4px;
+    transition: border-color .2s var(--ease), background .2s var(--ease), color .2s var(--ease);
+  }
+  .fysp .opt:hover { color: var(--white); border-color: rgba(48, 163, 150, 0.6); background: rgba(15, 15, 31, 0.85); }
+  .fysp .opt:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+  .fysp .opt .check { flex: none; width: 18px; height: 18px; border: 1.5px solid var(--on-dark-mute); border-radius: 50%; position: relative; transition: background .2s, border-color .2s; }
+  .fysp .opt[aria-pressed="true"] { color: var(--white); border-color: var(--teal); border-left-color: var(--teal); background: rgba(48, 163, 150, 0.14); font-weight: 600; }
+  .fysp .opt[aria-pressed="true"] .check { background: var(--teal); border-color: var(--teal); }
+  .fysp .opt[aria-pressed="true"] .check::after { content: ""; position: absolute; left: 5px; top: 2px; width: 5px; height: 9px; border: solid var(--navy); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  /* Compliance pathway: noticeable, not alarming. Coral rule + small label, no motion. */
+  .fysp .opt-urgent { border-left-color: var(--coral); }
+  .fysp .opt-urgent[aria-pressed="true"] { border-left-color: var(--coral); }
+  .fysp .opt .flag { display: inline-block; margin-left: 8px; padding: 2px 7px; border: 1px solid var(--coral); border-radius: 3px; font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); vertical-align: middle; white-space: nowrap; }
+
+  .fysp-field { margin-top: 36px; }
+  .fysp-svg { width: 100%; height: auto; display: block; font-family: var(--font); }
+  .fysp-svg .fy-label { fill: var(--on-dark-mute); font-size: 12px; font-weight: 500; letter-spacing: 0.04em; }
+  .fysp-svg .fy-label.is-on { fill: var(--white); font-weight: 600; }
+  .fysp-svg .fy-end { fill: var(--on-dark-mute); font-size: 12.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+  .fysp-svg .fy-end.is-on { fill: var(--teal); }
+  .fysp-svg .fy-node { fill: var(--navy-deep); stroke: var(--on-dark-mute); stroke-width: 1.5; }
+  .fysp-svg .fy-node.is-on { fill: var(--teal); stroke: var(--teal); }
+  .fysp-svg .fy-rail { stroke: var(--rule-dark); stroke-width: 1; stroke-dasharray: 3 5; fill: none; }
+  .fysp-svg .fy-trace { stroke: var(--teal); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: bp-draw .9s var(--ease) forwards; }
+  .fysp-svg .fy-trace.t2 { animation-delay: .45s; }
+  .fysp-svg .fy-join { fill: var(--teal); stroke: var(--navy); stroke-width: 1.5; opacity: 0; animation: bp-settle .3s ease forwards; }
+  .fysp-svg .fy-join.j1 { animation-delay: .9s; }
+  .fysp-svg .fy-join.j2 { animation-delay: 1.35s; }
+  /* Once drawn, each trace is pinned to its settled state (no re-animation on relayout). */
+  .fysp-svg .fy-trace.settled { animation: none; stroke-dashoffset: 0; }
+  .fysp-svg .fy-join.settled { animation: none; opacity: 1; }
+
+  .fysp-result-wrap { margin-top: 36px; }
+  .fysp-result { background: var(--navy-deep); border: 1px solid var(--rule-dark); border-radius: 4px; padding: clamp(22px, 3vw, 40px); }
+  .fysp-placeholder { color: var(--on-dark-mute); max-width: var(--measure); }
+  .fysp-result .card { opacity: 0; transform: translateY(6px); transition: opacity .35s var(--ease), transform .35s var(--ease); }
+  .fysp-result .card.is-in { opacity: 1; transform: none; }
+  .fysp-result .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+  .fysp-result .kicker .flag { display: inline-block; margin-left: 10px; padding: 2px 7px; border: 1px solid var(--coral); border-radius: 3px; color: var(--white); letter-spacing: 0.12em; vertical-align: middle; }
+  .fysp-result h5 { font-size: clamp(24px, 2.8vw, 36px); max-width: 24ch; margin-bottom: 8px; }
+  .fysp-result .headline { font-size: clamp(18px, 1.8vw, 24px); font-style: italic; font-weight: 500; color: var(--teal); max-width: 30ch; margin-bottom: 16px; line-height: 1.3; }
+  .fysp-result h5:focus { outline: none; }
+  .fysp-result .core, .fysp-result .angle { color: var(--on-dark-soft); max-width: var(--measure); margin-bottom: 14px; }
+  .fysp-result .angle { color: var(--white); }
+  .fysp-result .cols { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px 40px; margin-top: 26px; padding-top: 26px; border-top: 1px solid var(--rule-dark); }
+  .fysp-result h6 { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--on-dark-mute); margin-bottom: 12px; }
+  .fysp-result .help { display: grid; gap: 8px; color: var(--on-dark-soft); font-size: 15.5px; }
+  .fysp-result .help li { display: flex; gap: 12px; align-items: baseline; }
+  .fysp-result .help li::before { content: ""; width: 10px; height: 2px; background: var(--teal); flex: none; transform: translateY(-4px); }
+  .fysp-result .block + .block { margin-top: 24px; }
+  .fysp-result .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .fysp-result .chip { display: inline-block; padding: 6px 11px; border: 1px solid var(--teal); border-radius: 3px; font-size: 13px; font-weight: 600; color: var(--white); }
+  .fysp-result .outputs { color: var(--on-dark-soft); font-size: 15.5px; }
+  .fysp-result .boundary { margin-top: 24px; padding: 14px 16px; border-left: 3px solid var(--coral); background: rgba(255, 255, 255, 0.04); color: var(--on-dark-soft); font-size: 14.5px; max-width: var(--measure); }
+  .fysp-result .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .fysp-result .actions .btn-outline { color: var(--white); border-color: rgba(255, 255, 255, 0.5); }
+  .fysp-result .actions .btn-outline:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.06); }
+
+  /* No-JS fallback: the six starting points in full; hidden once scripting runs. */
+  .fysp-static { margin-top: 36px; }
+  .js .fysp-static { display: none; }
+  .fysp-static-list { display: grid; gap: 12px; }
+  .fysp-static .sp { padding: 20px 22px; background: var(--navy-deep); border: 1px solid var(--rule-dark); border-radius: 4px; }
+  .fysp-static .sp h5 { font-size: 20px; margin: 4px 0 8px; }
+  .fysp-static .sp .headline { color: var(--teal); font-style: italic; font-weight: 500; margin-bottom: 8px; }
+  .fysp-static .sp p { color: var(--on-dark-soft); font-size: 15.5px; max-width: var(--measure); }
+  .fysp-static .sp .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); }
+  .fysp-static .sp .practices-line { margin-top: 10px; color: var(--white); font-size: 14px; }
+  .fysp-static .sp .btn { margin-top: 14px; }
+  .no-js-only { display: block; }
+  .js .no-js-only { display: none; }
+
+  /* Static audience summaries */
+  .audiences { margin-top: 64px; }
+  .audience-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+  .audience { background: var(--white); border: 1px solid var(--rule-light); border-top: 3px solid var(--teal); border-radius: 4px; padding: 24px 22px 22px; display: flex; flex-direction: column; gap: 10px; }
+  .audience h4 { font-size: 19px; margin-bottom: 4px; }
+  .audience p { color: var(--ink-soft); font-size: 15px; }
+  .audience p strong { color: var(--navy); font-weight: 600; }
+  .audience .audience-practices { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--rule-light); color: var(--navy); font-weight: 600; font-size: 13.5px; }
+
+  .fit-statement { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--rule-light); }
+  .fit-statement p { font-size: clamp(17px, 1.5vw, 20px); line-height: 1.6; color: var(--ink); max-width: var(--measure); }
+  .build-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 
   /* ─── Ways to Begin ────────────────────────────────────────────── */
   .ways-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-top: 40px; }
@@ -360,12 +470,6 @@
   .way h3 { font-size: 19px; }
   .way p { color: var(--ink-soft); font-size: 15px; flex: 1; }
   .way .go { font-weight: 600; font-size: 14px; color: var(--navy); }
-
-  /* ─── Who We Serve ─────────────────────────────────────────────── */
-  .serve .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
-  .serve-list { display: grid; gap: 0; border-top: 1px solid var(--rule-light); }
-  .serve-list li { padding: 16px 0; border-bottom: 1px solid var(--rule-light); font-weight: 600; font-size: clamp(18px, 1.7vw, 22px); display: flex; gap: 16px; align-items: baseline; }
-  .serve-list li::before { content: ""; width: 12px; height: 2px; background: var(--teal); flex: none; transform: translateY(-4px); }
 
   /* ─── Pieces in Motion ─────────────────────────────────────────── */
   .pim-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 40px; margin-bottom: 40px; }
@@ -458,7 +562,11 @@
     .hero .wrap { grid-template-columns: minmax(0, 1fr); }
     .hero-field { max-width: 640px; }
     .method-layout { grid-template-columns: minmax(0, 1fr); }
-    .gap .wrap, .serve .wrap, .about .wrap { grid-template-columns: minmax(0, 1fr); }
+    .gap .wrap, .about .wrap { grid-template-columns: minmax(0, 1fr); }
+    .fysp-steps { grid-template-columns: minmax(0, 1fr); }
+    .fysp-field { display: none; }
+    .fysp-result .cols { grid-template-columns: minmax(0, 1fr); }
+    .audience-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .outcomes-grid { grid-template-columns: minmax(0, 1fr); }
     .pim-grid { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
     .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -480,6 +588,9 @@
     .practice summary { grid-template-columns: 36px 1fr auto; gap: 12px; }
     .practice .body { padding-left: 52px; }
     .close .brand-line { font-size: 22px; }
+    .fysp { border-radius: 4px; }
+    .audience-grid { grid-template-columns: minmax(0, 1fr); }
+    .fysp .opt .flag { display: block; margin: 6px 0 0; width: max-content; }
   }
   @media (max-width: 380px) {
     .brand-word .name { font-size: 16px; }
@@ -492,6 +603,9 @@
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .connections .trace { stroke-dashoffset: 0; }
     .connections .join { opacity: 1; }
+    .fysp-svg .fy-trace { stroke-dashoffset: 0; }
+    .fysp-svg .fy-join { opacity: 1; }
+    .fysp-result .card { opacity: 1; transform: none; }
   }
 </style>
 </head>
@@ -695,54 +809,215 @@
     </div>
   </section>
 
-  <!-- ─── BUILD IT TO HOLD ─────────────────────────────────────────── -->
-  <section class="section light" id="practices" aria-labelledby="practices-title">
+  <!-- ─── BUILD IT TO HOLD (who we serve + how we help) ───────────── -->
+  <section class="section light build" id="practices" aria-labelledby="practices-title">
     <div class="wrap">
-      <p class="eyebrow">Build It to Hold</p>
-      <h2 class="h2" id="practices-title">Five practices. <span class="em">One operating discipline.</span></h2>
-      <p class="lead">The work nonprofits, small businesses, and organizations doing meaningful work bring to us — across every funding mechanism. What ties it together is simple: we do the work alongside the people responsible for it, not at a distance from them.</p>
+      <p class="eyebrow">Who we serve and how we help</p>
+      <h2 class="h2" id="practices-title">Build It to Hold</h2>
+      <p class="lead">Different people and organizations reach the threshold in different ways. Puzzler combines five operating practices around the structure, funding, accountability, and people each client needs to move forward—and keep what they build from unraveling.</p>
 
+      <!-- Five-practice foundation. Each practice carries a data-practice id so the starting-point
+           result can mark the practices it draws on (text badge + rule; never color alone). -->
+      <h3 class="build-sub" id="foundation-title">Five practices beneath every engagement</h3>
       <div class="practices">
-        <details class="practice">
+        <details class="practice" data-practice="restructuring">
           <summary>
             <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="3" width="8" height="6" rx="1"/><rect x="3" y="19" width="8" height="6" rx="1"/><rect x="17" y="19" width="8" height="6" rx="1"/><path d="M14 9v5M7 19v-5h14v5"/></svg>
-            <span>Organizational restructuring and transition support</span>
+            <span>Organizational restructuring and transition support <span class="relevant" hidden>Relevant to your starting point</span></span>
             <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
           </summary>
           <div class="body"><p>Reorganizations, mergers, leadership transitions, and program portfolio rationalizations. The structural work that determines whether an organization can do its job for the next decade — built on enterprise reorganizations led at federal scale.</p></div>
         </details>
-        <details class="practice">
+        <details class="practice" data-practice="funding">
           <summary>
             <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9l10-5 10 5-10 5z"/><path d="M4 14l10 5 10-5"/><path d="M4 19l10 5 10-5"/></svg>
-            <span>Funding strategy across every mechanism</span>
+            <span>Funding strategy across every mechanism <span class="relevant" hidden>Relevant to your starting point</span></span>
             <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
           </summary>
           <div class="body"><p>Grants, cooperative agreements, contracts, and gifts — and the compliance regimes that come with each. Most mid-sized nonprofits, small businesses, and organizations doing meaningful work run all four at once. We’re built to work the whole portfolio.</p></div>
         </details>
-        <details class="practice">
+        <details class="practice" data-practice="capacity">
           <summary>
             <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 24h22M4 8h20"/><path d="M7 8v16M14 8v16M21 8v16"/><path d="M3 8l11-4 11 4"/></svg>
-            <span>Capacity building that holds</span>
+            <span>Capacity building that holds <span class="relevant" hidden>Relevant to your starting point</span></span>
             <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
           </summary>
           <div class="body"><p>Operational governance, financial planning and analysis, shared-services design, and the unglamorous infrastructure that determines whether mission gets executed. The kind of capacity that doesn’t unravel when the next transformative event arrives.</p></div>
         </details>
-        <details class="practice">
+        <details class="practice" data-practice="program">
           <summary>
             <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="16" height="21" rx="1.5"/><path d="M11 4h6v3h-6z"/><path d="M10 14l3 3 5-6"/><path d="M10 21h8"/></svg>
-            <span>Program effectiveness and accountability</span>
+            <span>Program effectiveness and accountability <span class="relevant" hidden>Relevant to your starting point</span></span>
             <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
           </summary>
           <div class="body"><p>Compliance monitoring and program review for grants and contracts. Site visits, subrecipient monitoring, and the operational disciplines that produce strong year-over-year outcomes — not just clean audits.</p></div>
         </details>
-        <details class="practice">
+        <details class="practice" data-practice="leadership">
           <summary>
             <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="9" r="4"/><path d="M5 25c1-5 4.5-8 9-8s8 3 9 8"/><path d="M20 4l2.5 2.5L26 3"/></svg>
-            <span>Leadership and workforce development</span>
+            <span>Leadership and workforce development <span class="relevant" hidden>Relevant to your starting point</span></span>
             <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
           </summary>
           <div class="body"><p>Executive coaching, succession planning, tailored workshops, and workforce training. The customized development of leaders and teams who can actually do the work.</p></div>
         </details>
+      </div>
+
+      <!-- ── Find Your Starting Point ─────────────────────────────────
+           Structured data drives every need × audience result (see the script at the end of the page).
+           Without scripting the selector is hidden and the six starting points render as static content. -->
+      <section class="fysp dark" id="find-your-starting-point" aria-labelledby="fysp-title">
+        <div class="fysp-head">
+          <p class="eyebrow">Three steps · No email required</p>
+          <h3 class="fysp-title" id="fysp-title">Find Your Starting Point</h3>
+          <p class="fysp-lead">Tell us what you are navigating and where you are starting. We will show you how Puzzler may be able to help.</p>
+        </div>
+
+        <div class="fysp-steps">
+          <div class="fysp-group" role="group" aria-labelledby="fysp-need-title">
+            <h4 class="fysp-step" id="fysp-need-title"><span class="num">Step 1</span> What are you working through?</h4>
+            <div class="fysp-options" data-group="need">
+              <button class="opt" type="button" data-need="idea" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">I’m starting with an idea</span></button>
+              <button class="opt" type="button" data-need="funding" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">I’m looking for funding opportunities</span></button>
+              <button class="opt" type="button" data-need="growing" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We’re growing</span></button>
+              <button class="opt" type="button" data-need="change" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We’re navigating change</span></button>
+              <button class="opt" type="button" data-need="systems" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We need stronger systems and accountability</span></button>
+              <button class="opt opt-urgent" type="button" data-need="compliance" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We have a compliance issue that needs immediate attention <span class="flag">Time-sensitive</span></span></button>
+            </div>
+          </div>
+
+          <div class="fysp-group" role="group" aria-labelledby="fysp-who-title">
+            <h4 class="fysp-step" id="fysp-who-title"><span class="num">Step 2</span> Who are you?</h4>
+            <div class="fysp-options" data-group="audience">
+              <button class="opt" type="button" data-audience="individual" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Individual or founder</span></button>
+              <button class="opt" type="button" data-audience="emerging" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Emerging organization</span></button>
+              <button class="opt" type="button" data-audience="nonprofit" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Nonprofit</span></button>
+              <button class="opt" type="button" data-audience="agency" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">State or local agency</span></button>
+              <button class="opt" type="button" data-audience="foundation" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Foundation or philanthropy</span></button>
+              <button class="opt" type="button" data-audience="business" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Established small or mid-sized business</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blueprint connection: need → relevant practices → audience. One trace per selection, then settled. Decorative; hidden on small screens. -->
+        <div class="fysp-field" aria-hidden="true">
+          <svg focusable="false" class="fysp-svg" viewBox="0 0 960 250" preserveAspectRatio="xMidYMid meet" id="fysp-svg"></svg>
+        </div>
+
+        <div class="fysp-result-wrap">
+          <h4 class="fysp-step"><span class="num">Step 3</span> Your starting point</h4>
+          <div class="fysp-result" id="fysp-result" aria-live="polite" aria-atomic="true">
+            <p class="fysp-placeholder" id="fysp-placeholder">Choose what you are working through and who you are. Your starting point appears here.</p>
+          </div>
+        </div>
+
+        <!-- Static fallback without scripting: the six starting points in full. -->
+        <div class="fysp-static" id="fysp-static">
+          <h4 class="fysp-step">Six starting points</h4>
+          <p class="fysp-lead">Most engagements begin from one of these. Each draws on the practices above.</p>
+          <div class="fysp-static-list">
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Strategic Roadmap</h5>
+              <p class="headline">Turn the idea into a workable path.</p>
+              <p>Puzzler helps individuals, founders, and emerging organizations translate a promising idea into a strategic roadmap with clear outcomes, milestones, capacity requirements, and funding pathways.</p>
+              <p class="practices-line">Funding Strategy · Capacity Building · Leadership Development</p>
+              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Build My Starting Roadmap <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Funding Landscape and Readiness</h5>
+              <p class="headline">Find the funding path that fits the work.</p>
+              <p>Puzzler helps clients examine grants, cooperative agreements, contracts, philanthropy, gifts, investment, and other viable funding pathways. We also assess whether the individual or organization is ready to pursue and manage those opportunities successfully.</p>
+              <p class="practices-line">Funding Strategy · Capacity Building · Program Effectiveness and Accountability</p>
+              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Map My Funding Path <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Operating Capacity</h5>
+              <p class="headline">Build the systems growth requires.</p>
+              <p>Puzzler helps growing organizations align their structure, people, funding, governance, and operating systems so growth does not create avoidable fragility.</p>
+              <p class="practices-line">Capacity Building · Organizational Restructuring · Leadership Development</p>
+              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Strengthen Our Operating Capacity <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Transition Support</h5>
+              <p class="headline">Keep the work moving through change.</p>
+              <p>Puzzler helps organizations navigate leadership changes, reorganizations, mergers, portfolio shifts, and other transformative events while protecting continuity, trust, and mission delivery.</p>
+              <p class="practices-line">Organizational Restructuring · Capacity Building · Leadership Development</p>
+              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Plan the Transition <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Operating and Accountability Review</h5>
+              <p class="headline">Strengthen what the work depends on.</p>
+              <p>Puzzler helps clients strengthen governance, financial planning, program oversight, documentation, internal controls, and the operating disciplines required for reliable execution.</p>
+              <p class="practices-line">Capacity Building · Program Effectiveness and Accountability · Leadership Development</p>
+              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Strengthen Our Systems <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Compliance Triage and Stabilization</h5>
+              <p class="headline">Stabilize the issue. Clarify the obligation. Build the correction.</p>
+              <p>When a compliance issue cannot wait, Puzzler can help organize the facts, identify the operational gaps, clarify the applicable grant, contract, policy, reporting, or monitoring requirements, and build a practical path toward correction.</p>
+              <p class="practices-line">Program Effectiveness and Accountability · Funding Strategy · Capacity Building</p>
+              <p>Puzzler provides operational, program, grant, contract, and organizational compliance support. Puzzler does not provide legal advice or legal representation.</p>
+              <a class="btn btn-primary" href="mailto:info@puzzlerconsultingadvisory.com?subject=Compliance%20Triage%20Request">Request Compliance Triage <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Static audience summaries: always present for accessibility, search, and visitors who skip the selector.
+           DRAFT COPY: situations and help lines are derived from the approved audience emphasis (2026-09-09 brief), pending approval. -->
+      <div class="audiences">
+        <h3 class="build-sub" id="audiences-title">Who we work with</h3>
+        <ul class="audience-grid">
+          <li class="audience">
+            <h4>Individuals and founders</h4>
+            <p><strong>A common situation.</strong> A promising idea, a clear sense of who it should serve, and open questions about funding, readiness, and what it takes to begin.</p>
+            <p><strong>How Puzzler helps.</strong> We translate the idea into a strategic roadmap, identify viable funding pathways, evaluate readiness, and plan the capabilities required to start.</p>
+            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Funding Strategy · Capacity Building · Leadership Development</p>
+          </li>
+          <li class="audience">
+            <h4>Emerging organizations</h4>
+            <p><strong>A common situation.</strong> Early traction and first funding, with governance, systems, and compliance practices still catching up.</p>
+            <p><strong>How Puzzler helps.</strong> We build the operating foundations, funding readiness, governance, and early compliance systems that support milestones and sustainable growth.</p>
+            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Capacity Building · Funding Strategy · Program Effectiveness and Accountability</p>
+          </li>
+          <li class="audience">
+            <h4>Nonprofits</h4>
+            <p><strong>A common situation.</strong> Grants, gifts, and contracts running at once, with boards, funders, and monitors each expecting something different.</p>
+            <p><strong>How Puzzler helps.</strong> We strengthen governance, program delivery, audit and monitoring readiness, subrecipient oversight, and the leadership capacity to carry it.</p>
+            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Funding Strategy · Program Effectiveness and Accountability · Leadership Development</p>
+          </li>
+          <li class="audience">
+            <h4>State and local agencies</h4>
+            <p><strong>A common situation.</strong> New mandates, funding, or reorganizations that have to be implemented with public accountability and without interrupting programs.</p>
+            <p><strong>How Puzzler helps.</strong> We support program continuity, grants and contracts administration, organizational transitions, implementation discipline, and workforce responsibilities.</p>
+            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Organizational Restructuring · Program Effectiveness and Accountability · Leadership Development</p>
+          </li>
+          <li class="audience">
+            <h4>Foundations and philanthropy</h4>
+            <p><strong>A common situation.</strong> A growing portfolio to monitor, grantees who need support, and a board asking how resources translate into results.</p>
+            <p><strong>How Puzzler helps.</strong> We strengthen grantmaking operations, portfolio monitoring, grantee support, funding strategy, and internal governance.</p>
+            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Program Effectiveness and Accountability · Funding Strategy · Capacity Building</p>
+          </li>
+          <li class="audience">
+            <h4>Established small and mid-sized businesses</h4>
+            <p><strong>A common situation.</strong> Growth, a leadership transition, or contract obligations that the current operating structure was not built to carry.</p>
+            <p><strong>How Puzzler helps.</strong> We align operating structure, financial discipline, contracts, accountability, and leadership transition with sustainable delivery.</p>
+            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Organizational Restructuring · Capacity Building · Leadership Development</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="fit-statement">
+        <p>Puzzler works with individuals, emerging organizations, and established institutions when the need calls for strategic direction, funding clarity, stronger operating capacity, or support through change. We are not the right firm for federal contract advocacy on behalf of clients, financial-distress turnarounds, or executive search.</p>
+        <div class="build-actions">
+          <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Book a Fit Call <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-outline" href="#ways-to-begin">See ways to begin</a>
+        </div>
       </div>
     </div>
   </section>
@@ -778,25 +1053,6 @@
           <p>Leadership in moments of institutional disruption, capacity building in nonprofits, small businesses, and organizations doing meaningful work, human-centered AI adoption, and more.</p>
           <span class="go">Send a speaking inquiry →</span>
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── WHO WE SERVE ─────────────────────────────────────────────── -->
-  <section class="section light serve" id="who-we-serve" aria-labelledby="serve-title">
-    <div class="wrap">
-      <div>
-        <p class="eyebrow">Who We Serve</p>
-        <h2 class="h2" id="serve-title">Nonprofits, small businesses, and organizations doing meaningful work.</h2>
-        <p class="lead">For the organizations that carry a mission — and for the foundations and corporate givers who underwrite mission-driven work.</p>
-      </div>
-      <div>
-        <ul class="serve-list">
-          <li>Nonprofits</li>
-          <li>State and local government agencies</li>
-          <li>Foundations and corporate givers</li>
-          <li>Small businesses</li>
-        </ul>
       </div>
     </div>
   </section>
@@ -974,6 +1230,285 @@
       frame.focus();
     });
   });
+
+  /* ── Find Your Starting Point ─────────────────────────────────── */
+  /* Structured data: six needs × six audiences. Every combination renders the need's starting
+     point with an audience-specific angle. Copy is founder-approved (2026-09-09 brief); the
+     "How Puzzler can help" lists for Growing / Navigating change / Stronger systems are DRAFT COPY
+     derived from the approved core responses and are marked below. */
+  var CALENDLY = 'https://calendly.com/mark-puzzlerconsultingandadvisory/30min';
+  var PRACTICES = {
+    restructuring: 'Organizational Restructuring',
+    funding: 'Funding Strategy',
+    capacity: 'Capacity Building',
+    program: 'Program Effectiveness and Accountability',
+    leadership: 'Leadership Development'
+  };
+  var PRACTICE_ORDER = ['restructuring', 'funding', 'capacity', 'program', 'leadership'];
+  var NEEDS = {
+    idea: {
+      label: 'Starting with an idea',
+      point: 'Strategic Roadmap',
+      headline: 'Turn the idea into a workable path.',
+      core: 'Puzzler helps individuals, founders, and emerging organizations translate a promising idea into a strategic roadmap with clear outcomes, milestones, capacity requirements, and funding pathways.',
+      help: ['Clarify the idea and the people it is intended to serve', 'Define the intended outcome', 'Identify required capabilities, partners, and resources', 'Establish realistic milestones and priorities', 'Identify readiness gaps', 'Build an actionable roadmap for the next stage'],
+      outputs: ['Strategic roadmap', 'Priority action plan', 'Capability map', 'Funding-readiness assessment'],
+      practices: ['funding', 'capacity', 'leadership'],
+      cta: { label: 'Build My Starting Roadmap', href: CALENDLY },
+      secondary: { label: 'Email us about a roadmap', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Strategic%20Roadmap' }
+    },
+    funding: {
+      label: 'Looking for funding opportunities',
+      point: 'Funding Landscape and Readiness',
+      headline: 'Find the funding path that fits the work.',
+      core: 'Puzzler helps clients examine grants, cooperative agreements, contracts, philanthropy, gifts, investment, and other viable funding pathways. We also assess whether the individual or organization is ready to pursue and manage those opportunities successfully.',
+      help: ['Clarify the amount and type of funding needed', 'Identify relevant funding mechanisms and opportunities', 'Evaluate eligibility and strategic fit', 'Assess operational and compliance readiness', 'Establish pursuit priorities', 'Strengthen the systems needed to manage funding after it is received'],
+      outputs: ['Funding opportunity map', 'Readiness assessment', 'Pursuit strategy', 'Compliance preparation plan'],
+      practices: ['funding', 'capacity', 'program'],
+      cta: { label: 'Map My Funding Path', href: CALENDLY },
+      secondary: { label: 'Email us about funding', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Funding%20Landscape%20and%20Readiness' }
+    },
+    growing: {
+      label: 'Growing',
+      point: 'Operating Capacity',
+      headline: 'Build the systems growth requires.',
+      core: 'Puzzler helps growing organizations align their structure, people, funding, governance, and operating systems so growth does not create avoidable fragility.',
+      /* DRAFT COPY: derived from the approved core response */
+      help: ['Clarify what growth is being asked to deliver', 'Align structure, roles, and decision rights with the work ahead', 'Match funding, staffing, and systems to the pace of growth', 'Strengthen governance and financial planning', 'Sequence the operating changes so nothing critical is skipped'],
+      outputs: ['Operating model', 'Capacity plan', 'Governance structure', 'Workforce roadmap'],
+      practices: ['capacity', 'restructuring', 'leadership'],
+      cta: { label: 'Strengthen Our Operating Capacity', href: CALENDLY },
+      secondary: { label: 'Email us about growth', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Operating%20Capacity' }
+    },
+    change: {
+      label: 'Navigating change',
+      point: 'Transition Support',
+      headline: 'Keep the work moving through change.',
+      core: 'Puzzler helps organizations navigate leadership changes, reorganizations, mergers, portfolio shifts, and other transformative events while protecting continuity, trust, and mission delivery.',
+      /* DRAFT COPY: derived from the approved core response */
+      help: ['Clarify what is changing, what must stay stable, and who is accountable', 'Design the structure and decision rights the next chapter requires', 'Protect program delivery, funding obligations, and stakeholder trust during the transition', 'Build the implementation plan and checkpoints', 'Support leaders and teams through the change'],
+      outputs: ['Transition roadmap', 'Organizational design', 'Decision structure', 'Implementation plan'],
+      practices: ['restructuring', 'capacity', 'leadership'],
+      cta: { label: 'Plan the Transition', href: CALENDLY },
+      secondary: { label: 'Email us about a transition', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Transition%20Support' }
+    },
+    systems: {
+      label: 'Stronger systems and accountability',
+      point: 'Operating and Accountability Review',
+      headline: 'Strengthen what the work depends on.',
+      core: 'Puzzler helps clients strengthen governance, financial planning, program oversight, documentation, internal controls, and the operating disciplines required for reliable execution.',
+      /* DRAFT COPY: derived from the approved core response */
+      help: ['Assess governance, financial planning, program oversight, and documentation against what the work requires', 'Identify the controls and disciplines that are missing or not holding', 'Redesign the processes that carry the most risk', 'Build an accountability framework people can actually run', 'Sequence improvements into a practical roadmap'],
+      outputs: ['Operating assessment', 'Accountability framework', 'Process redesign', 'Improvement roadmap'],
+      practices: ['capacity', 'program', 'leadership'],
+      cta: { label: 'Strengthen Our Systems', href: CALENDLY },
+      secondary: { label: 'Email us about systems', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Operating%20and%20Accountability%20Review' }
+    },
+    compliance: {
+      label: 'Compliance issue requiring immediate attention',
+      point: 'Compliance Triage and Stabilization',
+      urgent: true,
+      headline: 'Stabilize the issue. Clarify the obligation. Build the correction.',
+      core: 'When a compliance issue cannot wait, Puzzler can help organize the facts, identify the operational gaps, clarify the applicable grant, contract, policy, reporting, or monitoring requirements, and build a practical path toward correction.',
+      help: ['Review the notice, finding, concern, or missed requirement', 'Organize and reconstruct supporting documentation', 'Map requirements to current practices', 'Identify immediate operational priorities', 'Develop a corrective-action roadmap', 'Strengthen internal controls and accountability', 'Prepare teams for monitoring, follow-up, or implementation', 'Support clear leadership and stakeholder communication'],
+      outputs: ['Compliance triage summary', 'Corrective-action roadmap', 'Documentation plan', 'Internal-control improvements', 'Monitoring-readiness plan'],
+      practices: ['program', 'funding', 'capacity'],
+      cta: { label: 'Request Compliance Triage', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Compliance%20Triage%20Request' },
+      secondary: { label: 'Book a Fit Call', href: CALENDLY },
+      boundary: 'Puzzler provides operational, program, grant, contract, and organizational compliance support. Puzzler does not provide legal advice or legal representation.'
+    }
+  };
+  var NEED_ORDER = ['idea', 'funding', 'growing', 'change', 'systems', 'compliance'];
+  var AUDIENCES = {
+    individual: { label: 'Individual or founder', lens: 'As an individual or founder, the emphasis is on translating your idea into a strategic roadmap, identifying viable funding pathways, evaluating readiness, and planning the capabilities you need to begin.' },
+    emerging:   { label: 'Emerging organization', lens: 'For an emerging organization, the emphasis is on operating foundations, funding readiness, governance, early compliance systems, milestones, and sustainable growth.' },
+    nonprofit:  { label: 'Nonprofit', lens: 'For a nonprofit, the emphasis is on grants, gifts, contracts, governance, program delivery, audit and monitoring readiness, subrecipient oversight, and leadership capacity.' },
+    agency:     { label: 'State or local agency', lens: 'For a state or local agency, the emphasis is on public accountability, program continuity, grants and contracts, organizational transitions, implementation discipline, and workforce responsibilities.' },
+    foundation: { label: 'Foundation or philanthropy', lens: 'For a foundation, the emphasis is on grantmaking operations, portfolio monitoring, grantee support, funding strategy, internal governance, and translating resources into measurable results.' },
+    business:   { label: 'Established small or mid-sized business', lens: 'For an established business, the emphasis is on operating structure, financial discipline, contracts, growth, leadership transition, accountability, and sustainable delivery.' }
+  };
+  /* One sentence per need × audience, drawn only from the approved audience emphasis. DRAFT COPY. */
+  var ANGLES = {
+    idea: {
+      individual: 'For an individual or founder, that starts with the idea itself: who it serves, what it would take to begin, and which funding pathways are realistic at the starting line.',
+      emerging: 'For an emerging organization, the roadmap doubles as an operating foundation: governance, early systems, and the milestones funders will expect to see.',
+      nonprofit: 'For a nonprofit, a new idea has to fit alongside existing programs, grants, and board expectations, so the roadmap accounts for what is already in motion.',
+      agency: 'For a state or local agency, the roadmap has to hold up to public accountability: clear outcomes, an implementation path, and workforce responsibilities defined before launch.',
+      foundation: 'For a foundation, an idea often becomes an initiative or a portfolio shift, so the roadmap covers grantmaking operations and how results will be measured.',
+      business: 'For an established business, a new idea competes with current delivery, so the roadmap sets the structure, financial discipline, and capacity required to pursue it without destabilizing what already works.'
+    },
+    funding: {
+      individual: 'For an individual or founder, we start by matching the idea to funding that fits someone at this stage, and by being candid about readiness before anything is pursued.',
+      emerging: 'For an emerging organization, funding readiness is mostly operating readiness: governance, financial systems, and early compliance practices that let you manage what you win.',
+      nonprofit: 'For a nonprofit, that means working the whole portfolio, grants, gifts, and contracts together, with audit and monitoring readiness built in from the start.',
+      agency: 'For a state or local agency, the focus is grants and contracts you can administer with public accountability, including subrecipient and reporting obligations.',
+      foundation: 'For a foundation, funding strategy runs in both directions: how resources are deployed, how the portfolio is monitored, and how grantees are supported to deliver measurable results.',
+      business: 'For an established business, we look at contracts and other mechanisms alongside the financial discipline and compliance obligations each one brings.'
+    },
+    growing: {
+      individual: 'For an individual or founder, growth usually means the work has outgrown one person; we plan the capabilities, partners, and structure the next stage needs.',
+      emerging: 'For an emerging organization, growth is the moment operating foundations get tested; governance, funding readiness, and early systems have to keep pace.',
+      nonprofit: 'For a nonprofit, growth brings more grants, more oversight, and more people to lead; capacity has to hold across program delivery and compliance at once.',
+      agency: 'For a state or local agency, growth often arrives as new mandates or funding; the emphasis is program continuity, implementation discipline, and workforce responsibilities.',
+      foundation: 'For a foundation, growth means a larger portfolio to monitor and more grantees to support; grantmaking operations and internal governance have to scale with it.',
+      business: 'For an established business, growth strains operating structure and financial discipline first; we align them with contracts, delivery, and accountability.'
+    },
+    change: {
+      individual: 'For an individual or founder, change may be a leadership handoff, a new partner, or a pivot; we protect continuity for the people who depend on the work.',
+      emerging: 'For an emerging organization, early transitions test whether governance and operating foundations are real; we build the ones the next chapter needs.',
+      nonprofit: 'For a nonprofit, transitions touch grants, contracts, and board governance at the same time; we protect program delivery and funder trust while the structure changes.',
+      agency: 'For a state or local agency, reorganizations and leadership changes must preserve public accountability and program continuity; we plan the implementation with that discipline.',
+      foundation: 'For a foundation, a portfolio shift or leadership change affects grantees directly; we protect grantmaking operations and monitoring while the change is made.',
+      business: 'For an established business, leadership transition and restructuring have to protect contracts, delivery, and financial discipline; we sequence the change so they hold.'
+    },
+    systems: {
+      individual: 'For an individual or founder, the disciplines are simpler but no less important: financial planning, documentation, and the readiness funders and partners will look for.',
+      emerging: 'For an emerging organization, this is where early compliance systems, governance, and financial practices are built to hold as you grow.',
+      nonprofit: 'For a nonprofit, the review centers on governance, financial planning, program oversight, and audit and monitoring readiness, including subrecipient oversight.',
+      agency: 'For a state or local agency, the emphasis is public accountability: program oversight, grants and contracts administration, documentation, and implementation discipline.',
+      foundation: 'For a foundation, the review covers grantmaking operations, portfolio monitoring, internal governance, and how resources translate into measurable results.',
+      business: 'For an established business, the review centers on operating structure, financial discipline, contract obligations, and the accountability sustainable delivery depends on.'
+    },
+    compliance: {
+      individual: 'For an individual or founder, a compliance issue is usually tied to a specific grant, contract, or reporting requirement; we organize the facts and the correction quickly and clearly.',
+      emerging: 'For an emerging organization, we stabilize the immediate issue and use the correction to put early compliance systems in place so it does not recur.',
+      nonprofit: 'For a nonprofit, this may involve a grant finding, a monitoring result, a subrecipient issue, or an audit concern; we map the requirement to practice and build the corrective path.',
+      agency: 'For a state or local agency, the priority is public accountability: clarifying the obligation, reconstructing documentation, and preparing the team for monitoring or follow-up.',
+      foundation: 'For a foundation, the issue may sit with a grantee or within grantmaking operations; we clarify the obligation and build a practical correction on either side.',
+      business: 'For an established business, contract and reporting obligations come first; we organize the record, identify the operational gaps, and build the correction.'
+    }
+  };
+
+  var fysp = document.getElementById('find-your-starting-point');
+  if (fysp) (function () {
+    var result = document.getElementById('fysp-result');
+    var placeholder = document.getElementById('fysp-placeholder');
+    var svg = document.getElementById('fysp-svg');
+    var needBtns = Array.prototype.slice.call(fysp.querySelectorAll('.opt[data-need]'));
+    var audBtns = Array.prototype.slice.call(fysp.querySelectorAll('.opt[data-audience]'));
+    var practiceEls = Array.prototype.slice.call(document.querySelectorAll('.practice[data-practice]'));
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var need = null, audience = null, revealed = false;
+
+    function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    function chips(ids) { return ids.map(function (id) { return '<span class="chip">' + esc(PRACTICES[id]) + '</span>'; }).join(''); }
+    function btn(link, cls) { return '<a class="btn ' + cls + '" href="' + esc(link.href) + '">' + esc(link.label) + ' <span class="arrow" aria-hidden="true">→</span></a>'; }
+
+    function cardHtml(n, a) {
+      var d = NEEDS[n], aud = AUDIENCES[a];
+      var h = '<div class="card" data-need="' + esc(n) + '" data-audience="' + esc(a) + '">';
+      h += '<p class="kicker">Recommended starting point' + (d.urgent ? ' <span class="flag">Time-sensitive</span>' : '') + '</p>';
+      h += '<h5 id="fysp-result-title" tabindex="-1">' + esc(d.point) + '</h5>';
+      h += '<p class="headline">' + esc(d.headline) + '</p>';
+      h += '<p class="core">' + esc(d.core) + '</p>';
+      h += '<p class="angle">' + esc(ANGLES[n][a]) + '</p>';
+      h += '<div class="cols"><div><h6>How Puzzler can help</h6><ul class="help">' + d.help.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
+      h += '<div><div class="block"><h6>Relevant Puzzler practices</h6><div class="chips">' + chips(d.practices) + '</div></div>';
+      h += '<div class="block"><h6>Possible outputs</h6><p class="outputs">' + d.outputs.map(esc).join(' · ') + '</p></div>';
+      h += '<div class="block"><h6>Your context</h6><p class="outputs">' + esc(aud.lens) + '</p></div></div></div>';
+      if (d.boundary) h += '<p class="boundary">' + esc(d.boundary) + '</p>';
+      h += '<div class="actions">' + btn(d.cta, 'btn-primary') + (d.secondary ? btn(d.secondary, 'btn-outline') : '') + '</div>';
+      return h + '</div>';
+    }
+
+    /* Blueprint field: need (left) → practice nodes (centre) → audience (right). */
+    var SHORT = { idea: 'Idea', funding: 'Funding', growing: 'Growth', change: 'Change', systems: 'Systems', compliance: 'Compliance', individual: 'Individual or founder', emerging: 'Emerging organization', nonprofit: 'Nonprofit', agency: 'State or local agency', foundation: 'Foundation', business: 'Established business' };
+    var PX = { need: 40, left: 330, mid: 420, right: 700, aud: 920 };
+    function nodeY(i) { return 35 + i * 45; }
+    function drawField() {
+      if (!svg) return;
+      var ids = need ? NEEDS[need].practices : [];
+      var out = '';
+      PRACTICE_ORDER.forEach(function (id, i) {
+        var on = ids.indexOf(id) !== -1, y = nodeY(i);
+        out += '<circle class="fy-node' + (on ? ' is-on' : '') + '" cx="' + PX.mid + '" cy="' + y + '" r="6"/>';
+        out += '<text class="fy-label' + (on ? ' is-on' : '') + '" x="' + (PX.mid + 16) + '" y="' + (y + 4) + '">' + esc(PRACTICES[id]) + '</text>';
+      });
+      out += '<text class="fy-end' + (need ? ' is-on' : '') + '" x="' + PX.need + '" y="105">' + (need ? esc(SHORT[need]) : 'Your need') + '</text>';
+      out += '<text class="fy-end' + (audience ? ' is-on' : '') + '" x="' + PX.aud + '" y="105" text-anchor="end">' + (audience ? esc(SHORT[audience]) : 'Who you are') + '</text>';
+      svg.innerHTML = out;
+      /* Outgoing traces start after each label's text and the right-hand elbow sits past the longest one, so no trace crosses text. */
+      var right = PX.right, ends = {};
+      Array.prototype.forEach.call(svg.querySelectorAll('.fy-label'), function (t, i) {
+        var end = PX.mid + 16 + PRACTICES[PRACTICE_ORDER[i]].length * 7;
+        try { var b = t.getBBox(); if (b.width) end = Math.round(b.x + b.width); } catch (e) { /* not rendered yet */ }
+        ends[PRACTICE_ORDER[i]] = end + 10;
+        right = Math.max(right, end + 34);
+      });
+      right = Math.min(right, PX.aud - 60);
+      var lines = '<path class="fy-rail" d="M' + PX.need + ' 125H' + PX.left + '"/><path class="fy-rail" d="M' + right + ' 125H' + PX.aud + '"/>';
+      if (need) {
+        lines += '<circle class="fy-join j1" cx="' + PX.need + '" cy="125" r="6"/>';
+        ids.forEach(function (id) {
+          var y = nodeY(PRACTICE_ORDER.indexOf(id));
+          lines += '<path class="fy-trace t1" pathLength="1" d="M' + PX.need + ' 125H' + PX.left + 'V' + y + 'H' + (PX.mid - 6) + '"/>';
+          if (audience) lines += '<path class="fy-trace t2" pathLength="1" d="M' + ends[id] + ' ' + y + 'H' + right + 'V125H' + PX.aud + '"/>';
+        });
+        if (audience) lines += '<circle class="fy-join j2" cx="' + PX.aud + '" cy="125" r="6"/>';
+      }
+      svg.insertAdjacentHTML('afterbegin', lines);
+    }
+    if (svg) svg.addEventListener('animationend', function (e) { if (e.target && e.target.classList) e.target.classList.add('settled'); });
+
+    function markPractices() {
+      var ids = need && audience ? NEEDS[need].practices : [];
+      practiceEls.forEach(function (el) {
+        var on = ids.indexOf(el.getAttribute('data-practice')) !== -1;
+        el.classList.toggle('is-relevant', on);
+        var badge = el.querySelector('.relevant');
+        if (badge) badge.hidden = !on;
+      });
+    }
+
+    function render(moveFocus) {
+      needBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-need') === need)); });
+      audBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-audience') === audience)); });
+      drawField();
+      markPractices();
+      if (need && audience) {
+        var token = ++renderToken;
+        var show = function () {
+          if (token !== renderToken) return;
+          result.innerHTML = cardHtml(need, audience);
+          var card = result.querySelector('.card');
+          if (reducedMotion.matches) card.classList.add('is-in');
+          else requestAnimationFrame(function () { requestAnimationFrame(function () { card.classList.add('is-in'); }); });
+          if (moveFocus && !revealed) { var t = document.getElementById('fysp-result-title'); if (t) t.focus(); }
+          revealed = true;
+        };
+        if (reducedMotion.matches) show(); else setTimeout(show, 900); /* reveal as the second trace begins */
+      } else {
+        renderToken++;
+        result.innerHTML = '';
+        var p = document.createElement('p'); p.className = 'fysp-placeholder'; p.id = 'fysp-placeholder';
+        p.textContent = need ? 'Now choose who you are to see your starting point.' : (audience ? 'Now choose what you are working through to see your starting point.' : 'Choose what you are working through and who you are. Your starting point appears here.');
+        result.appendChild(p);
+      }
+    }
+    var renderToken = 0;
+
+    function select(group, value, viaKeyboard) {
+      if (group === 'need') need = need === value ? null : value; else audience = audience === value ? null : value;
+      render(true);
+    }
+    needBtns.forEach(function (b) { b.addEventListener('click', function () { select('need', b.getAttribute('data-need')); }); });
+    audBtns.forEach(function (b) { b.addEventListener('click', function () { select('audience', b.getAttribute('data-audience')); }); });
+    /* Arrow keys move between options within a group; Tab leaves the group normally (no trap). */
+    [needBtns, audBtns].forEach(function (list) {
+      list.forEach(function (b, i) {
+        b.addEventListener('keydown', function (e) {
+          var t = null;
+          if (e.key === 'ArrowDown' || e.key === 'ArrowRight') t = list[(i + 1) % list.length];
+          if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') t = list[(i - 1 + list.length) % list.length];
+          if (e.key === 'Home') t = list[0];
+          if (e.key === 'End') t = list[list.length - 1];
+          if (t) { e.preventDefault(); t.focus(); }
+        });
+      });
+    });
+
+    drawField();
+  })();
 
   /* ── The Puzzler Method stepper ──────────────────────────────── */
   var STEPS = [

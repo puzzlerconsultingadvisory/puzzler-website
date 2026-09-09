@@ -10,6 +10,8 @@ sources live in `docs/`; produced Blueprint Puzzle assets live in
 ```
 cd tools && npm install
 npm run verify        # serves the site on a random local port during checks
+node shots-section.mjs review '#practices'   # section screenshots at 375/768/1024/1440
+node shots-fysp.mjs compliance nonprofit     # Find Your Starting Point interaction screenshots
 # or, for browsing:
 npx --yes http-server .. -p 8080 -c-1   # then open http://localhost:8080/
 ```

@@ -220,6 +220,174 @@ for (const pg of PAGES) {
   await ctx.close();
 }
 
+// ── Find Your Starting Point ────────────────────────────────────────
+{
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const page = await ctx.newPage();
+  const errs = [];
+  page.on('pageerror', (e) => errs.push(e.message));
+  await page.goto(base + '/', { waitUntil: 'load' });
+  const NEEDS = ['idea', 'funding', 'growing', 'change', 'systems', 'compliance'];
+  const AUDS = ['individual', 'emerging', 'nonprofit', 'agency', 'foundation', 'business'];
+  // Live region + semantics present before any interaction.
+  const sem = await page.evaluate(() => ({
+    live: document.getElementById('fysp-result').getAttribute('aria-live'),
+    atomic: document.getElementById('fysp-result').getAttribute('aria-atomic'),
+    buttons: [...document.querySelectorAll('#find-your-starting-point .opt')].every((b) => b.tagName === 'BUTTON' && b.getAttribute('type') === 'button' && b.getAttribute('aria-pressed') === 'false'),
+    count: document.querySelectorAll('#find-your-starting-point .opt').length,
+    emailInputs: document.querySelectorAll('#find-your-starting-point input').length,
+    audienceSummaries: document.querySelectorAll('.audience-grid .audience').length,
+    fitStatement: /We are not the right firm for federal contract advocacy on behalf of clients, financial-distress turnarounds, or executive search\./.test(document.querySelector('.fit-statement').textContent),
+    revenueExclusion: /\$2\s?M|2 million/i.test(document.body.textContent),
+    whoWeServeSection: !!document.getElementById('who-we-serve'),
+  }));
+  if (sem.live !== 'polite' || sem.atomic !== 'true') failures.push(`fysp: result region aria-live=${sem.live} aria-atomic=${sem.atomic}`);
+  if (!sem.buttons || sem.count !== 12) failures.push(`fysp: expected 12 semantic toggle buttons, got ${sem.count} (semantic=${sem.buttons})`);
+  if (sem.emailInputs) failures.push('fysp: an input field is present (no email gate allowed)');
+  if (sem.audienceSummaries !== 6) failures.push(`fysp: expected 6 static audience summaries, got ${sem.audienceSummaries}`);
+  if (!sem.fitStatement) failures.push('fysp: approved fit statement missing');
+  if (sem.revenueExclusion) failures.push('fysp: revenue-based exclusion text still present');
+  if (sem.whoWeServeSection) failures.push('fysp: separate Who We Serve section still present');
+
+  // Every need × audience renders a complete, coherent result (reduced motion → immediate).
+  const rctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, reducedMotion: 'reduce' });
+  const rpage = await rctx.newPage();
+  rpage.on('pageerror', (e) => errs.push(e.message));
+  await rpage.goto(base + '/', { waitUntil: 'load' });
+  let combos = 0; const bad = [];
+  for (const n of NEEDS) {
+    await rpage.click(`.opt[data-need="${n}"]`); // pressing an already-pressed option toggles it off, so click each need once
+    for (const a of AUDS) {
+      await rpage.click(`.opt[data-audience="${a}"]`);
+      await rpage.waitForFunction(({ n, a }) => { const c = document.querySelector('#fysp-result .card'); return c && c.dataset.need === n && c.dataset.audience === a; }, { n, a }, { timeout: 2000 }).catch(() => {});
+      const r = await rpage.evaluate(({ n, a }) => {
+        const card = document.querySelector('#fysp-result .card');
+        if (!card) return { ok: false, why: 'no card' };
+        const q = (s) => card.querySelector(s);
+        const text = card.textContent;
+        const links = [...card.querySelectorAll('a.btn')].map((l) => ({ label: l.textContent.trim(), href: l.getAttribute('href') }));
+        const chips = [...card.querySelectorAll('.chip')].map((c) => c.textContent.trim());
+        const relevant = [...document.querySelectorAll('.practice.is-relevant .relevant')].filter((b) => !b.hidden).length;
+        const pressed = [...document.querySelectorAll('.opt[aria-pressed="true"]')].map((b) => b.dataset.need || b.dataset.audience);
+        const problems = [];
+        if (!q('h5') || !q('.headline') || !q('.core') || !q('.angle')) problems.push('missing heading/headline/core/angle');
+        if (card.querySelectorAll('.help li').length < 5) problems.push('fewer than 5 help bullets');
+        if (chips.length !== 3) problems.push(`practice chips=${chips.length}`);
+        if (!q('.outputs')) problems.push('no outputs');
+        if (!links.length || !/^(https:\/\/calendly\.com\/mark-puzzlerconsultingandadvisory\/30min|mailto:info@puzzlerconsultingadvisory\.com(\?subject=[\w%]+)?)$/.test(links[0].href)) problems.push(`primary CTA href ${links[0] && links[0].href}`);
+        if (links.some((l) => !/^(https:\/\/calendly\.com|mailto:info@puzzlerconsultingadvisory\.com)/.test(l.href))) problems.push('CTA to unapproved destination');
+        if (n === 'compliance') {
+          if (!/does not provide legal advice or legal representation/.test(text)) problems.push('compliance boundary missing');
+          if (links[0].href !== 'mailto:info@puzzlerconsultingadvisory.com?subject=Compliance%20Triage%20Request') problems.push('compliance primary CTA wrong');
+          if (!links[1] || links[1].label.indexOf('Book a Fit Call') === -1) problems.push('compliance secondary CTA missing');
+        }
+        if (/guarantee|24-hour|same-day|legal advice(?! or)/i.test(text.replace(/does not provide legal advice or legal representation/, ''))) problems.push('unapproved promise language');
+        if (relevant !== 3) problems.push(`foundation highlights=${relevant}`);
+        if (pressed.sort().join() !== [n, a].sort().join()) problems.push(`pressed=${pressed}`);
+        const rs = getComputedStyle(card);
+        if (rs.opacity !== '1') problems.push(`card opacity ${rs.opacity} under reduced motion`);
+        return { ok: !problems.length, why: problems.join('; '), head: q('h5') && q('h5').textContent };
+      }, { n, a });
+      combos++;
+      if (!r.ok) bad.push(`${n}×${a}: ${r.why}`);
+    }
+  }
+  if (bad.length) failures.push(`fysp: ${bad.length} combination(s) incoherent — ${bad.slice(0, 6).join(' || ')}`);
+  const svgRM = await rpage.evaluate(() => { const t = document.querySelector('#fysp-svg .fy-trace'); return t ? getComputedStyle(t).strokeDashoffset : 'none'; });
+  if (parseFloat(svgRM) !== 0) failures.push(`fysp: reduced-motion trace not settled (${svgRM})`);
+  await rctx.close();
+
+  // Default motion: trace draws once and settles; result appears; focus moves to the result heading.
+  await page.click('.opt[data-need="funding"]');
+  await page.waitForTimeout(200);
+  const mid = await page.evaluate(() => parseFloat(getComputedStyle(document.querySelector('#fysp-svg .fy-trace')).strokeDashoffset));
+  await page.click('.opt[data-audience="foundation"]');
+  await page.waitForTimeout(2600);
+  const after = await page.evaluate(() => ({
+    traces: [...document.querySelectorAll('#fysp-svg .fy-trace')].map((t) => parseFloat(getComputedStyle(t).strokeDashoffset)),
+    settled: document.querySelectorAll('#fysp-svg .fy-trace.settled').length,
+    joins: document.querySelectorAll('#fysp-svg .fy-join').length,
+    focus: document.activeElement && document.activeElement.id,
+    card: !!document.querySelector('#fysp-result .card.is-in'),
+  }));
+  if (!(mid > 0 && mid < 1)) report.push(`  note: fysp first trace sampled at dashoffset ${mid} (expected mid-draw)`);
+  if (after.traces.some((v) => v !== 0) || after.settled !== after.traces.length) failures.push(`fysp: traces did not settle (${after.traces.join(',')}; settled ${after.settled}/${after.traces.length})`);
+  if (after.joins !== 2) failures.push(`fysp: expected 2 join nodes, got ${after.joins}`);
+  if (after.focus !== 'fysp-result-title') failures.push(`fysp: focus expected on result heading, got ${after.focus}`);
+  if (!after.card) failures.push('fysp: result card not revealed');
+
+  // Keyboard: Space toggles, arrows move within a group, Tab leaves the group. (funding is currently pressed.)
+  await page.focus('.opt[data-need="idea"]');
+  await page.keyboard.press('ArrowDown');
+  const k1 = await page.evaluate(() => document.activeElement.dataset.need);
+  await page.keyboard.press('Space'); // toggles funding off
+  const k2a = await page.evaluate(() => document.querySelector('.opt[data-need="funding"]').getAttribute('aria-pressed'));
+  await page.keyboard.press('Space'); // and back on
+  const k2b = await page.evaluate(() => document.querySelector('.opt[data-need="funding"]').getAttribute('aria-pressed'));
+  const k2 = k2a === 'false' && k2b === 'true' ? 'true' : `off=${k2a} on=${k2b}`;
+  await page.focus('.opt[data-need="compliance"]');
+  await page.keyboard.press('Tab');
+  const k3 = await page.evaluate(() => document.activeElement.dataset.audience || document.activeElement.className);
+  if (k1 !== 'funding') failures.push(`fysp: ArrowDown expected to move to funding, got ${k1}`);
+  if (k2 !== 'true') failures.push('fysp: Space did not toggle the option');
+  if (k3 !== 'individual') failures.push(`fysp: Tab from the last need should reach the first audience, got ${k3}`);
+  // Deselecting a choice clears the result back to guidance.
+  await page.click('.opt[data-audience="foundation"]');
+  await page.waitForTimeout(100);
+  await page.waitForFunction(() => !document.querySelector('#fysp-result .card'), null, { timeout: 2000 }).catch(() => {});
+  const cleared = await page.evaluate(() => !document.querySelector('#fysp-result .card') && /choose who you are/i.test(document.getElementById('fysp-result').textContent) && document.querySelectorAll('.practice.is-relevant').length === 0);
+  if (!cleared) failures.push('fysp: deselecting the audience did not clear the result');
+  if (errs.length) failures.push(`fysp: page errors ${errs.join(' || ')}`);
+  report.push(`fysp: ${combos} combinations coherent=${combos - bad.length}, traces settle=${after.settled === after.traces.length}, focus→result=${after.focus === 'fysp-result-title'}, keyboard ok=${k1 === 'funding' && k2 === 'true' && k3 === 'individual'}`);
+  await ctx.close();
+}
+{
+  // Mobile: stacked selectors, decorative field hidden, tap works, no overflow after reveal, all targets ≥44px.
+  const ctx = await browser.newContext({ viewport: { width: 375, height: 740 }, hasTouch: true, isMobile: true });
+  const page = await ctx.newPage();
+  await page.goto(base + '/', { waitUntil: 'load' });
+  const stacked = await page.evaluate(() => {
+    const g = document.querySelectorAll('.fysp-group');
+    const a = g[0].getBoundingClientRect(), b = g[1].getBoundingClientRect();
+    return { stacked: b.top >= a.bottom - 1, field: getComputedStyle(document.querySelector('.fysp-field')).display };
+  });
+  if (!stacked.stacked) failures.push('fysp mobile: need and audience groups are not stacked');
+  if (stacked.field !== 'none') failures.push(`fysp mobile: decorative field visible (${stacked.field})`);
+  await page.tap('.opt[data-need="compliance"]');
+  await page.tap('.opt[data-audience="agency"]');
+  await page.waitForTimeout(1600);
+  const m = await page.evaluate(() => ({
+    card: !!document.querySelector('#fysp-result .card'),
+    scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth,
+    small: [...document.querySelectorAll('#find-your-starting-point .opt, #fysp-result a')].filter((el) => el.getBoundingClientRect().height < 44).length,
+    below: (() => { const r = document.querySelector('.fysp-result-wrap').getBoundingClientRect(); const g = document.querySelectorAll('.fysp-group')[1].getBoundingClientRect(); return r.top >= g.bottom - 1; })(),
+  }));
+  if (!m.card) failures.push('fysp mobile: result did not render after taps');
+  if (m.scroll > m.client) failures.push(`fysp mobile: horizontal overflow after reveal ${m.scroll}/${m.client}`);
+  if (m.small) failures.push(`fysp mobile: ${m.small} touch target(s) under 44px`);
+  if (!m.below) failures.push('fysp mobile: result is not below the audience selector');
+  await page.screenshot({ path: join(outDir, 'index-mobile-fysp-compliance-agency.png'), fullPage: true, animations: 'disabled', clip: { x: 0, y: (await page.evaluate(() => document.getElementById('find-your-starting-point').getBoundingClientRect().top + window.scrollY)), width: 375, height: 1400 } });
+  report.push(`fysp mobile: stacked=${stacked.stacked}, field hidden=${stacked.field === 'none'}, result ok=${m.card}, overflow=${m.scroll > m.client}, small targets=${m.small}`);
+  await ctx.close();
+}
+{
+  // No-JS fallback: selector hidden, six static starting points and the audience summaries are visible.
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, javaScriptEnabled: false });
+  const page = await ctx.newPage();
+  await page.goto(base + '/', { waitUntil: 'load' });
+  const nj = await page.evaluate(() => ({
+    staticShown: getComputedStyle(document.querySelector('.fysp-static')).display !== 'none',
+    points: document.querySelectorAll('.fysp-static .sp').length,
+    boundary: /does not provide legal advice or legal representation/.test(document.querySelector('.fysp-static').textContent),
+    audiences: document.querySelectorAll('.audience-grid .audience').length,
+    practices: document.querySelectorAll('.practice').length,
+  }));
+  if (!nj.staticShown || nj.points !== 6 || !nj.boundary) failures.push(`no-js: static starting points shown=${nj.staticShown} count=${nj.points} boundary=${nj.boundary}`);
+  if (nj.audiences !== 6 || nj.practices !== 5) failures.push(`no-js: audiences=${nj.audiences} practices=${nj.practices}`);
+  report.push(`no-js: static starting points=${nj.points}, audiences=${nj.audiences}, practices=${nj.practices}`);
+  await ctx.close();
+}
+
 await browser.close();
 server.close();
 

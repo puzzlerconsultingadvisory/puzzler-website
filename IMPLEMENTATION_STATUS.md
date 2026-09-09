@@ -123,9 +123,9 @@ Every row below was built, passed `npm test` in `tools/` (asset guard, HTML vali
 | The Operator Gap | **Complete** (draft copy) | See §4 for draft sentences. |
 | The Puzzler Method (PM-00..08) | **Complete** | One master, seven derived states + static fallback + generated CSS. Stepper: mouse, touch, keyboard (arrows/Home/End), `aria-current`, prev/next. Inline animated master ≥720 px without reduced motion; static state images otherwise; no-JS shows all descriptions and state 1. All seven names and three phases verbatim. |
 | Capable, Competitive, and Resilient | **Complete** | Pillar questions verbatim from Brand Standards §2.4; supporting lines are draft (§4). |
-| Build It to Hold | **Complete** | Five practice areas with approved blurbs; native `<details>`; line icons describe the subject. |
+| Build It to Hold (who we serve + how we help) | **Complete** (draft copy, see §4) | Rebuilt 2026-09-09 per the founder's brief: label "Who we serve and how we help", headline "Build It to Hold", approved intro; the five practices as the shared foundation (native `<details>`, approved blurbs unchanged, `data-practice` ids); **Find Your Starting Point** (six needs × six audiences, structured data, `aria-pressed` buttons, arrow-key movement inside each group, `aria-live="polite"` result, focus moves to the result heading on first reveal, no email gate); one-time blueprint trace need → relevant practices → audience that settles and is pinned; result highlights the practices in the foundation with a text badge; static no-JS fallback (six starting points) and six static audience summaries; approved fit statement; Fit Call + Ways to Begin CTAs. All 36 combinations verified coherent by `npm run verify`. |
 | Ways to Begin | **Complete** | Four real destinations only: Calendly, `/capability-brief`, `/making-the-pieces-fit`, `mailto:info@…` (approved inquiry address). |
-| Who We Serve | **Complete** | Approved audience list and "not the right firm" filter line. |
+| Who We Serve | **Merged** | Removed as a separate section on 2026-09-09; its content lives in Build It to Hold (audience summaries + fit statement). The `#who-we-serve` anchor no longer exists; no page linked to it. |
 | Pieces in Motion | **Complete** | Locked title and subtitle. Three named cards (Falcon, LOCK, QUIET MIND), each a click-to-play YouTube facade (thumbnail + play control, `youtube-nocookie` player loads only on activation, plain link without scripting). Destinations confirmed by the founder. No filler card. |
 | A Note from Mark | **Complete** (retention to confirm) | Existing approved founder note and record. Not in the handoff's homepage inventory; see §4. |
 | Fit Call | **Complete** | Approved copy, Calendly, email, phone, LinkedIn. |
@@ -196,6 +196,8 @@ Removed: `files short video.zip` (transfer package in the web root).
 - WEB-01 / WEB-02 produced 2026-09-09 from BR-01 by `tools/build-favicons.mjs` (`cd tools && npm run build:icons`): `favicon.svg` (the mark's four polygons copied verbatim on a white tile, per Brand Standards §8.1), `favicon-32.png`, `favicon-16.png`, `favicon.ico` (16/32/48), `apple-touch-icon.png` (180, 10% padding), `icon-192.png`, `icon-512.png` (manifest). Rasters are Chromium renders of the unmodified SVG file. Every public page now links the SVG, PNG, and ICO icons; the video and brief pages previously linked no icon at all. `check:assets` fails if `favicon.svg` drifts from BR-01. `scripts/build-favicons.ps1` (which derived icons from the single teal piece) was removed.
 
 **Decisions needed**
+- **Find Your Starting Point copy (2026-09-09).** Everything quoted in the brief is verbatim. Three items are DRAFT COPY, marked in `index.html`: the "How Puzzler can help" bullets for *Growing*, *Navigating change*, and *Stronger systems and accountability* (the brief supplied none; these are derived from the approved core responses); the 36 one-sentence audience angles (drawn only from the approved audience emphasis lists); and the six static audience summaries. Primary CTAs for paths 1–5 route to the existing Calendly Fit Call link, each with a secondary prefilled `mailto:` to the approved inquiry address; the compliance path uses the specified `mailto:` subject with Book a Fit Call as secondary. Confirm or redirect.
+- **Practice highlight placement.** The result marks its three practices in the foundation list above the tool (text badge "Relevant to your starting point"). If a visitor never scrolls back up, the same three appear as chips in the result, so nothing is lost; say if the badge is unwanted.
 - **Earlier link.** `https://youtu.be/v64HNRW10ZM` was supplied in-session before the LOCK link was confirmed and is no longer used anywhere. Say which project it belongs to if it should appear on the site.
 - **Full lockup (BR-03).** Choose candidate A or B, or supply the original vector.
 - **Mono-white mark variant.** Needed for the Navy headers on privacy, terms, making-the-pieces-fit, and the card page (slots are ready and commented).
@@ -215,8 +217,10 @@ npm install                 # playwright 1.56.1, axe-core, html-validate (Chromi
 npm run build               # regenerate hero layers + Method states/CSS from the masters
 npm run check:assets        # excluded files, code-drawn logos, unapproved tokens, overlay parity, logo-slot state
 npm run validate            # html-validate on the six public pages
-npm run verify              # serves the repo, runs browser checks, writes tools/output/report.md + screenshots
+npm run verify              # serves the repo, runs browser checks (incl. all 36 starting-point combinations, keyboard, reduced motion, mobile, no-JS), writes tools/output/report.md + screenshots
 npm test                    # all three
+node shots-section.mjs <prefix> '#practices'      # merged section at 375 / 768 / 1024 / 1440 → tools/output/sections/
+node shots-fysp.mjs <need> <audience>            # interaction screenshots at 1440 and 375 (e.g. compliance nonprofit)
 ```
 
 ---
