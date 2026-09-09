@@ -1,0 +1,29 @@
+/* Shared styles for the 1920×1080 video posters. Rendered by tools/build-social-preview.mjs. Not served publicly.
+   Navy blueprint surface (BP-03 grid) matches the homepage hero. The four-piece mark is omitted on Navy
+   (Brand Standards §8.1: full-colour mark on white / pale gray only; mono-white variant not yet supplied). */
+@font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; src: url('../../fonts/poppins-500.woff2') format('woff2'); }
+@font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; src: url('../../fonts/poppins-600.woff2') format('woff2'); }
+@font-face { font-family: 'Poppins'; font-style: normal; font-weight: 800; src: url('../../fonts/poppins-800.woff2') format('woff2'); }
+@font-face { font-family: 'Poppins'; font-style: italic; font-weight: 600; src: url('../../fonts/poppins-600-italic.woff2') format('woff2'); }
+:root {
+  --navy: #1A1A2E; --coral: #E94F4A; --orange: #F39C4A; --yellow: #F5CF48; --green: #7ABF5F; --teal: #30A396;
+  --white: #FFFFFF; --on-dark-soft: rgba(255, 255, 255, 0.80); --on-dark-mute: rgba(255, 255, 255, 0.62);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--navy); }
+body { font-family: 'Poppins', sans-serif; color: var(--white); -webkit-font-smoothing: antialiased; }
+.card {
+  position: relative; width: 1920px; height: 1080px; display: flex; flex-direction: column;
+  background: url('../blueprint/hero/blueprint-grid.svg') 0 0 / 80px 80px repeat, var(--navy);
+}
+.signature-bar { display: flex; height: 18px; width: 100%; flex: none; }
+.signature-bar > span { flex: 1 1 0; }
+.s1 { background: var(--coral); } .s2 { background: var(--orange); } .s3 { background: var(--yellow); } .s4 { background: var(--green); } .s5 { background: var(--teal); }
+.body { flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 160px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 22px; font-size: 26px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--teal); }
+.eyebrow::before, .eyebrow::after { content: ""; width: 44px; height: 3px; background: var(--teal); }
+.name { font-size: 176px; font-weight: 800; letter-spacing: 0.12em; line-height: 1; margin-left: 0.12em; }
+.title { font-size: 128px; font-weight: 800; letter-spacing: 0.08em; line-height: 1; margin-left: 0.08em; text-transform: uppercase; }
+.desc { font-size: 40px; font-weight: 600; letter-spacing: 0.30em; text-transform: uppercase; color: var(--on-dark-soft); margin-left: 0.30em; }
+.line { font-size: 64px; font-weight: 600; font-style: italic; letter-spacing: -0.01em; color: var(--teal); line-height: 1.1; }
+.rule { height: 2px; width: 120px; background: rgba(255, 255, 255, 0.14); }
