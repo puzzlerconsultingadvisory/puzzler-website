@@ -36,7 +36,7 @@ No framework was introduced.
 |---|---|---|
 | BR-04 | Five-color signature bar | Rendered in code; no file needed. |
 | BR-05 | Color and type tokens | Values taken from the asset map and the prompt. The `.docx` itself is not present (see §1.3). |
-| BR-06 | `social-preview.png` (640×320; history name `puzzler_social_preview_640.png`) | Historical reference. Still referenced by `og:image` until WEB-03 is produced. |
+| BR-06 | `puzzler_social_preview_640.png` (640×320, historical) | Superseded 2026-09-09 by WEB-03 (`social-preview.png`, 1200×630, rendered from `website-assets/social-preview/social-preview.html` by `tools/build-social-preview.mjs`). Not kept in the repo. |
 | — | `puzzler_logo_teal_1024.png` | Single teal piece. Source of the current favicon / touch icons. Not the four-piece mark. |
 | — | `fonts/poppins-*.woff2` | 400–800 regular were present. 300 regular and 300–600 italic latin subsets added during preflight so the homepage no longer depends on Google Fonts. |
 | — | `making-the-pieces-fit.mp4` + poster | Existing video page (not homepage media). Untouched. |
@@ -131,7 +131,7 @@ Every row below was built, passed `npm test` in `tools/` (asset guard, HTML vali
 | Fit Call | **Complete** | Approved copy, Calendly, email, phone, LinkedIn. |
 | Close + footer | **Complete** | Positioning line in Teal, brand line in Poppins Light faded white (Brand Standards §10.2); legal links. |
 | Secondary pages (privacy, terms, making-the-pieces-fit, capability-brief, card) | **Brand-compliant** | Code-drawn marks removed, unapproved tokens removed, Google Fonts removed, contrast fixed, naming rule applied, card intro animation removed. Layout otherwise untouched. |
-| Metadata | **Complete** | Single head; approved title/description; canonical; OG/Twitter use the existing preview image (WEB-03 pending). |
+| Metadata | **Complete** | Single head; approved title/description; canonical; OG/Twitter use the WEB-03 preview (1200×630) on every public page. |
 
 ### Verification results (final run)
 
@@ -183,14 +183,15 @@ Removed: `files short video.zip` (transfer package in the web root).
 
 **Founder edits applied 2026-09-08 (cycle 2)**
 - The "Not the right firm for…" filter line was removed from Who We Serve.
-- The audience phrase "mission-driven organizations" was replaced site-wide with "nonprofits, small businesses, and organizations doing meaningful work" (homepage, metadata, manifest, video/brief pages, card vCard note). "Mission-driven for-profits" in the Who We Serve list became "Small businesses". The legal pages were left untouched (their copy is legal language). The historical social-preview image still carries the old brand line (WEB-03).
+- The audience phrase "mission-driven organizations" was replaced site-wide with "nonprofits, small businesses, and organizations doing meaningful work" (homepage, metadata, manifest, video/brief pages, card vCard note). "Mission-driven for-profits" in the Who We Serve list became "Small businesses". The legal pages were left untouched (their copy is legal language). The social-preview image was regenerated with the current audience line (WEB-03, 2026-09-09).
 - Social links added to the Fit Call "Follow" column: LinkedIn (existing), Threads `@puzzler_consulting_advisory`, TikTok `@puzzlerconsulting`, YouTube `@puzzlerconsulting`. Profile URLs were built from the supplied handles and could not be fetched from this environment; confirm they resolve.
 - LOCK and *The Falcon and the Shadow* artwork was supplied as inline images, which never reach the repository. Drop the files into `assets/pieces-in-motion/lock/source/` and `assets/pieces-in-motion/falcon-and-shadow/source/`, run `python3 tools/build-posters.py`, and the cards pick up the 1280×720 derivatives on the next edit (poster CSS is already in place).
 
 - Pieces in Motion destinations confirmed: Falcon `https://youtu.be/MdvX8wE0pCw`, LOCK `https://youtu.be/fJ6mfYTrP5s`, QUIET MIND `https://youtu.be/LAh9TsDHnTc`. Cards embed the videos as click-to-play facades. The card thumbnail is YouTube's own frame; drop approved artwork into `assets/pieces-in-motion/<project>/source/` and run `tools/build-posters.py` to replace it with a branded poster.
 - The site now loads YouTube thumbnails and, on click, the `youtube-nocookie.com` player. Confirm whether the Privacy Notice should mention embedded YouTube content (legal copy is not edited here).
 
-- Positioning line changed by the founder on 2026-09-09: "Practitioners, not vendors." is replaced by "Making the pieces fit" everywhere in page copy and metadata (homepage title, hero, social tags, video and brief pages, card page and vCard note). Where the old line sat next to the brand line, the duplicate was collapsed. Three raster files still carry the old line baked in and need regenerating: `social-preview.png` (WEB-03), `making-the-pieces-fit-poster.jpg`, and `capability-brief-poster.jpg`.
+- Positioning line changed by the founder on 2026-09-09: "Practitioners, not vendors." is replaced by "Making the pieces fit" everywhere in page copy and metadata (homepage title, hero, social tags, video and brief pages, card page and vCard note). Where the old line sat next to the brand line, the duplicate was collapsed. `social-preview.png` (WEB-03) was regenerated with the new line on 2026-09-09. Two raster files still carry the old line baked in and need regenerating: `making-the-pieces-fit-poster.jpg` and `capability-brief-poster.jpg`.
+- WEB-03 produced 2026-09-09: `social-preview.png` is now 1200×630, rendered by `tools/build-social-preview.mjs` from `website-assets/social-preview/social-preview.html` (white surface so the exact BR-01 mark file may be used per Brand Standards §8.1; Poppins 500/600/800 + 600 italic self-hosted; signature bar top and bottom; copy: "Consulting & Advisory Services", "PUZZLER", "Making the pieces fit.", "For nonprofits, small businesses, and organizations doing meaningful work."). `og:image:width`/`height` updated to 1200×630 on `index.html`, `privacy.html`, `terms.html`, `puzzler_card.html`. Re-render with `cd tools && npm run build:social`.
 
 **Decisions needed**
 - **Earlier link.** `https://youtu.be/v64HNRW10ZM` was supplied in-session before the LOCK link was confirmed and is no longer used anywhere. Say which project it belongs to if it should appear on the site.
@@ -199,7 +200,7 @@ Removed: `files short video.zip` (transfer package in the web root).
 - **Founder note on the homepage.** Retained from the approved release; not in the handoff §4 inventory. Keep or move to a future About page.
 - **Draft copy to approve or replace** (each marked `<!-- DRAFT COPY -->` in `index.html`): Operator Gap heading and bridging paragraph; outcomes intro line and the three one-sentence pillar elaborations; Method intro sentence; the seven Method step descriptions; Who We Serve heading; Ways to Begin heading.
 - **Falcon and the Shadow** trailer selection and poster; **IGNITE** keyframe verification and preview.
-- **Social preview (WEB-03)** 1200×630 after design approval; **favicon / touch icons (WEB-01/02)** to regenerate from BR-01 (current files derive from the single teal piece; `scripts/build-favicons.ps1` can be repointed).
+- **Favicon / touch icons (WEB-01/02)** to regenerate from BR-01 (current files derive from the single teal piece; `scripts/build-favicons.ps1` can be repointed).
 
 ---
 

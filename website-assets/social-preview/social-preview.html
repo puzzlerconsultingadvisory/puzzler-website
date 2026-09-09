@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WEB-03 social preview source (1200×630)</title>
+<!--
+  Source card for /social-preview.png. Rendered by tools/build-social-preview.mjs (Chromium, 1200×630, 1×).
+  Rules honored: the four-piece mark is the exact BR-01 file on a white surface (Brand Standards §8.1);
+  Poppins only; approved palette only; Orange appears only in the signature bar (BR-04).
+  Not linked from any public page.
+-->
+<style>
+  @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; src: url('../../fonts/poppins-500.woff2') format('woff2'); }
+  @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; src: url('../../fonts/poppins-600.woff2') format('woff2'); }
+  @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 800; src: url('../../fonts/poppins-800.woff2') format('woff2'); }
+  @font-face { font-family: 'Poppins'; font-style: italic; font-weight: 600; src: url('../../fonts/poppins-600-italic.woff2') format('woff2'); }
+
+  :root {
+    --navy: #1A1A2E; --coral: #E94F4A; --orange: #F39C4A; --yellow: #F5CF48; --green: #7ABF5F; --teal: #30A396;
+    --pale: #F4F4F8; --white: #FFFFFF; --ink-mute: rgba(26, 26, 46, 0.66);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--white); }
+  body { font-family: 'Poppins', sans-serif; color: var(--navy); -webkit-font-smoothing: antialiased; }
+
+  .card { position: relative; width: 1200px; height: 630px; display: flex; flex-direction: column; }
+  .signature-bar { display: flex; height: 12px; width: 100%; flex: none; }
+  .signature-bar > span { flex: 1 1 0; }
+  .s1 { background: var(--coral); } .s2 { background: var(--orange); } .s3 { background: var(--yellow); } .s4 { background: var(--green); } .s5 { background: var(--teal); }
+
+  .body { flex: 1 1 auto; display: flex; align-items: center; gap: 72px; padding: 0 96px; }
+  .mark { width: 232px; height: 232px; flex: none; display: block; }
+  .copy { flex: 1 1 auto; min-width: 0; }
+  .desc { font-size: 19px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 14px; }
+  .name { font-size: 96px; font-weight: 800; letter-spacing: 0.12em; line-height: 1; margin-left: -4px; }
+  .line { font-size: 48px; font-weight: 600; font-style: italic; letter-spacing: -0.01em; color: var(--teal); margin-top: 20px; line-height: 1.1; }
+  .rule { height: 2px; width: 88px; background: var(--navy); opacity: .14; margin: 28px 0 22px; }
+  .audience { font-size: 22px; font-weight: 500; line-height: 1.4; color: var(--navy); max-width: 700px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="signature-bar"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span></div>
+  <div class="body">
+    <img class="mark" src="../../assets/brand/puzzler_logo_4piece.svg" width="232" height="232" alt="">
+    <div class="copy">
+      <div class="desc">Consulting &amp; Advisory Services</div>
+      <div class="name">PUZZLER</div>
+      <div class="line">Making the pieces fit.</div>
+      <div class="rule"></div>
+      <div class="audience">For nonprofits, small businesses,<br>and organizations doing meaningful work.</div>
+    </div>
+  </div>
+  <div class="signature-bar"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span></div>
+</div>
+</body>
+</html>

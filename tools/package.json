@@ -11,7 +11,8 @@
     "verify": "node verify.mjs",
     "test": "npm run check:assets && npm run validate && npm run verify",
     "build:hero": "node build-hero-layers.mjs",
-    "build": "npm run build:hero && npm run build:method"
+    "build:social": "node build-social-preview.mjs",
+    "build": "npm run build:hero && npm run build:method && npm run build:social"
   },
   "devDependencies": {
     "axe-core": "4.10.3",
