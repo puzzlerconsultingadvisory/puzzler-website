@@ -190,6 +190,8 @@ Removed: `files short video.zip` (transfer package in the web root).
 - Pieces in Motion destinations confirmed: Falcon `https://youtu.be/MdvX8wE0pCw`, LOCK `https://youtu.be/fJ6mfYTrP5s`, QUIET MIND `https://youtu.be/LAh9TsDHnTc`. Cards embed the videos as click-to-play facades. The card thumbnail is YouTube's own frame; drop approved artwork into `assets/pieces-in-motion/<project>/source/` and run `tools/build-posters.py` to replace it with a branded poster.
 - The site now loads YouTube thumbnails and, on click, the `youtube-nocookie.com` player. Confirm whether the Privacy Notice should mention embedded YouTube content (legal copy is not edited here).
 
+- Positioning line changed by the founder on 2026-09-09: "Practitioners, not vendors." is replaced by "Making the pieces fit" everywhere in page copy and metadata (homepage title, hero, social tags, video and brief pages, card page and vCard note). Where the old line sat next to the brand line, the duplicate was collapsed. Three raster files still carry the old line baked in and need regenerating: `social-preview.png` (WEB-03), `making-the-pieces-fit-poster.jpg`, and `capability-brief-poster.jpg`.
+
 **Decisions needed**
 - **Earlier link.** `https://youtu.be/v64HNRW10ZM` was supplied in-session before the LOCK link was confirmed and is no longer used anywhere. Say which project it belongs to if it should appear on the site.
 - **Full lockup (BR-03).** Choose candidate A or B, or supply the original vector.
