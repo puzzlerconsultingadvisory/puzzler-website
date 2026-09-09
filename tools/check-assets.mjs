@@ -53,6 +53,17 @@ for (const f of PUBLIC_HTML) {
   if (!a.length || a.join('\n') !== b.join('\n')) failures.push('index.html inline connection overlay drifted from blueprint-connections.svg');
 }
 
+// favicon.svg must carry the BR-01 polygons verbatim (WEB-01); the icon rasters must exist.
+{
+  const poly = (t) => (t.match(/<polygon[^>]*\/>/g) || []);
+  const mark = poly(readFileSync(join(root, 'assets/brand/puzzler_logo_4piece.svg'), 'utf8'));
+  const fav = existsSync(join(root, 'favicon.svg')) ? poly(readFileSync(join(root, 'favicon.svg'), 'utf8')) : [];
+  if (mark.length !== 4 || fav.join('\n') !== mark.join('\n')) failures.push('favicon.svg polygons differ from BR-01 (regenerate with tools/build-favicons.mjs)');
+  for (const f of ['favicon.ico', 'favicon-16.png', 'favicon-32.png', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png']) {
+    if (!existsSync(join(root, f))) failures.push(`icon file missing: ${f}`);
+  }
+}
+
 // A root public/ directory would become the Vercel output directory (build-less project) and 404 the site.
 if (existsSync(join(root, 'public'))) failures.push('root public/ directory present: Vercel would serve it as the site root. Keep bundle assets under assets/.');
 
