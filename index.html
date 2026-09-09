@@ -341,7 +341,7 @@
   .practice summary .ico { width: 28px; height: 28px; color: var(--navy); }
   .practice summary .plus { width: 24px; height: 24px; color: var(--ink-mute); transition: transform .3s var(--ease); }
   .practice[open] summary .plus { transform: rotate(45deg); }
-  .practice summary:hover { background: var(--pale); padding-left: 12px; }
+  .practice summary:hover { background: var(--white); padding-left: 12px; }
   .practice:nth-child(1) summary { border-left-color: var(--coral); }
   .practice:nth-child(2) summary { border-left-color: var(--orange); }
   .practice:nth-child(3) summary { border-left-color: var(--yellow); }
@@ -352,6 +352,34 @@
   .practice .relevant { display: inline-block; vertical-align: middle; margin-left: 10px; padding: 3px 8px; border: 1px solid var(--teal); border-radius: 3px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); white-space: nowrap; }
   .practice .relevant[hidden] { display: none; }
   .practice.is-relevant summary { background: var(--accent-bg); }
+
+  /* Digital storytelling note beneath the five practices */
+  .also { margin-top: 28px; padding: 24px 26px; background: var(--white); border: 1px solid var(--rule-light); border-left: 4px solid var(--teal); border-radius: 4px; max-width: 760px; }
+  .also-kicker { font-size: 11.5px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 6px; }
+  .also h4 { font-size: 20px; margin-bottom: 8px; }
+  .also p { color: var(--ink-soft); font-size: 15.5px; }
+  .also-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 6px; font-weight: 600; font-size: 14.5px; color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--teal); }
+  .also-link:hover { color: var(--teal); }
+
+  /* Contact details form (Fit Call section and inside a starting-point result) */
+  .reach-form { margin-top: 32px; padding: 24px; border: 1px solid var(--rule-dark); border-radius: 4px; background: rgba(15, 15, 31, 0.55); max-width: 680px; }
+  .reach-title { font-weight: 600; font-size: 17px; margin-bottom: 4px; }
+  .reach-help { font-size: 14px; color: var(--on-dark-mute); margin-bottom: 18px; max-width: 56ch; }
+  .reach-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px 16px; margin-bottom: 18px; }
+  .reach-grid .wide { grid-column: 1 / -1; }
+  .field label { display: block; font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--on-dark-soft); margin-bottom: 6px; }
+  .field .req { color: var(--teal); }
+  .field input, .field textarea { display: block; width: 100%; min-height: 46px; padding: 10px 12px; font: inherit; font-size: 15.5px; color: var(--white); background: var(--navy-deep); border: 1px solid var(--rule-dark); border-radius: 4px; }
+  .field textarea { resize: vertical; min-height: 84px; }
+  .field input:focus-visible, .field textarea:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; border-color: var(--teal); }
+  .reach-error { color: var(--white); background: rgba(233, 79, 74, 0.16); border-left: 3px solid var(--coral); padding: 10px 12px; font-size: 14.5px; margin-bottom: 14px; }
+  .reach-error[hidden] { display: none; }
+  .fysp-result .reach { margin-top: 24px; border-top: 1px solid var(--rule-dark); padding-top: 4px; }
+  .fysp-result .reach summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px; min-height: 48px; font-weight: 600; color: var(--white); }
+  .fysp-result .reach summary::-webkit-details-marker { display: none; }
+  .fysp-result .reach summary::before { content: "+"; font-weight: 500; color: var(--teal); width: 16px; text-align: center; }
+  .fysp-result .reach[open] summary::before { content: "−"; }
+  .fysp-result .reach .reach-form { margin-top: 8px; max-width: none; }
 
   /* Find Your Starting Point: Navy blueprint panel inside the light section. */
   .fysp {
@@ -566,6 +594,7 @@
     .fysp-steps { grid-template-columns: minmax(0, 1fr); }
     .fysp-field { display: none; }
     .fysp-result .cols { grid-template-columns: minmax(0, 1fr); }
+    .reach-grid { grid-template-columns: minmax(0, 1fr); }
     .audience-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .outcomes-grid { grid-template-columns: minmax(0, 1fr); }
     .pim-grid { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
@@ -631,8 +660,8 @@
     </button>
     <nav class="primary-nav" id="primary-nav" aria-label="Primary">
       <ul>
-        <li><a href="#method">The Puzzler Method</a></li>
         <li><a href="#practices">Build It to Hold</a></li>
+        <li><a href="#method">The Puzzler Method</a></li>
         <li><a href="#pieces-in-motion">Pieces in Motion</a></li>
         <li><a href="#note">A Note from Mark</a></li>
         <li><a class="cta" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Book a Fit Call</a></li>
@@ -693,6 +722,237 @@
         <!-- DRAFT COPY: bridging paragraph pending approval -->
         <p class="lead">Between the plan and the people who have to run it sits the operator gap: the governance, funding discipline, and capacity that a strategy assumes but rarely builds.</p>
         <p class="pull">Organizations don’t fail because their strategy is wrong. They fail because no one stays in the hole with them long enough to get them out. We do the work alongside the people responsible for it, not at a distance from them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BUILD IT TO HOLD (who we serve + how we help) ───────────── -->
+  <section class="section light pale build" id="practices" aria-labelledby="practices-title">
+    <div class="wrap">
+      <p class="eyebrow">Who we serve and how we help</p>
+      <h2 class="h2" id="practices-title">Build It to Hold</h2>
+      <p class="lead">Different people and organizations reach the threshold in different ways. Puzzler combines five operating practices around the structure, funding, accountability, and people each client needs to move forward—and keep what they build from unraveling.</p>
+
+      <!-- Five-practice foundation. Each practice carries a data-practice id so the starting-point
+           result can mark the practices it draws on (text badge + rule; never color alone). -->
+      <h3 class="build-sub" id="foundation-title">Five practices beneath every engagement</h3>
+      <div class="practices">
+        <details class="practice" data-practice="restructuring">
+          <summary>
+            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="3" width="8" height="6" rx="1"/><rect x="3" y="19" width="8" height="6" rx="1"/><rect x="17" y="19" width="8" height="6" rx="1"/><path d="M14 9v5M7 19v-5h14v5"/></svg>
+            <span>Organizational restructuring and transition support <span class="relevant" hidden>Relevant to your starting point</span></span>
+            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <div class="body"><p>Reorganizations, mergers, leadership transitions, and program portfolio rationalizations. The structural work that determines whether an organization can do its job for the next decade — built on enterprise reorganizations led at federal scale.</p></div>
+        </details>
+        <details class="practice" data-practice="funding">
+          <summary>
+            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9l10-5 10 5-10 5z"/><path d="M4 14l10 5 10-5"/><path d="M4 19l10 5 10-5"/></svg>
+            <span>Funding strategy across every mechanism <span class="relevant" hidden>Relevant to your starting point</span></span>
+            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <div class="body"><p>Grants, cooperative agreements, contracts, and gifts — and the compliance regimes that come with each. Most mid-sized nonprofits, small businesses, and organizations doing meaningful work run all four at once. We’re built to work the whole portfolio.</p></div>
+        </details>
+        <details class="practice" data-practice="capacity">
+          <summary>
+            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 24h22M4 8h20"/><path d="M7 8v16M14 8v16M21 8v16"/><path d="M3 8l11-4 11 4"/></svg>
+            <span>Capacity building that holds <span class="relevant" hidden>Relevant to your starting point</span></span>
+            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <div class="body"><p>Operational governance, financial planning and analysis, shared-services design, and the unglamorous infrastructure that determines whether mission gets executed. The kind of capacity that doesn’t unravel when the next transformative event arrives.</p></div>
+        </details>
+        <details class="practice" data-practice="program">
+          <summary>
+            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="16" height="21" rx="1.5"/><path d="M11 4h6v3h-6z"/><path d="M10 14l3 3 5-6"/><path d="M10 21h8"/></svg>
+            <span>Program effectiveness and accountability <span class="relevant" hidden>Relevant to your starting point</span></span>
+            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <div class="body"><p>Compliance monitoring and program review for grants and contracts. Site visits, subrecipient monitoring, and the operational disciplines that produce strong year-over-year outcomes — not just clean audits.</p></div>
+        </details>
+        <details class="practice" data-practice="leadership">
+          <summary>
+            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="9" r="4"/><path d="M5 25c1-5 4.5-8 9-8s8 3 9 8"/><path d="M20 4l2.5 2.5L26 3"/></svg>
+            <span>Leadership and workforce development <span class="relevant" hidden>Relevant to your starting point</span></span>
+            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <div class="body"><p>Executive coaching, succession planning, tailored workshops, and workforce training. The customized development of leaders and teams who can actually do the work.</p></div>
+        </details>
+      </div>
+
+      <!-- Digital storytelling: a distinct service option alongside the five practices (the Pieces in Motion
+           work). DRAFT COPY pending approval; the five-practice set is unchanged. -->
+      <div class="also">
+        <p class="also-kicker">Also available</p>
+        <h4>Digital storytelling</h4>
+        <p>Short films, narrative video, and functional audiovisual pieces that help funders, partners, boards, and communities understand what the work is and why it matters. This is the work shown in Pieces in Motion, and it can stand alone or run alongside any engagement.</p>
+        <a class="also-link" href="#pieces-in-motion">See Pieces in Motion →</a>
+      </div>
+
+      <!-- ── Find Your Starting Point ─────────────────────────────────
+           Structured data drives every need × audience result (see the script at the end of the page).
+           Without scripting the selector is hidden and the six starting points render as static content. -->
+      <section class="fysp dark" id="find-your-starting-point" aria-labelledby="fysp-title">
+        <div class="fysp-head">
+          <p class="eyebrow">Three steps · No email required</p>
+          <h3 class="fysp-title" id="fysp-title">Find Your Starting Point</h3>
+          <p class="fysp-lead">Tell us what you are navigating and where you are starting. We will show you how Puzzler may be able to help.</p>
+        </div>
+
+        <div class="fysp-steps">
+          <div class="fysp-group" role="group" aria-labelledby="fysp-need-title">
+            <h4 class="fysp-step" id="fysp-need-title"><span class="num">Step 1</span> What are you working through?</h4>
+            <div class="fysp-options" data-group="need">
+              <button class="opt" type="button" data-need="idea" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">I’m starting with an idea</span></button>
+              <button class="opt" type="button" data-need="funding" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">I’m looking for funding opportunities</span></button>
+              <button class="opt" type="button" data-need="growing" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We’re growing</span></button>
+              <button class="opt" type="button" data-need="change" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We’re navigating change</span></button>
+              <button class="opt" type="button" data-need="systems" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We need stronger systems and accountability</span></button>
+              <button class="opt" type="button" data-need="story" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We need to tell our story</span></button>
+              <button class="opt opt-urgent" type="button" data-need="compliance" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We have a compliance issue that needs immediate attention <span class="flag">Time-sensitive</span></span></button>
+            </div>
+          </div>
+
+          <div class="fysp-group" role="group" aria-labelledby="fysp-who-title">
+            <h4 class="fysp-step" id="fysp-who-title"><span class="num">Step 2</span> Who are you?</h4>
+            <div class="fysp-options" data-group="audience">
+              <button class="opt" type="button" data-audience="individual" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Individual or founder</span></button>
+              <button class="opt" type="button" data-audience="emerging" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Emerging organization</span></button>
+              <button class="opt" type="button" data-audience="nonprofit" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Nonprofit</span></button>
+              <button class="opt" type="button" data-audience="agency" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">State or local agency</span></button>
+              <button class="opt" type="button" data-audience="foundation" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Foundation or philanthropy</span></button>
+              <button class="opt" type="button" data-audience="business" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Established small or mid-sized business</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blueprint connection: need → relevant practices → audience. One trace per selection, then settled. Decorative; hidden on small screens. -->
+        <div class="fysp-field" aria-hidden="true">
+          <svg focusable="false" class="fysp-svg" viewBox="0 0 960 250" preserveAspectRatio="xMidYMid meet" id="fysp-svg"></svg>
+        </div>
+
+        <div class="fysp-result-wrap">
+          <h4 class="fysp-step"><span class="num">Step 3</span> Your starting point</h4>
+          <div class="fysp-result" id="fysp-result" aria-live="polite" aria-atomic="true">
+            <p class="fysp-placeholder" id="fysp-placeholder">Choose what you are working through and who you are. Your starting point appears here.</p>
+          </div>
+        </div>
+
+        <!-- Static fallback without scripting: the six starting points in full. -->
+        <div class="fysp-static" id="fysp-static">
+          <h4 class="fysp-step">Seven starting points</h4>
+          <p class="fysp-lead">Most engagements begin from one of these. Each draws on the practices above.</p>
+          <div class="fysp-static-list">
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Strategic Roadmap</h5>
+              <p class="headline">Turn the idea into a workable path.</p>
+              <p>Puzzler helps individuals, founders, and emerging organizations translate a promising idea into a strategic roadmap with clear outcomes, milestones, capacity requirements, and funding pathways.</p>
+              <p class="practices-line">Funding Strategy · Capacity Building · Leadership Development</p>
+              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Build My Starting Roadmap <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Funding Landscape and Readiness</h5>
+              <p class="headline">Find the funding path that fits the work.</p>
+              <p>Puzzler helps clients examine grants, cooperative agreements, contracts, philanthropy, gifts, investment, and other viable funding pathways. We also assess whether the individual or organization is ready to pursue and manage those opportunities successfully.</p>
+              <p class="practices-line">Funding Strategy · Capacity Building · Program Effectiveness and Accountability</p>
+              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Map My Funding Path <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Operating Capacity</h5>
+              <p class="headline">Build the systems growth requires.</p>
+              <p>Puzzler helps growing organizations align their structure, people, funding, governance, and operating systems so growth does not create avoidable fragility.</p>
+              <p class="practices-line">Capacity Building · Organizational Restructuring · Leadership Development</p>
+              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Strengthen Our Operating Capacity <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Transition Support</h5>
+              <p class="headline">Keep the work moving through change.</p>
+              <p>Puzzler helps organizations navigate leadership changes, reorganizations, mergers, portfolio shifts, and other transformative events while protecting continuity, trust, and mission delivery.</p>
+              <p class="practices-line">Organizational Restructuring · Capacity Building · Leadership Development</p>
+              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Plan the Transition <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Operating and Accountability Review</h5>
+              <p class="headline">Strengthen what the work depends on.</p>
+              <p>Puzzler helps clients strengthen governance, financial planning, program oversight, documentation, internal controls, and the operating disciplines required for reliable execution.</p>
+              <p class="practices-line">Capacity Building · Program Effectiveness and Accountability · Leadership Development</p>
+              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Strengthen Our Systems <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Digital Storytelling</h5>
+              <p class="headline">Tell the story the work deserves.</p>
+              <p>Puzzler helps organizations tell their story through short films, narrative video, and functional audiovisual pieces, so funders, partners, boards, and communities understand what the work is and why it matters.</p>
+              <p class="practices-line">Funding Strategy · Program Effectiveness and Accountability · Leadership Development</p>
+              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Start the Story <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Compliance Triage and Stabilization</h5>
+              <p class="headline">Stabilize the issue. Clarify the obligation. Build the correction.</p>
+              <p>When a compliance issue cannot wait, Puzzler can help organize the facts, identify the operational gaps, clarify the applicable grant, contract, policy, reporting, or monitoring requirements, and build a practical path toward correction.</p>
+              <p class="practices-line">Program Effectiveness and Accountability · Funding Strategy · Capacity Building</p>
+              <p>Puzzler provides operational, program, grant, contract, and organizational compliance support. Puzzler does not provide legal advice or legal representation.</p>
+              <a class="btn btn-primary" href="mailto:info@puzzlerconsultingadvisory.com?subject=Compliance%20Triage%20Request">Request Compliance Triage <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Static audience summaries: always present for accessibility, search, and visitors who skip the selector.
+           DRAFT COPY: situations and help lines are derived from the approved audience emphasis (2026-09-09 brief), pending approval. -->
+      <div class="audiences">
+        <h3 class="build-sub" id="audiences-title">Who we work with</h3>
+        <ul class="audience-grid">
+          <li class="audience">
+            <h4>Individuals and founders</h4>
+            <p><strong>A common situation.</strong> A promising idea, a clear sense of who it should serve, and open questions about funding, readiness, and what it takes to begin.</p>
+            <p><strong>How Puzzler helps.</strong> We translate the idea into a strategic roadmap, identify viable funding pathways, evaluate readiness, and plan the capabilities required to start.</p>
+            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Funding Strategy · Capacity Building · Leadership Development</p>
+          </li>
+          <li class="audience">
+            <h4>Emerging organizations</h4>
+            <p><strong>A common situation.</strong> Early traction and first funding, with governance, systems, and compliance practices still catching up.</p>
+            <p><strong>How Puzzler helps.</strong> We build the operating foundations, funding readiness, governance, and early compliance systems that support milestones and sustainable growth.</p>
+            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Capacity Building · Funding Strategy · Program Effectiveness and Accountability</p>
+          </li>
+          <li class="audience">
+            <h4>Nonprofits</h4>
+            <p><strong>A common situation.</strong> Grants, gifts, and contracts running at once, with boards, funders, and monitors each expecting something different.</p>
+            <p><strong>How Puzzler helps.</strong> We strengthen governance, program delivery, audit and monitoring readiness, subrecipient oversight, and the leadership capacity to carry it.</p>
+            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Funding Strategy · Program Effectiveness and Accountability · Leadership Development</p>
+          </li>
+          <li class="audience">
+            <h4>State and local agencies</h4>
+            <p><strong>A common situation.</strong> New mandates, funding, or reorganizations that have to be implemented with public accountability and without interrupting programs.</p>
+            <p><strong>How Puzzler helps.</strong> We support program continuity, grants and contracts administration, organizational transitions, implementation discipline, and workforce responsibilities.</p>
+            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Organizational Restructuring · Program Effectiveness and Accountability · Leadership Development</p>
+          </li>
+          <li class="audience">
+            <h4>Foundations and philanthropy</h4>
+            <p><strong>A common situation.</strong> A growing portfolio to monitor, grantees who need support, and a board asking how resources translate into results.</p>
+            <p><strong>How Puzzler helps.</strong> We strengthen grantmaking operations, portfolio monitoring, grantee support, funding strategy, and internal governance.</p>
+            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Program Effectiveness and Accountability · Funding Strategy · Capacity Building</p>
+          </li>
+          <li class="audience">
+            <h4>Established small and mid-sized businesses</h4>
+            <p><strong>A common situation.</strong> Growth, a leadership transition, or contract obligations that the current operating structure was not built to carry.</p>
+            <p><strong>How Puzzler helps.</strong> We align operating structure, financial discipline, contracts, accountability, and leadership transition with sustainable delivery.</p>
+            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Organizational Restructuring · Capacity Building · Leadership Development</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="fit-statement">
+        <p>Puzzler works with individuals, emerging organizations, and established institutions when the need calls for strategic direction, funding clarity, stronger operating capacity, or support through change. We are not the right firm for federal contract advocacy on behalf of clients, financial-distress turnarounds, or executive search.</p>
+        <div class="build-actions">
+          <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Book a Fit Call <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-outline" href="#ways-to-begin">See ways to begin</a>
+        </div>
       </div>
     </div>
   </section>
@@ -805,219 +1065,6 @@
           <!-- DRAFT COPY: adapted from approved firm materials, pending approval -->
           <p>The kind of capacity that doesn’t unravel when the next transformative event arrives.</p>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── BUILD IT TO HOLD (who we serve + how we help) ───────────── -->
-  <section class="section light build" id="practices" aria-labelledby="practices-title">
-    <div class="wrap">
-      <p class="eyebrow">Who we serve and how we help</p>
-      <h2 class="h2" id="practices-title">Build It to Hold</h2>
-      <p class="lead">Different people and organizations reach the threshold in different ways. Puzzler combines five operating practices around the structure, funding, accountability, and people each client needs to move forward—and keep what they build from unraveling.</p>
-
-      <!-- Five-practice foundation. Each practice carries a data-practice id so the starting-point
-           result can mark the practices it draws on (text badge + rule; never color alone). -->
-      <h3 class="build-sub" id="foundation-title">Five practices beneath every engagement</h3>
-      <div class="practices">
-        <details class="practice" data-practice="restructuring">
-          <summary>
-            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="3" width="8" height="6" rx="1"/><rect x="3" y="19" width="8" height="6" rx="1"/><rect x="17" y="19" width="8" height="6" rx="1"/><path d="M14 9v5M7 19v-5h14v5"/></svg>
-            <span>Organizational restructuring and transition support <span class="relevant" hidden>Relevant to your starting point</span></span>
-            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <div class="body"><p>Reorganizations, mergers, leadership transitions, and program portfolio rationalizations. The structural work that determines whether an organization can do its job for the next decade — built on enterprise reorganizations led at federal scale.</p></div>
-        </details>
-        <details class="practice" data-practice="funding">
-          <summary>
-            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9l10-5 10 5-10 5z"/><path d="M4 14l10 5 10-5"/><path d="M4 19l10 5 10-5"/></svg>
-            <span>Funding strategy across every mechanism <span class="relevant" hidden>Relevant to your starting point</span></span>
-            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <div class="body"><p>Grants, cooperative agreements, contracts, and gifts — and the compliance regimes that come with each. Most mid-sized nonprofits, small businesses, and organizations doing meaningful work run all four at once. We’re built to work the whole portfolio.</p></div>
-        </details>
-        <details class="practice" data-practice="capacity">
-          <summary>
-            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 24h22M4 8h20"/><path d="M7 8v16M14 8v16M21 8v16"/><path d="M3 8l11-4 11 4"/></svg>
-            <span>Capacity building that holds <span class="relevant" hidden>Relevant to your starting point</span></span>
-            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <div class="body"><p>Operational governance, financial planning and analysis, shared-services design, and the unglamorous infrastructure that determines whether mission gets executed. The kind of capacity that doesn’t unravel when the next transformative event arrives.</p></div>
-        </details>
-        <details class="practice" data-practice="program">
-          <summary>
-            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="16" height="21" rx="1.5"/><path d="M11 4h6v3h-6z"/><path d="M10 14l3 3 5-6"/><path d="M10 21h8"/></svg>
-            <span>Program effectiveness and accountability <span class="relevant" hidden>Relevant to your starting point</span></span>
-            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <div class="body"><p>Compliance monitoring and program review for grants and contracts. Site visits, subrecipient monitoring, and the operational disciplines that produce strong year-over-year outcomes — not just clean audits.</p></div>
-        </details>
-        <details class="practice" data-practice="leadership">
-          <summary>
-            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="9" r="4"/><path d="M5 25c1-5 4.5-8 9-8s8 3 9 8"/><path d="M20 4l2.5 2.5L26 3"/></svg>
-            <span>Leadership and workforce development <span class="relevant" hidden>Relevant to your starting point</span></span>
-            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <div class="body"><p>Executive coaching, succession planning, tailored workshops, and workforce training. The customized development of leaders and teams who can actually do the work.</p></div>
-        </details>
-      </div>
-
-      <!-- ── Find Your Starting Point ─────────────────────────────────
-           Structured data drives every need × audience result (see the script at the end of the page).
-           Without scripting the selector is hidden and the six starting points render as static content. -->
-      <section class="fysp dark" id="find-your-starting-point" aria-labelledby="fysp-title">
-        <div class="fysp-head">
-          <p class="eyebrow">Three steps · No email required</p>
-          <h3 class="fysp-title" id="fysp-title">Find Your Starting Point</h3>
-          <p class="fysp-lead">Tell us what you are navigating and where you are starting. We will show you how Puzzler may be able to help.</p>
-        </div>
-
-        <div class="fysp-steps">
-          <div class="fysp-group" role="group" aria-labelledby="fysp-need-title">
-            <h4 class="fysp-step" id="fysp-need-title"><span class="num">Step 1</span> What are you working through?</h4>
-            <div class="fysp-options" data-group="need">
-              <button class="opt" type="button" data-need="idea" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">I’m starting with an idea</span></button>
-              <button class="opt" type="button" data-need="funding" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">I’m looking for funding opportunities</span></button>
-              <button class="opt" type="button" data-need="growing" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We’re growing</span></button>
-              <button class="opt" type="button" data-need="change" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We’re navigating change</span></button>
-              <button class="opt" type="button" data-need="systems" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We need stronger systems and accountability</span></button>
-              <button class="opt opt-urgent" type="button" data-need="compliance" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We have a compliance issue that needs immediate attention <span class="flag">Time-sensitive</span></span></button>
-            </div>
-          </div>
-
-          <div class="fysp-group" role="group" aria-labelledby="fysp-who-title">
-            <h4 class="fysp-step" id="fysp-who-title"><span class="num">Step 2</span> Who are you?</h4>
-            <div class="fysp-options" data-group="audience">
-              <button class="opt" type="button" data-audience="individual" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Individual or founder</span></button>
-              <button class="opt" type="button" data-audience="emerging" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Emerging organization</span></button>
-              <button class="opt" type="button" data-audience="nonprofit" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Nonprofit</span></button>
-              <button class="opt" type="button" data-audience="agency" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">State or local agency</span></button>
-              <button class="opt" type="button" data-audience="foundation" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Foundation or philanthropy</span></button>
-              <button class="opt" type="button" data-audience="business" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Established small or mid-sized business</span></button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Blueprint connection: need → relevant practices → audience. One trace per selection, then settled. Decorative; hidden on small screens. -->
-        <div class="fysp-field" aria-hidden="true">
-          <svg focusable="false" class="fysp-svg" viewBox="0 0 960 250" preserveAspectRatio="xMidYMid meet" id="fysp-svg"></svg>
-        </div>
-
-        <div class="fysp-result-wrap">
-          <h4 class="fysp-step"><span class="num">Step 3</span> Your starting point</h4>
-          <div class="fysp-result" id="fysp-result" aria-live="polite" aria-atomic="true">
-            <p class="fysp-placeholder" id="fysp-placeholder">Choose what you are working through and who you are. Your starting point appears here.</p>
-          </div>
-        </div>
-
-        <!-- Static fallback without scripting: the six starting points in full. -->
-        <div class="fysp-static" id="fysp-static">
-          <h4 class="fysp-step">Six starting points</h4>
-          <p class="fysp-lead">Most engagements begin from one of these. Each draws on the practices above.</p>
-          <div class="fysp-static-list">
-            <div class="sp">
-              <p class="kicker">Starting point</p>
-              <h5>Strategic Roadmap</h5>
-              <p class="headline">Turn the idea into a workable path.</p>
-              <p>Puzzler helps individuals, founders, and emerging organizations translate a promising idea into a strategic roadmap with clear outcomes, milestones, capacity requirements, and funding pathways.</p>
-              <p class="practices-line">Funding Strategy · Capacity Building · Leadership Development</p>
-              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Build My Starting Roadmap <span class="arrow" aria-hidden="true">→</span></a>
-            </div>
-            <div class="sp">
-              <p class="kicker">Starting point</p>
-              <h5>Funding Landscape and Readiness</h5>
-              <p class="headline">Find the funding path that fits the work.</p>
-              <p>Puzzler helps clients examine grants, cooperative agreements, contracts, philanthropy, gifts, investment, and other viable funding pathways. We also assess whether the individual or organization is ready to pursue and manage those opportunities successfully.</p>
-              <p class="practices-line">Funding Strategy · Capacity Building · Program Effectiveness and Accountability</p>
-              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Map My Funding Path <span class="arrow" aria-hidden="true">→</span></a>
-            </div>
-            <div class="sp">
-              <p class="kicker">Starting point</p>
-              <h5>Operating Capacity</h5>
-              <p class="headline">Build the systems growth requires.</p>
-              <p>Puzzler helps growing organizations align their structure, people, funding, governance, and operating systems so growth does not create avoidable fragility.</p>
-              <p class="practices-line">Capacity Building · Organizational Restructuring · Leadership Development</p>
-              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Strengthen Our Operating Capacity <span class="arrow" aria-hidden="true">→</span></a>
-            </div>
-            <div class="sp">
-              <p class="kicker">Starting point</p>
-              <h5>Transition Support</h5>
-              <p class="headline">Keep the work moving through change.</p>
-              <p>Puzzler helps organizations navigate leadership changes, reorganizations, mergers, portfolio shifts, and other transformative events while protecting continuity, trust, and mission delivery.</p>
-              <p class="practices-line">Organizational Restructuring · Capacity Building · Leadership Development</p>
-              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Plan the Transition <span class="arrow" aria-hidden="true">→</span></a>
-            </div>
-            <div class="sp">
-              <p class="kicker">Starting point</p>
-              <h5>Operating and Accountability Review</h5>
-              <p class="headline">Strengthen what the work depends on.</p>
-              <p>Puzzler helps clients strengthen governance, financial planning, program oversight, documentation, internal controls, and the operating disciplines required for reliable execution.</p>
-              <p class="practices-line">Capacity Building · Program Effectiveness and Accountability · Leadership Development</p>
-              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Strengthen Our Systems <span class="arrow" aria-hidden="true">→</span></a>
-            </div>
-            <div class="sp">
-              <p class="kicker">Starting point</p>
-              <h5>Compliance Triage and Stabilization</h5>
-              <p class="headline">Stabilize the issue. Clarify the obligation. Build the correction.</p>
-              <p>When a compliance issue cannot wait, Puzzler can help organize the facts, identify the operational gaps, clarify the applicable grant, contract, policy, reporting, or monitoring requirements, and build a practical path toward correction.</p>
-              <p class="practices-line">Program Effectiveness and Accountability · Funding Strategy · Capacity Building</p>
-              <p>Puzzler provides operational, program, grant, contract, and organizational compliance support. Puzzler does not provide legal advice or legal representation.</p>
-              <a class="btn btn-primary" href="mailto:info@puzzlerconsultingadvisory.com?subject=Compliance%20Triage%20Request">Request Compliance Triage <span class="arrow" aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Static audience summaries: always present for accessibility, search, and visitors who skip the selector.
-           DRAFT COPY: situations and help lines are derived from the approved audience emphasis (2026-09-09 brief), pending approval. -->
-      <div class="audiences">
-        <h3 class="build-sub" id="audiences-title">Who we work with</h3>
-        <ul class="audience-grid">
-          <li class="audience">
-            <h4>Individuals and founders</h4>
-            <p><strong>A common situation.</strong> A promising idea, a clear sense of who it should serve, and open questions about funding, readiness, and what it takes to begin.</p>
-            <p><strong>How Puzzler helps.</strong> We translate the idea into a strategic roadmap, identify viable funding pathways, evaluate readiness, and plan the capabilities required to start.</p>
-            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Funding Strategy · Capacity Building · Leadership Development</p>
-          </li>
-          <li class="audience">
-            <h4>Emerging organizations</h4>
-            <p><strong>A common situation.</strong> Early traction and first funding, with governance, systems, and compliance practices still catching up.</p>
-            <p><strong>How Puzzler helps.</strong> We build the operating foundations, funding readiness, governance, and early compliance systems that support milestones and sustainable growth.</p>
-            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Capacity Building · Funding Strategy · Program Effectiveness and Accountability</p>
-          </li>
-          <li class="audience">
-            <h4>Nonprofits</h4>
-            <p><strong>A common situation.</strong> Grants, gifts, and contracts running at once, with boards, funders, and monitors each expecting something different.</p>
-            <p><strong>How Puzzler helps.</strong> We strengthen governance, program delivery, audit and monitoring readiness, subrecipient oversight, and the leadership capacity to carry it.</p>
-            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Funding Strategy · Program Effectiveness and Accountability · Leadership Development</p>
-          </li>
-          <li class="audience">
-            <h4>State and local agencies</h4>
-            <p><strong>A common situation.</strong> New mandates, funding, or reorganizations that have to be implemented with public accountability and without interrupting programs.</p>
-            <p><strong>How Puzzler helps.</strong> We support program continuity, grants and contracts administration, organizational transitions, implementation discipline, and workforce responsibilities.</p>
-            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Organizational Restructuring · Program Effectiveness and Accountability · Leadership Development</p>
-          </li>
-          <li class="audience">
-            <h4>Foundations and philanthropy</h4>
-            <p><strong>A common situation.</strong> A growing portfolio to monitor, grantees who need support, and a board asking how resources translate into results.</p>
-            <p><strong>How Puzzler helps.</strong> We strengthen grantmaking operations, portfolio monitoring, grantee support, funding strategy, and internal governance.</p>
-            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Program Effectiveness and Accountability · Funding Strategy · Capacity Building</p>
-          </li>
-          <li class="audience">
-            <h4>Established small and mid-sized businesses</h4>
-            <p><strong>A common situation.</strong> Growth, a leadership transition, or contract obligations that the current operating structure was not built to carry.</p>
-            <p><strong>How Puzzler helps.</strong> We align operating structure, financial discipline, contracts, accountability, and leadership transition with sustainable delivery.</p>
-            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Organizational Restructuring · Capacity Building · Leadership Development</p>
-          </li>
-        </ul>
-      </div>
-
-      <div class="fit-statement">
-        <p>Puzzler works with individuals, emerging organizations, and established institutions when the need calls for strategic direction, funding clarity, stronger operating capacity, or support through change. We are not the right firm for federal contract advocacy on behalf of clients, financial-distress turnarounds, or executive search.</p>
-        <div class="build-actions">
-          <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Book a Fit Call <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn btn-outline" href="#ways-to-begin">See ways to begin</a>
-        </div>
       </div>
     </div>
   </section>
@@ -1147,6 +1194,23 @@
       <h2 class="h2" id="fit-title">Tell us what you’re working on.</h2>
       <p class="lead">Every engagement begins with a 30-minute Fit Call. No pitch, no commitment. You’ll leave with a clear sense of fit and one specific suggestion you can act on — regardless of whether we work together.</p>
       <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Book a Fit Call <span class="arrow" aria-hidden="true">→</span></a>
+
+      <!-- Contact details so the founder can follow up even when a Calendly booking is not completed.
+           No form backend exists for this site: submitting opens the visitor's email app addressed to the
+           approved inquiry address with the details filled in. Nothing is sent to or stored by the website. -->
+      <form class="reach-form" id="reach-fit" action="mailto:info@puzzlerconsultingadvisory.com" method="post" enctype="text/plain" data-subject="Fit Call request">
+        <p class="reach-title" id="reach-fit-title">Prefer we reach out? Leave your details.</p>
+        <p class="reach-help">We will follow up by email or phone. This opens your email app with the details filled in.</p>
+        <div class="reach-grid">
+          <div class="field"><label for="reach-fit-name">Name <span class="req" aria-hidden="true">*</span></label><input id="reach-fit-name" name="Name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="reach-fit-org">Organization</label><input id="reach-fit-org" name="Organization" type="text" autocomplete="organization"></div>
+          <div class="field"><label for="reach-fit-email">Email <span class="req" aria-hidden="true">*</span></label><input id="reach-fit-email" name="Email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="reach-fit-phone">Phone</label><input id="reach-fit-phone" name="Phone" type="tel" autocomplete="tel"></div>
+          <div class="field wide"><label for="reach-fit-note">What you are working on</label><textarea id="reach-fit-note" name="Note" rows="3"></textarea></div>
+        </div>
+        <p class="reach-error" hidden>Please add your name and an email address so we can reply.</p>
+        <button class="btn btn-outline" type="submit">Send my details <span class="arrow" aria-hidden="true">→</span></button>
+      </form>
 
       <div class="contact-grid">
         <div>
@@ -1304,6 +1368,18 @@
       cta: { label: 'Strengthen Our Systems', href: CALENDLY },
       secondary: { label: 'Email us about systems', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Operating%20and%20Accountability%20Review' }
     },
+    story: {
+      label: 'Telling our story',
+      point: 'Digital Storytelling',
+      headline: 'Tell the story the work deserves.',
+      /* DRAFT COPY: digital storytelling service option (the Pieces in Motion work), pending approval */
+      core: 'Puzzler helps organizations tell their story through short films, narrative video, and functional audiovisual pieces, so funders, partners, boards, and communities understand what the work is and why it matters.',
+      help: ['Clarify the audience and the decision the story needs to support', 'Shape the narrative from the actual work and the people doing it', 'Plan the production path: format, length, script, and destination', 'Produce or guide short films, narrative video, and functional audiovisual pieces', 'Connect the story to funding, reporting, and stakeholder communication'],
+      outputs: ['Story brief', 'Script and storyboard', 'Short film or narrative video', 'Distribution plan'],
+      practices: ['funding', 'program', 'leadership'],
+      cta: { label: 'Start the Story', href: CALENDLY },
+      secondary: { label: 'Email us about storytelling', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Digital%20Storytelling' }
+    },
     compliance: {
       label: 'Compliance issue requiring immediate attention',
       point: 'Compliance Triage and Stabilization',
@@ -1318,7 +1394,7 @@
       boundary: 'Puzzler provides operational, program, grant, contract, and organizational compliance support. Puzzler does not provide legal advice or legal representation.'
     }
   };
-  var NEED_ORDER = ['idea', 'funding', 'growing', 'change', 'systems', 'compliance'];
+  var NEED_ORDER = ['idea', 'funding', 'growing', 'change', 'systems', 'story', 'compliance'];
   var AUDIENCES = {
     individual: { label: 'Individual or founder', lens: 'As an individual or founder, the emphasis is on translating your idea into a strategic roadmap, identifying viable funding pathways, evaluating readiness, and planning the capabilities you need to begin.' },
     emerging:   { label: 'Emerging organization', lens: 'For an emerging organization, the emphasis is on operating foundations, funding readiness, governance, early compliance systems, milestones, and sustainable growth.' },
@@ -1369,6 +1445,14 @@
       foundation: 'For a foundation, the review covers grantmaking operations, portfolio monitoring, internal governance, and how resources translate into measurable results.',
       business: 'For an established business, the review centers on operating structure, financial discipline, contract obligations, and the accountability sustainable delivery depends on.'
     },
+    story: {
+      individual: 'For an individual or founder, the story is often the first thing a funder or partner sees; we shape it from the idea and the people it serves.',
+      emerging: 'For an emerging organization, the story has to do double duty: explain the work and show that the operating foundations behind it are real.',
+      nonprofit: 'For a nonprofit, the story supports grants, gifts, board engagement, and program reporting; we build it from the outcomes the work produces.',
+      agency: 'For a state or local agency, the story has to hold up to public accountability: plain language, accurate claims, and a clear account of implementation.',
+      foundation: 'For a foundation, the story is how a portfolio\u2019s results reach a board and the public; we build it from grantee outcomes and monitoring evidence.',
+      business: 'For an established business, the story supports contracts, growth, and leadership transition; we build it from delivery you can stand behind.'
+    },
     compliance: {
       individual: 'For an individual or founder, a compliance issue is usually tied to a specific grant, contract, or reporting requirement; we organize the facts and the correction quickly and clearly.',
       emerging: 'For an emerging organization, we stabilize the immediate issue and use the correction to put early compliance systems in place so it does not recur.',
@@ -1378,6 +1462,34 @@
       business: 'For an established business, contract and reporting obligations come first; we organize the record, identify the operational gaps, and build the correction.'
     }
   };
+
+  /* Contact details forms: build a mailto: to the approved inquiry address with the fields in the body.
+     With scripting, validation moves to the handler below (accessible message + focus); without it the
+     browser's own required-field checks and the mailto action still apply. */
+  Array.prototype.forEach.call(document.querySelectorAll('.reach-form'), function (f) { f.setAttribute('novalidate', ''); });
+  document.addEventListener('submit', function (e) {
+    var form = e.target.closest ? e.target.closest('.reach-form') : null;
+    if (!form) return;
+    e.preventDefault();
+    var err = form.querySelector('.reach-error');
+    var name = form.querySelector('[name="Name"]'), email = form.querySelector('[name="Email"]');
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+    if (!name.value.trim() || !emailOk) {
+      if (err) { err.hidden = false; }
+      name.setAttribute('aria-invalid', String(!name.value.trim()));
+      email.setAttribute('aria-invalid', String(!emailOk));
+      (!name.value.trim() ? name : email).focus();
+      return;
+    }
+    if (err) err.hidden = true;
+    name.removeAttribute('aria-invalid'); email.removeAttribute('aria-invalid');
+    var lines = [];
+    Array.prototype.forEach.call(form.querySelectorAll('input, textarea'), function (el) { if (el.value.trim()) lines.push(el.name + ': ' + el.value.trim()); });
+    if (form.getAttribute('data-context')) lines.push(form.getAttribute('data-context'));
+    var url = 'mailto:info@puzzlerconsultingadvisory.com?subject=' + encodeURIComponent(form.getAttribute('data-subject') || 'Fit Call request') + '&body=' + encodeURIComponent(lines.join('\n'));
+    form.setAttribute('data-mailto', url);
+    window.location.href = url;
+  });
 
   var fysp = document.getElementById('find-your-starting-point');
   if (fysp) (function () {
@@ -1394,6 +1506,21 @@
     function chips(ids) { return ids.map(function (id) { return '<span class="chip">' + esc(PRACTICES[id]) + '</span>'; }).join(''); }
     function btn(link, cls) { return '<a class="btn ' + cls + '" href="' + esc(link.href) + '">' + esc(link.label) + ' <span class="arrow" aria-hidden="true">→</span></a>'; }
 
+    /* Contact details form: same markup as the Fit Call form, scoped ids, context carried into the email. */
+    function formHtml(prefix, subject, context) {
+      var f = function (id, label, name, type, extra) { return '<div class="field"><label for="' + prefix + '-' + id + '">' + label + '</label><input id="' + prefix + '-' + id + '" name="' + name + '" type="' + type + '" ' + (extra || '') + '></div>'; };
+      return '<form class="reach-form" novalidate action="mailto:info@puzzlerconsultingadvisory.com" method="post" enctype="text/plain" data-subject="' + esc(subject) + '" data-context="' + esc(context) + '">' +
+        '<p class="reach-help">We will follow up by email or phone. This opens your email app with the details filled in.</p>' +
+        '<div class="reach-grid">' +
+        f('name', 'Name <span class="req" aria-hidden="true">*</span>', 'Name', 'text', 'autocomplete="name" required') +
+        f('org', 'Organization', 'Organization', 'text', 'autocomplete="organization"') +
+        f('email', 'Email <span class="req" aria-hidden="true">*</span>', 'Email', 'email', 'autocomplete="email" required') +
+        f('phone', 'Phone', 'Phone', 'tel', 'autocomplete="tel"') +
+        '<div class="field wide"><label for="' + prefix + '-note">Anything we should know</label><textarea id="' + prefix + '-note" name="Note" rows="3"></textarea></div>' +
+        '</div><p class="reach-error" hidden>Please add your name and an email address so we can reply.</p>' +
+        '<button class="btn btn-outline" type="submit">Send my details <span class="arrow" aria-hidden="true">→</span></button></form>';
+    }
+
     function cardHtml(n, a) {
       var d = NEEDS[n], aud = AUDIENCES[a];
       var h = '<div class="card" data-need="' + esc(n) + '" data-audience="' + esc(a) + '">';
@@ -1408,11 +1535,12 @@
       h += '<div class="block"><h6>Your context</h6><p class="outputs">' + esc(aud.lens) + '</p></div></div></div>';
       if (d.boundary) h += '<p class="boundary">' + esc(d.boundary) + '</p>';
       h += '<div class="actions">' + btn(d.cta, 'btn-primary') + (d.secondary ? btn(d.secondary, 'btn-outline') : '') + '</div>';
+      h += '<details class="reach"><summary>Prefer we reach out? Leave your details.</summary>' + formHtml('reach-' + n + '-' + a, 'Fit Call follow-up: ' + d.point, 'Starting point: ' + d.point + ' / ' + aud.label) + '</details>';
       return h + '</div>';
     }
 
     /* Blueprint field: need (left) → practice nodes (centre) → audience (right). */
-    var SHORT = { idea: 'Idea', funding: 'Funding', growing: 'Growth', change: 'Change', systems: 'Systems', compliance: 'Compliance', individual: 'Individual or founder', emerging: 'Emerging organization', nonprofit: 'Nonprofit', agency: 'State or local agency', foundation: 'Foundation', business: 'Established business' };
+    var SHORT = { idea: 'Idea', funding: 'Funding', growing: 'Growth', change: 'Change', systems: 'Systems', story: 'Story', compliance: 'Compliance', individual: 'Individual or founder', emerging: 'Emerging organization', nonprofit: 'Nonprofit', agency: 'State or local agency', foundation: 'Foundation', business: 'Established business' };
     var PX = { need: 40, left: 330, mid: 420, right: 700, aud: 920 };
     function nodeY(i) { return 35 + i * 45; }
     function drawField() {
