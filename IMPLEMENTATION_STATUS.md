@@ -37,7 +37,7 @@ No framework was introduced.
 | BR-04 | Five-color signature bar | Rendered in code; no file needed. |
 | BR-05 | Color and type tokens | Values taken from the asset map and the prompt. The `.docx` itself is not present (see §1.3). |
 | BR-06 | `puzzler_social_preview_640.png` (640×320, historical) | Superseded 2026-09-09 by WEB-03 (`social-preview.png`, 1200×630, rendered from `website-assets/social-preview/social-preview.html` by `tools/build-social-preview.mjs`). Not kept in the repo. |
-| — | `puzzler_logo_teal_1024.png` | Single teal piece. Former source of the favicon / touch icons; no longer referenced by anything (icons now derive from BR-01). Not the four-piece mark. |
+| — | `puzzler_logo_teal_1024.png` | Single teal piece; former source of the favicon / touch icons. Removed from the repo on 2026-09-09 after the icons were regenerated from BR-01. |
 | — | `fonts/poppins-*.woff2` | 400–800 regular were present. 300 regular and 300–600 italic latin subsets added during preflight so the homepage no longer depends on Google Fonts. |
 | — | `making-the-pieces-fit.mp4` + poster | Existing video page (not homepage media). Video untouched; poster regenerated 2026-09-09 (see §5). |
 | — | `capability-brief.html` | Existing HeyGen embed page. Untouched. |
