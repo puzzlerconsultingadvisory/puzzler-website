@@ -227,7 +227,7 @@ for (const pg of PAGES) {
   const errs = [];
   page.on('pageerror', (e) => errs.push(e.message));
   await page.goto(base + '/', { waitUntil: 'load' });
-  const NEEDS = ['idea', 'funding', 'growing', 'change', 'systems', 'compliance'];
+  const NEEDS = ['idea', 'funding', 'growing', 'change', 'systems', 'story', 'compliance'];
   const AUDS = ['individual', 'emerging', 'nonprofit', 'agency', 'foundation', 'business'];
   // Live region + semantics present before any interaction.
   const sem = await page.evaluate(() => ({
@@ -242,8 +242,8 @@ for (const pg of PAGES) {
     whoWeServeSection: !!document.getElementById('who-we-serve'),
   }));
   if (sem.live !== 'polite' || sem.atomic !== 'true') failures.push(`fysp: result region aria-live=${sem.live} aria-atomic=${sem.atomic}`);
-  if (!sem.buttons || sem.count !== 12) failures.push(`fysp: expected 12 semantic toggle buttons, got ${sem.count} (semantic=${sem.buttons})`);
-  if (sem.emailInputs) failures.push('fysp: an input field is present (no email gate allowed)');
+  if (!sem.buttons || sem.count !== 13) failures.push(`fysp: expected 13 semantic toggle buttons, got ${sem.count} (semantic=${sem.buttons})`);
+  if (sem.emailInputs) failures.push('fysp: an input field is present before any result (no email gate allowed)');
   if (sem.audienceSummaries !== 6) failures.push(`fysp: expected 6 static audience summaries, got ${sem.audienceSummaries}`);
   if (!sem.fitStatement) failures.push('fysp: approved fit statement missing');
   if (sem.revenueExclusion) failures.push('fysp: revenue-based exclusion text still present');
@@ -272,6 +272,8 @@ for (const pg of PAGES) {
         const problems = [];
         if (!q('h5') || !q('.headline') || !q('.core') || !q('.angle')) problems.push('missing heading/headline/core/angle');
         if (card.querySelectorAll('.help li').length < 5) problems.push('fewer than 5 help bullets');
+        const rf = card.querySelector('details.reach form.reach-form');
+        if (!rf || !rf.querySelector('[name="Name"][required]') || !rf.querySelector('[name="Email"][required][type="email"]') || !rf.querySelector('[name="Organization"]') || !rf.querySelector('[name="Phone"]')) problems.push('contact details form incomplete');
         if (chips.length !== 3) problems.push(`practice chips=${chips.length}`);
         if (!q('.outputs')) problems.push('no outputs');
         if (!links.length || !/^(https:\/\/calendly\.com\/mark-puzzlerconsultingandadvisory\/30min|mailto:info@puzzlerconsultingadvisory\.com(\?subject=[\w%]+)?)$/.test(links[0].href)) problems.push(`primary CTA href ${links[0] && links[0].href}`);
@@ -382,9 +384,34 @@ for (const pg of PAGES) {
     audiences: document.querySelectorAll('.audience-grid .audience').length,
     practices: document.querySelectorAll('.practice').length,
   }));
-  if (!nj.staticShown || nj.points !== 6 || !nj.boundary) failures.push(`no-js: static starting points shown=${nj.staticShown} count=${nj.points} boundary=${nj.boundary}`);
+  if (!nj.staticShown || nj.points !== 7 || !nj.boundary) failures.push(`no-js: static starting points shown=${nj.staticShown} count=${nj.points} boundary=${nj.boundary}`);
   if (nj.audiences !== 6 || nj.practices !== 5) failures.push(`no-js: audiences=${nj.audiences} practices=${nj.practices}`);
   report.push(`no-js: static starting points=${nj.points}, audiences=${nj.audiences}, practices=${nj.practices}`);
+  await ctx.close();
+}
+
+{
+  // Contact details forms: required-field guard, then a mailto: to the approved address with the fields in the body.
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const page = await ctx.newPage();
+  await page.goto(base + '/', { waitUntil: 'load' });
+  const fitForm = await page.evaluate(() => { const f = document.getElementById('reach-fit'); return f ? { action: f.getAttribute('action'), fields: [...f.querySelectorAll('input, textarea')].map((i) => i.name) } : null; });
+  if (!fitForm || fitForm.action !== 'mailto:info@puzzlerconsultingadvisory.com' || fitForm.fields.join() !== 'Name,Organization,Email,Phone,Note') failures.push(`reach: Fit Call form wrong (${JSON.stringify(fitForm)})`);
+  await page.click('#reach-fit button[type="submit"]');
+  const guarded = await page.evaluate(() => ({ err: !document.querySelector('#reach-fit .reach-error').hidden, focus: document.activeElement.id, mailto: document.getElementById('reach-fit').getAttribute('data-mailto') }));
+  if (!guarded.err || guarded.focus !== 'reach-fit-name' || guarded.mailto) failures.push(`reach: empty submit not guarded (${JSON.stringify(guarded)})`);
+  await page.fill('#reach-fit-name', 'Test Person'); await page.fill('#reach-fit-org', 'Example Org'); await page.fill('#reach-fit-email', 'test@example.com'); await page.fill('#reach-fit-phone', '555-0100'); await page.fill('#reach-fit-note', 'Following up');
+  await page.click('#reach-fit button[type="submit"]');
+  await page.waitForTimeout(300);
+  const built = await page.evaluate(() => document.getElementById('reach-fit').getAttribute('data-mailto') || '');
+  const dec = decodeURIComponent(built);
+  if (!/^mailto:info@puzzlerconsultingadvisory\.com\?subject=Fit%20Call%20request&body=/.test(built) || !/Name: Test Person\nOrganization: Example Org\nEmail: test@example.com\nPhone: 555-0100\nNote: Following up/.test(dec)) failures.push(`reach: mailto not built correctly (${dec.slice(0, 160)})`);
+  // Result-card form carries the starting point and audience.
+  await page.click('.opt[data-need="story"]'); await page.click('.opt[data-audience="foundation"]');
+  await page.waitForSelector('#fysp-result .card details.reach', { timeout: 3000 }).catch(() => failures.push('reach: result form missing'));
+  const rform = await page.evaluate(() => { const f = document.querySelector('#fysp-result .reach-form'); return f ? { subject: f.dataset.subject, context: f.dataset.context } : null; });
+  if (!rform || rform.subject !== 'Fit Call follow-up: Digital Storytelling' || !/Foundation or philanthropy/.test(rform.context)) failures.push(`reach: result form context wrong (${JSON.stringify(rform)})`);
+  report.push(`reach: fit form ok=${!!fitForm}, guard ok=${guarded.err && !guarded.mailto}, mailto ok=${/Fit%20Call%20request/.test(built)}, result form ok=${!!rform}`);
   await ctx.close();
 }
 
