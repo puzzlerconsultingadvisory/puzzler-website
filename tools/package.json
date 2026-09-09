@@ -12,7 +12,8 @@
     "test": "npm run check:assets && npm run validate && npm run verify",
     "build:hero": "node build-hero-layers.mjs",
     "build:social": "node build-social-preview.mjs",
-    "build": "npm run build:hero && npm run build:method && npm run build:social"
+    "build:icons": "node build-favicons.mjs",
+    "build": "npm run build:hero && npm run build:method && npm run build:social && npm run build:icons"
   },
   "devDependencies": {
     "axe-core": "4.10.3",
