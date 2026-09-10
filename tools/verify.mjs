@@ -227,8 +227,8 @@ for (const pg of PAGES) {
   const errs = [];
   page.on('pageerror', (e) => errs.push(e.message));
   await page.goto(base + '/', { waitUntil: 'load' });
-  const NEEDS = ['idea', 'funding', 'growing', 'change', 'systems', 'story', 'compliance'];
-  const AUDS = ['individual', 'emerging', 'nonprofit', 'agency', 'foundation', 'business'];
+  const NEEDS = ['idea', 'funding', 'growing', 'change', 'systems', 'story', 'contracts', 'compliance'];
+  const AUDS = ['individual', 'emerging', 'nonprofit', 'agency', 'foundation', 'business', 'contractor'];
   // Live region + semantics present before any interaction.
   const sem = await page.evaluate(() => ({
     live: document.getElementById('fysp-result').getAttribute('aria-live'),
@@ -237,15 +237,25 @@ for (const pg of PAGES) {
     count: document.querySelectorAll('#find-your-starting-point .opt').length,
     emailInputs: document.querySelectorAll('#find-your-starting-point input').length,
     audienceSummaries: document.querySelectorAll('.audience-grid .audience').length,
-    fitStatement: /We are not the right firm for federal contract advocacy on behalf of clients, financial-distress turnarounds, or executive search\./.test(document.querySelector('.fit-statement').textContent),
+    fitStatement: /We are not the right firm for federal contract advocacy on behalf of clients, financial-distress turnarounds, or executive search\. Puzzler advises and prepares\. Puzzler does not represent clients before federal agencies or lobby on their behalf\./.test(document.querySelector('.fit-statement').textContent),
+    sector: (() => { const g = document.getElementById('government-contracting'); return g ? { items: g.querySelectorAll('.sector-list li').length, boundary: /does not represent clients before federal agencies or lobby/.test(g.textContent), tags: g.querySelectorAll('.tag').length } : null; })(),
+    shapes: document.querySelectorAll('.shape-list li').length,
+    fractionalRoles: /chief operating officer, grants and contracts director, compliance officer, or transformation and modernization lead/.test(document.querySelector('.shapes').textContent),
+    ways: document.querySelectorAll('.ways-grid .way').length,
+    waysFractional: [...document.querySelectorAll('.ways-grid .way')].some((w) => /Retain fractional leadership/.test(w.textContent) && w.getAttribute('href') === 'mailto:info@puzzlerconsultingadvisory.com?subject=Fractional%20support'),
+    priceOrHours: /\$\d|\b\d+\s*(?:hours|hrs|-hour)\b/.test(document.getElementById('practices').textContent),
     revenueExclusion: /\$2\s?M|2 million/i.test(document.body.textContent),
     whoWeServeSection: !!document.getElementById('who-we-serve'),
   }));
   if (sem.live !== 'polite' || sem.atomic !== 'true') failures.push(`fysp: result region aria-live=${sem.live} aria-atomic=${sem.atomic}`);
-  if (!sem.buttons || sem.count !== 13) failures.push(`fysp: expected 13 semantic toggle buttons, got ${sem.count} (semantic=${sem.buttons})`);
+  if (!sem.buttons || sem.count !== 15) failures.push(`fysp: expected 15 semantic toggle buttons, got ${sem.count} (semantic=${sem.buttons})`);
   if (sem.emailInputs) failures.push('fysp: an input field is present before any result (no email gate allowed)');
-  if (sem.audienceSummaries !== 6) failures.push(`fysp: expected 6 static audience summaries, got ${sem.audienceSummaries}`);
-  if (!sem.fitStatement) failures.push('fysp: approved fit statement missing');
+  if (sem.audienceSummaries !== 7) failures.push(`fysp: expected 7 static audience summaries, got ${sem.audienceSummaries}`);
+  if (!sem.fitStatement) failures.push('fysp: approved fit statement (with boundary sentence) missing');
+  if (!sem.sector || sem.sector.items !== 10 || !sem.sector.boundary || sem.sector.tags !== 10) failures.push(`govcon: sector block wrong (${JSON.stringify(sem.sector)})`);
+  if (sem.shapes !== 4 || !sem.fractionalRoles) failures.push(`fractional: engagement strip wrong (shapes=${sem.shapes}, roles=${sem.fractionalRoles})`);
+  if (sem.ways !== 5 || !sem.waysFractional) failures.push(`fractional: Ways to Begin card wrong (ways=${sem.ways}, card=${sem.waysFractional})`);
+  if (sem.priceOrHours) failures.push('build: a price or hour claim appeared in Build It to Hold');
   if (sem.revenueExclusion) failures.push('fysp: revenue-based exclusion text still present');
   if (sem.whoWeServeSection) failures.push('fysp: separate Who We Serve section still present');
 
@@ -278,6 +288,8 @@ for (const pg of PAGES) {
         if (!q('.outputs')) problems.push('no outputs');
         if (!links.length || !/^(https:\/\/calendly\.com\/mark-puzzlerconsultingandadvisory\/30min|mailto:info@puzzlerconsultingadvisory\.com(\?subject=[\w%]+)?)$/.test(links[0].href)) problems.push(`primary CTA href ${links[0] && links[0].href}`);
         if (links.some((l) => !/^(https:\/\/calendly\.com|mailto:info@puzzlerconsultingadvisory\.com)/.test(l.href))) problems.push('CTA to unapproved destination');
+        if (n === 'contracts' && !/does not represent clients before federal agencies or lobby/.test(text)) problems.push('contracting boundary missing');
+        if (['growing', 'change', 'systems', 'contracts'].includes(n) !== !!card.querySelector('.fractional')) problems.push('fractional line wrong');
         if (n === 'compliance') {
           if (!/does not provide legal advice or legal representation/.test(text)) problems.push('compliance boundary missing');
           if (links[0].href !== 'mailto:info@puzzlerconsultingadvisory.com?subject=Compliance%20Triage%20Request') problems.push('compliance primary CTA wrong');
@@ -384,8 +396,8 @@ for (const pg of PAGES) {
     audiences: document.querySelectorAll('.audience-grid .audience').length,
     practices: document.querySelectorAll('.practice').length,
   }));
-  if (!nj.staticShown || nj.points !== 7 || !nj.boundary) failures.push(`no-js: static starting points shown=${nj.staticShown} count=${nj.points} boundary=${nj.boundary}`);
-  if (nj.audiences !== 6 || nj.practices !== 5) failures.push(`no-js: audiences=${nj.audiences} practices=${nj.practices}`);
+  if (!nj.staticShown || nj.points !== 8 || !nj.boundary) failures.push(`no-js: static starting points shown=${nj.staticShown} count=${nj.points} boundary=${nj.boundary}`);
+  if (nj.audiences !== 7 || nj.practices !== 5) failures.push(`no-js: audiences=${nj.audiences} practices=${nj.practices}`);
   report.push(`no-js: static starting points=${nj.points}, audiences=${nj.audiences}, practices=${nj.practices}`);
   await ctx.close();
 }

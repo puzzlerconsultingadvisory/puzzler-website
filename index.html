@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#1A1A2E">
 <title>Puzzler Consulting &amp; Advisory Services — Making the pieces fit.</title>
-<meta name="description" content="Puzzler helps people and organizations find their new normal — before, during, and after transformative events. Practitioner-led capacity, compliance, and leadership advisory for nonprofits, small businesses, and organizations doing meaningful work.">
+<meta name="description" content="Puzzler helps people and organizations find their new normal — before, during, and after transformative events. Practitioner-led capacity, compliance, and leadership advisory for nonprofits, small businesses, and organizations doing meaningful work. Government contracting advisory for organizations that sell, or want to sell, to federal, state, and local government.">
 <link rel="canonical" href="https://puzzlerconsultingadvisory.com/">
 
 <!-- WEB-01 / WEB-02: icon set derived from the exact four-piece mark (BR-01) by tools/build-favicons.mjs.
@@ -377,6 +377,23 @@
   .practice .relevant[hidden] { display: none; }
   .practice.is-relevant summary { background: var(--accent-bg); }
 
+  /* Government contracting sector practice */
+  .sector { margin-top: 56px; padding: clamp(26px, 3.5vw, 44px); background: var(--white); border: 1px solid var(--rule-light); border-top: 4px solid var(--teal); border-radius: 4px; }
+  .sector h3 { font-size: clamp(26px, 3vw, 38px); margin: 6px 0 14px; }
+  .sector-lead { color: var(--ink-soft); font-size: clamp(16px, 1.4vw, 18.5px); max-width: var(--measure); }
+  .sector-sub { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); margin: 30px 0 12px; }
+  .sector-list { display: grid; gap: 0; border-top: 1px solid var(--rule-light); }
+  .sector-list li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 18px; align-items: baseline; padding: 13px 0; border-bottom: 1px solid var(--rule-light); font-size: 15.5px; color: var(--ink); }
+  .sector-list li > span:first-child { flex: 1 1 42ch; max-width: 66ch; }
+  .sector-list .tag { flex: none; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); border: 1px solid var(--teal); border-radius: 3px; padding: 3px 8px; white-space: nowrap; }
+  .sector-boundary { margin-top: 22px; padding: 12px 14px; border-left: 3px solid var(--coral); background: rgba(233, 79, 74, 0.06); color: var(--ink); font-size: 15px; max-width: var(--measure); }
+  .sector .build-actions { margin-top: 24px; }
+  /* How engagements are shaped (fractional lives here) */
+  .shapes { margin-top: 48px; }
+  .shape-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-top: 16px; }
+  .shape-list li { padding: 18px 18px 18px 16px; border-left: 3px solid var(--teal); background: var(--white); border-radius: 0 4px 4px 0; font-size: 15px; color: var(--ink-soft); }
+  .shape-list li strong { display: block; color: var(--navy); font-size: 16px; margin-bottom: 6px; }
+
   /* Digital storytelling note beneath the five practices */
   .also { margin-top: 28px; padding: 24px 26px; background: var(--white); border: 1px solid var(--rule-light); border-left: 4px solid var(--teal); border-radius: 4px; max-width: 760px; }
   .also-kicker { font-size: 11.5px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 6px; }
@@ -482,6 +499,7 @@
   .fysp-result .outputs { color: var(--on-dark-soft); font-size: 15.5px; }
   .fysp-result .boundary { margin-top: 24px; padding: 14px 16px; border-left: 3px solid var(--coral); background: rgba(255, 255, 255, 0.04); color: var(--on-dark-soft); font-size: 14.5px; max-width: var(--measure); }
   .fysp-result .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .fysp-result .fractional { margin-top: 14px; font-size: 14px; color: var(--on-dark-mute); }
   .fysp-result .actions .btn-outline { color: var(--white); border-color: rgba(255, 255, 255, 0.5); }
   .fysp-result .actions .btn-outline:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.06); }
 
@@ -513,7 +531,7 @@
   .build-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 
   /* ─── Ways to Begin ────────────────────────────────────────────── */
-  .ways-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-top: 40px; }
+  .ways-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
   .way {
     display: flex; flex-direction: column; gap: 12px; min-height: 100%;
     background: var(--white); border: 1px solid var(--rule-light); border-radius: 4px; padding: 26px 24px 24px;
@@ -523,7 +541,7 @@
   .way .ico { width: 30px; height: 30px; color: var(--teal); }
   .way h3 { font-size: 19px; }
   .way p { color: var(--ink-soft); font-size: 15px; flex: 1; }
-  .way .go { font-weight: 600; font-size: 14px; color: var(--navy); }
+  .way .go { font-weight: 600; font-size: 14px; color: var(--navy); white-space: nowrap; }
 
   /* ─── Pieces in Motion ─────────────────────────────────────────── */
   .pim-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 40px; margin-bottom: 40px; }
@@ -609,8 +627,12 @@
   .foot a:hover { color: var(--white); }
 
   /* ─── Responsive ───────────────────────────────────────────────── */
+  @media (max-width: 1240px) {
+    .ways-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
   @media (max-width: 1080px) {
     .ways-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .shape-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 960px) {
     .hero .wrap { grid-template-columns: minmax(0, 1fr); }
@@ -639,6 +661,9 @@
     .hero-field { opacity: .85; margin-bottom: 96px; }
     .hero-dim { white-space: normal; }
     .ways-grid { grid-template-columns: minmax(0, 1fr); }
+    .shape-list { grid-template-columns: minmax(0, 1fr); }
+    .sector-list li > span:first-child { flex-basis: 100%; }
+    .sector-list .tag { white-space: normal; max-width: 100%; }
     .contact-grid { grid-template-columns: minmax(0, 1fr); }
     .step-desc { padding-left: 44px; }
     .practice summary { grid-template-columns: 36px 1fr auto; gap: 12px; }
@@ -755,7 +780,7 @@
         <h2 class="h2" id="gap-title">The strategy is rarely the problem. Operating it is.</h2>
       </div>
       <div>
-        <p class="lead">Most engagements start at a threshold — a new leader, an audit finding, a capital project turning harder than planned, a funding mechanism that just got more complicated.</p>
+        <p class="lead">Most engagements start at a threshold — a new leader, an audit finding, a first government contract, a capital project turning harder than planned, a funding mechanism that just got more complicated.</p>
         <!-- DRAFT COPY: bridging paragraph pending approval -->
         <p class="lead">Between the plan and the people who have to run it sits the operator gap: the governance, funding discipline, and capacity that a strategy assumes but rarely builds.</p>
         <p class="pull">Organizations don’t fail because their strategy is wrong. They fail because no one stays in the hole with them long enough to get them out. We do the work alongside the people responsible for it, not at a distance from them.</p>
@@ -790,6 +815,7 @@
               <button class="opt" type="button" data-need="change" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We’re navigating change</span></button>
               <button class="opt" type="button" data-need="systems" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We need stronger systems and accountability</span></button>
               <button class="opt" type="button" data-need="story" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We need to tell our story</span></button>
+              <button class="opt" type="button" data-need="contracts" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We’re pursuing government contracts</span></button>
               <button class="opt opt-urgent" type="button" data-need="compliance" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">We have a compliance issue that needs immediate attention <span class="flag">Time-sensitive</span></span></button>
             </div>
           </div>
@@ -803,6 +829,7 @@
               <button class="opt" type="button" data-audience="agency" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">State or local agency</span></button>
               <button class="opt" type="button" data-audience="foundation" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Foundation or philanthropy</span></button>
               <button class="opt" type="button" data-audience="business" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Established small or mid-sized business</span></button>
+              <button class="opt" type="button" data-audience="contractor" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Government contractor, or becoming one</span></button>
             </div>
           </div>
         </div>
@@ -821,7 +848,7 @@
 
         <!-- Static fallback without scripting: the six starting points in full. -->
         <div class="fysp-static" id="fysp-static">
-          <h4 class="fysp-step">Seven starting points</h4>
+          <h4 class="fysp-step">Eight starting points</h4>
           <p class="fysp-lead">Most engagements begin from one of these. Each draws on the practices above.</p>
           <div class="fysp-static-list">
             <div class="sp">
@@ -871,6 +898,15 @@
               <p>Puzzler helps organizations tell their story through short films, narrative video, and functional audiovisual pieces, so funders, partners, boards, and communities understand what the work is and why it matters.</p>
               <p class="practices-line">Funding Strategy · Program Effectiveness and Accountability · Leadership Development</p>
               <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Start the Story <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div class="sp">
+              <p class="kicker">Starting point</p>
+              <h5>Government Contracting Readiness</h5>
+              <p class="headline">Know what the buyer needs. Prove you can deliver it.</p>
+              <p>Puzzler helps organizations that sell, or want to sell, to government understand how each agency buys, define the capabilities the buyer needs, build the operating and compliance systems a contract requires, and prepare capability statements, proposals, and responses they can stand behind.</p>
+              <p class="practices-line">Funding Strategy · Program Effectiveness and Accountability · Capacity Building</p>
+              <p>Puzzler advises and prepares. Puzzler does not represent clients before federal agencies or lobby on their behalf.</p>
+              <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Assess Our Contract Readiness <span class="arrow" aria-hidden="true">→</span></a>
             </div>
             <div class="sp">
               <p class="kicker">Starting point</p>
@@ -934,6 +970,44 @@
 
       <!-- Digital storytelling: a distinct service option alongside the five practices (the Pieces in Motion
            work). Copy approved by the founder 2026-09-09; the five-practice set is unchanged. -->
+      <!-- Government contracting: a sector practice that runs across the five practices. Copy approved by the founder
+           2026-09-10 (copy deck). Every item is advisory and preparation; the boundary sentence is the ethics line
+           (18 U.S.C. § 207 cooling-off; no third-party representation before federal agencies). -->
+      <section class="sector" id="government-contracting" aria-labelledby="sector-title">
+        <p class="also-kicker">Sector practice</p>
+        <h3 id="sector-title">Government contracting</h3>
+        <p class="sector-lead">Selling to government is a different discipline from being funded by it. The rules are specific to each agency and often to each sub-agency, the buyer’s goals are written down if you know where to look, and the organization that wins is the one that can deliver and prove it. Puzzler brings twenty years on the buying side of that table to organizations that sell, or want to sell, to federal, state, and local government. GovCon is where that experience is most direct.</p>
+        <h4 class="sector-sub">What the work covers</h4>
+        <ul class="sector-list">
+          <li><span>Requirements and capabilities development: what the buyer actually needs, and what you can credibly deliver.</span> <span class="tag">Capacity Building</span></li>
+          <li><span>Operations and delivery lifecycle: the systems to perform the work from award through closeout.</span> <span class="tag">Capacity Building</span></li>
+          <li><span>Core competencies and differentiation: a capability statement and a buyer conversation you can stand behind. We prepare you for buyer engagement; you make the contact.</span> <span class="tag">Funding Strategy</span></li>
+          <li><span>Compliance and audit readiness: the controls, documentation, and monitoring a contract requires.</span> <span class="tag">Program Effectiveness and Accountability</span></li>
+          <li><span>Agency-specific procurement rules and sub-agency goals: how each buyer buys, and what it is trying to accomplish.</span> <span class="tag">Funding Strategy</span></li>
+          <li><span>Proposal, response, and contract management: from bid or no-bid through performance and closeout.</span> <span class="tag">Program Effectiveness and Accountability</span></li>
+          <li><span>Market validation and sizing: whether the market is real for what you offer, and how large it is.</span> <span class="tag">Funding Strategy</span></li>
+          <li><span>Market entry strategy: certifications, teaming, and the sequence of first pursuits.</span> <span class="tag">Funding Strategy</span></li>
+          <li><span>Restructuring a small business to scale: the structure a growing contractor needs before growth breaks it.</span> <span class="tag">Organizational Restructuring</span></li>
+          <li><span>Sector training and advisory: for owners, capture teams, and program staff.</span> <span class="tag">Leadership Development</span></li>
+        </ul>
+        <p class="sector-boundary">Puzzler advises and prepares. Puzzler does not represent clients before federal agencies or lobby on their behalf.</p>
+        <div class="build-actions">
+          <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Assess Our Contract Readiness <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-outline" href="mailto:info@puzzlerconsultingadvisory.com?subject=Government%20Contracting">Email us about government contracting</a>
+        </div>
+      </section>
+
+      <!-- How engagements are shaped: where fractional leadership lives. No prices, no response-time claims. Approved 2026-09-10. -->
+      <div class="shapes" aria-labelledby="shapes-title">
+        <h4 class="build-sub" id="shapes-title">How engagements are shaped</h4>
+        <ul class="shape-list">
+          <li><strong>A defined project.</strong> One issue, one deliverable, measured in weeks.</li>
+          <li><strong>A build.</strong> A system or capability developed over several months, alongside the people who will run it.</li>
+          <li><strong>Fractional leadership.</strong> An experienced operator on your team part-time, on retainer: a fractional chief operating officer, grants and contracts director, compliance officer, or transformation and modernization lead.</li>
+          <li><strong>Rapid response.</strong> When a finding, a deadline, or a transition cannot wait.</li>
+        </ul>
+      </div>
+
       <div class="also">
         <p class="also-kicker">Also available</p>
         <h4>Digital storytelling</h4>
@@ -982,11 +1056,17 @@
             <p><strong>How Puzzler helps.</strong> We align operating structure, financial discipline, contracts, accountability, and leadership transition with sustainable delivery.</p>
             <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Organizational Restructuring · Capacity Building · Leadership Development</p>
           </li>
+          <li class="audience">
+            <h4>Government contractors and businesses entering the market</h4>
+            <p><strong>A common situation.</strong> A capability the government needs, and a gap between having it and winning and delivering the work: unclear buyer requirements, agency-specific rules, an untested capability statement, and compliance obligations that arrive with the award.</p>
+            <p><strong>How Puzzler helps.</strong> We validate and size the market, define requirements and differentiation, map procurement rules and buyer goals, support proposals and contract management, and build the delivery and compliance systems, then restructure and train the organization to scale.</p>
+            <p class="audience-practices"><span class="visually-hidden">Most relevant practices: </span>Funding Strategy · Program Effectiveness and Accountability · Capacity Building</p>
+          </li>
         </ul>
       </div>
 
       <div class="fit-statement">
-        <p>Puzzler works with individuals, emerging organizations, and established institutions when the need calls for strategic direction, funding clarity, stronger operating capacity, or support through change. We are not the right firm for federal contract advocacy on behalf of clients, financial-distress turnarounds, or executive search.</p>
+        <p>Puzzler works with individuals, emerging organizations, and established institutions when the need calls for strategic direction, funding clarity, stronger operating capacity, or support through change. We are not the right firm for federal contract advocacy on behalf of clients, financial-distress turnarounds, or executive search. <strong>Puzzler advises and prepares. Puzzler does not represent clients before federal agencies or lobby on their behalf.</strong></p>
         <div class="build-actions">
           <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Book a Fit Call <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn btn-outline" href="#ways-to-begin">See ways to begin</a>
@@ -1137,6 +1217,12 @@
           <h3>Invite Mark to Speak</h3>
           <p>Leadership in moments of institutional disruption, capacity building in nonprofits, small businesses, and organizations doing meaningful work, human-centered AI adoption, and more.</p>
           <span class="go">Send a speaking inquiry →</span>
+        </a>
+        <a class="way" href="mailto:info@puzzlerconsultingadvisory.com?subject=Fractional%20support">
+          <svg focusable="false" class="ico" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="15" cy="15" r="11"/><path d="M15 8v7l4.5 3"/><path d="M15 4v2M26 15h-2M15 26v-2M4 15h2"/></svg>
+          <h3>Retain fractional leadership</h3>
+          <p>A fractional chief operating officer, grants and contracts director, compliance officer, or transformation and modernization lead, embedded part-time with your team.</p>
+          <span class="go">Ask about fractional support →</span>
         </a>
       </div>
     </div>
@@ -1391,6 +1477,7 @@
       secondary: { label: 'Email us about funding', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Funding%20Landscape%20and%20Readiness' }
     },
     growing: {
+      fractional: true,
       label: 'Growing',
       point: 'Operating Capacity',
       headline: 'Build the systems growth requires.',
@@ -1403,6 +1490,7 @@
       secondary: { label: 'Email us about growth', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Operating%20Capacity' }
     },
     change: {
+      fractional: true,
       label: 'Navigating change',
       point: 'Transition Support',
       headline: 'Keep the work moving through change.',
@@ -1415,6 +1503,7 @@
       secondary: { label: 'Email us about a transition', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Transition%20Support' }
     },
     systems: {
+      fractional: true,
       label: 'Stronger systems and accountability',
       point: 'Operating and Accountability Review',
       headline: 'Strengthen what the work depends on.',
@@ -1438,6 +1527,20 @@
       cta: { label: 'Start the Story', href: CALENDLY },
       secondary: { label: 'Email us about storytelling', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Digital%20Storytelling' }
     },
+    contracts: {
+      label: 'Pursuing government contracts',
+      point: 'Government Contracting Readiness',
+      headline: 'Know what the buyer needs. Prove you can deliver it.',
+      /* Government contracting sector practice; copy approved 2026-09-10 */
+      core: 'Puzzler helps organizations that sell, or want to sell, to government understand how each agency buys, define the capabilities the buyer needs, build the operating and compliance systems a contract requires, and prepare capability statements, proposals, and responses they can stand behind.',
+      help: ['Validate and size the market for what you offer', 'Clarify the buyer\u2019s requirements and your differentiated capabilities', 'Map agency-specific and sub-agency procurement rules and goals', 'Build the capability statement and prepare you for buyer conversations', 'Decide bid or no-bid, then support the proposal and the response', 'Set up the delivery, compliance, and contract-management systems the award requires', 'Restructure and train the organization to scale with the work'],
+      outputs: ['Market validation and sizing', 'Capability statement', 'Bid/no-bid assessment', 'Market entry plan', 'Compliance-readiness plan', 'Contract management plan'],
+      practices: ['funding', 'program', 'capacity'],
+      fractional: true,
+      cta: { label: 'Assess Our Contract Readiness', href: CALENDLY },
+      secondary: { label: 'Email us about government contracting', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Government%20Contracting' },
+      boundary: 'Puzzler advises and prepares. Puzzler does not represent clients before federal agencies or lobby on their behalf.'
+    },
     compliance: {
       label: 'Compliance issue requiring immediate attention',
       point: 'Compliance Triage and Stabilization',
@@ -1452,14 +1555,15 @@
       boundary: 'Puzzler provides operational, program, grant, contract, and organizational compliance support. Puzzler does not provide legal advice or legal representation.'
     }
   };
-  var NEED_ORDER = ['idea', 'funding', 'growing', 'change', 'systems', 'story', 'compliance'];
+  var NEED_ORDER = ['idea', 'funding', 'growing', 'change', 'systems', 'story', 'contracts', 'compliance'];
   var AUDIENCES = {
     individual: { label: 'Individual or founder', lens: 'As an individual or founder, the emphasis is on translating your idea into a strategic roadmap, identifying viable funding pathways, evaluating readiness, and planning the capabilities you need to begin.' },
     emerging:   { label: 'Emerging organization', lens: 'For an emerging organization, the emphasis is on operating foundations, funding readiness, governance, early compliance systems, milestones, and sustainable growth.' },
     nonprofit:  { label: 'Nonprofit', lens: 'For a nonprofit, the emphasis is on grants, gifts, contracts, governance, program delivery, audit and monitoring readiness, subrecipient oversight, and leadership capacity.' },
     agency:     { label: 'State or local agency', lens: 'For a state or local agency, the emphasis is on public accountability, program continuity, grants and contracts, organizational transitions, implementation discipline, and workforce responsibilities.' },
     foundation: { label: 'Foundation or philanthropy', lens: 'For a foundation, the emphasis is on grantmaking operations, portfolio monitoring, grantee support, funding strategy, internal governance, and translating resources into measurable results.' },
-    business:   { label: 'Established small or mid-sized business', lens: 'For an established business, the emphasis is on operating structure, financial discipline, contracts, growth, leadership transition, accountability, and sustainable delivery.' }
+    business:   { label: 'Established small or mid-sized business', lens: 'For an established business, the emphasis is on operating structure, financial discipline, contracts, growth, leadership transition, accountability, and sustainable delivery.' },
+    contractor: { label: 'Government contractor, or becoming one', lens: 'For a government contractor, or an organization becoming one, the emphasis is on the buyer\u2019s requirements, differentiation, procurement rules, compliance and audit readiness, proposal and contract management, and the structure to scale.' }
   };
   /* One sentence per need × audience, drawn only from the approved audience emphasis. DRAFT COPY. */
   var ANGLES = {
@@ -1469,7 +1573,8 @@
       nonprofit: 'For a nonprofit, a new idea has to fit alongside existing programs, grants, and board expectations, so the roadmap accounts for what is already in motion.',
       agency: 'For a state or local agency, the roadmap has to hold up to public accountability: clear outcomes, an implementation path, and workforce responsibilities defined before launch.',
       foundation: 'For a foundation, an idea often becomes an initiative or a portfolio shift, so the roadmap covers grantmaking operations and how results will be measured.',
-      business: 'For an established business, a new idea competes with current delivery, so the roadmap sets the structure, financial discipline, and capacity required to pursue it without destabilizing what already works.'
+      business: 'For an established business, a new idea competes with current delivery, so the roadmap sets the structure, financial discipline, and capacity required to pursue it without destabilizing what already works.',
+      contractor: 'For a government contractor, a new idea is usually a new offering or a new agency; the roadmap covers the buyer\u2019s requirements, eligibility, and what it takes to deliver before you pursue it.'
     },
     funding: {
       individual: 'For an individual or founder, we start by matching the idea to funding that fits someone at this stage, and by being candid about readiness before anything is pursued.',
@@ -1477,7 +1582,8 @@
       nonprofit: 'For a nonprofit, that means working the whole portfolio, grants, gifts, and contracts together, with audit and monitoring readiness built in from the start.',
       agency: 'For a state or local agency, the focus is grants and contracts you can administer with public accountability, including subrecipient and reporting obligations.',
       foundation: 'For a foundation, funding strategy runs in both directions: how resources are deployed, how the portfolio is monitored, and how grantees are supported to deliver measurable results.',
-      business: 'For an established business, we look at contracts and other mechanisms alongside the financial discipline and compliance obligations each one brings.'
+      business: 'For an established business, we look at contracts and other mechanisms alongside the financial discipline and compliance obligations each one brings.',
+      contractor: 'For a government contractor, funding runs through contracts, task orders, and sometimes grants; we map the mechanisms you can actually win and the compliance each one carries.'
     },
     growing: {
       individual: 'For an individual or founder, growth usually means the work has outgrown one person; we plan the capabilities, partners, and structure the next stage needs.',
@@ -1485,7 +1591,8 @@
       nonprofit: 'For a nonprofit, growth brings more grants, more oversight, and more people to lead; capacity has to hold across program delivery and compliance at once.',
       agency: 'For a state or local agency, growth often arrives as new mandates or funding; the emphasis is program continuity, implementation discipline, and workforce responsibilities.',
       foundation: 'For a foundation, growth means a larger portfolio to monitor and more grantees to support; grantmaking operations and internal governance have to scale with it.',
-      business: 'For an established business, growth strains operating structure and financial discipline first; we align them with contracts, delivery, and accountability.'
+      business: 'For an established business, growth strains operating structure and financial discipline first; we align them with contracts, delivery, and accountability.',
+      contractor: 'For a government contractor, growth means more awards to deliver at once; structure, staffing, and contract management have to hold or past performance suffers.'
     },
     change: {
       individual: 'For an individual or founder, change may be a leadership handoff, a new partner, or a pivot; we protect continuity for the people who depend on the work.',
@@ -1493,7 +1600,8 @@
       nonprofit: 'For a nonprofit, transitions touch grants, contracts, and board governance at the same time; we protect program delivery and funder trust while the structure changes.',
       agency: 'For a state or local agency, reorganizations and leadership changes must preserve public accountability and program continuity; we plan the implementation with that discipline.',
       foundation: 'For a foundation, a portfolio shift or leadership change affects grantees directly; we protect grantmaking operations and monitoring while the change is made.',
-      business: 'For an established business, leadership transition and restructuring have to protect contracts, delivery, and financial discipline; we sequence the change so they hold.'
+      business: 'For an established business, leadership transition and restructuring have to protect contracts, delivery, and financial discipline; we sequence the change so they hold.',
+      contractor: 'For a government contractor, a transition can put contracts at risk; we protect delivery, key-personnel obligations, and the buyer relationship while the structure changes.'
     },
     systems: {
       individual: 'For an individual or founder, the disciplines are simpler but no less important: financial planning, documentation, and the readiness funders and partners will look for.',
@@ -1501,7 +1609,8 @@
       nonprofit: 'For a nonprofit, the review centers on governance, financial planning, program oversight, and audit and monitoring readiness, including subrecipient oversight.',
       agency: 'For a state or local agency, the emphasis is public accountability: program oversight, grants and contracts administration, documentation, and implementation discipline.',
       foundation: 'For a foundation, the review covers grantmaking operations, portfolio monitoring, internal governance, and how resources translate into measurable results.',
-      business: 'For an established business, the review centers on operating structure, financial discipline, contract obligations, and the accountability sustainable delivery depends on.'
+      business: 'For an established business, the review centers on operating structure, financial discipline, contract obligations, and the accountability sustainable delivery depends on.',
+      contractor: 'For a government contractor, the review centers on the controls, documentation, and monitoring your contracts require, so an audit or a site visit finds what it expects.'
     },
     story: {
       individual: 'For an individual or founder, the story is often the first thing a funder or partner sees; we shape it from the idea and the people it serves.',
@@ -1509,7 +1618,17 @@
       nonprofit: 'For a nonprofit, the story supports grants, gifts, board engagement, and program reporting; we build it from the outcomes the work produces.',
       agency: 'For a state or local agency, the story has to hold up to public accountability: plain language, accurate claims, and a clear account of implementation.',
       foundation: 'For a foundation, the story is how a portfolio\u2019s results reach a board and the public; we build it from grantee outcomes and monitoring evidence.',
-      business: 'For an established business, the story supports contracts, growth, and leadership transition; we build it from delivery you can stand behind.'
+      business: 'For an established business, the story supports contracts, growth, and leadership transition; we build it from delivery you can stand behind.',
+      contractor: 'For a government contractor, the story is the capability statement and the past performance behind it; we build both from work you can prove.'
+    },
+    contracts: {
+      individual: 'For an individual or founder, the first questions are whether the market is real for what you offer and what it would take to be eligible and credible; we answer those before anything is pursued.',
+      emerging: 'For an emerging organization, readiness is mostly operating readiness: registrations, past performance you can document, and the compliance systems a first award requires.',
+      nonprofit: 'For a nonprofit, government contracts sit alongside grants and gifts under different rules; we map the contract requirements to what you already run and build what is missing.',
+      agency: 'For a state or local agency, pursuing federal funding and contracts means meeting the federal buyer\u2019s rules while running your own; we map both and prepare the response.',
+      foundation: 'For a foundation, this is usually a grantee or an initiative entering the government market; we prepare the organization to compete without putting the foundation in the middle of the pursuit.',
+      business: 'For an established business, entering or growing in government contracting strains structure, compliance, and delivery first; we build the capability statement, the pursuit sequence, and the systems behind them.',
+      contractor: 'For a contractor already in the market, the work is sharper: differentiation, agency-specific rules and goals, disciplined bid or no-bid decisions, and the delivery and compliance systems that protect past performance.'
     },
     compliance: {
       individual: 'For an individual or founder, a compliance issue is usually tied to a specific grant, contract, or reporting requirement; we organize the facts and the correction quickly and clearly.',
@@ -1517,7 +1636,8 @@
       nonprofit: 'For a nonprofit, this may involve a grant finding, a monitoring result, a subrecipient issue, or an audit concern; we map the requirement to practice and build the corrective path.',
       agency: 'For a state or local agency, the priority is public accountability: clarifying the obligation, reconstructing documentation, and preparing the team for monitoring or follow-up.',
       foundation: 'For a foundation, the issue may sit with a grantee or within grantmaking operations; we clarify the obligation and build a practical correction on either side.',
-      business: 'For an established business, contract and reporting obligations come first; we organize the record, identify the operational gaps, and build the correction.'
+      business: 'For an established business, contract and reporting obligations come first; we organize the record, identify the operational gaps, and build the correction.',
+      contractor: 'For a government contractor, a compliance issue may be a finding, a cure notice, or a missed deliverable; we organize the record, clarify the obligation, and build the correction and the response.'
     }
   };
 
@@ -1629,12 +1749,13 @@
       h += '<div class="block"><h6>Your context</h6><p class="outputs">' + esc(aud.lens) + '</p></div></div></div>';
       if (d.boundary) h += '<p class="boundary">' + esc(d.boundary) + '</p>';
       h += '<div class="actions">' + btn(d.cta, 'btn-primary') + (d.secondary ? btn(d.secondary, 'btn-outline') : '') + '</div>';
+      if (d.fractional) h += '<p class="fractional">Available as a defined project or as fractional, ongoing support.</p>';
       h += '<details class="reach"><summary>Prefer we reach out? Leave your details.</summary>' + formHtml('reach-' + n + '-' + a, 'Fit Call follow-up: ' + d.point, 'Starting point: ' + d.point + ' / ' + aud.label) + '</details>';
       return h + '</div>';
     }
 
     /* Blueprint field: need (left) → practice nodes (centre) → audience (right). */
-    var SHORT = { idea: 'Idea', funding: 'Funding', growing: 'Growth', change: 'Change', systems: 'Systems', story: 'Story', compliance: 'Compliance', individual: 'Individual or founder', emerging: 'Emerging organization', nonprofit: 'Nonprofit', agency: 'State or local agency', foundation: 'Foundation', business: 'Established business' };
+    var SHORT = { idea: 'Idea', funding: 'Funding', growing: 'Growth', change: 'Change', systems: 'Systems', story: 'Story', contracts: 'Contracts', compliance: 'Compliance', individual: 'Individual or founder', emerging: 'Emerging organization', nonprofit: 'Nonprofit', agency: 'State or local agency', foundation: 'Foundation', business: 'Established business', contractor: 'Contractor' };
     var PX = { need: 40, left: 330, mid: 420, right: 700, aud: 920 };
     function nodeY(i) { return 35 + i * 45; }
     function drawField() {
