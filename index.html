@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Contact form service: set data-form-endpoint to the form service's POST URL (e.g. https://formspree.io/f/XXXX).
+     Empty = the details forms open the visitor's email app instead (mailto:). -->
+<html lang="en" data-form-endpoint="">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -327,7 +329,7 @@
   .js .step-desc[hidden] { display: none; }
 
   /* ─── Build It to Hold (who we serve + how we help) ────────────── */
-  .build-sub { font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); margin-top: 52px; }
+  .build-sub { font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); margin-top: 60px; }
   .practices { margin-top: 18px; border-top: 1px solid var(--rule-light); }
   .practice { border-bottom: 1px solid var(--rule-light); }
   .practice summary {
@@ -374,6 +376,8 @@
   .field input:focus-visible, .field textarea:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; border-color: var(--teal); }
   .reach-error { color: var(--white); background: rgba(233, 79, 74, 0.16); border-left: 3px solid var(--coral); padding: 10px 12px; font-size: 14.5px; margin-bottom: 14px; }
   .reach-error[hidden] { display: none; }
+  .reach-done { margin-top: 24px; padding: 16px 18px; border-left: 3px solid var(--teal); background: rgba(48, 163, 150, 0.12); color: var(--white); font-weight: 500; max-width: 56ch; }
+  .reach-done:focus { outline: 3px solid var(--yellow); outline-offset: 2px; }
   .fysp-result .reach { margin-top: 24px; border-top: 1px solid var(--rule-dark); padding-top: 4px; }
   .fysp-result .reach summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px; min-height: 48px; font-weight: 600; color: var(--white); }
   .fysp-result .reach summary::-webkit-details-marker { display: none; }
@@ -383,7 +387,7 @@
 
   /* Find Your Starting Point: Navy blueprint panel inside the light section. */
   .fysp {
-    margin-top: 56px; padding: clamp(28px, 4vw, 56px);
+    margin-top: 40px; padding: clamp(28px, 4vw, 56px);
     background: url('/website-assets/blueprint/hero/blueprint-grid.svg') 0 0 / 80px 80px repeat, var(--navy);
     color: var(--on-dark); border-radius: 6px;
   }
@@ -733,61 +737,6 @@
       <h2 class="h2" id="practices-title">Build It to Hold</h2>
       <p class="lead">Different people and organizations reach the threshold in different ways. Puzzler combines five operating practices around the structure, funding, accountability, and people each client needs to move forward—and keep what they build from unraveling.</p>
 
-      <!-- Five-practice foundation. Each practice carries a data-practice id so the starting-point
-           result can mark the practices it draws on (text badge + rule; never color alone). -->
-      <h3 class="build-sub" id="foundation-title">Five practices beneath every engagement</h3>
-      <div class="practices">
-        <details class="practice" data-practice="restructuring">
-          <summary>
-            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="3" width="8" height="6" rx="1"/><rect x="3" y="19" width="8" height="6" rx="1"/><rect x="17" y="19" width="8" height="6" rx="1"/><path d="M14 9v5M7 19v-5h14v5"/></svg>
-            <span>Organizational restructuring and transition support <span class="relevant" hidden>Relevant to your starting point</span></span>
-            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <div class="body"><p>Reorganizations, mergers, leadership transitions, and program portfolio rationalizations. The structural work that determines whether an organization can do its job for the next decade — built on enterprise reorganizations led at federal scale.</p></div>
-        </details>
-        <details class="practice" data-practice="funding">
-          <summary>
-            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9l10-5 10 5-10 5z"/><path d="M4 14l10 5 10-5"/><path d="M4 19l10 5 10-5"/></svg>
-            <span>Funding strategy across every mechanism <span class="relevant" hidden>Relevant to your starting point</span></span>
-            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <div class="body"><p>Grants, cooperative agreements, contracts, and gifts — and the compliance regimes that come with each. Most mid-sized nonprofits, small businesses, and organizations doing meaningful work run all four at once. We’re built to work the whole portfolio.</p></div>
-        </details>
-        <details class="practice" data-practice="capacity">
-          <summary>
-            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 24h22M4 8h20"/><path d="M7 8v16M14 8v16M21 8v16"/><path d="M3 8l11-4 11 4"/></svg>
-            <span>Capacity building that holds <span class="relevant" hidden>Relevant to your starting point</span></span>
-            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <div class="body"><p>Operational governance, financial planning and analysis, shared-services design, and the unglamorous infrastructure that determines whether mission gets executed. The kind of capacity that doesn’t unravel when the next transformative event arrives.</p></div>
-        </details>
-        <details class="practice" data-practice="program">
-          <summary>
-            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="16" height="21" rx="1.5"/><path d="M11 4h6v3h-6z"/><path d="M10 14l3 3 5-6"/><path d="M10 21h8"/></svg>
-            <span>Program effectiveness and accountability <span class="relevant" hidden>Relevant to your starting point</span></span>
-            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <div class="body"><p>Compliance monitoring and program review for grants and contracts. Site visits, subrecipient monitoring, and the operational disciplines that produce strong year-over-year outcomes — not just clean audits.</p></div>
-        </details>
-        <details class="practice" data-practice="leadership">
-          <summary>
-            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="9" r="4"/><path d="M5 25c1-5 4.5-8 9-8s8 3 9 8"/><path d="M20 4l2.5 2.5L26 3"/></svg>
-            <span>Leadership and workforce development <span class="relevant" hidden>Relevant to your starting point</span></span>
-            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          </summary>
-          <div class="body"><p>Executive coaching, succession planning, tailored workshops, and workforce training. The customized development of leaders and teams who can actually do the work.</p></div>
-        </details>
-      </div>
-
-      <!-- Digital storytelling: a distinct service option alongside the five practices (the Pieces in Motion
-           work). DRAFT COPY pending approval; the five-practice set is unchanged. -->
-      <div class="also">
-        <p class="also-kicker">Also available</p>
-        <h4>Digital storytelling</h4>
-        <p>Short films, narrative video, and functional audiovisual pieces that help funders, partners, boards, and communities understand what the work is and why it matters. This is the work shown in Pieces in Motion, and it can stand alone or run alongside any engagement.</p>
-        <a class="also-link" href="#pieces-in-motion">See Pieces in Motion →</a>
-      </div>
-
       <!-- ── Find Your Starting Point ─────────────────────────────────
            Structured data drives every need × audience result (see the script at the end of the page).
            Without scripting the selector is hidden and the six starting points render as static content. -->
@@ -902,6 +851,62 @@
           </div>
         </div>
       </section>
+
+
+      <!-- Five-practice foundation. Each practice carries a data-practice id so the starting-point
+           result can mark the practices it draws on (text badge + rule; never color alone). -->
+      <h3 class="build-sub" id="foundation-title">Five practices beneath every engagement</h3>
+      <div class="practices">
+        <details class="practice" data-practice="restructuring">
+          <summary>
+            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="3" width="8" height="6" rx="1"/><rect x="3" y="19" width="8" height="6" rx="1"/><rect x="17" y="19" width="8" height="6" rx="1"/><path d="M14 9v5M7 19v-5h14v5"/></svg>
+            <span>Organizational restructuring and transition support <span class="relevant" hidden>Relevant to your starting point</span></span>
+            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <div class="body"><p>Reorganizations, mergers, leadership transitions, and program portfolio rationalizations. The structural work that determines whether an organization can do its job for the next decade — built on enterprise reorganizations led at federal scale.</p></div>
+        </details>
+        <details class="practice" data-practice="funding">
+          <summary>
+            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9l10-5 10 5-10 5z"/><path d="M4 14l10 5 10-5"/><path d="M4 19l10 5 10-5"/></svg>
+            <span>Funding strategy across every mechanism <span class="relevant" hidden>Relevant to your starting point</span></span>
+            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <div class="body"><p>Grants, cooperative agreements, contracts, and gifts — and the compliance regimes that come with each. Most mid-sized nonprofits, small businesses, and organizations doing meaningful work run all four at once. We’re built to work the whole portfolio.</p></div>
+        </details>
+        <details class="practice" data-practice="capacity">
+          <summary>
+            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 24h22M4 8h20"/><path d="M7 8v16M14 8v16M21 8v16"/><path d="M3 8l11-4 11 4"/></svg>
+            <span>Capacity building that holds <span class="relevant" hidden>Relevant to your starting point</span></span>
+            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <div class="body"><p>Operational governance, financial planning and analysis, shared-services design, and the unglamorous infrastructure that determines whether mission gets executed. The kind of capacity that doesn’t unravel when the next transformative event arrives.</p></div>
+        </details>
+        <details class="practice" data-practice="program">
+          <summary>
+            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="16" height="21" rx="1.5"/><path d="M11 4h6v3h-6z"/><path d="M10 14l3 3 5-6"/><path d="M10 21h8"/></svg>
+            <span>Program effectiveness and accountability <span class="relevant" hidden>Relevant to your starting point</span></span>
+            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <div class="body"><p>Compliance monitoring and program review for grants and contracts. Site visits, subrecipient monitoring, and the operational disciplines that produce strong year-over-year outcomes — not just clean audits.</p></div>
+        </details>
+        <details class="practice" data-practice="leadership">
+          <summary>
+            <svg focusable="false" class="ico" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="9" r="4"/><path d="M5 25c1-5 4.5-8 9-8s8 3 9 8"/><path d="M20 4l2.5 2.5L26 3"/></svg>
+            <span>Leadership and workforce development <span class="relevant" hidden>Relevant to your starting point</span></span>
+            <svg focusable="false" class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <div class="body"><p>Executive coaching, succession planning, tailored workshops, and workforce training. The customized development of leaders and teams who can actually do the work.</p></div>
+        </details>
+      </div>
+
+      <!-- Digital storytelling: a distinct service option alongside the five practices (the Pieces in Motion
+           work). Copy approved by the founder 2026-09-09; the five-practice set is unchanged. -->
+      <div class="also">
+        <p class="also-kicker">Also available</p>
+        <h4>Digital storytelling</h4>
+        <p>Short films, narrative video, and functional audiovisual pieces that help funders, partners, boards, and communities understand what the work is and why it matters. This is the work shown in Pieces in Motion, and it can stand alone or run alongside any engagement.</p>
+        <a class="also-link" href="#pieces-in-motion">See Pieces in Motion →</a>
+      </div>
 
       <!-- Static audience summaries: always present for accessibility, search, and visitors who skip the selector.
            DRAFT COPY: situations and help lines are derived from the approved audience emphasis (2026-09-09 brief), pending approval. -->
@@ -1372,7 +1377,7 @@
       label: 'Telling our story',
       point: 'Digital Storytelling',
       headline: 'Tell the story the work deserves.',
-      /* DRAFT COPY: digital storytelling service option (the Pieces in Motion work), pending approval */
+      /* Digital storytelling service option (the Pieces in Motion work); copy approved 2026-09-09 */
       core: 'Puzzler helps organizations tell their story through short films, narrative video, and functional audiovisual pieces, so funders, partners, boards, and communities understand what the work is and why it matters.',
       help: ['Clarify the audience and the decision the story needs to support', 'Shape the narrative from the actual work and the people doing it', 'Plan the production path: format, length, script, and destination', 'Produce or guide short films, narrative video, and functional audiovisual pieces', 'Connect the story to funding, reporting, and stakeholder communication'],
       outputs: ['Story brief', 'Script and storyboard', 'Short film or narrative video', 'Distribution plan'],
@@ -1463,10 +1468,26 @@
     }
   };
 
-  /* Contact details forms: build a mailto: to the approved inquiry address with the fields in the body.
+  /* Contact details forms. With a form service configured (data-form-endpoint on <html>), the fields are
+     posted there as JSON and a confirmation replaces the form; if the post fails, or no service is
+     configured, a mailto: to the approved inquiry address opens with the fields in the body.
      With scripting, validation moves to the handler below (accessible message + focus); without it the
-     browser's own required-field checks and the mailto action still apply. */
-  Array.prototype.forEach.call(document.querySelectorAll('.reach-form'), function (f) { f.setAttribute('novalidate', ''); });
+     browser's own required-field checks and the form's action still apply. */
+  var FORM_ENDPOINT = (document.documentElement.getAttribute('data-form-endpoint') || '').trim();
+  var MAIL_HELP = 'We will follow up by email or phone. This opens your email app with the details filled in.';
+  var POST_HELP = 'We will follow up by email or phone.';
+  function prepReachForm(f) {
+    f.setAttribute('novalidate', '');
+    if (FORM_ENDPOINT) {
+      f.setAttribute('action', FORM_ENDPOINT); f.setAttribute('method', 'post'); f.removeAttribute('enctype');
+      var help = f.querySelector('.reach-help'); if (help) help.textContent = POST_HELP;
+      if (!f.querySelector('[name="_gotcha"]')) { var hp = document.createElement('input'); hp.type = 'text'; hp.name = '_gotcha'; hp.tabIndex = -1; hp.autocomplete = 'off'; hp.setAttribute('aria-hidden', 'true'); hp.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0'; f.appendChild(hp); }
+    }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.reach-form'), prepReachForm);
+  function reachMailto(form, lines) {
+    return 'mailto:info@puzzlerconsultingadvisory.com?subject=' + encodeURIComponent(form.getAttribute('data-subject') || 'Fit Call request') + '&body=' + encodeURIComponent(lines.join('\n'));
+  }
   document.addEventListener('submit', function (e) {
     var form = e.target.closest ? e.target.closest('.reach-form') : null;
     if (!form) return;
@@ -1483,12 +1504,32 @@
     }
     if (err) err.hidden = true;
     name.removeAttribute('aria-invalid'); email.removeAttribute('aria-invalid');
-    var lines = [];
-    Array.prototype.forEach.call(form.querySelectorAll('input, textarea'), function (el) { if (el.value.trim()) lines.push(el.name + ': ' + el.value.trim()); });
-    if (form.getAttribute('data-context')) lines.push(form.getAttribute('data-context'));
-    var url = 'mailto:info@puzzlerconsultingadvisory.com?subject=' + encodeURIComponent(form.getAttribute('data-subject') || 'Fit Call request') + '&body=' + encodeURIComponent(lines.join('\n'));
-    form.setAttribute('data-mailto', url);
-    window.location.href = url;
+    var lines = [], data = {};
+    Array.prototype.forEach.call(form.querySelectorAll('input, textarea'), function (el) {
+      if (el.name === '_gotcha') { data[el.name] = el.value; return; }
+      if (el.value.trim()) { lines.push(el.name + ': ' + el.value.trim()); data[el.name] = el.value.trim(); }
+    });
+    if (form.getAttribute('data-context')) { lines.push(form.getAttribute('data-context')); data.Context = form.getAttribute('data-context'); }
+    data._subject = form.getAttribute('data-subject') || 'Fit Call request';
+    var mailto = reachMailto(form, lines);
+    form.setAttribute('data-mailto', mailto);
+    if (!FORM_ENDPOINT || !window.fetch) { window.location.href = mailto; return; }
+    var submit = form.querySelector('button[type="submit"]');
+    submit.disabled = true; submit.setAttribute('aria-busy', 'true');
+    fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { if (!r.ok) throw new Error('form service ' + r.status); return r.json ? r.json().catch(function () { return {}; }) : {}; })
+      .then(function () {
+        var done = document.createElement('p');
+        done.className = 'reach-done'; done.setAttribute('tabindex', '-1'); done.setAttribute('role', 'status');
+        done.textContent = 'Thanks, ' + name.value.trim() + '. Your details are in. We will follow up by email or phone.';
+        form.parentNode.replaceChild(done, form);
+        done.focus();
+      })
+      .catch(function () {
+        submit.disabled = false; submit.removeAttribute('aria-busy');
+        if (err) { err.textContent = 'We could not send that just now. Opening your email app instead.'; err.hidden = false; }
+        window.location.href = mailto;
+      });
   });
 
   var fysp = document.getElementById('find-your-starting-point');
@@ -1509,7 +1550,7 @@
     /* Contact details form: same markup as the Fit Call form, scoped ids, context carried into the email. */
     function formHtml(prefix, subject, context) {
       var f = function (id, label, name, type, extra) { return '<div class="field"><label for="' + prefix + '-' + id + '">' + label + '</label><input id="' + prefix + '-' + id + '" name="' + name + '" type="' + type + '" ' + (extra || '') + '></div>'; };
-      return '<form class="reach-form" novalidate action="mailto:info@puzzlerconsultingadvisory.com" method="post" enctype="text/plain" data-subject="' + esc(subject) + '" data-context="' + esc(context) + '">' +
+      return '<form class="reach-form" action="mailto:info@puzzlerconsultingadvisory.com" method="post" enctype="text/plain" data-subject="' + esc(subject) + '" data-context="' + esc(context) + '">' +
         '<p class="reach-help">We will follow up by email or phone. This opens your email app with the details filled in.</p>' +
         '<div class="reach-grid">' +
         f('name', 'Name <span class="req" aria-hidden="true">*</span>', 'Name', 'text', 'autocomplete="name" required') +
@@ -1598,6 +1639,7 @@
         var show = function () {
           if (token !== renderToken) return;
           result.innerHTML = cardHtml(need, audience);
+          Array.prototype.forEach.call(result.querySelectorAll('.reach-form'), prepReachForm);
           var card = result.querySelector('.card');
           if (reducedMotion.matches) card.classList.add('is-in');
           else requestAnimationFrame(function () { requestAnimationFrame(function () { card.classList.add('is-in'); }); });

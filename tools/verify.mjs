@@ -415,6 +415,38 @@ for (const pg of PAGES) {
   await ctx.close();
 }
 
+{
+  // Form service path: with data-form-endpoint set, the details are POSTed as JSON and a confirmation replaces the form.
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const page = await ctx.newPage();
+  let posted = null;
+  await page.route('https://forms.example.test/f/abc', async (route) => { posted = JSON.parse(route.request().postData() || '{}'); await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
+  // Serve the homepage with the endpoint filled in, exactly as the owner would configure it.
+  await page.route(base + '/', async (route) => { const html = await readFile(join(root, 'index.html'), 'utf8'); await route.fulfill({ status: 200, contentType: 'text/html; charset=utf-8', body: html.replace('data-form-endpoint=""', 'data-form-endpoint="https://forms.example.test/f/abc"') }); });
+  await page.goto(base + '/', { waitUntil: 'load' });
+  const cfg = await page.evaluate(() => { const f = document.getElementById('reach-fit'); return { action: f.getAttribute('action'), help: f.querySelector('.reach-help').textContent, honeypot: !!f.querySelector('[name="_gotcha"]') }; });
+  if (cfg.action !== 'https://forms.example.test/f/abc' || /email app/.test(cfg.help) || !cfg.honeypot) failures.push(`form-service: form not configured (${JSON.stringify(cfg)})`);
+  await page.fill('#reach-fit-name', 'Test Person'); await page.fill('#reach-fit-email', 'test@example.com'); await page.fill('#reach-fit-org', 'Example Org');
+  await page.click('#reach-fit button[type="submit"]');
+  await page.waitForSelector('.fit .reach-done', { timeout: 3000 }).catch(() => failures.push('form-service: confirmation did not appear'));
+  const done = await page.evaluate(() => ({ text: (document.querySelector('.fit .reach-done') || {}).textContent, focus: document.activeElement.className, formGone: !document.getElementById('reach-fit') }));
+  if (!posted || posted.Name !== 'Test Person' || posted.Email !== 'test@example.com' || posted.Organization !== 'Example Org' || posted._subject !== 'Fit Call request') failures.push(`form-service: posted payload wrong (${JSON.stringify(posted)})`);
+  if (!done.formGone || done.focus !== 'reach-done' || !/Thanks, Test Person/.test(done.text || '')) failures.push(`form-service: confirmation state wrong (${JSON.stringify(done)})`);
+  // Service failure falls back to mailto.
+  await page.unroute('https://forms.example.test/f/abc');
+  await page.route('https://forms.example.test/f/abc', (route) => route.fulfill({ status: 500, body: 'nope' }));
+  await page.click('.opt[data-need="idea"]'); await page.click('.opt[data-audience="emerging"]');
+  await page.waitForSelector('#fysp-result .reach-form', { state: 'attached', timeout: 3000 });
+  await page.evaluate(() => { document.querySelector('#fysp-result details.reach').open = true; });
+  await page.fill('#fysp-result [name="Name"]', 'Fallback Person'); await page.fill('#fysp-result [name="Email"]', 'fb@example.com');
+  await page.click('#fysp-result .reach-form button[type="submit"]');
+  await page.waitForFunction(() => { const f = document.querySelector('#fysp-result .reach-form'); return f && !f.querySelector('.reach-error').hidden; }, null, { timeout: 3000 }).catch(() => failures.push('form-service: failure fallback message did not appear'));
+  const fb = await page.evaluate(() => { const f = document.querySelector('#fysp-result .reach-form'); return { mailto: f.getAttribute('data-mailto'), msg: f.querySelector('.reach-error').textContent }; });
+  if (!/^mailto:info@puzzlerconsultingadvisory\.com\?subject=Fit%20Call%20follow-up%3A%20Strategic%20Roadmap/.test(fb.mailto || '') || !/email app/.test(fb.msg)) failures.push(`form-service: fallback wrong (${JSON.stringify(fb)})`);
+  report.push(`form-service: configured=${cfg.action === 'https://forms.example.test/f/abc'}, posted ok=${!!posted && posted.Name === 'Test Person'}, confirmation=${done.formGone}, failure→mailto=${/Strategic%20Roadmap/.test(fb.mailto || '')}`);
+  await ctx.close();
+}
+
 await browser.close();
 server.close();
 
