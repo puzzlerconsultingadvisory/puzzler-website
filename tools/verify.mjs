@@ -447,6 +447,49 @@ for (const pg of PAGES) {
   await ctx.close();
 }
 
+{
+  // Hero dimension callout: real link, line placed under the text, one-shot hover flicker, static under reduced motion.
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const page = await ctx.newPage();
+  await page.goto(base + '/', { waitUntil: 'load' });
+  await page.waitForTimeout(3600);
+  const geo = await page.evaluate(() => {
+    const f = document.querySelector('.hero-field'), a = document.querySelector('.hero-dim'), l = document.getElementById('hero-dim-lines');
+    const fr = f.getBoundingClientRect(), ar = a.getBoundingClientRect(), scale = fr.width / 1200;
+    const y = parseFloat(l.querySelector('.dim-line').getAttribute('d').split(' ')[1]);
+    const linePx = fr.top + y * scale;
+    return { href: a.getAttribute('href'), text: a.textContent.replace(/\s+/g, ' ').trim(), height: ar.height, lineBelowText: linePx > ar.bottom + 4, dash: getComputedStyle(l.querySelector('.dim-line')).strokeDashoffset, ticks: getComputedStyle(l.querySelector('.dim-tick')).opacity, settled: l.querySelectorAll('.settled').length, fieldHidden: f.getAttribute('aria-hidden') };
+  });
+  if (geo.href !== '#find-your-starting-point') failures.push(`hero-dim: href ${geo.href}`);
+  if (!/Want to know where to start\? Click here to find your starting point/.test(geo.text)) failures.push(`hero-dim: label text "${geo.text}"`);
+  if (!geo.lineBelowText) failures.push('hero-dim: dimension line overlaps the label');
+  if (parseFloat(geo.dash) !== 0 || geo.ticks !== '1' || geo.settled < 3) failures.push(`hero-dim: line did not draw and settle (dash ${geo.dash}, ticks ${geo.ticks}, settled ${geo.settled})`);
+  if (geo.fieldHidden === 'true') failures.push('hero-dim: field is aria-hidden, link unreachable by assistive tech');
+  if (geo.height < 44) failures.push(`hero-dim: link height ${geo.height}px`);
+  await page.hover('.hero-dim');
+  const hov = await page.evaluate(() => ({ dim: getComputedStyle(document.querySelector('#hero-dim-lines .dim')).animationName, ext: getComputedStyle(document.querySelector('#hero-dim-lines .ext')).animationName, iter: getComputedStyle(document.querySelector('#hero-dim-lines .dim')).animationIterationCount }));
+  if (hov.dim !== 'bp-flicker' || hov.ext !== 'bp-flicker' || hov.iter !== '1') failures.push(`hero-dim: hover flicker not applied once (${JSON.stringify(hov)})`);
+  // Keyboard: the callout is a tab stop right after the hero buttons, and focus also flickers the lines.
+  await page.focus('.hero-actions .btn-outline'); await page.keyboard.press('Tab');
+  const foc = await page.evaluate(() => ({ el: document.activeElement.className, anim: getComputedStyle(document.querySelector('#hero-dim-lines .dim')).animationName }));
+  if (foc.el !== 'hero-dim' || foc.anim !== 'bp-flicker') failures.push(`hero-dim: keyboard focus (${JSON.stringify(foc)})`);
+  await ctx.close();
+  const rctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, reducedMotion: 'reduce' });
+  const rpage = await rctx.newPage();
+  await rpage.goto(base + '/', { waitUntil: 'load' });
+  await rpage.hover('.hero-dim');
+  const rm = await rpage.evaluate(() => ({ dash: getComputedStyle(document.querySelector('#hero-dim-lines .dim-line')).strokeDashoffset, ext: getComputedStyle(document.querySelector('#hero-dim-lines .ext')).opacity, anim: getComputedStyle(document.querySelector('#hero-dim-lines .dim')).animationName }));
+  if (parseFloat(rm.dash) !== 0 || rm.ext !== '1' || rm.anim !== 'none') failures.push(`hero-dim reduced-motion: ${JSON.stringify(rm)}`);
+  await rctx.close();
+  const mctx = await browser.newContext({ viewport: { width: 375, height: 740 }, hasTouch: true, isMobile: true });
+  const mpage = await mctx.newPage();
+  await mpage.goto(base + '/', { waitUntil: 'load' });
+  const mob = await mpage.evaluate(() => { const a = document.querySelector('.hero-dim'); const r = a.getBoundingClientRect(); const f = document.querySelector('.hero-field').getBoundingClientRect(); const l = document.getElementById('hero-dim-lines'); const y = parseFloat(l.querySelector('.dim-line').getAttribute('d').split(' ')[1]); return { h: r.height, inside: r.left >= 0 && r.right <= document.documentElement.clientWidth, below: r.top >= f.bottom, lineBelow: f.top + y * (f.width / 1200) > r.bottom, scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }; });
+  if (mob.h < 44 || !mob.inside || !mob.below || !mob.lineBelow || mob.scroll > mob.client) failures.push(`hero-dim mobile: ${JSON.stringify(mob)}`);
+  report.push(`hero-dim: link ok=${geo.href === '#find-your-starting-point'}, line below text=${geo.lineBelowText}, settled=${geo.settled >= 3}, hover flicker=${hov.dim === 'bp-flicker'}, reduced-motion static=${rm.anim === 'none'}, mobile ok=${mob.below && mob.lineBelow}`);
+  await mctx.close();
+}
+
 await browser.close();
 server.close();
 
