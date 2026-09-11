@@ -1,10 +1,10 @@
 # SEO Assessment — puzzlerconsultingadvisory.com
 
-**Date:** 10 September 2026
+**Date:** 10 September 2026, live HTTP verification added 11 September 2026
 **Scope:** Full-site technical, architecture, speed, mobile, on-page, structured data, content, off-page and competitive review.
 **Method:** Nine audit loops, each verified before recording. Working notes and the complete findings log live in `seo_audit_state.md` at the repository root. This document is the polished deliverable.
 
-> **How this audit was run.** The live domain was unreachable from the audit environment (network egress policy), so every page-level finding was verified against the repository source. The site has no build step and is deployed verbatim from `main`, and the audited branch is byte-identical to `main`, so the HTML, robots.txt, sitemap.xml and vercel.json examined here are exactly what Vercel serves. HTTP-layer behaviour (redirect chain, headers, live TTFB) and field Core Web Vitals could not be observed and are listed in section 4. Performance numbers are Lighthouse 12.8 lab runs against a local copy.
+> **How this audit was run.** On 10 September the live domain was unreachable from the audit environment, so page-level findings were verified against the repository source; the site has no build step and deploys verbatim from `main`. On 11 September the `www` host was opened to the environment and the HTTP layer was checked live: the served homepage is byte-identical to `main`, and redirects, HSTS, compression, 404 status, cache headers and the Search Console verification file were all observed directly. Field Core Web Vitals and the bare domain's own redirect behaviour remain unobserved and are listed in section 4. Performance numbers are Lighthouse 12.8 lab runs against a local copy.
 
 ---
 
@@ -20,7 +20,7 @@ The site scores strongly on the things developers control: valid HTML, Lighthous
 |---|---|---|---|
 | 1 | **No search visibility.** A `site:` search returns nothing; the exact firm name returns only unrelated "Puzzle Consulting" firms. Sitemap is stale and incomplete; robots.txt blocks pages that also carry noindex. | Nothing else in this report matters until the homepage is in the index. Root cause needs Search Console (see section 4), but every fixable signal is listed in section 2. | Technical / Off-page |
 | 2 | **One URL, brand-only headings.** Five practices, government contracting, fractional leadership, speaking and the founder bio share `index.html` (8,560 words). The `<h1>` is "Making the pieces fit." and no title or heading contains "nonprofit", "compliance", "government contracting", "fractional", "Annapolis" or "Maryland". | A single page can rank for one intent. Competing sites in the target queries all have dedicated service and location pages. | Architecture / On-page |
-| 3 | **No trust or entity signals.** Zero structured data on any page, no address on any indexable page, no testimonials, case studies or credentials, and 14 blocks of draft copy still marked `DRAFT COPY` in production. | Google needs to resolve *who* this is (entity), *where* (local), and *why to trust it* (E-E-A-T). None of the three is currently answered in machine-readable or human-readable form. | Schema / Content |
+| 3 | **No trust or entity signals.** Zero structured data on any page, no address on any indexable page, no testimonials, case studies or credentials, and 16 blocks of draft copy still marked `DRAFT COPY` in production (14 on 10 Sep; two more arrived with PRs #25/#26). | Google needs to resolve *who* this is (entity), *where* (local), and *why to trust it* (E-E-A-T). None of the three is currently answered in machine-readable or human-readable form. | Schema / Content |
 
 ### Quick wins
 
@@ -31,8 +31,8 @@ The site scores strongly on the things developers control: valid HTML, Lighthous
 | Severity | Count |
 |---|---|
 | High | 7 |
-| Medium | 13 |
-| Low | 16 |
+| Medium | 14 |
+| Low | 17 |
 | Info (positives, recorded for completeness) | 6 |
 | Blocked / pending verification | 6 |
 
@@ -54,7 +54,9 @@ Severity: **High** = blocks or materially limits ranking; **Medium** = measurabl
 | Low | `puzzler_card.html` (business card with a direct personal email + vCard) is indexable but orphaned and not in the sitemap. | page head; no inbound links | Decide: `noindex` if QR-only, otherwise link it and list it. |
 | Low | No custom 404 page. | `404.html` absent | Add a branded `404.html` with links to home, videos, Fit Call. |
 | Low | Video pages have `og:type=video.other` but no `og:url`, `og:video` or Twitter card tags. | `grep og:url` = 0 | Add og:url, twitter:card, and `og:video` + `og:video:type` for the MP4 page. |
-| Low · PENDING | HTTPS enforcement, www→apex redirect, HSTS and live 404 status could not be observed. | egress blocked | `curl -I http://www.puzzlerconsultingadvisory.com/` from any machine; expect one 301 to `https://puzzlerconsultingadvisory.com/`; add HSTS via vercel.json `headers` if absent. |
+| Medium | The `www` host serves the whole site with a 200 and never redirects to the apex, while every canonical names the apex, so two hostnames publish identical pages. | `curl -I https://www.puzzlerconsultingadvisory.com/` = HTTP/2 200, no Location; canonical = apex | In Vercel → Project → Domains, set the bare domain as primary and configure `www` to redirect (308) to it. |
+| Low | `/index.html` is a second live copy of the homepage (200, no redirect to `/`). | live curl = 200, 0 redirects | Add a permanent redirect from `/index.html` to `/` in vercel.json. |
+| Info | Verified live on 11 Sep: `http://www` → 308 → `https://www`; HSTS `max-age=63072000` (no includeSubDomains/preload); unknown paths return a real 404; Brotli compression; HTTP/2; edge TTFB ≈160 ms; robots.txt, sitemap.xml and the Search Console verification file all serve 200 as committed. | live curl on the www host | Optionally add `includeSubDomains; preload` to HSTS once www redirects to the apex. |
 | Info | Positives: canonical on `/`, privacy, terms; robots.txt references the sitemap; single h1; `lang="en"`; viewport everywhere; html-validate clean on all six published pages. | `npm run validate` | — |
 
 ### 2.2 Site architecture & internal linking
@@ -85,7 +87,7 @@ Lab results, local server, Lighthouse 12.8.2:
 | Low | Homepage loads 10 Poppins files (~82 KB) though weight 300 is used 3× and italics 11×. | `@font-face` list | Drop 300, 300-italic, 500-italic, 600-italic unless needed (~34 KB). |
 | Low | One render-blocking stylesheet (`method-states.css`, 4 KB); no `preconnect` for Fathom, Vercel Insights or `i.ytimg.com`. | Lighthouse `render-blocking-resources`; `grep preconnect` = 0 | Inline the small stylesheet; add preconnect / dns-prefetch. |
 | Low | No cache policy declared in `vercel.json`. | `grep headers vercel.json` = 0 | Add `Cache-Control: public, max-age=31536000, immutable` for `/fonts/`, `/website-assets/`, `/assets/`. |
-| PENDING | Field CWV (CrUX), Vercel compression, HTTP/2 and edge TTFB unobserved. Lighthouse's "enable text compression" and "bf-cache no-store" flags are artefacts of the local server and are **not** findings. | PSI API 429; CrUX 403; egress blocked | Run pagespeed.web.dev once and paste the mobile panel. |
+| PENDING | Field CWV (CrUX) unobserved. Vercel compression (Brotli), HTTP/2 and edge TTFB (≈160 ms) are now confirmed live; Lighthouse's "enable text compression" and "bf-cache no-store" flags were artefacts of the local server and are **not** findings. | PSI API 429; CrUX 403 | Run pagespeed.web.dev once and paste the mobile panel. |
 | Info | Positives: self-hosted fonts with swap; 3 preloads on home; all images sized (CLS 0); LCP image `fetchpriority=high`; lazy thumbs; deferred analytics; no YouTube iframe until click; 18 MB MP4 uses `preload=metadata`; third-party main-thread cost 0 ms. | Lighthouse | — |
 
 ### 2.4 Mobile usability
@@ -185,8 +187,8 @@ Each item references the finding it resolves.
 
 | Item | Why | What would confirm it |
 |---|---|---|
-| Indexation status and cause | No Search Console access; live domain blocked from the audit environment | GSC Coverage + URL Inspection on `/`, or a screenshot of both |
-| HTTPS/www redirect chain, HSTS, live 404 code, cache headers, compression | Egress blocked to the domain | `curl -I` on all four host/scheme variants from any machine |
+| Indexation status and cause | Search Console was verified and the sitemap submitted on 11 Sep; coverage data takes days to populate | GSC Coverage + URL Inspection on `/` in 3–7 days |
+| The bare (non-www) domain's own redirect and header behaviour | Only the `www` host is on the audit environment's allowlist | Add `puzzlerconsultingadvisory.com` to the allowlist, or `curl -I` it from any machine |
 | Field Core Web Vitals | PSI API daily quota exhausted (429); CrUX API needs a key (403) | pagespeed.web.dev mobile panel, or CrUX dashboard once the origin has traffic |
 | Backlinks, referring domains, domain authority, brand mentions | No Ahrefs/Semrush/Moz access | One Site Explorer export or the GSC Links report |
 | Existence/consistency of LinkedIn, YouTube, TikTok, Threads profiles; Calendly and HeyGen embeds | Egress blocked to those hosts | Open each URL once; confirm name, logo and website field match |
