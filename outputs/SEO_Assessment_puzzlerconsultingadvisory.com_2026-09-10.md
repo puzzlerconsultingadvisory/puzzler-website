@@ -65,7 +65,7 @@ Severity: **High** = blocks or materially limits ranking; **Medium** = measurabl
 |---|---|---|---|
 | High | The whole offer lives on one URL; primary nav is anchor-only; no service, sector or topic pages exist. A dedicated government-contracting page is already agreed in the implementation notes. | `index.html` nav hrefs; section ids; word count 8,561; `IMPLEMENTATION_STATUS.md` line 203 | Hub-and-spoke: `/government-contracting/`, `/fractional-leadership/`, `/speaking/`, `/about/`, and one page per practice (or a `/services/` hub). Link each homepage section heading to its page. Start with government contracting (copy approved). |
 | Medium | Secondary pages are dead-ends: video pages and the card link back only via the brand mark; legal pages link only to home and each other; no page links to the other video page. | per-page href extraction | Shared footer on every page (home, both videos, privacy, terms, Fit Call). |
-| Low | Heading hierarchy skips h2 → h5 in the Find Your Starting Point result (JS-injected). | `index.html` ~line 1727 | Change to h3 and restyle. |
+| ~~Low~~ Withdrawn | Heading hierarchy skips h2 → h5 in the Find Your Starting Point result (JS-injected). **Withdrawn 11 Sep:** in the rendered DOM the result card follows the Step 2 `<h4>`, so `<h5>` is valid; the original scan read the script text as markup. | `index.html` ~line 1727 | None. |
 | Low | Three dormant pages remain deployed and internally link to unrewritten clean URLs. | `about.html` nav; `vercel.json` | Delete (recommended in `IMPLEMENTATION_STATUS.md` §C8) or rebuild as spoke pages. |
 | Info | Positives: 0 broken anchors (9 checked); every page ≤1 click from home; no `target=_blank` tab-hijacks; nav has `aria-label`; 13 Calendly CTAs. | Loop 2 script | — |
 
@@ -149,19 +149,19 @@ Each item references the finding it resolves.
 ### Now (this week, all code-level, ~1 day total)
 
 1. ~~**Primary domain** and **Search Console Domain property**~~ — done 11 Sep: bare domain primary, `www` 308s to it, Domain property verified via DNS, sitemap submitted. Remaining: inspect `/` from 15 Sep. (2.1-High, 2.8-High)
-2. **Sitemap**: add both video pages, correct homepage lastmod, derive lastmod from git. (2.1-Medium)
-3. **robots.txt**: remove the three Disallow lines. (2.1-Medium)
-4. **Canonicals + redirects**: self-canonical on both video pages; 301 `.html` → clean URL in vercel.json. (2.1-Medium, 2.2-Medium)
-5. **Dormant pages**: delete about/services/contact (or decide to rebuild). (2.1-Medium, 2.2-Low)
-6. **Title + h1 + meta description** rewrite with audience, service and location. (2.5-High, 2.5-Medium)
-7. **JSON-LD** for ProfessionalService, Person, WebSite; VideoObject on video pages. (2.6-High)
-8. **NAP footer** on every page, shared across pages, with links to both videos and legal pages. (2.7-Medium, 2.2-Medium)
-9. **Font preloads on video pages** to remove the 0.2 CLS. (2.3-Medium, 2.4-Medium)
-10. **Poster WebP** at 1280×720. (2.3-Medium)
-11. **Cache headers + preconnect** in vercel.json / head. (2.3-Low)
-12. **404.html**. (2.1-Low)
-13. **h5 → h3** in the starting-point result; video-page OG/Twitter tags. (2.2-Low, 2.1-Low)
-14. **Decide puzzler_card.html**: noindex or link + sitemap. (2.1-Low)
+2. ~~**Sitemap**~~ — done 11 Sep (`tools/build-sitemap.mjs`).
+3. ~~**robots.txt**~~ — done 11 Sep.
+4. ~~**Canonicals + redirects**~~ — done 11 Sep, including `/index.html` → `/`.
+5. ~~**Dormant pages**~~ — deleted 11 Sep.
+6. ~~**Title + h1 + meta description**~~ — done 11 Sep; the tagline stays as the display line above the new descriptive h1.
+7. ~~**JSON-LD**~~ — done 11 Sep on the homepage and both video pages.
+8. ~~**NAP footer**~~ — done 11 Sep on home, both videos, privacy, terms and the 404 page.
+9. ~~**Font preloads on video pages**~~ — done 11 Sep.
+10. ~~**Poster WebP**~~ — done 11 Sep (`tools/build-video-posters.py`, 14 KB).
+11. ~~**Cache headers + preconnect**~~ — done 11 Sep.
+12. ~~**404.html**~~ — done 11 Sep.
+13. ~~**Video-page OG/Twitter tags**~~ — done 11 Sep. The h5 item was withdrawn: the result card follows an h4, so h5 is valid (false positive).
+14. ~~**Decide puzzler_card.html**~~ — set to noindex 11 Sep.
 
 ### Next (30 days)
 

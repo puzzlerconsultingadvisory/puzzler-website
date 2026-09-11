@@ -7,13 +7,15 @@
     "install:browser": "echo 'Chromium is expected via PLAYWRIGHT_BROWSERS_PATH; run: npx playwright install chromium' ",
     "build:method": "node build-method-states.mjs",
     "check:assets": "node check-assets.mjs",
-    "validate": "html-validate --config .htmlvalidate.json ../index.html ../privacy.html ../terms.html ../making-the-pieces-fit.html ../capability-brief.html ../puzzler_card.html",
+    "validate": "html-validate --config .htmlvalidate.json ../index.html ../privacy.html ../terms.html ../making-the-pieces-fit.html ../capability-brief.html ../puzzler_card.html ../404.html",
     "verify": "node verify.mjs",
     "test": "npm run check:assets && npm run validate && npm run verify",
     "build:hero": "node build-hero-layers.mjs",
     "build:social": "node build-social-preview.mjs",
     "build:icons": "node build-favicons.mjs",
-    "build": "npm run build:hero && npm run build:method && npm run build:social && npm run build:icons"
+    "build": "npm run build:hero && npm run build:method && npm run build:social && npm run build:icons",
+    "build:sitemap": "node build-sitemap.mjs",
+    "build:video-posters": "python3 build-video-posters.py"
   },
   "devDependencies": {
     "axe-core": "4.10.3",

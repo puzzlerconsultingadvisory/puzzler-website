@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Page not found — Puzzler Consulting &amp; Advisory Services</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-700.woff2" crossorigin>
+<style>
+  @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/poppins-400.woff2') format('woff2'); }
+  @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/poppins-700.woff2') format('woff2'); }
+  :root {
+    --navy: #1A1A2E;
+    --navy-deep: #0F0F1F;
+    --coral: #E94F4A;
+    --orange: #F39C4A;
+    --yellow: #F5CF48;
+    --green: #7ABF5F;
+    --teal: #30A396;
+    --pale: #F4F4F8;
+    --accent-bg: #EAF6F4;
+    --white: #FFFFFF;
+
+    --ink: var(--navy);
+    --ink-soft: rgba(26, 26, 46, 0.74);
+    --ink-mute: rgba(26, 26, 46, 0.66);
+    --on-dark: var(--white);
+    --on-dark-soft: rgba(255, 255, 255, 0.80);
+    --on-dark-mute: rgba(255, 255, 255, 0.62);
+    --rule-dark: rgba(255, 255, 255, 0.14);
+    --rule-light: rgba(26, 26, 46, 0.12);
+
+    --font: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --measure: 66ch;
+    --gutter: clamp(20px, 5vw, 64px);
+    --section-y: clamp(72px, 10vw, 140px);
+    --focus: var(--yellow);
+    --ease: cubic-bezier(.4, 0, .2, 1);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { font-family: 'Poppins', system-ui, sans-serif; background: var(--navy); color: var(--white); min-height: 100vh; display: flex; flex-direction: column; }
+  .bar { height: 6px; background: linear-gradient(90deg, var(--coral) 0 20%, var(--orange) 20% 40%, var(--yellow) 40% 60%, var(--green) 60% 80%, var(--teal) 80% 100%); }
+  main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 48px 24px; }
+  .box { max-width: 560px; text-align: center; }
+  .kicker { color: var(--teal); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; margin: 0 0 12px; }
+  h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0 0 14px; font-weight: 700; }
+  p { line-height: 1.6; margin: 0 0 24px; color: rgba(255,255,255,.82); }
+  .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 28px; }
+  .links a { color: var(--white); text-decoration: none; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 10px 18px; min-height: 44px; display: inline-flex; align-items: center; }
+  .links a:hover, .links a:focus-visible { border-color: var(--teal); outline: none; }
+  .btn { display: inline-flex; align-items: center; min-height: 48px; padding: 12px 26px; border-radius: 999px; background: var(--teal); color: var(--navy); font-weight: 700; text-decoration: none; }
+  .btn:focus-visible { outline: 3px solid var(--white); outline-offset: 2px; }
+  footer { text-align: center; font-size: 12px; color: rgba(255,255,255,.6); padding: 20px 24px 28px; line-height: 1.7; }
+  footer a { color: rgba(255,255,255,.8); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="bar" aria-hidden="true"></div>
+<main>
+  <div class="box">
+    <p class="kicker">404 · Page not found</p>
+    <h1>That piece isn’t here.</h1>
+    <p>The page you asked for doesn’t exist or has moved. Everything Puzzler does is on the homepage, and the two short films are one click away.</p>
+    <nav class="links" aria-label="Where to go next">
+      <a href="/">Homepage</a>
+      <a href="/capability-brief">Capability Brief</a>
+      <a href="/making-the-pieces-fit">Making the Pieces Fit</a>
+    </nav>
+    <a class="btn" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Book a Fit Call</a>
+  </div>
+</main>
+<footer>
+  Puzzler Consulting &amp; Advisory Services LLC &middot; 1125 West Street, Suite 200 #348, Annapolis, MD 21401<br>
+  <a href="tel:+14109706539">(410)&nbsp;970&#8209;6539</a> &middot; <a href="mailto:info@puzzlerconsultingadvisory.com">info@puzzlerconsultingadvisory.com</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a>
+</footer>
+</body>
+</html>

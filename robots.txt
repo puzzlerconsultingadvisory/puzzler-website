@@ -1,6 +1,4 @@
 User-agent: *
-Disallow: /about.html
-Disallow: /services.html
-Disallow: /contact.html
+Disallow:
 
 Sitemap: https://puzzlerconsultingadvisory.com/sitemap.xml
