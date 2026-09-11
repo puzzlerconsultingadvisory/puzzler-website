@@ -152,7 +152,7 @@ Each item references the finding it resolves.
 2. ~~**Sitemap**~~ — done 11 Sep (`tools/build-sitemap.mjs`).
 3. ~~**robots.txt**~~ — done 11 Sep.
 4. ~~**Canonicals + redirects**~~ — done 11 Sep, including `/index.html` → `/`.
-5. **Dormant pages**: delete about/services/contact (or decide to rebuild). (2.1-Medium, 2.2-Low)
+5. ~~**Dormant pages**~~ — deleted 11 Sep.
 6. **Title + meta description** — done 11 Sep. **h1** left as the locked brand tagline pending the founder's decision. (2.5-High, 2.5-Medium)
 7. ~~**JSON-LD**~~ — done 11 Sep on the homepage and both video pages.
 8. ~~**NAP footer**~~ — done 11 Sep on home, both videos, privacy, terms and the 404 page.
@@ -161,7 +161,7 @@ Each item references the finding it resolves.
 11. ~~**Cache headers + preconnect**~~ — done 11 Sep.
 12. ~~**404.html**~~ — done 11 Sep.
 13. ~~**Video-page OG/Twitter tags**~~ — done 11 Sep. The h5 item was withdrawn: the result card follows an h4, so h5 is valid (false positive).
-14. **Decide puzzler_card.html**: noindex or link + sitemap. (2.1-Low)
+14. ~~**Decide puzzler_card.html**~~ — set to noindex 11 Sep.
 
 ### Next (30 days)
 
