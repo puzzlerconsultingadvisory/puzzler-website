@@ -3,6 +3,7 @@
      Empty = the details forms open the visitor's email app instead (mailto:). -->
 <html lang="en" data-form-endpoint="">
 <head>
+<script>document.documentElement.classList.add('js');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="format-detection" content="telephone=no">
@@ -310,32 +311,51 @@
     background: linear-gradient(180deg, rgba(15, 15, 31, 0), rgba(15, 15, 31, 0.9));
   }
   .method-stage .stage-caption strong { color: var(--teal); font-weight: 600; }
-  .stage-nav { display: flex; gap: 10px; margin-top: 14px; }
+  .stage-nav { display: flex; gap: 10px; margin-top: 14px; align-items: center; flex-wrap: wrap; }
   .stage-nav .btn { min-width: 44px; padding-inline: 16px; }
   .stage-nav .btn[disabled] { opacity: .35; cursor: default; }
+  .stage-nav .spacer { flex: 1; }
+  .auto-note { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-dark-mute); }
+  .auto-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 4px; color: var(--white); font: inherit; font-weight: 600; font-size: 14px; background: none; cursor: pointer; }
+  .auto-btn:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.06); }
+  .auto-btn svg { width: 12px; height: 12px; }
+  .auto-btn .ico-play, .auto-btn[aria-pressed="true"] .ico-pause { display: none; }
+  .auto-btn[aria-pressed="true"] .ico-play { display: block; }
+  .auto-note[hidden], .auto-btn[hidden] { display: none; }
 
-  .phase { margin-bottom: 22px; }
-  .phase h3 {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal);
-    display: flex; align-items: center; gap: 12px; margin-bottom: 8px;
-  }
-  .phase h3 .range { color: var(--on-dark-mute); font-weight: 500; letter-spacing: 0.1em; }
-  .phase ol { border-top: 1px solid var(--rule-dark); }
-  .step { border-bottom: 1px solid var(--rule-dark); }
-  .step-btn {
-    display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 12px;
-    width: 100%; min-height: 56px; padding: 12px 8px 12px 4px; text-align: left;
-    font-weight: 600; font-size: 17px; line-height: 1.3; color: var(--on-dark-soft);
-    transition: color .2s, background .2s; border-radius: 4px;
-  }
-  .step-btn .num { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; color: var(--on-dark-mute); font-variant-numeric: tabular-nums; }
-  .step-btn .mark { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--on-dark-mute); margin-right: 6px; transition: background .2s, border-color .2s; }
-  .step-btn:hover { color: var(--white); }
-  .step-btn[aria-current="step"] { color: var(--white); }
-  .step-btn[aria-current="step"] .num { color: var(--teal); }
-  .step-btn[aria-current="step"] .mark { background: var(--teal); border-color: var(--teal); }
-  .step-desc { padding: 0 8px 18px 52px; color: var(--on-dark-soft); font-size: 15.5px; max-width: 52ch; }
-  .js .step-desc[hidden] { display: none; }
+  /* Slides */
+  .method-layout { align-items: stretch; }
+  .method-slides { display: flex; flex-direction: column; border-left: 1px solid var(--rule-dark); padding-left: clamp(20px, 3vw, 40px); }
+  .js .method-slides .slides { display: grid; }
+  .js .slide { grid-area: 1 / 1; }
+  .js .slide[hidden] { display: block; visibility: hidden; }
+  html:not(.js) .slide[hidden] { display: block; }
+  .slide + .slide { margin-top: 36px; }
+  .js .slide + .slide { margin-top: 0; }
+  .slide .phase-line { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); }
+  .slide .phase-line .range { color: var(--on-dark-mute); font-weight: 500; letter-spacing: 0.1em; }
+  .slide .big { font-size: 64px; font-weight: 700; line-height: 1; color: var(--teal); margin-top: 22px; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .slide h3 { font-size: 30px; line-height: 1.15; color: var(--white); margin-top: 10px; font-weight: 700; }
+  .slide .step-desc { color: var(--on-dark-soft); font-size: 16.5px; line-height: 1.6; margin-top: 16px; max-width: 46ch; }
+  .slide .shown { margin-top: 14px; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--on-dark-mute); }
+  .slide .shown strong { color: var(--white); font-weight: 600; }
+  .js .slide.enter { animation: slide-in .3s ease-out 1; }
+  @keyframes slide-in { from { opacity: 0; } to { opacity: 1; } }
+  .step-strip { display: none; margin-top: auto; padding-top: 28px; gap: 18px; flex-wrap: wrap; }
+  .js .step-strip { display: flex; }
+  .step-strip .grp { display: flex; flex-direction: column; gap: 8px; }
+  .step-strip .lab { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-dark-mute); font-weight: 600; }
+  .step-strip .btns { display: flex; gap: 4px; }
+  .step-btn { min-width: 44px; height: 44px; padding: 0 8px; border: 1px solid var(--rule-dark); border-radius: 4px; color: var(--on-dark-soft); font: inherit; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; background: none; font-variant-numeric: tabular-nums; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
+  .step-btn:hover { color: var(--white); border-color: rgba(255, 255, 255, 0.5); }
+  .step-btn.done { border-color: rgba(48, 163, 150, 0.5); color: var(--white); }
+  .step-btn[aria-current="step"] { background: var(--teal); border-color: var(--teal); color: var(--navy-deep); }
+
+  /* Progress: seven segments, the current one filling over the step's time (width set by script). */
+  .auto-bar { display: none; gap: 4px; margin-top: 22px; height: 3px; }
+  .js .auto-bar { display: flex; }
+  .auto-bar span { flex: 1; background: var(--rule-dark); position: relative; overflow: hidden; border-radius: 2px; }
+  .auto-bar span::after { content: ""; position: absolute; inset: 0; width: var(--p, 0%); background: var(--teal); }
 
   /* ─── Build It to Hold (who we serve + how we help) ────────────── */
   .build-sub { font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); margin-top: 60px; }
@@ -638,6 +658,10 @@
     .hero .wrap { grid-template-columns: minmax(0, 1fr); }
     .hero-field { max-width: 640px; }
     .method-layout { grid-template-columns: minmax(0, 1fr); }
+    .method-slides { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule-dark); padding-top: 22px; margin-top: 4px; }
+    .slide .big { font-size: 48px; margin-top: 14px; }
+    .slide h3 { font-size: 24px; }
+    .step-strip { padding-top: 22px; }
     .gap .wrap, .about .wrap { grid-template-columns: minmax(0, 1fr); }
     .fysp-steps { grid-template-columns: minmax(0, 1fr); }
     .fysp-field { display: none; }
@@ -662,7 +686,7 @@
     .ways-grid { grid-template-columns: minmax(0, 1fr); }
     .shape-list { grid-template-columns: minmax(0, 1fr); }
     .contact-grid { grid-template-columns: minmax(0, 1fr); }
-    .step-desc { padding-left: 44px; }
+    .auto-note { display: none; }
     .practice summary { grid-template-columns: 36px 1fr auto; gap: 12px; }
     .practice .body { padding-left: 52px; }
     .close .brand-line { font-size: 22px; }
@@ -1074,59 +1098,87 @@
             <img id="method-static" src="/website-assets/blueprint/method/method-state-01-edge.svg" width="800" height="560" alt="The Puzzler Method, step 1: Start With The Edge. Outside boundaries and corner relationships traced." decoding="async">
             <p class="stage-caption" id="stage-caption" aria-hidden="true"><strong>01</strong> Start With The Edge</p>
           </div>
-          <div class="stage-nav">
-            <button class="btn btn-outline" type="button" id="step-prev" aria-label="Previous step">←</button>
-            <button class="btn btn-outline" type="button" id="step-next" aria-label="Next step">→</button>
-          </div>
         </div>
 
-        <div class="method-steps" id="method-steps">
-          <div class="phase">
-            <h3>Phase 1 · Start With The Edge <span class="range">Steps 1–3</span></h3>
-            <ol start="1">
-              <li class="step">
-                <button class="step-btn" type="button" data-step="1" aria-current="step"><span class="num">01</span><span>Start With The Edge</span><span class="mark" aria-hidden="true"></span></button>
-                <!-- DRAFT COPY: step descriptions pending approval -->
-                <p class="step-desc" data-step="1">Trace the outside first. Before anything moves, we establish the boundaries of the engagement — mission, money, mandate, and the people accountable for each — and how the corners relate.</p>
-              </li>
-              <li class="step">
-                <button class="step-btn" type="button" data-step="2"><span class="num">02</span><span>Build The Frame</span><span class="mark" aria-hidden="true"></span></button>
-                <p class="step-desc" data-step="2" hidden>Close the perimeter. Governance, decision rights, and the operating rhythm become a stable frame that every later piece has to fit inside.</p>
-              </li>
-              <li class="step">
-                <button class="step-btn" type="button" data-step="3"><span class="num">03</span><span>Sort The Pieces</span><span class="mark" aria-hidden="true"></span></button>
-                <p class="step-desc" data-step="3" hidden>Organize the interior into working groups — programs, funding streams, functions, and people — without pulling anything out of the picture.</p>
-              </li>
-            </ol>
+        <!-- Slides: one per step; with script one is shown at a time and the show advances on a timer.
+             Without script all seven read in order beneath the drawing. -->
+        <div class="method-slides" id="method-slides">
+          <div class="slides">
+            <article class="slide" data-step="1">
+              <p class="phase-line">Phase 1 · Start With The Edge <span class="range">Steps 1–3</span></p>
+              <p class="big" aria-hidden="true">01</p>
+              <h3><span class="visually-hidden">Step 1 of 7: </span>Start With The Edge</h3>
+              <!-- DRAFT COPY: step descriptions pending approval -->
+              <p class="step-desc">Trace the outside first. Before anything moves, we establish the boundaries of the engagement — mission, money, mandate, and the people accountable for each — and how the corners relate.</p>
+              <p class="shown"><strong>On the drawing</strong> · Outside boundaries and corner relationships traced</p>
+            </article>
+            <article class="slide" data-step="2" hidden>
+              <p class="phase-line">Phase 1 · Start With The Edge <span class="range">Steps 1–3</span></p>
+              <p class="big" aria-hidden="true">02</p>
+              <h3><span class="visually-hidden">Step 2 of 7: </span>Build The Frame</h3>
+              <!-- DRAFT COPY: step descriptions pending approval -->
+              <p class="step-desc">Close the perimeter. Governance, decision rights, and the operating rhythm become a stable frame that every later piece has to fit inside.</p>
+              <p class="shown"><strong>On the drawing</strong> · Perimeter closed into a stable frame</p>
+            </article>
+            <article class="slide" data-step="3" hidden>
+              <p class="phase-line">Phase 1 · Start With The Edge <span class="range">Steps 1–3</span></p>
+              <p class="big" aria-hidden="true">03</p>
+              <h3><span class="visually-hidden">Step 3 of 7: </span>Sort The Pieces</h3>
+              <!-- DRAFT COPY: step descriptions pending approval -->
+              <p class="step-desc">Organize the interior into working groups — programs, funding streams, functions, and people — without pulling anything out of the picture.</p>
+              <p class="shown"><strong>On the drawing</strong> · Interior areas organized into working groups</p>
+            </article>
+            <article class="slide" data-step="4" hidden>
+              <p class="phase-line">Phase 2 · Sort and Build <span class="range">Steps 4–6</span></p>
+              <p class="big" aria-hidden="true">04</p>
+              <h3><span class="visually-hidden">Step 4 of 7: </span>Use Visual Cues</h3>
+              <!-- DRAFT COPY: step descriptions pending approval -->
+              <p class="step-desc">Clarify the relationships that matter. Decision-ready briefs, clear paths, and visible connections so leadership can act without losing what matters in translation.</p>
+              <p class="shown"><strong>On the drawing</strong> · Selected relationships and paths clarified</p>
+            </article>
+            <article class="slide" data-step="5" hidden>
+              <p class="phase-line">Phase 2 · Sort and Build <span class="range">Steps 4–6</span></p>
+              <p class="big" aria-hidden="true">05</p>
+              <h3><span class="visually-hidden">Step 5 of 7: </span>Take Breaks</h3>
+              <!-- DRAFT COPY: step descriptions pending approval -->
+              <p class="step-desc">Stop at visible checkpoints. Pausing on purpose is how a team keeps its judgment — and how leadership sees progress instead of motion.</p>
+              <p class="shown"><strong>On the drawing</strong> · Motion stopped at a visible checkpoint</p>
+            </article>
+            <article class="slide" data-step="6" hidden>
+              <p class="phase-line">Phase 2 · Sort and Build <span class="range">Steps 4–6</span></p>
+              <p class="big" aria-hidden="true">06</p>
+              <h3><span class="visually-hidden">Step 6 of 7: </span>Avoid Common Mistakes / Don’t Get Stuck On One Piece</h3>
+              <!-- DRAFT COPY: step descriptions pending approval -->
+              <p class="step-desc">Restore the whole picture. When one problem dominates, the rest of the organization drifts. We bring every area back to equal visibility before choosing the next move.</p>
+              <p class="shown"><strong>On the drawing</strong> · Entire diagram restored to equal visibility</p>
+            </article>
+            <article class="slide" data-step="7" hidden>
+              <p class="phase-line">Phase 3 · Activate and Sustain <span class="range">Step 7</span></p>
+              <p class="big" aria-hidden="true">07</p>
+              <h3><span class="visually-hidden">Step 7 of 7: </span>Risk Correction</h3>
+              <!-- DRAFT COPY: step descriptions pending approval -->
+              <p class="step-desc">Find the unstable connection, correct it, and return it to a durable state — the compliance, monitoring, and stewardship discipline that determines whether you keep what you win.</p>
+              <p class="shown"><strong>On the drawing</strong> · One unstable connection identified, corrected, and returned to a durable state</p>
+            </article>
           </div>
-          <div class="phase">
-            <h3>Phase 2 · Sort and Build <span class="range">Steps 4–6</span></h3>
-            <ol start="4">
-              <li class="step">
-                <button class="step-btn" type="button" data-step="4"><span class="num">04</span><span>Use Visual Cues</span><span class="mark" aria-hidden="true"></span></button>
-                <p class="step-desc" data-step="4" hidden>Clarify the relationships that matter. Decision-ready briefs, clear paths, and visible connections so leadership can act without losing what matters in translation.</p>
-              </li>
-              <li class="step">
-                <button class="step-btn" type="button" data-step="5"><span class="num">05</span><span>Take Breaks</span><span class="mark" aria-hidden="true"></span></button>
-                <p class="step-desc" data-step="5" hidden>Stop at visible checkpoints. Pausing on purpose is how a team keeps its judgment — and how leadership sees progress instead of motion.</p>
-              </li>
-              <li class="step">
-                <button class="step-btn" type="button" data-step="6"><span class="num">06</span><span>Avoid Common Mistakes / Don’t Get Stuck On One Piece</span><span class="mark" aria-hidden="true"></span></button>
-                <p class="step-desc" data-step="6" hidden>Restore the whole picture. When one problem dominates, the rest of the organization drifts. We bring every area back to equal visibility before choosing the next move.</p>
-              </li>
-            </ol>
-          </div>
-          <div class="phase">
-            <h3>Phase 3 · Activate and Sustain <span class="range">Step 7</span></h3>
-            <ol start="7">
-              <li class="step">
-                <button class="step-btn" type="button" data-step="7"><span class="num">07</span><span>Risk Correction</span><span class="mark" aria-hidden="true"></span></button>
-                <p class="step-desc" data-step="7" hidden>Find the unstable connection, correct it, and return it to a durable state — the compliance, monitoring, and stewardship discipline that determines whether you keep what you win.</p>
-              </li>
-            </ol>
+          <div class="step-strip" role="group" aria-label="Go to a step">
+            <div class="grp"><span class="lab" aria-hidden="true">Phase 1</span><div class="btns"><button class="step-btn" type="button" data-step="1" aria-label="Step 1: Start With The Edge" aria-current="step">01</button><button class="step-btn" type="button" data-step="2" aria-label="Step 2: Build The Frame">02</button><button class="step-btn" type="button" data-step="3" aria-label="Step 3: Sort The Pieces">03</button></div></div>
+            <div class="grp"><span class="lab" aria-hidden="true">Phase 2</span><div class="btns"><button class="step-btn" type="button" data-step="4" aria-label="Step 4: Use Visual Cues">04</button><button class="step-btn" type="button" data-step="5" aria-label="Step 5: Take Breaks">05</button><button class="step-btn" type="button" data-step="6" aria-label="Step 6: Avoid Common Mistakes / Don’t Get Stuck On One Piece">06</button></div></div>
+            <div class="grp"><span class="lab" aria-hidden="true">Phase 3</span><div class="btns"><button class="step-btn" type="button" data-step="7" aria-label="Step 7: Risk Correction">07</button></div></div>
           </div>
         </div>
       </div>
+
+      <!-- Auto-advance: seven segments, one per step; the current segment fills over the step's time. -->
+      <div class="auto-bar" id="auto-bar" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="stage-nav auto-ctl">
+        <button class="btn btn-outline" type="button" id="step-prev" aria-label="Previous step">←</button>
+        <button class="btn btn-outline" type="button" id="step-next" aria-label="Next step">→</button>
+        <span class="spacer"></span>
+        <span class="auto-note" id="auto-note">Auto · 8 s per step</span>
+        <button class="auto-btn" type="button" id="auto-toggle" aria-pressed="false" hidden><svg class="ico-pause" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><rect x="1" y="1" width="3.5" height="10" fill="currentColor"/><rect x="7.5" y="1" width="3.5" height="10" fill="currentColor"/></svg><svg class="ico-play" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 1 L11 6 L2 11 Z" fill="currentColor"/></svg><span class="lbl">Pause</span></button>
+      </div>
+      <p class="visually-hidden" id="method-status" aria-live="polite"></p>
     </div>
   </section>
 
@@ -1970,17 +2022,23 @@
   var prev = document.getElementById('step-prev');
   var next = document.getElementById('step-next');
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.step-btn'));
-  var descs = Array.prototype.slice.call(document.querySelectorAll('.step-desc'));
-  if (!stage || !staticImg || !buttons.length) return;
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.method-slides .slide'));
+  var segs = Array.prototype.slice.call(document.querySelectorAll('#auto-bar span'));
+  var autoBtn = document.getElementById('auto-toggle');
+  var autoNote = document.getElementById('auto-note');
+  var status = document.getElementById('method-status');
+  var section = document.getElementById('method');
+  if (!stage || !staticImg || !buttons.length || !slides.length) return;
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   var wide = window.matchMedia('(min-width: 720px)');
   var inlineSvg = null;
   var current = 1;
+  var LAST = STEPS.length - 1;
 
   function pad(n) { return (n < 10 ? '0' : '') + n; }
 
-  function render(n) {
+  function render(n, announce) {
     current = n;
     var s = STEPS[n];
     stage.setAttribute('data-state', String(n));
@@ -1992,27 +2050,108 @@
     }
     caption.innerHTML = '<strong>' + pad(n) + '</strong> ' + s.name.replace(/&/g, '&amp;').replace(/</g, '&lt;');
     buttons.forEach(function (b) {
-      var isCur = Number(b.getAttribute('data-step')) === n;
-      if (isCur) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current');
+      var k = Number(b.getAttribute('data-step'));
+      if (k === n) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current');
+      b.classList.toggle('done', k < n);
     });
-    descs.forEach(function (d) { d.hidden = Number(d.getAttribute('data-step')) !== n; });
+    slides.forEach(function (sl) {
+      var k = Number(sl.getAttribute('data-step'));
+      var show = k === n;
+      if (show && sl.hidden) { sl.classList.remove('enter'); void sl.offsetWidth; sl.classList.add('enter'); }
+      sl.hidden = !show;
+    });
+    segs.forEach(function (seg, i) { seg.style.setProperty('--p', i + 1 < n ? '100%' : '0%'); });
     prev.disabled = n === 1;
-    next.disabled = n === STEPS.length - 1;
+    next.disabled = n === LAST;
+    if (announce && status) status.textContent = 'Step ' + n + ' of ' + LAST + ': ' + s.name;
   }
 
+  /* ── Auto-advance: 8 s per step, once through, never under reduced motion.
+        Holds while the pointer or focus is on the show, while the tab is hidden, or while the
+        section is off screen; any manual choice ends it (Play restarts it). ── */
+  var AUTO_MS = 8000;
+  var auto = { on: false, held: false, elapsed: 0, last: 0, raf: 0, inView: true, done: false, manual: false };
+  var canAuto = !reduced.matches && !!window.requestAnimationFrame;
+
+  function seg() { return segs[current - 1]; }
+  function paint(p) { var g = seg(); if (g) g.style.setProperty('--p', (Math.min(1, p) * 100).toFixed(2) + '%'); }
+  function tick(now) {
+    if (!auto.on) return;
+    if (auto.held || !auto.inView || document.hidden) { auto.last = now; auto.raf = requestAnimationFrame(tick); return; }
+    auto.elapsed += now - auto.last; auto.last = now;
+    if (auto.elapsed >= AUTO_MS) {
+      paint(1);
+      if (current < LAST) { auto.elapsed = 0; render(current + 1, false); }
+      else { finish(); return; }
+    } else { paint(auto.elapsed / AUTO_MS); }
+    auto.raf = requestAnimationFrame(tick);
+  }
+  function setBtn(playing) {
+    autoBtn.setAttribute('aria-pressed', playing ? 'false' : 'true');
+    autoBtn.querySelector('.lbl').textContent = playing ? 'Pause' : (auto.done ? 'Replay' : 'Play');
+    autoBtn.setAttribute('aria-label', playing ? 'Pause the automatic step-through' : (auto.done ? 'Replay the steps from the beginning' : 'Play the steps automatically'));
+    section.classList.toggle('auto-on', playing);
+  }
+  function start(fromStart) {
+    if (!canAuto) return;
+    if (fromStart || auto.done) { auto.done = false; render(1, false); }
+    auto.on = true; auto.elapsed = 0; auto.last = performance.now();
+    cancelAnimationFrame(auto.raf); auto.raf = requestAnimationFrame(tick);
+    setBtn(true);
+  }
+  function stop() {
+    if (!auto.on) return;
+    auto.on = false; cancelAnimationFrame(auto.raf);
+    setBtn(false);
+  }
+  function finish() { auto.on = false; auto.done = true; cancelAnimationFrame(auto.raf); setBtn(false); }
+  function hold(v) { auto.held = v; }
+
+  if (canAuto) {
+    autoBtn.hidden = false;
+    autoBtn.addEventListener('click', function () { if (auto.on) stop(); else start(false); });
+    /* Hold while the pointer or focus is on the drawing, the slide, or the controls, not the whole band. */
+    var showEls = [document.querySelector('.method-layout'), document.querySelector('.auto-ctl')];
+    showEls.forEach(function (el) {
+      if (!el) return;
+      el.addEventListener('pointerenter', function () { hold(true); });
+      el.addEventListener('pointerleave', function () { hold(false); });
+      el.addEventListener('focusin', function () { hold(true); });
+      el.addEventListener('focusout', function (e) { if (!el.contains(e.relatedTarget)) hold(false); });
+    });
+    document.addEventListener('visibilitychange', function () { if (auto.on) auto.last = performance.now(); });
+    if (window.IntersectionObserver) {
+      auto.inView = false;
+      var started = false;
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          auto.inView = en.isIntersecting;
+          if (en.isIntersecting && !started && !auto.manual) { started = true; start(true); }
+        });
+      }, { threshold: 0.35 }).observe(section);
+    } else {
+      start(true);
+    }
+  } else {
+    autoBtn.hidden = true;
+    if (autoNote) autoNote.hidden = true;
+  }
+
+  function manual(n) { auto.manual = true; stop(); render(n, true); }
+
   buttons.forEach(function (b) {
-    b.addEventListener('click', function () { render(Number(b.getAttribute('data-step'))); });
+    b.addEventListener('click', function () { manual(Number(b.getAttribute('data-step'))); });
     b.addEventListener('keydown', function (e) {
       var i = buttons.indexOf(b), t = null;
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') t = buttons[i + 1];
       if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') t = buttons[i - 1];
       if (e.key === 'Home') t = buttons[0];
       if (e.key === 'End') t = buttons[buttons.length - 1];
-      if (t) { e.preventDefault(); t.focus(); render(Number(t.getAttribute('data-step'))); }
+      if (t) { e.preventDefault(); t.focus(); manual(Number(t.getAttribute('data-step'))); }
     });
   });
-  prev.addEventListener('click', function () { if (current > 1) render(current - 1); });
-  next.addEventListener('click', function () { if (current < STEPS.length - 1) render(current + 1); });
+  prev.addEventListener('click', function () { if (current > 1) manual(current - 1); });
+  next.addEventListener('click', function () { if (current < LAST) manual(current + 1); });
 
   // Enhance to the animated grouped master only when motion is acceptable and there is room.
   if (!reduced.matches && wide.matches && window.fetch) {
@@ -2028,11 +2167,11 @@
         inlineSvg = document.importNode(svg, true);
         stage.insertBefore(inlineSvg, staticImg);
         staticImg.hidden = true;
-        render(current);
+        render(current, false);
       })
       .catch(function () { /* static fallback stays in place */ });
   }
-  render(1);
+  render(1, false);
 })();
 </script>
 </body>
