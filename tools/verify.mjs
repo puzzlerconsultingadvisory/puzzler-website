@@ -200,7 +200,7 @@ for (const pg of PAGES) {
   // touch targets
   const small = await page.evaluate(() => [...document.querySelectorAll('a, button, summary')].filter((el) => { const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0 && (r.height < 44 || r.width < 44) && el.offsetParent !== null; }).map((el) => `${el.tagName.toLowerCase()} "${el.textContent.trim().slice(0, 30)}" ${Math.round(el.getBoundingClientRect().width)}x${Math.round(el.getBoundingClientRect().height)}`));
   if (small.length) failures.push(`mobile: touch targets under 44px: ${small.join('; ')}`);
-  await page.tap('.step-btn[data-step="7"]');
+  await page.evaluate(() => document.querySelector('.step-btn[data-step="7"]').click());   /* strip is hidden on phones; arrows remain */
   const src7 = await page.getAttribute('#method-static', 'src');
   if (!/07-risk-correction/.test(src7)) failures.push(`mobile: step tap failed (${src7})`);
   await page.screenshot({ path: join(outDir, 'index-mobile-method-step7.png'), fullPage: true, clip: { x: 0, y: (await page.evaluate(() => document.getElementById('method-stage').getBoundingClientRect().top + window.scrollY - 20)), width: 375, height: 740 } });
@@ -380,7 +380,11 @@ for (const pg of PAGES) {
   });
   if (!stacked.stacked) failures.push('fysp mobile: need and audience groups are not stacked');
   if (stacked.field !== 'none') failures.push(`fysp mobile: decorative field visible (${stacked.field})`);
+  const step2Before = await page.evaluate(() => ({ awaiting: document.getElementById('find-your-starting-point').classList.contains('awaiting'), optsHidden: getComputedStyle(document.querySelector('.fysp-options[data-group="audience"]')).display === 'none', hint: getComputedStyle(document.querySelector('.step2-hint')).display !== 'none', twoCol: getComputedStyle(document.querySelector('.fysp-options[data-group="need"]')).gridTemplateColumns.split(' ').length === 2 }));
   await page.tap('.opt[data-need="compliance"]');
+  await page.waitForTimeout(300);
+  const step2After = await page.evaluate(() => ({ awaiting: document.getElementById('find-your-starting-point').classList.contains('awaiting'), optsShown: getComputedStyle(document.querySelector('.fysp-options[data-group="audience"]')).display !== 'none' }));
+  if (!step2Before.awaiting || !step2Before.optsHidden || !step2Before.hint || !step2Before.twoCol || step2After.awaiting || !step2After.optsShown) failures.push(`fysp mobile: Step 2 disclosure ${JSON.stringify(step2Before)} ${JSON.stringify(step2After)}`);
   await page.tap('.opt[data-audience="agency"]');
   await page.waitForTimeout(1600);
   const m = await page.evaluate(() => ({
@@ -394,7 +398,7 @@ for (const pg of PAGES) {
   if (m.small) failures.push(`fysp mobile: ${m.small} touch target(s) under 44px`);
   if (!m.below) failures.push('fysp mobile: result is not below the audience selector');
   await page.screenshot({ path: join(outDir, 'index-mobile-fysp-compliance-agency.png'), fullPage: true, animations: 'disabled', clip: { x: 0, y: (await page.evaluate(() => document.getElementById('find-your-starting-point').getBoundingClientRect().top + window.scrollY)), width: 375, height: 1400 } });
-  report.push(`fysp mobile: stacked=${stacked.stacked}, field hidden=${stacked.field === 'none'}, result ok=${m.card}, overflow=${m.scroll > m.client}, small targets=${m.small}`);
+  report.push(`fysp mobile: stacked=${stacked.stacked}, field hidden=${stacked.field === 'none'}, two columns=${step2Before.twoCol}, step 2 waits=${step2Before.optsHidden && step2After.optsShown}, result ok=${m.card}, overflow=${m.scroll > m.client}, small targets=${m.small}`);
   await ctx.close();
 }
 {
@@ -578,9 +582,9 @@ for (const pg of PAGES) {
   const mctx = await browser.newContext({ viewport: { width: 375, height: 740 }, hasTouch: true, isMobile: true });
   const mpage = await mctx.newPage();
   await mpage.goto(base + '/', { waitUntil: 'load' });
-  const mob = await mpage.evaluate(() => { const a = document.querySelector('.hero-dim'); const r = a.getBoundingClientRect(); const f = document.querySelector('.hero-field').getBoundingClientRect(); const l = document.getElementById('hero-dim-lines'); const y = parseFloat(l.querySelector('.dim-line').getAttribute('d').split(' ')[1]); return { h: r.height, inside: r.left >= 0 && r.right <= document.documentElement.clientWidth, below: r.top >= f.bottom, lineBelow: f.top + y * (f.width / 1200) > r.bottom, scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }; });
-  if (mob.h < 44 || !mob.inside || !mob.below || !mob.lineBelow || mob.scroll > mob.client) failures.push(`hero-dim mobile: ${JSON.stringify(mob)}`);
-  report.push(`hero-dim: link ok=${geo.href === '#find-your-starting-point'}, line below text=${geo.lineBelowText}, settled=${geo.settled >= 3}, hover flicker=${hov.dim === 'bp-flicker'}, reduced-motion static=${rm.anim === 'none'}, mobile ok=${mob.below && mob.lineBelow}`);
+  const mob = await mpage.evaluate(() => { const a = document.querySelector('.hero-dim'); const r = a.getBoundingClientRect(); return { h: r.height, visible: a.offsetParent !== null && r.width > 0, inside: r.left >= 0 && r.right <= document.documentElement.clientWidth, img: getComputedStyle(document.querySelector('.hero-field > img')).display, lines: getComputedStyle(document.getElementById('hero-dim-lines')).display, position: getComputedStyle(a).position, scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }; });
+  if (mob.h < 44 || !mob.visible || !mob.inside || mob.img !== 'none' || mob.lines !== 'none' || mob.position !== 'static' || mob.scroll > mob.client) failures.push(`hero-dim mobile: ${JSON.stringify(mob)}`);
+  report.push(`hero-dim: link ok=${geo.href === '#find-your-starting-point'}, line below text=${geo.lineBelowText}, settled=${geo.settled >= 3}, hover flicker=${hov.dim === 'bp-flicker'}, reduced-motion static=${rm.anim === 'none'}, phone: drawing hidden=${mob.img === 'none'}, callout kept=${mob.visible}`);
   await mctx.close();
 }
 
@@ -679,6 +683,11 @@ for (const pg of PAGES) {
   const mpage = await mctx.newPage();
   await mpage.goto(base + '/', { waitUntil: 'load' });
   await mpage.waitForTimeout(300);
+  const foldedBefore = await mpage.evaluate(() => !document.getElementById('fold-audiences').classList.contains('is-open') && getComputedStyle(document.getElementById('fold-audiences-body')).display === 'none');
+  await mpage.evaluate(() => { document.getElementById('fold-audiences-btn').scrollIntoView({ block: 'center' }); });
+  await mpage.tap('#fold-audiences-btn');
+  await mpage.waitForTimeout(400);
+  if (!foldedBefore) failures.push('audience slider phone: the fold should start closed');
   const m1 = await mpage.evaluate(() => { const t = document.getElementById('audience-track'); const c = t.children; return { count: document.getElementById('aud-count').textContent.replace('Showing ', '').trim(), trackH: t.getBoundingClientRect().height, firstH: c[0].getBoundingClientRect().height, lastH: c[6].getBoundingClientRect().height, dots: document.querySelectorAll('#aud-dots button').length, targets: [...document.querySelectorAll('.aud-btn, #aud-dots button')].every((b) => b.getBoundingClientRect().height >= 44 && b.getBoundingClientRect().width >= 44), scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }; });
   if (m1.count !== '1 of 7' || Math.abs(m1.trackH - m1.firstH) > 2 || m1.lastH <= m1.firstH || m1.dots !== 7 || !m1.targets || m1.scroll > m1.client) failures.push(`audience slider phone: ${JSON.stringify(m1)}`);
   await mpage.tap('#aud-dots button[data-page="6"]');
@@ -763,10 +772,88 @@ for (const pg of PAGES) {
   const mctx = await browser.newContext({ viewport: { width: 375, height: 740 }, hasTouch: true, isMobile: true });
   const mpage = await mctx.newPage();
   await mpage.goto(base + '/', { waitUntil: 'load' });
-  const mob = await mpage.evaluate(() => ({ note: getComputedStyle(document.getElementById('auto-note')).display, targets: [...document.querySelectorAll('.step-btn, #auto-toggle, #step-prev, #step-next')].every((b) => { const r = b.getBoundingClientRect(); return r.width >= 44 && r.height >= 44; }), scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }));
+  const mob = await mpage.evaluate(() => ({ note: getComputedStyle(document.getElementById('auto-note')).display, strip: getComputedStyle(document.querySelector('.step-strip')).display, targets: [...document.querySelectorAll('.step-btn, #auto-toggle, #step-prev, #step-next')].filter((b) => b.offsetParent !== null).every((b) => { const r = b.getBoundingClientRect(); return r.width >= 44 && r.height >= 44; }), scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }));
+  if (mob.strip !== 'none') failures.push('method auto phone: the step strip should be hidden');
   if (mob.note !== 'none' || !mob.targets || mob.scroll > mob.client) failures.push(`method auto phone: ${JSON.stringify(mob)}`);
   await mctx.close();
   report.push(`method auto: armed on view=${armed}, fills=${p1 > 0}, hover hold=${Math.abs(h2 - h1) <= 0.5}, advanced=${adv}, pause/play ok=${pz.pressed === 'true' && q3 > q2}, manual stop=${!man.on}, finish=${fin}, reduced-motion off=${!rm.on}, no-js slides=${nj.slides}`);
+}
+
+{
+  // Phone layout: folds closed by default and one tap away, list rows, swipe row, sticky wayfinding; desktop and no-JS untouched.
+  const ctx = await browser.newContext({ viewport: { width: 375, height: 740 }, hasTouch: true, isMobile: true, reducedMotion: 'reduce' });
+  const page = await ctx.newPage();
+  const errors = []; page.on('pageerror', (e) => errors.push(e.message));
+  await page.goto(base + '/', { waitUntil: 'load' });
+  await page.waitForTimeout(400);
+  const st = await page.evaluate(() => {
+    const vis = (el) => !!el && el.offsetParent !== null;
+    return {
+      height: document.documentElement.scrollHeight,
+      folds: document.querySelectorAll('.fold').length,
+      btnsVisible: [...document.querySelectorAll('.fold-btn')].filter(vis).length,
+      bodiesHidden: [...document.querySelectorAll('.fold-body')].filter((b) => getComputedStyle(b).display === 'none').length,
+      btnsTall: [...document.querySelectorAll('.fold-btn')].every((b) => b.getBoundingClientRect().height >= 44),
+      expanded: [...document.querySelectorAll('.fold-btn')].every((b) => b.getAttribute('aria-expanded') === 'false'),
+      waysRows: [...document.querySelectorAll('.ways-grid .way')].every((w) => { const r = w.getBoundingClientRect(); return r.height >= 44 && r.height < 90 && getComputedStyle(w.querySelector('p')).display === 'none'; }),
+      pimSwipe: getComputedStyle(document.querySelector('.pim-grid')).overflowX === 'auto' && document.querySelectorAll('#pim-dots button').length === 3,
+      closeHidden: getComputedStyle(document.querySelector('.close')).display === 'none',
+      barHidden: document.getElementById('m-bar').hidden,
+      noteFolded: getComputedStyle(document.getElementById('fold-note-body')).display === 'none',
+      firstNoteVisible: vis(document.querySelector('.note > p:not(.eyebrow)')),
+      practicesFolded: getComputedStyle(document.getElementById('fold-practices-body')).display === 'none',
+      fitCtasVisible: vis(document.querySelector('.fit-statement .build-actions a')),
+      boundaryInDom: /does not represent clients before federal agencies/.test(document.getElementById('fold-fit-body').textContent),
+    };
+  });
+  if (st.height > 9500) failures.push(`phone layout: page is ${st.height}px tall (expected under 9500)`);
+  if (st.folds !== 16 || st.btnsVisible !== 16 || st.bodiesHidden !== 16 || !st.btnsTall || !st.expanded) failures.push(`phone layout: folds ${JSON.stringify({ folds: st.folds, btnsVisible: st.btnsVisible, bodiesHidden: st.bodiesHidden, btnsTall: st.btnsTall, expanded: st.expanded })}`);
+  if (!st.waysRows || !st.pimSwipe || !st.closeHidden || !st.barHidden || !st.noteFolded || !st.firstNoteVisible || !st.practicesFolded || !st.fitCtasVisible || !st.boundaryInDom) failures.push(`phone layout: ${JSON.stringify(st)}`);
+  // Open the practices fold: six practices appear; aria-expanded flips.
+  await page.evaluate(() => document.getElementById('fold-practices-btn').scrollIntoView({ block: 'center' }));
+  await page.tap('#fold-practices-btn');
+  await page.waitForTimeout(200);
+  const pf = await page.evaluate(() => ({ open: document.getElementById('fold-practices').classList.contains('is-open'), expanded: document.getElementById('fold-practices-btn').getAttribute('aria-expanded'), practices: [...document.querySelectorAll('.practice')].filter((d) => d.offsetParent !== null).length }));
+  if (!pf.open || pf.expanded !== 'true' || pf.practices !== 6) failures.push(`phone layout: practices fold ${JSON.stringify(pf)}`);
+  // Sticky bar appears after the hero, hides on a scroll down, returns on scroll up; sheet lists eight sections with "you are here".
+  await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(200);
+  const atTop = await page.evaluate(() => document.getElementById('m-bar').hidden);
+  await page.evaluate(() => document.getElementById('method').scrollIntoView()); await page.waitForTimeout(150);
+  const during = await page.evaluate(() => ({ hidden: document.getElementById('m-bar').hidden, away: document.getElementById('m-bar').classList.contains('away') }));
+  await page.waitForTimeout(900);
+  const rest = await page.evaluate(() => document.getElementById('m-bar').classList.contains('away'));
+  await page.evaluate(() => window.scrollBy(0, -200)); await page.waitForTimeout(150);
+  const up = await page.evaluate(() => document.getElementById('m-bar').classList.contains('away'));
+  if (!atTop || during.hidden || !during.away || rest || up) failures.push(`phone layout: bar atTop=${atTop} during=${JSON.stringify(during)} rest=${rest} up=${up}`);
+  await page.tap('#m-sections'); await page.waitForTimeout(200);
+  const sheet = await page.evaluate(() => ({ open: !document.getElementById('m-sheet').hidden, expanded: document.getElementById('m-sections').getAttribute('aria-expanded'), links: document.querySelectorAll('#m-sheet a').length, here: (document.querySelector('#m-sheet a[aria-current="location"]') || {}).dataset ? document.querySelector('#m-sheet a[aria-current="location"]').dataset.section : null, focusIn: document.getElementById('m-sheet').contains(document.activeElement), tall: [...document.querySelectorAll('#m-sheet a, #m-bar a, #m-bar button')].every((a) => a.getBoundingClientRect().height >= 44) }));
+  if (!sheet.open || sheet.expanded !== 'true' || sheet.links !== 8 || sheet.here !== 'method' || !sheet.focusIn || !sheet.tall) failures.push(`phone layout: sheet ${JSON.stringify(sheet)}`);
+  await page.keyboard.press('Escape'); await page.waitForTimeout(100);
+  const esc = await page.evaluate(() => ({ closed: document.getElementById('m-sheet').hidden, focus: document.activeElement.id }));
+  await page.tap('#m-top'); await page.waitForTimeout(400);
+  const top = await page.evaluate(() => ({ y: window.scrollY, focus: document.activeElement.id, hidden: document.getElementById('m-bar').hidden }));
+  if (!esc.closed || esc.focus !== 'm-sections' || top.y !== 0 || top.focus !== 'hero-title' || !top.hidden) failures.push(`phone layout: escape/top ${JSON.stringify(esc)} ${JSON.stringify(top)}`);
+  // Arriving at the speaking form opens its fold.
+  await page.evaluate(() => { window.location.hash = '#speaking-inquiry'; }); await page.waitForTimeout(300);
+  const spk = await page.evaluate(() => ({ foldOpen: document.getElementById('fold-speaking').classList.contains('is-open'), detailsOpen: document.getElementById('speaking-inquiry').open, visible: document.getElementById('reach-speak').offsetParent !== null }));
+  if (!spk.foldOpen || !spk.detailsOpen || !spk.visible) failures.push(`phone layout: speaking link did not open its fold ${JSON.stringify(spk)}`);
+  if (errors.length) failures.push(`phone layout: page errors ${errors.join(' | ')}`);
+  await ctx.close();
+  // Desktop untouched: no fold buttons, all bodies visible, no bar, drawing shown.
+  const dctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const dpage = await dctx.newPage();
+  await dpage.goto(base + '/', { waitUntil: 'load' });
+  const dk = await dpage.evaluate(() => ({ btns: [...document.querySelectorAll('.fold-btn')].filter((b) => b.offsetParent !== null).length, bodies: [...document.querySelectorAll('.fold-body')].filter((b) => getComputedStyle(b).display === 'none').length, bar: getComputedStyle(document.getElementById('m-bar')).display, sheet: getComputedStyle(document.getElementById('m-sheet')).display, hint: getComputedStyle(document.querySelector('.step2-hint')).display, img: getComputedStyle(document.querySelector('.hero-field > img')).display, close: getComputedStyle(document.querySelector('.close')).display, dots: getComputedStyle(document.getElementById('pim-dots')).display, ways: getComputedStyle(document.querySelector('.way p')).display }));
+  if (dk.btns !== 0 || dk.bodies !== 0 || dk.bar !== 'none' || dk.sheet !== 'none' || dk.hint !== 'none' || dk.img === 'none' || dk.close === 'none' || dk.dots !== 'none' || dk.ways === 'none') failures.push(`phone layout: desktop changed ${JSON.stringify(dk)}`);
+  await dctx.close();
+  // No script on a phone: everything visible, no fold buttons, no bar.
+  const nctx = await browser.newContext({ viewport: { width: 375, height: 740 }, javaScriptEnabled: false });
+  const npage = await nctx.newPage();
+  await npage.goto(base + '/', { waitUntil: 'load' });
+  const nj = await npage.evaluate(() => ({ btns: [...document.querySelectorAll('.fold-btn')].filter((b) => getComputedStyle(b).display !== 'none').length, bodies: [...document.querySelectorAll('.fold-body')].filter((b) => getComputedStyle(b).display === 'none').length, bar: getComputedStyle(document.getElementById('m-bar')).display, step2: getComputedStyle(document.querySelector('.fysp-options[data-group="audience"]')).display }));
+  if (nj.btns !== 0 || nj.bodies !== 0 || nj.bar !== 'none' || nj.step2 === 'none') failures.push(`phone layout no-js: ${JSON.stringify(nj)}`);
+  await nctx.close();
+  report.push(`phone layout: height=${st.height}px, folds closed=${st.bodiesHidden}/16, ways rows=${st.waysRows}, swipe row=${st.pimSwipe}, bar ok=${!during.hidden && during.away && !rest && !up}, sheet ok=${sheet.links === 8 && sheet.here === 'method'}, desktop untouched=${dk.btns === 0 && dk.bodies === 0}, no-js ok=${nj.btns === 0 && nj.bodies === 0}`);
 }
 
 await browser.close();
