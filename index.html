@@ -419,6 +419,9 @@
   .fysp-result .reach summary::before { content: "+"; font-weight: 500; color: var(--teal); width: 16px; text-align: center; }
   .fysp-result .reach[open] summary::before { content: "−"; }
   .fysp-result .reach .reach-form { margin-top: 8px; max-width: none; }
+  .fysp-result .reach .prefill { margin-bottom: 14px; }
+  .fysp-result .reach .prefill textarea { min-height: 150px; font-size: 14.5px; line-height: 1.5; }
+  .fysp-result .reach { scroll-margin-top: 96px; }
   /* Speaking inquiry: the same collapsible form on the light record card */
   .record .reach { margin-top: 18px; scroll-margin-top: 96px; }
   .record .reach summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px; min-height: 48px; font-weight: 600; color: var(--navy); }
@@ -1570,7 +1573,8 @@
       outputs: ['Strategic roadmap', 'Priority action plan', 'Capability map', 'Funding-readiness assessment'],
       practices: ['funding', 'capacity', 'leadership'],
       cta: { label: 'Build My Starting Roadmap', href: CALENDLY },
-      secondary: { label: 'Email us about a roadmap', href: 'mailto:info@puzzlerconsultingadvisory.com?subject=Strategic%20Roadmap' }
+      secondary: { label: 'Contact us about a roadmap', href: '#roadmap-inquiry' },
+      inquiry: { id: 'roadmap-inquiry', summary: 'Contact us about a roadmap', endpoint: 'https://formspree.io/f/maeyvvew', subject: 'Strategic Roadmap inquiry' }
     },
     funding: {
       label: 'Looking for funding opportunities',
@@ -1838,10 +1842,12 @@
     function btn(link, cls) { return '<a class="btn ' + cls + '" href="' + esc(link.href) + '">' + esc(link.label) + ' <span class="arrow" aria-hidden="true">→</span></a>'; }
 
     /* Contact details form: same markup as the Fit Call form, scoped ids, context carried into the email. */
-    function formHtml(prefix, subject, context) {
+    function formHtml(prefix, subject, context, opts) {
+      opts = opts || {};
       var f = function (id, label, name, type, extra) { return '<div class="field"><label for="' + prefix + '-' + id + '">' + label + '</label><input id="' + prefix + '-' + id + '" name="' + name + '" type="' + type + '" ' + (extra || '') + '></div>'; };
-      return '<form class="reach-form" action="mailto:info@puzzlerconsultingadvisory.com" method="post" enctype="text/plain" data-subject="' + esc(subject) + '" data-context="' + esc(context) + '">' +
+      return '<form class="reach-form" action="mailto:info@puzzlerconsultingadvisory.com" method="post" enctype="text/plain" data-subject="' + esc(subject) + '" data-context="' + esc(context) + '"' + (opts.endpoint ? ' data-endpoint="' + esc(opts.endpoint) + '"' : '') + '>' +
         '<p class="reach-help">We will follow up by email or phone. This opens your email app with the details filled in.</p>' +
+        (opts.summary ? '<div class="field wide prefill"><label for="' + prefix + '-point">Your starting point, from the selector. Edit it if you like.</label><textarea id="' + prefix + '-point" name="Starting point" rows="6">' + esc(opts.summary) + '</textarea></div>' : '') +
         '<div class="reach-grid">' +
         f('name', 'Name <span class="req" aria-hidden="true">*</span>', 'Name', 'text', 'autocomplete="name" required') +
         f('org', 'Organization', 'Organization', 'text', 'autocomplete="organization"') +
@@ -1867,7 +1873,17 @@
       if (d.boundary) h += '<p class="boundary">' + esc(d.boundary) + '</p>';
       h += '<div class="actions">' + btn(d.cta, 'btn-primary') + (d.secondary ? btn(d.secondary, 'btn-outline') : '') + '</div>';
       if (d.fractional) h += '<p class="fractional">Available as a defined project or as fractional, ongoing support.</p>';
-      h += '<details class="reach"><summary>Prefer we reach out? Leave your details.</summary>' + formHtml('reach-' + n + '-' + a, 'Fit Call follow-up: ' + d.point, 'Starting point: ' + d.point + ' / ' + aud.label) + '</details>';
+      if (d.inquiry) {
+        /* Roadmap inquiry: its own form service, pre-filled with the recommended starting point and the Step 1 and Step 2 answers. */
+        var chosen = function (sel, fallback) { var b = document.querySelector(sel); if (!b) return fallback; var c = b.cloneNode(true); Array.prototype.forEach.call(c.querySelectorAll('.flag, .visually-hidden'), function (x) { x.remove(); }); return c.textContent.replace(/\s+/g, ' ').trim() || fallback; };
+        var summary = 'Recommended starting point: ' + d.point + '\n' +
+          'Step 1, what I am working through: ' + chosen('.opt[data-need="' + n + '"]', d.label) + '\n' +
+          'Step 2, who I am: ' + chosen('.opt[data-audience="' + a + '"]', aud.label) + '\n\n' +
+          d.headline + ' ' + d.core + '\n' + ANGLES[n][a];
+        h += '<details class="reach" id="' + esc(d.inquiry.id) + '"><summary>' + esc(d.inquiry.summary) + '</summary>' + formHtml('reach-' + n + '-' + a, d.inquiry.subject, 'Starting point: ' + d.point + ' / ' + aud.label, { endpoint: d.inquiry.endpoint, summary: summary }) + '</details>';
+      } else {
+        h += '<details class="reach"><summary>Prefer we reach out? Leave your details.</summary>' + formHtml('reach-' + n + '-' + a, 'Fit Call follow-up: ' + d.point, 'Starting point: ' + d.point + ' / ' + aud.label) + '</details>';
+      }
       return h + '</div>';
     }
 
@@ -1931,6 +1947,16 @@
           if (token !== renderToken) return;
           result.innerHTML = cardHtml(need, audience);
           Array.prototype.forEach.call(result.querySelectorAll('.reach-form'), prepReachForm);
+          Array.prototype.forEach.call(result.querySelectorAll('.actions a[href^="#"]'), function (a) {
+            a.addEventListener('click', function (e) {
+              var d = result.querySelector(a.getAttribute('href') + '.reach');
+              if (!d) return;
+              e.preventDefault();
+              d.open = true;
+              var first = d.querySelector('input'); if (first) first.focus();
+              d.scrollIntoView({ block: 'start', behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+            });
+          });
           var card = result.querySelector('.card');
           if (reducedMotion.matches) card.classList.add('is-in');
           else requestAnimationFrame(function () { requestAnimationFrame(function () { card.classList.add('is-in'); }); });

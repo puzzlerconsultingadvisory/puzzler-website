@@ -287,7 +287,19 @@ for (const pg of PAGES) {
         if (chips.length !== 3) problems.push(`practice chips=${chips.length}`);
         if (!q('.outputs')) problems.push('no outputs');
         if (!links.length || !/^(https:\/\/calendly\.com\/mark-puzzlerconsultingandadvisory\/30min|mailto:info@puzzlerconsultingadvisory\.com(\?subject=[\w%]+)?)$/.test(links[0].href)) problems.push(`primary CTA href ${links[0] && links[0].href}`);
-        if (links.some((l) => !/^(https:\/\/calendly\.com|mailto:info@puzzlerconsultingadvisory\.com)/.test(l.href))) problems.push('CTA to unapproved destination');
+        if (links.some((l) => !/^(https:\/\/calendly\.com|mailto:info@puzzlerconsultingadvisory\.com|#roadmap-inquiry$)/.test(l.href))) problems.push('CTA to unapproved destination');
+        if (n === 'idea') {
+          const rd = card.querySelector('details.reach#roadmap-inquiry'); const ta = rd && rd.querySelector('textarea[name="Starting point"]');
+          const clean = (el) => { const c = el.cloneNode(true); c.querySelectorAll('.flag, .visually-hidden').forEach((x) => x.remove()); return c.textContent.replace(/\s+/g, ' ').trim(); };
+          const needLabel = clean(document.querySelector('.opt[data-need="idea"]')); const audLabel = clean(document.querySelector(`.opt[data-audience="${a}"]`));
+          if (!rd || !ta) problems.push('roadmap inquiry form missing');
+          else {
+            const v = ta.value;
+            if (rf.getAttribute('data-endpoint') !== 'https://formspree.io/f/maeyvvew' || rf.dataset.subject !== 'Strategic Roadmap inquiry') problems.push(`roadmap form endpoint/subject ${rf.getAttribute('data-endpoint')} ${rf.dataset.subject}`);
+            if (!/^Recommended starting point: Strategic Roadmap\n/.test(v) || !v.includes('Step 1, what I am working through: ' + needLabel) || !v.includes('Step 2, who I am: ' + audLabel) || !v.includes(q('.core').textContent.trim()) || !v.includes(q('.angle').textContent.trim())) problems.push('roadmap summary incomplete');
+            if (!links[1] || links[1].label.indexOf('Contact us about a roadmap') === -1 || links[1].href !== '#roadmap-inquiry') problems.push('roadmap link wrong');
+          }
+        } else if (card.querySelector('textarea[name="Starting point"]')) problems.push('starting-point summary on a non-roadmap result');
         if (n === 'contracts' && !/does not represent clients before federal agencies or lobby/.test(text)) problems.push('contracting boundary missing');
         if (['growing', 'change', 'systems', 'contracts'].includes(n) !== !!card.querySelector('.fractional')) problems.push('fractional line wrong');
         if (n === 'compliance') {
@@ -453,17 +465,48 @@ for (const pg of PAGES) {
   const done = await page.evaluate(() => ({ text: (document.querySelector('.fit .reach-done') || {}).textContent, focus: document.activeElement.className, formGone: !document.getElementById('reach-fit') }));
   if (!posted || posted.Name !== 'Test Person' || posted.Email !== 'test@example.com' || posted.Organization !== 'Example Org' || posted._subject !== 'Fit Call request') failures.push(`form-service: posted payload wrong (${JSON.stringify(posted)})`);
   if (!done.formGone || done.focus !== 'reach-done' || !/Thanks, Test Person/.test(done.text || '')) failures.push(`form-service: confirmation state wrong (${JSON.stringify(done)})`);
-  // Service failure falls back to mailto.
+  // Service failure falls back to mailto (a result-card form on the general endpoint).
   await page.unroute(ENDPOINT);
   await page.route(ENDPOINT, (route) => route.fulfill({ status: 500, body: 'nope' }));
-  await page.click('.opt[data-need="idea"]'); await page.click('.opt[data-audience="emerging"]');
+  await page.click('.opt[data-need="funding"]'); await page.click('.opt[data-audience="emerging"]');
   await page.waitForSelector('#fysp-result .reach-form', { state: 'attached', timeout: 3000 });
   await page.evaluate(() => { document.querySelector('#fysp-result details.reach').open = true; });
   await page.fill('#fysp-result [name="Name"]', 'Fallback Person'); await page.fill('#fysp-result [name="Email"]', 'fb@example.com');
   await page.click('#fysp-result .reach-form button[type="submit"]');
   await page.waitForFunction(() => { const f = document.querySelector('#fysp-result .reach-form'); return f && !f.querySelector('.reach-error').hidden; }, null, { timeout: 3000 }).catch(() => failures.push('form-service: failure fallback message did not appear'));
   const fb = await page.evaluate(() => { const f = document.querySelector('#fysp-result .reach-form'); return { mailto: f.getAttribute('data-mailto'), msg: f.querySelector('.reach-error').textContent }; });
-  if (!/^mailto:info@puzzlerconsultingadvisory\.com\?subject=Fit%20Call%20follow-up%3A%20Strategic%20Roadmap/.test(fb.mailto || '') || !/email app/.test(fb.msg)) failures.push(`form-service: fallback wrong (${JSON.stringify(fb)})`);
+  if (!/^mailto:info@puzzlerconsultingadvisory\.com\?subject=Fit%20Call%20follow-up%3A%20Funding%20Landscape%20and%20Readiness/.test(fb.mailto || '') || !/email app/.test(fb.msg)) failures.push(`form-service: fallback wrong (${JSON.stringify(fb)})`);
+  // Roadmap inquiry: the Strategic Roadmap result's link opens a pre-filled form on its own endpoint.
+  const ROADMAP = 'https://formspree.io/f/maeyvvew';
+  let road = null;
+  await page.route(ROADMAP, async (route) => { road = JSON.parse(route.request().postData() || '{}'); await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
+  await page.click('.opt[data-need="funding"]');   // clear
+  await page.click('.opt[data-need="idea"]'); await page.click('.opt[data-audience="nonprofit"]');
+  await page.waitForSelector('#fysp-result #roadmap-inquiry', { state: 'attached', timeout: 3000 });
+  const before = await page.evaluate(() => ({ open: document.getElementById('roadmap-inquiry').open, link: (document.querySelector('#fysp-result .actions a[href="#roadmap-inquiry"]') || {}).textContent }));
+  await page.click('#fysp-result .actions a[href="#roadmap-inquiry"]');
+  await page.waitForTimeout(300);
+  const after = await page.evaluate(() => ({ open: document.getElementById('roadmap-inquiry').open, focus: document.activeElement.name, summary: document.querySelector('#roadmap-inquiry textarea[name="Starting point"]').value, action: document.querySelector('#roadmap-inquiry form').getAttribute('action') }));
+  if (before.open || !/Contact us about a roadmap/.test(before.link || '') || !after.open || after.focus !== 'Name' || after.action !== ROADMAP || !/Step 1, what I am working through: I’m starting with an idea/.test(after.summary) || !/Step 2, who I am: Nonprofit/.test(after.summary)) failures.push(`roadmap form: open ${JSON.stringify(before)} ${JSON.stringify({ ...after, summary: after.summary.slice(0, 80) })}`);
+  await page.fill('#roadmap-inquiry [name="Name"]', 'Idea Person'); await page.fill('#roadmap-inquiry [name="Email"]', 'idea@example.com');
+  await page.click('#roadmap-inquiry button[type="submit"]');
+  await page.waitForSelector('#fysp-result .reach-done', { timeout: 3000 }).catch(() => failures.push('roadmap form: confirmation did not appear'));
+  if (!road || road._subject !== 'Strategic Roadmap inquiry' || road.Name !== 'Idea Person' || !/Recommended starting point: Strategic Roadmap/.test(road['Starting point'] || '') || !/Step 2, who I am: Nonprofit/.test(road['Starting point'] || '') || !/Strategic Roadmap \/ Nonprofit/.test(road.Context || '')) failures.push(`roadmap form: posted payload wrong (${JSON.stringify(road)})`);
+  if (posted && posted._subject === 'Strategic Roadmap inquiry') failures.push('roadmap form: posted to the general endpoint');
+  // Roadmap failure falls back to a mailto with its own subject and the summary in the body.
+  const rpage2 = await ctx.newPage();
+  await rpage2.route(ROADMAP, (route) => route.fulfill({ status: 500, body: 'nope' }));
+  await rpage2.goto(base + '/', { waitUntil: 'load' });
+  await rpage2.click('.opt[data-need="idea"]'); await rpage2.click('.opt[data-audience="agency"]');
+  await rpage2.waitForSelector('#fysp-result #roadmap-inquiry', { state: 'attached', timeout: 3000 });
+  await rpage2.evaluate(() => { document.getElementById('roadmap-inquiry').open = true; });
+  await rpage2.fill('#roadmap-inquiry [name="Name"]', 'Road Fallback'); await rpage2.fill('#roadmap-inquiry [name="Email"]', 'rf@example.com');
+  await rpage2.click('#roadmap-inquiry button[type="submit"]');
+  await rpage2.waitForFunction(() => !document.querySelector('#roadmap-inquiry .reach-error').hidden, null, { timeout: 3000 }).catch(() => failures.push('roadmap form: failure fallback message did not appear'));
+  const rfb = await rpage2.evaluate(() => decodeURIComponent(document.querySelector('#roadmap-inquiry form').getAttribute('data-mailto') || ''));
+  if (!/^mailto:info@puzzlerconsultingadvisory\.com\?subject=Strategic Roadmap inquiry&body=/.test(rfb) || !/Starting point: Recommended starting point: Strategic Roadmap/.test(rfb) || !/Step 2, who I am: State or local agency/.test(rfb)) failures.push(`roadmap form: fallback wrong (${rfb.slice(0, 200)})`);
+  await rpage2.close();
+  report.push(`roadmap form: link opens=${after.open && after.focus === 'Name'}, summary ok=${/Step 2, who I am: Nonprofit/.test(after.summary)}, posted ok=${!!road && road._subject === 'Strategic Roadmap inquiry'}, failure→mailto=${/Strategic Roadmap inquiry/.test(rfb)}`);
   // Speaking inquiry: its own Formspree form; the Ways to Begin card opens it and focuses the first field.
   const SPEAK = 'https://formspree.io/f/mqpknnke';
   let spoken = null;
@@ -494,7 +537,7 @@ for (const pg of PAGES) {
   if (!autoOpen || !/^mailto:info@puzzlerconsultingadvisory\.com\?subject=Speaking%20inquiry&body=/.test(sfb.mailto) || !/Fallback%20Host/.test(sfb.mailto) || !/email app/.test(sfb.msg)) failures.push(`speaking form: fallback wrong autoOpen=${autoOpen} ${JSON.stringify(sfb)}`);
   await spage.close();
   report.push(`speaking form: own endpoint=${speakCfg.action === SPEAK}, opens from card=${opened.open && opened.focus === 'reach-speak-name'}, posted ok=${!!spoken && spoken._subject === 'Speaking inquiry'}, confirmation=${spokeDone.gone}, failure→mailto=${/Speaking%20inquiry/.test(sfb.mailto)}`);
-  report.push(`form-service: live endpoint=${live === ENDPOINT}, privacy names Formspree=${/Formspree/.test(privacy)}, configured=${cfg.action === ENDPOINT}, posted ok=${!!posted && posted.Name === 'Test Person'}, confirmation=${done.formGone}, failure→mailto=${/Strategic%20Roadmap/.test(fb.mailto || '')}`);
+  report.push(`form-service: live endpoint=${live === ENDPOINT}, privacy names Formspree=${/Formspree/.test(privacy)}, configured=${cfg.action === ENDPOINT}, posted ok=${!!posted && posted.Name === 'Test Person'}, confirmation=${done.formGone}, failure→mailto=${/Funding%20Landscape/.test(fb.mailto || '')}`);
   await ctx.close();
 }
 
