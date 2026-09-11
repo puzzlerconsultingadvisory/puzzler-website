@@ -2,9 +2,9 @@
 Started: 2026-09-10T16:55Z
 
 ## Categories (status: not_started | in_progress | verified | blocked)
-- [x] Technical foundation (crawlability, indexing, robots/sitemap, HTTPS, redirects) — verified (source-level; live HTTP behaviour blocked, see Open Questions)
+- [x] Technical foundation (crawlability, indexing, robots/sitemap, HTTPS, redirects) — verified (source-level 2026-09-10; HTTP layer verified live 2026-09-11 via the www host)
 - [x] Site architecture & internal linking — verified
-- [x] Page speed & Core Web Vitals — verified (lab only; field CWV blocked)
+- [x] Page speed & Core Web Vitals — verified (lab; live compression/TTFB/cache headers confirmed 2026-09-11; field CWV still needs CrUX/PSI)
 - [x] Mobile usability — verified (local lab; device-farm and live-URL checks pending)
 - [x] On-page SEO (titles, meta, headings, content-keyword alignment) — verified
 - [x] Structured data / schema markup — verified
@@ -67,6 +67,29 @@ PLAN: Viewport meta on every page; horizontal overflow, tap-target size, legible
 [MOBILE] [SEVERITY: Low] [PENDING VERIFICATION] — Real-device rendering (iOS Safari, Android Chrome) and Google's Mobile Usability / Page Experience report cannot be checked here — evidence: none — fix: open Search Console → Page Experience once the property exists; spot-check on two physical devices.
 REFLECT: Checked every published page at three mobile/tablet widths, both automated suites and Lighthouse. Nothing left that a specialist could reach without device access. Verified.
 
+
+### Loop 10 — Live HTTP-layer verification (2026-09-11)
+PLAN: The user added the site to the audit environment's network allowlist after verifying the domain in Search Console and submitting the sitemap. Re-run every check that was PENDING for lack of live access. The allowlist entry covers `www.puzzlerconsultingadvisory.com` only; the bare domain still returns a proxy 403, so apex-side behaviour is inferred from the www host, which serves the same Vercel deployment.
+RESULTS (all observed with curl on 2026-09-11):
+- Live homepage is byte-identical to `origin/main` index.html (168,643 bytes both; `cmp` equal). The source-based method used on 2026-09-10 is confirmed sound.
+- `http://www…/` → 308 → `https://www…/`. HSTS present: `strict-transport-security: max-age=63072000` (no includeSubDomains, no preload).
+- `https://www…/` → **200**, no redirect to the apex. Content-encoding br, HTTP/2, TTFB ≈0.16 s, HTML transfer 40,990 bytes (169 KB uncompressed).
+- `/google9e9afb59d0e9643d.html` → 200 with the exact token (Search Console verification confirmed by the user).
+- `/robots.txt` and `/sitemap.xml` → 200, identical to repo; sitemap served as application/xml.
+- `/this-page-does-not-exist-seo-probe` → 404 (Vercel plain-text default; confirms the missing custom 404 page).
+- `/making-the-pieces-fit` and `.html` both 200; `/capability-brief` and `.html` both 200 (duplicate confirmed). `/about` → 404 while `/about.html` → 200 (dormant canonical-to-404 confirmed). `/puzzler_card.html` → 200. `/index.html` → 200 with no redirect to `/`.
+- Asset `Cache-Control` on fonts, hero SVG, brand SVG and poster JPG: `public, max-age=0, must-revalidate` (no long-lived caching; confirms the cache-policy finding).
+- Live `DRAFT COPY` markers: 16 (was 14 on 2026-09-10; PRs #25/#26 added copy). Live JSON-LD blocks: 0.
+
+APEX RESULTS (added later on 2026-09-11 once the bare domain was allowlisted): `https://puzzlerconsultingadvisory.com/` → **307** → `https://www.puzzlerconsultingadvisory.com/`; the same 307-to-www applies to `/robots.txt`, `/google9e9afb59d0e9643d.html` and unknown paths (the apex 404 is a 307 first). `http://` on the apex still can't be observed (proxy denies plain-HTTP CONNECT). So `www` is the primary domain in Vercel and the apex is a redirecting alias — the opposite of what the site's own metadata assumes.
+
+[TECHNICAL] [SEVERITY: High] [VERIFIED] — Canonical host mismatch: every `<link rel="canonical">`, every `og:url`, all three sitemap `<loc>` entries and the robots.txt `Sitemap:` line name `https://puzzlerconsultingadvisory.com/…`, but that host 307-redirects every path to `https://www.puzzlerconsultingadvisory.com/…`, which serves the content with a 200. The declared canonical URLs are therefore all redirects; Search Console will report the sitemap URLs as "Page with redirect", and a 307 (temporary) gives Google the weakest possible consolidation signal — evidence: `curl -I https://puzzlerconsultingadvisory.com/` = HTTP/2 307, `location: https://www.puzzlerconsultingadvisory.com/`; `curl -I https://www.…/` = 200; canonical tags and sitemap.xml = apex — fix (recommended, no code change): Vercel → Project → Settings → Domains → set `puzzlerconsultingadvisory.com` as the primary domain and configure `www` as "Redirect to primary (308)". That makes every existing canonical, og:url and sitemap entry correct in one step. Alternative: keep `www` primary and rewrite canonicals, og:url, sitemap.xml and the robots.txt Sitemap line to the www host. Either way, re-verify with `curl -I` on both hosts and make sure the Search Console property is a *Domain* property (covers both hosts) rather than a single URL-prefix.
+[TECHNICAL] [SEVERITY: Info] [VERIFIED] — Supersedes the earlier Loop 10 note that "www never redirects to the apex": that observation was correct but incomplete; the real defect is the direction of the redirect versus the direction the metadata declares (above).
+[TECHNICAL] [SEVERITY: Low] [VERIFIED] — `/index.html` is a second live copy of the homepage (200, no redirect) — evidence: `curl -o /dev/null -w '%{http_code}' …/index.html` = 200, 0 redirects — fix: add `{ "source": "/index.html", "destination": "/", "permanent": true }` to vercel.json `redirects`.
+[TECHNICAL] [SEVERITY: Info] [VERIFIED] — Status change: the Loop 1 "HTTPS enforcement / HSTS / 404 status" item moves from PENDING to VERIFIED (all good, see results above). The Loop 3 "Vercel compression / HTTP-2 / TTFB" portion moves to VERIFIED (Brotli, HTTP/2, ≈160 ms). Field Core Web Vitals remain PENDING (needs CrUX/PSI data).
+[OFF-PAGE] [SEVERITY: Info] [VERIFIED] — Search Console property verified and sitemap submitted by the site owner on 2026-09-11 (reported by the user; the verification file is confirmed live). Coverage / indexation data typically takes several days to appear; the Loop 1 "absent from index" finding stays open until then.
+REFLECT: Everything that was blocked on live HTTP access has now been observed directly on both hosts; only third-party hosts (social profiles, Calendly, HeyGen) remain unreachable. Verified.
+
 ### Loop 5 — On-page SEO (2026-09-10)
 PLAN: Title/description length and keyword presence on all pages; H1/H2 wording vs. buyer search intent; keyword density for the services actually offered; image alt; OG/Twitter consistency; duplicate titles.
 
@@ -114,8 +137,8 @@ REFLECT: Blocked for stated reason; partial context logged, not asserted as fact
 - NEEDS HUMAN: backlink tool export (Ahrefs/Semrush/Moz) or GSC Links report for Loop 8.
 - NEEDS HUMAN: decision on puzzler_card.html — public/indexable or QR-only (noindex)?
 - NEEDS HUMAN: decision on the three dormant pages (delete vs rebuild as spoke pages).
-- BLOCKED (environment): outbound requests to puzzlerconsultingadvisory.com and www. are denied by the session's network egress policy (curl + WebFetch both return EGRESS_BLOCKED). All HTTP-layer checks (redirect chain, HSTS, cache headers, live 404 code, live TTFB) are PENDING VERIFICATION. Source-level checks are unaffected because the branch equals `main` and Vercel deploys it verbatim.
+- RESOLVED 2026-09-11: both hosts were added to the allowlist and all HTTP-layer checks were run live (Loop 10, including the apex results). Only plain-HTTP on the apex remains unobservable (the proxy denies non-TLS CONNECT), which is immaterial because HSTS is set.
 - BLOCKED (quota): Google PageSpeed Insights API returned HTTP 429 (daily quota exhausted for the shared unauthenticated project); CrUX API returned 403 (needs API key). Field Core Web Vitals are PENDING VERIFICATION; lab data comes from local Lighthouse instead.
-- NEEDS HUMAN: Google Search Console access (or a screenshot of Coverage + Performance) to confirm whether the homepage is indexed and why the `site:` search returns nothing.
+- IN PROGRESS: Search Console verified and sitemap submitted 2026-09-11. Re-check Coverage and URL Inspection on `/` in 3–7 days to confirm indexation and close the Loop 1 High finding.
 
-## Iteration Count: 9
+## Iteration Count: 10
