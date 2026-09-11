@@ -17,7 +17,7 @@ const EXCLUDED_NAMES = [
   'Puzzler Consulting Blueprint Hero.png',
 ];
 const EXCLUDED_EXT = ['.zip', '.part', '.7z', '.rar', '.tar', '.gz'];
-const PUBLIC_HTML = ['index.html', 'privacy.html', 'terms.html', 'making-the-pieces-fit.html', 'capability-brief.html', 'puzzler_card.html'];
+const PUBLIC_HTML = ['index.html', 'privacy.html', 'terms.html', 'making-the-pieces-fit.html', 'capability-brief.html', 'puzzler_card.html', '404.html'];
 
 // The code-drawn four-piece mark that must never return (asset map §10).
 const LOGO_POLYGON = /<polygon[^>]*points="45,45 140,45/;

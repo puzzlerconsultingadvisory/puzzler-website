@@ -1,6 +1,58 @@
 {
   "rewrites": [
-    { "source": "/making-the-pieces-fit", "destination": "/making-the-pieces-fit.html" },
-    { "source": "/capability-brief", "destination": "/capability-brief.html" }
+    {
+      "source": "/making-the-pieces-fit",
+      "destination": "/making-the-pieces-fit.html"
+    },
+    {
+      "source": "/capability-brief",
+      "destination": "/capability-brief.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/making-the-pieces-fit.html",
+      "destination": "/making-the-pieces-fit",
+      "permanent": true
+    },
+    {
+      "source": "/capability-brief.html",
+      "destination": "/capability-brief",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(website-assets|assets)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(jpg|webp|png|svg|ico)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    }
   ]
 }
