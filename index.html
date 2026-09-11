@@ -718,6 +718,74 @@
     .audience-grid { grid-template-columns: minmax(0, 1fr); }
     .fysp .opt .flag { display: block; margin: 6px 0 0; width: max-content; }
   }
+  /* ─── Phone layout (≤760px): folds, list rows, swipe row, sticky wayfinding. Every block stays in the
+         document; the fold buttons only exist with script, and only at phone widths. ─── */
+  .fold-btn { display: none; }
+  .fold-btn .chev { width: 16px; height: 16px; flex: none; transition: transform .2s var(--ease); }
+  .m-bar, .m-sheet { display: none; }
+  .step2-hint { display: none; }
+  @media (max-width: 760px) {
+    .js .fold-btn { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 52px; padding: 0 16px; margin-top: 12px; border: 1px solid var(--rule-light); border-radius: 4px; background: var(--white); color: var(--navy); font: inherit; font-weight: 600; font-size: 15px; line-height: 1.3; text-align: left; cursor: pointer; }
+    .js .fold.dark > .fold-btn { border-color: var(--rule-dark); background: rgba(15, 15, 31, 0.55); color: var(--white); }
+    .js .fold.rec > .fold-btn { margin-top: 0; border: 0; padding: 0; min-height: 48px; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); }
+    .js .fold-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+    .js .fold:not(.is-open) > .fold-body { display: none; }
+    .js .fold-body > .build-sub, .js .fold-body > .shapes > .build-sub, .js .fold-body > .audiences .aud-head > .build-sub, .js .fold-body > h3 { display: none; }
+    .js .fold-body > .practices, .js .fold-body > .shapes, .js .fold-body > .audiences { margin-top: 14px; }
+    .js .fold-body > .reach-form { margin-top: 12px; }
+    .js .fold-body > .reach-form .reach-title { display: none; }
+    .js #fold-gap > .fold-btn { margin-top: 18px; }
+    .js #fold-note { margin-top: 10px; }
+    .js .record .agencies { margin-top: 14px; }
+    /* Find Your Starting Point: two columns; Step 2 waits for Step 1 */
+    .fysp-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .fysp .opt { min-height: 56px; padding: 10px 12px; font-size: 13.5px; line-height: 1.25; margin: 0; }
+    .fysp .opt .check { display: none; }
+    .fysp .opt.opt-urgent { grid-column: 1 / -1; }
+    .js .fysp.awaiting .fysp-group:nth-child(2) .fysp-options { display: none; }
+    .js .fysp.awaiting .step2-hint { display: block; color: var(--on-dark-mute); font-size: 14.5px; padding: 12px 14px; border: 1px dashed var(--rule-dark); border-radius: 4px; }
+    /* Ways to Begin: list rows */
+    .ways-grid { display: block; margin-top: 24px; border-top: 1px solid var(--rule-light); }
+    .way { display: grid; grid-template-columns: 28px 1fr 20px; align-items: center; gap: 12px; min-height: 56px; padding: 12px 14px; border-radius: 0; border: 0; border-bottom: 1px solid var(--rule-light); }
+    .way .ico { width: 24px; height: 24px; margin: 0; }
+    .way h3 { font-size: 16px; margin: 0; }
+    .way p, .way .go { display: none; }
+    .way::after { content: "→"; color: var(--teal); font-weight: 600; }
+    /* Pieces in Motion: swipe row */
+    .js .pim-grid { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; max-width: none; padding-bottom: 4px; }
+    .js .pim-grid::-webkit-scrollbar { display: none; }
+    .js .pim-grid > .pim-card { flex: 0 0 86%; scroll-snap-align: start; }
+    .js .pim-dots { display: flex; justify-content: center; gap: 2px; margin-top: 4px; }
+    .js .pim-dots[hidden] { display: none; }
+    .pim-dots button { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; background: none; border: 0; padding: 0; cursor: pointer; }
+    .pim-dots button span { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--on-dark-mute); display: block; }
+    .pim-dots button[aria-current="true"] span { background: var(--teal); border-color: var(--teal); }
+    /* Method: strip hidden, arrows remain */
+    .js .step-strip { display: none; }
+    .js #fold-step-1, .js #fold-step-2, .js #fold-step-3, .js #fold-step-4, .js #fold-step-5, .js #fold-step-6, .js #fold-step-7 { margin-top: 6px; }
+    /* Hero: the drawing is desktop-only; the callout stays as a plain link */
+    .hero-field > img, .hero-dim-lines { display: none; }
+    .hero-field { aspect-ratio: auto; margin-bottom: 0; opacity: 1; }
+    .hero-dim { position: static; margin: 22px auto 0; }
+    /* Closing brand band: desktop only */
+    .close { display: none; }
+    /* Sticky bar and sheet */
+    .js .m-bar { display: grid; grid-template-columns: 44px 1fr 44px; gap: 8px; align-items: center; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); background: rgba(15, 15, 31, 0.96); border-top: 1px solid rgba(255, 255, 255, 0.14); transform: translateY(0); transition: transform .25s var(--ease); }
+    .js .m-bar[hidden] { display: none; }
+    .js .m-bar.away { transform: translateY(110%); }
+    .m-bar .m-ico, .m-bar .m-cta { min-height: 44px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font: inherit; font-weight: 600; font-size: 14px; text-decoration: none; cursor: pointer; }
+    .m-bar .m-ico { width: 44px; border: 1px solid rgba(255, 255, 255, 0.35); color: var(--white); background: none; font-size: 18px; }
+    .m-bar .m-ico[aria-expanded="true"] { background: rgba(255, 255, 255, 0.1); }
+    .m-bar .m-cta { background: var(--teal); color: var(--navy-deep); }
+    .js .m-sheet { display: block; position: fixed; left: 0; right: 0; bottom: 64px; z-index: 59; background: var(--white); border-radius: 8px 8px 0 0; box-shadow: 0 -8px 30px rgba(15, 15, 31, 0.35); padding: 12px 8px calc(8px + env(safe-area-inset-bottom)); max-height: calc(100vh - 80px); overflow-y: auto; }
+    .js .m-sheet[hidden] { display: none; }
+    .m-sheet .h { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; padding: 6px 12px 8px; }
+    .m-sheet a { display: flex; align-items: center; justify-content: space-between; min-height: 46px; padding: 0 12px; color: var(--navy); font-weight: 600; font-size: 15px; border-top: 1px solid var(--rule-light); text-decoration: none; }
+    .m-sheet a .n { font-size: 11px; color: var(--teal); letter-spacing: 0.14em; margin-right: 10px; }
+    .m-sheet a .here { font-size: 10.5px; color: var(--ink-mute); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .m-sheet a .here[hidden] { display: none; }
+    .js.m-bar-on body { padding-bottom: 72px; }
+  }
   @media (max-width: 380px) {
     .brand-word .name { font-size: 16px; }
     .hero .hero-tagline { font-size: 36px; }
@@ -891,9 +959,15 @@
       </div>
       <div>
         <p class="lead">Most engagements start at a threshold — a new leader, an audit finding, a first government contract, a capital project turning harder than planned, a funding mechanism that just got more complicated.</p>
+<div class="fold light" id="fold-gap">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-gap-body" id="fold-gap-btn">Read more <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-gap-body">
         <!-- DRAFT COPY: bridging paragraph pending approval -->
         <p class="lead">Between the plan and the people who have to run it sits the operator gap: the governance, funding discipline, and capacity that a strategy assumes but rarely builds.</p>
         <p class="pull">Organizations don’t fail because their strategy is wrong. They fail because no one stays in the hole with them long enough to get them out. We do the work alongside the people responsible for it, not at a distance from them.</p>
+
+</div>
+</div>
       </div>
     </div>
   </section>
@@ -932,6 +1006,7 @@
 
           <div class="fysp-group" role="group" aria-labelledby="fysp-who-title">
             <h4 class="fysp-step" id="fysp-who-title"><span class="num">Step 2</span> Who are you?</h4>
+            <p class="step2-hint">Choose Step 1 and the options appear here.</p>
             <div class="fysp-options" data-group="audience">
               <button class="opt" type="button" data-audience="individual" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Individual or founder</span></button>
               <button class="opt" type="button" data-audience="emerging" aria-pressed="false"><span class="check" aria-hidden="true"></span><span class="txt">Emerging organization</span></button>
@@ -1034,6 +1109,9 @@
 
       <!-- Five-practice foundation. Each practice carries a data-practice id so the starting-point
            result can mark the practices it draws on (text badge + rule; never color alone). -->
+<div class="fold light" id="fold-practices">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-practices-body" id="fold-practices-btn">Six practices beneath every engagement <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-practices-body">
       <h3 class="build-sub" id="foundation-title">Six practices beneath every engagement</h3>
       <div class="practices">
         <details class="practice" data-practice="restructuring">
@@ -1087,7 +1165,13 @@
       </div>
 
 
+
+</div>
+</div>
       <!-- How engagements are shaped: where fractional leadership lives. No prices, no response-time claims. Approved 2026-09-10. -->
+<div class="fold light" id="fold-shapes">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-shapes-body" id="fold-shapes-btn">How engagements are shaped <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-shapes-body">
       <div class="shapes" aria-labelledby="shapes-title">
         <h4 class="build-sub" id="shapes-title">How engagements are shaped</h4>
         <ul class="shape-list">
@@ -1099,8 +1183,14 @@
       </div>
 
 
+
+</div>
+</div>
       <!-- Static audience summaries: always present for accessibility, search, and visitors who skip the selector.
            DRAFT COPY: situations and help lines are derived from the approved audience emphasis (2026-09-09 brief), pending approval. -->
+<div class="fold light" id="fold-audiences">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-audiences-body" id="fold-audiences-btn">Who we work with <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-audiences-body">
       <div class="audiences" id="audiences">
         <div class="aud-head">
           <h3 class="build-sub" id="audiences-title">Who we work with</h3>
@@ -1157,8 +1247,17 @@
         <div class="aud-dots" id="aud-dots" role="group" aria-label="Audience pages" hidden></div>
       </div>
 
+
+</div>
+</div>
       <div class="fit-statement">
+<div class="fold light" id="fold-fit">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-fit-body" id="fold-fit-btn">Where Puzzler fits, and where it does not <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-fit-body">
         <p>Puzzler works with individuals, emerging organizations, and established institutions when the need calls for strategic direction, funding clarity, stronger operating capacity, or support through change. We are not the right firm for federal contract advocacy on behalf of clients, financial-distress turnarounds, or executive search. <strong>Puzzler advises and prepares. Puzzler does not represent clients before federal agencies or lobby on their behalf.</strong></p>
+
+</div>
+</div>
         <div class="build-actions">
           <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Book a Fit Call <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn btn-outline" href="#ways-to-begin">See ways to begin</a>
@@ -1197,57 +1296,99 @@
               <p class="phase-line">Phase 1 · Start With The Edge <span class="range">Steps 1–3</span></p>
               <p class="big" aria-hidden="true">01</p>
               <h3><span class="visually-hidden">Step 1 of 7: </span>Start With The Edge</h3>
+<div class="fold dark" id="fold-step-1">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-step-1-body" id="fold-step-1-btn">What this step does <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-step-1-body">
               <!-- DRAFT COPY: step descriptions pending approval -->
               <p class="step-desc">Trace the outside first. Before anything moves, we establish the boundaries of the engagement — mission, money, mandate, and the people accountable for each — and how the corners relate.</p>
               <p class="shown"><strong>On the drawing</strong> · Outside boundaries and corner relationships traced</p>
+
+</div>
+</div>
             </article>
             <article class="slide" data-step="2" hidden>
               <p class="phase-line">Phase 1 · Start With The Edge <span class="range">Steps 1–3</span></p>
               <p class="big" aria-hidden="true">02</p>
               <h3><span class="visually-hidden">Step 2 of 7: </span>Build The Frame</h3>
+<div class="fold dark" id="fold-step-2">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-step-2-body" id="fold-step-2-btn">What this step does <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-step-2-body">
               <!-- DRAFT COPY: step descriptions pending approval -->
               <p class="step-desc">Close the perimeter. Governance, decision rights, and the operating rhythm become a stable frame that every later piece has to fit inside.</p>
               <p class="shown"><strong>On the drawing</strong> · Perimeter closed into a stable frame</p>
+
+</div>
+</div>
             </article>
             <article class="slide" data-step="3" hidden>
               <p class="phase-line">Phase 1 · Start With The Edge <span class="range">Steps 1–3</span></p>
               <p class="big" aria-hidden="true">03</p>
               <h3><span class="visually-hidden">Step 3 of 7: </span>Sort The Pieces</h3>
+<div class="fold dark" id="fold-step-3">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-step-3-body" id="fold-step-3-btn">What this step does <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-step-3-body">
               <!-- DRAFT COPY: step descriptions pending approval -->
               <p class="step-desc">Organize the interior into working groups — programs, funding streams, functions, and people — without pulling anything out of the picture.</p>
               <p class="shown"><strong>On the drawing</strong> · Interior areas organized into working groups</p>
+
+</div>
+</div>
             </article>
             <article class="slide" data-step="4" hidden>
               <p class="phase-line">Phase 2 · Sort and Build <span class="range">Steps 4–6</span></p>
               <p class="big" aria-hidden="true">04</p>
               <h3><span class="visually-hidden">Step 4 of 7: </span>Use Visual Cues</h3>
+<div class="fold dark" id="fold-step-4">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-step-4-body" id="fold-step-4-btn">What this step does <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-step-4-body">
               <!-- DRAFT COPY: step descriptions pending approval -->
               <p class="step-desc">Clarify the relationships that matter. Decision-ready briefs, clear paths, and visible connections so leadership can act without losing what matters in translation.</p>
               <p class="shown"><strong>On the drawing</strong> · Selected relationships and paths clarified</p>
+
+</div>
+</div>
             </article>
             <article class="slide" data-step="5" hidden>
               <p class="phase-line">Phase 2 · Sort and Build <span class="range">Steps 4–6</span></p>
               <p class="big" aria-hidden="true">05</p>
               <h3><span class="visually-hidden">Step 5 of 7: </span>Take Breaks</h3>
+<div class="fold dark" id="fold-step-5">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-step-5-body" id="fold-step-5-btn">What this step does <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-step-5-body">
               <!-- DRAFT COPY: step descriptions pending approval -->
               <p class="step-desc">Stop at visible checkpoints. Pausing on purpose is how a team keeps its judgment — and how leadership sees progress instead of motion.</p>
               <p class="shown"><strong>On the drawing</strong> · Motion stopped at a visible checkpoint</p>
+
+</div>
+</div>
             </article>
             <article class="slide" data-step="6" hidden>
               <p class="phase-line">Phase 2 · Sort and Build <span class="range">Steps 4–6</span></p>
               <p class="big" aria-hidden="true">06</p>
               <h3><span class="visually-hidden">Step 6 of 7: </span>Avoid Common Mistakes / Don’t Get Stuck On One Piece</h3>
+<div class="fold dark" id="fold-step-6">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-step-6-body" id="fold-step-6-btn">What this step does <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-step-6-body">
               <!-- DRAFT COPY: step descriptions pending approval -->
               <p class="step-desc">Restore the whole picture. When one problem dominates, the rest of the organization drifts. We bring every area back to equal visibility before choosing the next move.</p>
               <p class="shown"><strong>On the drawing</strong> · Entire diagram restored to equal visibility</p>
+
+</div>
+</div>
             </article>
             <article class="slide" data-step="7" hidden>
               <p class="phase-line">Phase 3 · Activate and Sustain <span class="range">Step 7</span></p>
               <p class="big" aria-hidden="true">07</p>
               <h3><span class="visually-hidden">Step 7 of 7: </span>Risk Correction</h3>
+<div class="fold dark" id="fold-step-7">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-step-7-body" id="fold-step-7-btn">What this step does <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-step-7-body">
               <!-- DRAFT COPY: step descriptions pending approval -->
               <p class="step-desc">Find the unstable connection, correct it, and return it to a durable state — the compliance, monitoring, and stewardship discipline that determines whether you keep what you win.</p>
               <p class="shown"><strong>On the drawing</strong> · One unstable connection identified, corrected, and returned to a durable state</p>
+
+</div>
+</div>
             </article>
           </div>
           <div class="step-strip" role="group" aria-label="Go to a step">
@@ -1361,6 +1502,7 @@
           </div>
         </article>
       </div>
+      <div class="pim-dots" id="pim-dots" role="group" aria-label="Films" hidden></div>
     </div>
   </section>
 
@@ -1372,21 +1514,36 @@
         <p class="eyebrow">A note from Mark</p>
         <h2 class="h2" id="about-title">People remember FEMA for the emergencies. I remember it for what came after.</h2>
         <p>As an emergency manager, I learned that the work that really matters isn’t the response — it’s helping people find their way back to a <span class="em">new normal</span>. Not their old life. A new one. You can’t hand someone a plan and call that help. You have to get down where they are, see what they see, and stay with them until the ground feels steady again.</p>
+<div class="fold light" id="fold-note">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-note-body" id="fold-note-btn">Read the full note <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-note-body">
         <p>I’ve spent two decades building, modernizing, and stewarding the systems nonprofits, small businesses, and organizations doing meaningful work rely on. What ties those chapters together is simple. Organizations don’t fail because their strategy is wrong. They fail because no one <span class="em">stays in the hole</span> with them long enough to get them out. Puzzler was built to be the partner that stays.</p>
         <p>Every engagement begins the same way: with a conversation. Tell us where you are, where you’re trying to get to, and what’s in the way. We’ll get in the hole with you — and help you find your way to a new normal.</p>
         <p class="sig">— Mark</p>
+
+</div>
+</div>
       </div>
       <div>
         <!-- AB-01: founder portrait not in the asset inventory. Not required for homepage launch. -->
         <div class="record">
+<div class="fold light rec" id="fold-record">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-record-body" id="fold-record-btn">For the record <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-record-body">
           <h3>For the record</h3>
           <p>Mark D. Williams brings twenty years of senior federal leadership across the U.S. Department of State, U.S. Department of Agriculture, U.S. Department of Homeland Security, and the Department of Defense.</p>
           <p>A native of Houston, Texas and a graduate of Howard University.</p>
+
+</div>
+</div>
           <ul class="agencies">
             <li>State</li><li>USDA</li><li>DHS / FEMA</li><li>DoD</li>
           </ul>
         </div>
         <div class="record">
+<div class="fold light rec" id="fold-speaking">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-speaking-body" id="fold-speaking-btn">Speaking engagements <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-speaking-body">
           <h3>Speaking engagements</h3>
           <p>Mark is available to speak on leadership in moments of institutional disruption, capacity building in nonprofits, small businesses, and organizations doing meaningful work, human-centered AI adoption, older-child adoption advocacy, internship-based workforce development, hidden disabilities visibility, and mental health in the workplace and beyond.</p>
           <!-- Speaking inquiry form: its own Formspree form (data-endpoint). With script the details post there as JSON;
@@ -1408,6 +1565,9 @@
             </form>
           </details>
           <p>Or email <a href="mailto:info@puzzlerconsultingadvisory.com?subject=Speaking%20inquiry">info@puzzlerconsultingadvisory.com</a></p>
+
+</div>
+</div>
         </div>
       </div>
     </div>
@@ -1424,6 +1584,9 @@
       <!-- Contact details so the founder can follow up even when a Calendly booking is not completed.
            With script, the details post to the form service named on <html data-form-endpoint>; the mailto:
            action below is the no-script route and the fallback if the service cannot be reached. -->
+<div class="fold dark" id="fold-reach">
+<button class="fold-btn" type="button" aria-expanded="false" aria-controls="fold-reach-body" id="fold-reach-btn">Prefer we reach out? Leave your details. <svg class="chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+<div class="fold-body" id="fold-reach-body">
       <form class="reach-form" id="reach-fit" action="mailto:info@puzzlerconsultingadvisory.com" method="post" enctype="text/plain" data-subject="Fit Call request">
         <p class="reach-title" id="reach-fit-title">Prefer we reach out? Leave your details.</p>
         <p class="reach-help">We will follow up by email or phone. This opens your email app with the details filled in.</p>
@@ -1437,6 +1600,9 @@
         <p class="reach-error" hidden>Please add your name and an email address so we can reply.</p>
         <button class="btn btn-outline" type="submit">Send my details <span class="arrow" aria-hidden="true">→</span></button>
       </form>
+
+</div>
+</div>
 
       <div class="contact-grid">
         <div>
@@ -1486,6 +1652,24 @@
   </div>
 </footer>
 
+<!-- Phone wayfinding: appears after the hero on small screens with script; hidden while scrolling down, back on scroll up. -->
+<nav class="m-bar" id="m-bar" aria-label="Quick actions" hidden>
+  <button class="m-ico" type="button" id="m-sections" aria-expanded="false" aria-controls="m-sheet" aria-label="Sections on this page"><span aria-hidden="true">≡</span></button>
+  <a class="m-cta" href="#fit-call">Book a Fit Call</a>
+  <button class="m-ico" type="button" id="m-top" aria-label="Back to top"><span aria-hidden="true">↑</span></button>
+</nav>
+<nav class="m-sheet" id="m-sheet" aria-label="On this page" hidden>
+  <p class="h">On this page</p>
+  <a href="#operator-gap" data-section="operator-gap"><span><span class="n">01</span>The Operator Gap</span><span class="here" hidden>You are here</span></a>
+  <a href="#practices" data-section="practices"><span><span class="n">02</span>Build It to Hold</span><span class="here" hidden>You are here</span></a>
+  <a href="#find-your-starting-point" data-section="find-your-starting-point"><span><span class="n">03</span>Find Your Starting Point</span><span class="here" hidden>You are here</span></a>
+  <a href="#method" data-section="method"><span><span class="n">04</span>The Puzzler Method</span><span class="here" hidden>You are here</span></a>
+  <a href="#ways-to-begin" data-section="ways-to-begin"><span><span class="n">05</span>Ways to Begin</span><span class="here" hidden>You are here</span></a>
+  <a href="#pieces-in-motion" data-section="pieces-in-motion"><span><span class="n">06</span>Pieces in Motion</span><span class="here" hidden>You are here</span></a>
+  <a href="#note" data-section="note"><span><span class="n">07</span>A Note from Mark</span><span class="here" hidden>You are here</span></a>
+  <a href="#fit-call" data-section="fit-call"><span><span class="n">08</span>Book a Fit Call</span><span class="here" hidden>You are here</span></a>
+</nav>
+
 <script>
 (function () {
   'use strict';
@@ -1508,6 +1692,76 @@
       if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') { closeNav(); toggle.focus(); }
     });
   }
+
+  /* ── Phone layout: folds, Step 2 disclosure, film dots, sticky wayfinding (≤760px only) ── */
+  var phone = window.matchMedia('(max-width: 760px)');
+  (function () {
+    var folds = Array.prototype.slice.call(document.querySelectorAll('.fold'));
+    function setFold(f, open) {
+      f.classList.toggle('is-open', open);
+      var b = f.querySelector(':scope > .fold-btn'); if (b) b.setAttribute('aria-expanded', String(open));
+      if (open) window.dispatchEvent(new Event('resize'));   /* sliders inside re-measure */
+    }
+    folds.forEach(function (f) {
+      var b = f.querySelector(':scope > .fold-btn'); if (!b) return;
+      b.addEventListener('click', function () { setFold(f, !f.classList.contains('is-open')); });
+    });
+    window.openFoldsAround = function (el) { var f = el && el.closest ? el.closest('.fold') : null; while (f) { setFold(f, true); f = f.parentElement && f.parentElement.closest('.fold'); } };
+
+    /* Film dots for the swipe row */
+    var pim = document.querySelector('.pim-grid'), dots = document.getElementById('pim-dots');
+    if (pim && dots) {
+      var cards = Array.prototype.slice.call(pim.children);
+      cards.forEach(function (c, i) { var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Film ' + (i + 1) + ' of ' + cards.length); b.appendChild(document.createElement('span')); b.addEventListener('click', function () { c.scrollIntoView({ block: 'nearest', inline: 'start', behavior: reducedMotionMQ.matches ? 'auto' : 'smooth' }); }); dots.appendChild(b); });
+      var reducedMotionMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+      function markDot() {
+        if (!phone.matches) return;
+        var i = Math.round(pim.scrollLeft / (cards[0].offsetWidth + 12));
+        Array.prototype.forEach.call(dots.children, function (d, k) { if (k === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+      }
+      var t = null; pim.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(markDot, 60); }, { passive: true });
+      function dotsVis() { dots.hidden = !phone.matches; if (phone.matches) markDot(); }
+      dotsVis(); phone.addEventListener ? phone.addEventListener('change', dotsVis) : phone.addListener(dotsVis);
+    }
+
+    /* Sticky bar: shows after the hero on phones, hides while scrolling down, returns on scroll up */
+    var bar = document.getElementById('m-bar'), sheet = document.getElementById('m-sheet'), secBtn = document.getElementById('m-sections'), topBtn = document.getElementById('m-top');
+    var hero = document.querySelector('.hero');
+    if (bar && sheet && secBtn && topBtn && hero) {
+      var lastY = window.scrollY, idle = null;
+      function closeSheet() { sheet.hidden = true; secBtn.setAttribute('aria-expanded', 'false'); }
+      function update() {
+        if (!phone.matches) { bar.hidden = true; closeSheet(); document.documentElement.classList.remove('m-bar-on'); return; }
+        var y = window.scrollY, past = y > hero.offsetTop + hero.offsetHeight - 80;
+        bar.hidden = !past; document.documentElement.classList.toggle('m-bar-on', past);
+        if (!past) closeSheet();
+        /* Slides away while the page scrolls down, returns on scroll up or once scrolling stops. */
+        if (Math.abs(y - lastY) > 6) { bar.classList.toggle('away', past && y > lastY && sheet.hidden); lastY = y; }
+        clearTimeout(idle); idle = setTimeout(function () { bar.classList.remove('away'); }, 700);
+      }
+      var raf = 0; window.addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(function () { raf = 0; update(); }); }, { passive: true });
+      window.addEventListener('resize', update); update();
+      secBtn.addEventListener('click', function () { var open = sheet.hidden; sheet.hidden = !open; secBtn.setAttribute('aria-expanded', String(open)); if (open) { var cur = sheet.querySelector('a.current') || sheet.querySelector('a'); if (cur) cur.focus(); } });
+      sheet.addEventListener('click', function (e) { if (e.target.closest('a')) closeSheet(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sheet.hidden) { closeSheet(); secBtn.focus(); } });
+      topBtn.addEventListener('click', function () {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+        var h1 = document.getElementById('hero-title'); if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus({ preventScroll: true }); }
+      });
+      /* "You are here" */
+      var links = Array.prototype.slice.call(sheet.querySelectorAll('a[data-section]'));
+      if (window.IntersectionObserver) {
+        var visible = {};
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) { visible[en.target.id] = en.isIntersecting ? en.intersectionRatio : 0; });
+          var best = null, bestR = 0; links.forEach(function (a) { var r = visible[a.getAttribute('data-section')] || 0; if (r > bestR) { bestR = r; best = a; } });
+          links.forEach(function (a) { var here = a === best; a.classList.toggle('current', here); a.querySelector('.here').hidden = !here; if (here) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
+        }, { threshold: [0.15, 0.4, 0.7] });
+        links.forEach(function (a) { var sec = document.getElementById(a.getAttribute('data-section')); if (sec) io.observe(sec); });
+      }
+    }
+  })();
 
   /* ── Hero dimension callout: keep the line just under the label at every width ── */
   (function () {
@@ -1774,7 +2028,7 @@
   /* A link to #speaking-inquiry (the Ways to Begin card) opens the form and puts focus in it. */
   function openLinkedReach() {
     var d = window.location.hash && document.querySelector(window.location.hash + '.reach');
-    if (!d || !d.open) { if (d) { d.open = true; var first = d.querySelector('input'); if (first) first.focus({ preventScroll: true }); } }
+    if (!d || !d.open) { if (d) { if (window.openFoldsAround) window.openFoldsAround(d); d.open = true; var first = d.querySelector('input'); if (first) first.focus({ preventScroll: true }); } }
   }
   window.addEventListener('hashchange', openLinkedReach);
   openLinkedReach();
@@ -1936,7 +2190,12 @@
       });
     }
 
+    var fyspRoot = document.getElementById('find-your-starting-point');
+    function awaitStep2() { if (fyspRoot) fyspRoot.classList.toggle('awaiting', !need); }
     function render(moveFocus) {
+      var wasAwaiting = fyspRoot && fyspRoot.classList.contains('awaiting');
+      awaitStep2();
+      if (wasAwaiting && need && phone.matches && !audience) { var g2 = document.querySelectorAll('.fysp-group')[1]; if (g2) g2.scrollIntoView({ block: 'start', behavior: reducedMotion.matches ? 'auto' : 'smooth' }); }
       needBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-need') === need)); });
       audBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-audience') === audience)); });
       drawField();
@@ -1995,6 +2254,7 @@
     });
 
     drawField();
+    awaitStep2();
   })();
 
   /* ── Who we work with: puzzle-piece slider ───────────────────── */
@@ -2095,7 +2355,7 @@
       }
     }
 
-    function firstVisible() { return Math.min(total - 1, Math.max(0, Math.round(track.scrollLeft / pw))); }
+    function firstVisible() { if (!(pw > 0)) return 0; return Math.min(total - 1, Math.max(0, Math.round(track.scrollLeft / pw))); }
     function update() {
       var idx = firstVisible();
       page = Math.min(pages - 1, Math.ceil(idx / per));
