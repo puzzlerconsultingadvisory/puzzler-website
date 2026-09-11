@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<!-- Contact form service: set data-form-endpoint to the form service's POST URL (e.g. https://formspree.io/f/XXXX).
-     Empty = the details forms open the visitor's email app instead (mailto:). -->
-<html lang="en" data-form-endpoint="">
+<!-- Contact form service: data-form-endpoint is the Formspree form's POST URL (owner's account, set 2026-09-11).
+     The details forms post there as JSON; if the post fails, or the value is empty, they open the visitor's
+     email app instead (mailto:). The Privacy Notice names Formspree as the processor; keep the two in step. -->
+<html lang="en" data-form-endpoint="https://formspree.io/f/mqpknwoe">
 <head>
 <script>document.documentElement.classList.add('js');</script>
 <meta charset="UTF-8">
@@ -1315,8 +1316,8 @@
       <a class="btn btn-primary" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Book a Fit Call <span class="arrow" aria-hidden="true">→</span></a>
 
       <!-- Contact details so the founder can follow up even when a Calendly booking is not completed.
-           No form backend exists for this site: submitting opens the visitor's email app addressed to the
-           approved inquiry address with the details filled in. Nothing is sent to or stored by the website. -->
+           With script, the details post to the form service named on <html data-form-endpoint>; the mailto:
+           action below is the no-script route and the fallback if the service cannot be reached. -->
       <form class="reach-form" id="reach-fit" action="mailto:info@puzzlerconsultingadvisory.com" method="post" enctype="text/plain" data-subject="Fit Call request">
         <p class="reach-title" id="reach-fit-title">Prefer we reach out? Leave your details.</p>
         <p class="reach-help">We will follow up by email or phone. This opens your email app with the details filled in.</p>
