@@ -242,6 +242,7 @@ for (const pg of PAGES) {
     fractionalRoles: /chief operating officer, grants and contracts director, compliance officer, or transformation and modernization lead/.test(document.querySelector('.shapes').textContent),
     ways: document.querySelectorAll('.ways-grid .way').length,
     waysFractional: [...document.querySelectorAll('.ways-grid .way')].some((w) => /Retain fractional leadership/.test(w.textContent) && w.getAttribute('href') === 'mailto:info@puzzlerconsultingadvisory.com?subject=Fractional%20support'),
+    waysSpeaking: [...document.querySelectorAll('.ways-grid .way')].some((w) => /Invite Mark to Speak/.test(w.textContent) && w.getAttribute('href') === '#speaking-inquiry') && !!document.querySelector('#speaking-inquiry.reach #reach-speak'),
     priceOrHours: /\$\d|\b\d+\s*(?:hours|hrs|-hour)\b/.test(document.getElementById('practices').textContent),
     revenueExclusion: /\$2\s?M|2 million/i.test(document.body.textContent),
     whoWeServeSection: !!document.getElementById('who-we-serve'),
@@ -252,6 +253,7 @@ for (const pg of PAGES) {
   if (sem.audienceSummaries !== 7) failures.push(`fysp: expected 7 static audience summaries, got ${sem.audienceSummaries}`);
   if (!sem.fitStatement) failures.push('fysp: approved fit statement (with boundary sentence) missing');
   if (sem.shapes !== 4 || !sem.fractionalRoles) failures.push(`fractional: engagement strip wrong (shapes=${sem.shapes}, roles=${sem.fractionalRoles})`);
+  if (!sem.waysSpeaking) failures.push('ways: the speaking card should open the speaking inquiry form');
   if (sem.ways !== 5 || !sem.waysFractional) failures.push(`fractional: Ways to Begin card wrong (ways=${sem.ways}, card=${sem.waysFractional})`);
   if (sem.priceOrHours) failures.push('build: a price or hour claim appeared in Build It to Hold');
   if (sem.revenueExclusion) failures.push('fysp: revenue-based exclusion text still present');
@@ -462,6 +464,36 @@ for (const pg of PAGES) {
   await page.waitForFunction(() => { const f = document.querySelector('#fysp-result .reach-form'); return f && !f.querySelector('.reach-error').hidden; }, null, { timeout: 3000 }).catch(() => failures.push('form-service: failure fallback message did not appear'));
   const fb = await page.evaluate(() => { const f = document.querySelector('#fysp-result .reach-form'); return { mailto: f.getAttribute('data-mailto'), msg: f.querySelector('.reach-error').textContent }; });
   if (!/^mailto:info@puzzlerconsultingadvisory\.com\?subject=Fit%20Call%20follow-up%3A%20Strategic%20Roadmap/.test(fb.mailto || '') || !/email app/.test(fb.msg)) failures.push(`form-service: fallback wrong (${JSON.stringify(fb)})`);
+  // Speaking inquiry: its own Formspree form; the Ways to Begin card opens it and focuses the first field.
+  const SPEAK = 'https://formspree.io/f/mqpknnke';
+  let spoken = null;
+  await page.route(SPEAK, async (route) => { spoken = JSON.parse(route.request().postData() || '{}'); await route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
+  const speakCfg = await page.evaluate(() => { const f = document.getElementById('reach-speak'); return { action: f.getAttribute('action'), open: document.getElementById('speaking-inquiry').open, fields: [...f.querySelectorAll('input, textarea')].map((i) => i.name).filter((n) => n !== '_gotcha').join() }; });
+  await page.click('.ways-grid .way[href="#speaking-inquiry"]');
+  const scrolled = await page.waitForFunction(() => { const r = document.getElementById('speaking-inquiry').getBoundingClientRect(); return r.top >= 0 && r.top < window.innerHeight; }, null, { timeout: 4000 }).then(() => true).catch(() => false);
+  const opened = await page.evaluate(() => ({ open: document.getElementById('speaking-inquiry').open, focus: document.activeElement.id, inView: (() => { const r = document.getElementById('speaking-inquiry').getBoundingClientRect(); return r.top >= 0 && r.top < window.innerHeight; })() }));
+  opened.inView = opened.inView && scrolled;
+  if (speakCfg.action !== SPEAK || speakCfg.open || speakCfg.fields !== 'Name,Organization,Email,Phone,Event' || !opened.open || opened.focus !== 'reach-speak-name' || !opened.inView) failures.push(`speaking form: setup ${JSON.stringify(speakCfg)} opened ${JSON.stringify(opened)}`);
+  await page.fill('#reach-speak-name', 'Host Person'); await page.fill('#reach-speak-email', 'host@example.com'); await page.fill('#reach-speak-org', 'Example Conference'); await page.fill('#reach-speak-event', 'Keynote, 300 people, October, on capacity building');
+  await page.click('#reach-speak button[type="submit"]');
+  await page.waitForSelector('#speaking-inquiry .reach-done', { timeout: 3000 }).catch(() => failures.push('speaking form: confirmation did not appear'));
+  const spokeDone = await page.evaluate(() => ({ text: (document.querySelector('#speaking-inquiry .reach-done') || {}).textContent, gone: !document.getElementById('reach-speak'), color: getComputedStyle(document.querySelector('#speaking-inquiry .reach-done') || document.body).color }));
+  if (!spoken || spoken.Name !== 'Host Person' || spoken.Email !== 'host@example.com' || spoken._subject !== 'Speaking inquiry' || !/Keynote/.test(spoken.Event || '') || spoken.Organization !== 'Example Conference') failures.push(`speaking form: posted payload wrong (${JSON.stringify(spoken)})`);
+  if (!spokeDone.gone || !/Thanks, Host Person/.test(spokeDone.text || '')) failures.push(`speaking form: confirmation state wrong (${JSON.stringify(spokeDone)})`);
+  if (posted && posted._subject === 'Speaking inquiry') failures.push('speaking form: posted to the general endpoint instead of its own');
+  // Speaking form failure falls back to a mailto with its own subject (fresh page).
+  const spage = await ctx.newPage();
+  await spage.route(SPEAK, (route) => route.fulfill({ status: 500, body: 'nope' }));
+  await spage.goto(base + '/#speaking-inquiry', { waitUntil: 'load' });
+  await spage.waitForTimeout(200);
+  const autoOpen = await spage.evaluate(() => document.getElementById('speaking-inquiry').open);
+  await spage.fill('#reach-speak-name', 'Fallback Host'); await spage.fill('#reach-speak-email', 'fh@example.com');
+  await spage.click('#reach-speak button[type="submit"]');
+  await spage.waitForFunction(() => !document.querySelector('#reach-speak .reach-error').hidden, null, { timeout: 3000 }).catch(() => failures.push('speaking form: failure fallback message did not appear'));
+  const sfb = await spage.evaluate(() => ({ mailto: document.getElementById('reach-speak').getAttribute('data-mailto') || '', msg: document.querySelector('#reach-speak .reach-error').textContent }));
+  if (!autoOpen || !/^mailto:info@puzzlerconsultingadvisory\.com\?subject=Speaking%20inquiry&body=/.test(sfb.mailto) || !/Fallback%20Host/.test(sfb.mailto) || !/email app/.test(sfb.msg)) failures.push(`speaking form: fallback wrong autoOpen=${autoOpen} ${JSON.stringify(sfb)}`);
+  await spage.close();
+  report.push(`speaking form: own endpoint=${speakCfg.action === SPEAK}, opens from card=${opened.open && opened.focus === 'reach-speak-name'}, posted ok=${!!spoken && spoken._subject === 'Speaking inquiry'}, confirmation=${spokeDone.gone}, failure→mailto=${/Speaking%20inquiry/.test(sfb.mailto)}`);
   report.push(`form-service: live endpoint=${live === ENDPOINT}, privacy names Formspree=${/Formspree/.test(privacy)}, configured=${cfg.action === ENDPOINT}, posted ok=${!!posted && posted.Name === 'Test Person'}, confirmation=${done.formGone}, failure→mailto=${/Strategic%20Roadmap/.test(fb.mailto || '')}`);
   await ctx.close();
 }

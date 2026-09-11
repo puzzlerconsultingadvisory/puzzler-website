@@ -415,6 +415,20 @@
   .fysp-result .reach summary::before { content: "+"; font-weight: 500; color: var(--teal); width: 16px; text-align: center; }
   .fysp-result .reach[open] summary::before { content: "−"; }
   .fysp-result .reach .reach-form { margin-top: 8px; max-width: none; }
+  /* Speaking inquiry: the same collapsible form on the light record card */
+  .record .reach { margin-top: 18px; scroll-margin-top: 96px; }
+  .record .reach summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px; min-height: 48px; font-weight: 600; color: var(--navy); }
+  .record .reach summary::-webkit-details-marker { display: none; }
+  .record .reach summary::before { content: "+"; font-weight: 500; color: var(--teal); width: 16px; text-align: center; }
+  .record .reach[open] summary::before { content: "−"; }
+  .record .reach .reach-form { margin-top: 8px; max-width: none; background: var(--pale); border-color: var(--rule-light); }
+  .record .reach-title { color: var(--navy); }
+  .record .reach-help { color: var(--ink-soft); }
+  .record .field label { color: var(--navy); }
+  .record .field input, .record .field textarea { color: var(--navy); background: var(--white); border-color: var(--rule-light); }
+  .record .reach-error { color: var(--navy); }
+  .record .reach-done { color: var(--navy); background: rgba(48, 163, 150, 0.14); }
+  .record .reach + p { margin-top: 14px; }
 
   /* Find Your Starting Point: Navy blueprint panel inside the light section. */
   .fysp {
@@ -1208,7 +1222,7 @@
           <p>How a practitioner takes an organization doing meaningful work from a scattered pile of pieces to a finished picture.</p>
           <span class="go">Watch the film →</span>
         </a>
-        <a class="way" href="mailto:info@puzzlerconsultingadvisory.com?subject=Speaking%20inquiry">
+        <a class="way" href="#speaking-inquiry">
           <svg focusable="false" class="ico" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="11" y="3" width="8" height="14" rx="4"/><path d="M6 13a9 9 0 0 0 18 0M15 22v5M10 27h10"/></svg>
           <h3>Invite Mark to Speak</h3>
           <p>Leadership in moments of institutional disruption, capacity building in nonprofits, small businesses, and organizations doing meaningful work, human-centered AI adoption, and more.</p>
@@ -1301,7 +1315,25 @@
         <div class="record">
           <h3>Speaking engagements</h3>
           <p>Mark is available to speak on leadership in moments of institutional disruption, capacity building in nonprofits, small businesses, and organizations doing meaningful work, human-centered AI adoption, older-child adoption advocacy, internship-based workforce development, hidden disabilities visibility, and mental health in the workplace and beyond.</p>
-          <p>Inquiries: <a href="mailto:info@puzzlerconsultingadvisory.com">info@puzzlerconsultingadvisory.com</a></p>
+          <!-- Speaking inquiry form: its own Formspree form (data-endpoint). With script the details post there as JSON;
+               the mailto: action is the no-script route and the fallback if the service cannot be reached. -->
+          <details class="reach" id="speaking-inquiry">
+            <summary>Invite Mark to speak: send an inquiry.</summary>
+            <form class="reach-form" id="reach-speak" action="mailto:info@puzzlerconsultingadvisory.com" method="post" enctype="text/plain" data-subject="Speaking inquiry" data-endpoint="https://formspree.io/f/mqpknnke">
+              <p class="reach-title" id="reach-speak-title">Tell us about the event.</p>
+              <p class="reach-help">We will reply by email or phone. This opens your email app with the details filled in.</p>
+              <div class="reach-grid">
+                <div class="field"><label for="reach-speak-name">Name <span class="req" aria-hidden="true">*</span></label><input id="reach-speak-name" name="Name" type="text" autocomplete="name" required></div>
+                <div class="field"><label for="reach-speak-org">Organization</label><input id="reach-speak-org" name="Organization" type="text" autocomplete="organization"></div>
+                <div class="field"><label for="reach-speak-email">Email <span class="req" aria-hidden="true">*</span></label><input id="reach-speak-email" name="Email" type="email" autocomplete="email" required></div>
+                <div class="field"><label for="reach-speak-phone">Phone</label><input id="reach-speak-phone" name="Phone" type="tel" autocomplete="tel"></div>
+                <div class="field wide"><label for="reach-speak-event">The event: audience, date, format, and the topic you have in mind</label><textarea id="reach-speak-event" name="Event" rows="4"></textarea></div>
+              </div>
+              <p class="reach-error" hidden>Please add your name and an email address so we can reply.</p>
+              <button class="btn btn-outline" type="submit">Send the inquiry <span class="arrow" aria-hidden="true">→</span></button>
+            </form>
+          </details>
+          <p>Or email <a href="mailto:info@puzzlerconsultingadvisory.com?subject=Speaking%20inquiry">info@puzzlerconsultingadvisory.com</a></p>
         </div>
       </div>
     </div>
@@ -1646,15 +1678,24 @@
   var FORM_ENDPOINT = (document.documentElement.getAttribute('data-form-endpoint') || '').trim();
   var MAIL_HELP = 'We will follow up by email or phone. This opens your email app with the details filled in.';
   var POST_HELP = 'We will follow up by email or phone.';
+  function endpointFor(f) { return (f.getAttribute('data-endpoint') || FORM_ENDPOINT).trim(); }
   function prepReachForm(f) {
     f.setAttribute('novalidate', '');
-    if (FORM_ENDPOINT) {
-      f.setAttribute('action', FORM_ENDPOINT); f.setAttribute('method', 'post'); f.removeAttribute('enctype');
+    var ep = endpointFor(f);
+    if (ep) {
+      f.setAttribute('action', ep); f.setAttribute('method', 'post'); f.removeAttribute('enctype');
       var help = f.querySelector('.reach-help'); if (help) help.textContent = POST_HELP;
       if (!f.querySelector('[name="_gotcha"]')) { var hp = document.createElement('input'); hp.type = 'text'; hp.name = '_gotcha'; hp.tabIndex = -1; hp.autocomplete = 'off'; hp.setAttribute('aria-hidden', 'true'); hp.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0'; f.appendChild(hp); }
     }
   }
   Array.prototype.forEach.call(document.querySelectorAll('.reach-form'), prepReachForm);
+  /* A link to #speaking-inquiry (the Ways to Begin card) opens the form and puts focus in it. */
+  function openLinkedReach() {
+    var d = window.location.hash && document.querySelector(window.location.hash + '.reach');
+    if (!d || !d.open) { if (d) { d.open = true; var first = d.querySelector('input'); if (first) first.focus({ preventScroll: true }); } }
+  }
+  window.addEventListener('hashchange', openLinkedReach);
+  openLinkedReach();
   function reachMailto(form, lines) {
     return 'mailto:info@puzzlerconsultingadvisory.com?subject=' + encodeURIComponent(form.getAttribute('data-subject') || 'Fit Call request') + '&body=' + encodeURIComponent(lines.join('\n'));
   }
@@ -1683,10 +1724,11 @@
     data._subject = form.getAttribute('data-subject') || 'Fit Call request';
     var mailto = reachMailto(form, lines);
     form.setAttribute('data-mailto', mailto);
-    if (!FORM_ENDPOINT || !window.fetch) { window.location.href = mailto; return; }
+    var endpoint = endpointFor(form);
+    if (!endpoint || !window.fetch) { window.location.href = mailto; return; }
     var submit = form.querySelector('button[type="submit"]');
     submit.disabled = true; submit.setAttribute('aria-busy', 'true');
-    fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+    fetch(endpoint, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
       .then(function (r) { if (!r.ok) throw new Error('form service ' + r.status); return r.json ? r.json().catch(function () { return {}; }) : {}; })
       .then(function () {
         var done = document.createElement('p');
