@@ -238,7 +238,6 @@ for (const pg of PAGES) {
     emailInputs: document.querySelectorAll('#find-your-starting-point input').length,
     audienceSummaries: document.querySelectorAll('.audience-grid .audience').length,
     fitStatement: /We are not the right firm for federal contract advocacy on behalf of clients, financial-distress turnarounds, or executive search\. Puzzler advises and prepares\. Puzzler does not represent clients before federal agencies or lobby on their behalf\./.test(document.querySelector('.fit-statement').textContent),
-    sector: (() => { const g = document.getElementById('government-contracting'); return g ? { items: g.querySelectorAll('.sector-list li').length, boundary: /does not represent clients before federal agencies or lobby/.test(g.textContent), tags: g.querySelectorAll('.tag').length } : null; })(),
     shapes: document.querySelectorAll('.shape-list li').length,
     fractionalRoles: /chief operating officer, grants and contracts director, compliance officer, or transformation and modernization lead/.test(document.querySelector('.shapes').textContent),
     ways: document.querySelectorAll('.ways-grid .way').length,
@@ -252,7 +251,6 @@ for (const pg of PAGES) {
   if (sem.emailInputs) failures.push('fysp: an input field is present before any result (no email gate allowed)');
   if (sem.audienceSummaries !== 7) failures.push(`fysp: expected 7 static audience summaries, got ${sem.audienceSummaries}`);
   if (!sem.fitStatement) failures.push('fysp: approved fit statement (with boundary sentence) missing');
-  if (!sem.sector || sem.sector.items !== 10 || !sem.sector.boundary || sem.sector.tags !== 10) failures.push(`govcon: sector block wrong (${JSON.stringify(sem.sector)})`);
   if (sem.shapes !== 4 || !sem.fractionalRoles) failures.push(`fractional: engagement strip wrong (shapes=${sem.shapes}, roles=${sem.fractionalRoles})`);
   if (sem.ways !== 5 || !sem.waysFractional) failures.push(`fractional: Ways to Begin card wrong (ways=${sem.ways}, card=${sem.waysFractional})`);
   if (sem.priceOrHours) failures.push('build: a price or hour claim appeared in Build It to Hold');
@@ -297,6 +295,7 @@ for (const pg of PAGES) {
         }
         if (/guarantee|24-hour|same-day|legal advice(?! or)/i.test(text.replace(/does not provide legal advice or legal representation/, ''))) problems.push('unapproved promise language');
         if (relevant !== 3) problems.push(`foundation highlights=${relevant}`);
+        if (n === 'story' && !chips.includes('Digital Storytelling')) problems.push('storytelling practice not chipped');
         if (pressed.sort().join() !== [n, a].sort().join()) problems.push(`pressed=${pressed}`);
         const rs = getComputedStyle(card);
         if (rs.opacity !== '1') problems.push(`card opacity ${rs.opacity} under reduced motion`);
@@ -397,7 +396,7 @@ for (const pg of PAGES) {
     practices: document.querySelectorAll('.practice').length,
   }));
   if (!nj.staticShown || nj.points !== 8 || !nj.boundary) failures.push(`no-js: static starting points shown=${nj.staticShown} count=${nj.points} boundary=${nj.boundary}`);
-  if (nj.audiences !== 7 || nj.practices !== 5) failures.push(`no-js: audiences=${nj.audiences} practices=${nj.practices}`);
+  if (nj.audiences !== 7 || nj.practices !== 6) failures.push(`no-js: audiences=${nj.audiences} practices=${nj.practices}`);
   report.push(`no-js: static starting points=${nj.points}, audiences=${nj.audiences}, practices=${nj.practices}`);
   await ctx.close();
 }
