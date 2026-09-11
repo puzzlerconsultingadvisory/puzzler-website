@@ -108,7 +108,7 @@ Implemented in one PR (site files, tooling and this record):
 - Legal pages: footer gains home + both video links and the NAP line.
 - New `404.html` (noindex, brand palette from the homepage tokens, links to home, both videos, Fit Call); added to html-validate and check-assets lists.
 - Correction to Loop 2: the "h2 → h5 skip" finding was a false positive from scanning the inline script text; in the rendered DOM the result card follows the Step 2 `<h4>`, so `<h5>` is valid. Withdrawn; markup unchanged.
-- Owner decisions received 2026-09-11: the three dormant pages (about/services/contact) are deleted; `puzzler_card.html` is now `noindex, nofollow` (canonical removed). The h1 rewrite remains a brand decision, still open.
+- Owner decisions received 2026-09-11: the three dormant pages (about/services/contact) are deleted; `puzzler_card.html` is now `noindex, nofollow` (canonical removed). The h1 was rewritten on the owner's instruction: "Capacity, compliance, and leadership advisory for nonprofits, small and medium businesses, and funding organizations — with funding, grants, and contracts assistance." The locked tagline "Making the pieces fit." stays as the display line above it (now a `<p class="hero-tagline">`). Meta description aligned (149 chars).
 Verification: `npm run check:assets` pass; `npm run validate` pass (7 files incl. 404.html). Lighthouse 12.8 (local, mobile) before → after: making-the-pieces-fit.html Performance 89 → 100, CLS 0.203 → 0.005, LCP 2.2 s → 1.3 s, page weight 228 → 66 KiB; homepage Performance 90 → 94, Speed Index 4.1 s → 2.7 s, TBT 170 → 0 ms, CLS 0, SEO 100 on both (canonical audit now passes on the video page). `npm run verify` result recorded in the PR.
 
 ### Loop 5 — On-page SEO (2026-09-10)
@@ -158,7 +158,7 @@ REFLECT: Blocked for stated reason; partial context logged, not asserted as fact
 - NEEDS HUMAN: backlink tool export (Ahrefs/Semrush/Moz) or GSC Links report for Loop 8.
 - RESOLVED 2026-09-11: puzzler_card.html set to noindex, nofollow (QR-only destination).
 - RESOLVED 2026-09-11: about.html, services.html and contact.html deleted. Their canonical-to-404 and robots/noindex conflicts go with them.
-- NEEDS HUMAN: whether to change the homepage `<h1>` from the locked tagline to a descriptive heading (Loop 5 High finding). Title and description were changed; the h1 was not.
+- RESOLVED 2026-09-11: homepage `<h1>` rewritten to a descriptive heading on the owner's instruction; tagline retained visually.
 - RESOLVED 2026-09-11: both hosts were added to the allowlist and all HTTP-layer checks were run live (Loop 10, including the apex results). Only plain-HTTP on the apex remains unobservable (the proxy denies non-TLS CONNECT), which is immaterial because HSTS is set.
 - BLOCKED (quota): Google PageSpeed Insights API returned HTTP 429 (daily quota exhausted for the shared unauthenticated project); CrUX API returned 403 (needs API key). Field Core Web Vitals are PENDING VERIFICATION; lab data comes from local Lighthouse instead.
 - IN PROGRESS: Search Console Domain property verified via DNS TXT and sitemap submitted 2026-09-11. Re-check Pages and URL Inspection on `/` from 2026-09-15 to confirm indexation and close the Loop 1 High finding.

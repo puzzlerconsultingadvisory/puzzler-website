@@ -153,7 +153,7 @@ Each item references the finding it resolves.
 3. ~~**robots.txt**~~ — done 11 Sep.
 4. ~~**Canonicals + redirects**~~ — done 11 Sep, including `/index.html` → `/`.
 5. ~~**Dormant pages**~~ — deleted 11 Sep.
-6. **Title + meta description** — done 11 Sep. **h1** left as the locked brand tagline pending the founder's decision. (2.5-High, 2.5-Medium)
+6. ~~**Title + h1 + meta description**~~ — done 11 Sep; the tagline stays as the display line above the new descriptive h1.
 7. ~~**JSON-LD**~~ — done 11 Sep on the homepage and both video pages.
 8. ~~**NAP footer**~~ — done 11 Sep on home, both videos, privacy, terms and the 404 page.
 9. ~~**Font preloads on video pages**~~ — done 11 Sep.
