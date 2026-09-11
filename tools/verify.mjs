@@ -158,8 +158,8 @@ for (const pg of PAGES) {
   if (st4 !== '4') failures.push(`method: ArrowDown expected state 4, got ${st4}`);
   await page.waitForTimeout(1300);
   await page.screenshot({ path: join(outDir, 'index-laptop-method-step4.png'), fullPage: true, clip: { x: 0, y: (await page.evaluate(() => document.getElementById('method').getBoundingClientRect().top + window.scrollY)), width: 1280, height: 900 } });
-  const hidden = await page.evaluate(() => [...document.querySelectorAll('.step-desc')].filter((d) => !d.hidden).map((d) => d.dataset.step));
-  if (hidden.join() !== '4') failures.push(`method: visible descriptions expected [4], got [${hidden}]`);
+  const hidden = await page.evaluate(() => [...document.querySelectorAll('.method-slides .slide')].filter((d) => !d.hidden).map((d) => d.dataset.step));
+  if (hidden.join() !== '4') failures.push(`method: visible slides expected [4], got [${hidden}]`);
 
   // Pieces in Motion: play facade swaps in a youtube-nocookie player only on activation.
   const framesBefore = await page.evaluate(() => document.querySelectorAll('.pim-card iframe').length);
@@ -607,6 +607,85 @@ for (const pg of PAGES) {
   if (!m2ok || Math.abs(m2.trackH - m2.lastH) > 2 || !m2.next) failures.push(`audience slider phone last page: ok=${m2ok} ${JSON.stringify(m2)}`);
   await mctx.close();
   report.push(`audience slider: 7 pieces, fills ${[...new Set(geo.cards.map((c) => c.fill))].join(' ')}, min contrast ${Math.min(...geo.cards.map((c) => c.ratio))}:1, paging ok=${p2 && p3 && back}, reduced-motion instant=${Math.abs(rm.scroll - rm.expected) <= 1}, tablet ${tab.count}, phone own-height=${Math.abs(m1.trackH - m1.firstH) <= 2}`);
+}
+
+{
+  // The Puzzler Method as a timed show: starts when the section comes into view, 8 s per step with the current
+  // segment filling; holds on hover and focus; Pause/Play works; any manual choice ends it; never under reduced
+  // motion; without script all seven slides read in order.
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const page = await ctx.newPage();
+  await page.goto(base + '/', { waitUntil: 'load' });
+  const segP = (i) => page.evaluate((i) => parseFloat(document.querySelectorAll('#auto-bar span')[i].style.getPropertyValue('--p')) || 0, i);
+  const notStarted = await page.evaluate(() => !document.getElementById('method').classList.contains('auto-on'));
+  await page.evaluate(() => document.getElementById('method').scrollIntoView({ block: 'start' }));
+  const armed = await page.waitForFunction(() => document.getElementById('method').classList.contains('auto-on'), null, { timeout: 3000 }).then(() => true).catch(() => false);
+  await page.mouse.move(5, 5);
+  await page.waitForTimeout(1200);
+  const p1 = await segP(0);
+  const ctl = await page.evaluate(() => { const b = document.getElementById('auto-toggle'); return { shown: !b.hidden && getComputedStyle(b).display !== 'none', pressed: b.getAttribute('aria-pressed'), label: b.textContent.trim(), note: getComputedStyle(document.getElementById('auto-note')).display !== 'none', slidesVisible: [...document.querySelectorAll('.method-slides .slide')].filter((d) => !d.hidden).length, stacked: getComputedStyle(document.querySelector('.method-slides .slides')).display === 'grid' }; });
+  if (!notStarted || !armed || !(p1 > 0 && p1 < 100) || !ctl.shown || ctl.pressed !== 'false' || ctl.label !== 'Pause' || !ctl.note || ctl.slidesVisible !== 1 || !ctl.stacked) failures.push(`method auto: start notStarted=${notStarted} armed=${armed} p1=${p1} ${JSON.stringify(ctl)}`);
+  // Hover holds; leaving resumes.
+  await page.hover('#method-slides');
+  await page.waitForTimeout(200);
+  const h1 = await segP(0); await page.waitForTimeout(700); const h2 = await segP(0);
+  await page.mouse.move(5, 5);
+  await page.waitForTimeout(700);
+  const h3 = await segP(0);
+  if (Math.abs(h2 - h1) > 0.5 || !(h3 > h2)) failures.push(`method auto: hover hold h1=${h1} h2=${h2} resumed=${h3}`);
+  // Advances to step 2 by itself, segment 1 full.
+  const adv = await page.waitForFunction(() => document.getElementById('method-stage').dataset.state === '2', null, { timeout: 12000 }).then(() => true).catch(() => false);
+  const s1 = await segP(0);
+  const slide2 = await page.evaluate(() => ({ visible: [...document.querySelectorAll('.method-slides .slide')].filter((d) => !d.hidden).map((d) => d.dataset.step).join(), done: document.querySelector('.step-btn[data-step="1"]').classList.contains('done'), cur: document.querySelector('.step-btn[data-step="2"]').getAttribute('aria-current'), caption: document.getElementById('stage-caption').textContent.trim() }));
+  if (!adv || s1 !== 100 || slide2.visible !== '2' || !slide2.done || slide2.cur !== 'step' || !/02\s*Build The Frame/.test(slide2.caption)) failures.push(`method auto: advance adv=${adv} seg1=${s1} ${JSON.stringify(slide2)}`);
+  // Pause freezes; Play resumes.
+  await page.click('#auto-toggle');
+  await page.mouse.move(5, 5);
+  const pz = await page.evaluate(() => { const b = document.getElementById('auto-toggle'); return { pressed: b.getAttribute('aria-pressed'), label: b.textContent.trim(), on: document.getElementById('method').classList.contains('auto-on') }; });
+  const q1 = await segP(1); await page.waitForTimeout(600); const q2 = await segP(1);
+  await page.click('#auto-toggle');
+  await page.mouse.move(5, 5);
+  await page.waitForTimeout(600);
+  const q3 = await segP(1);
+  const pl = await page.evaluate(() => document.getElementById('auto-toggle').getAttribute('aria-pressed'));
+  if (pz.pressed !== 'true' || pz.label !== 'Play' || pz.on || Math.abs(q2 - q1) > 0.5 || !(q3 > q2) || pl !== 'false') failures.push(`method auto: pause/play ${JSON.stringify(pz)} q=${q1},${q2},${q3} after=${pl}`);
+  // A manual choice ends the show and announces the step.
+  await page.click('.step-btn[data-step="5"]');
+  await page.waitForTimeout(300);
+  const man = await page.evaluate(() => ({ state: document.getElementById('method-stage').dataset.state, on: document.getElementById('method').classList.contains('auto-on'), label: document.getElementById('auto-toggle').textContent.trim(), status: document.getElementById('method-status').textContent, segs: [...document.querySelectorAll('#auto-bar span')].map((x) => parseFloat(x.style.getPropertyValue('--p')) || 0), phase: document.querySelector('.method-slides .slide:not([hidden]) .phase-line').textContent.trim() }));
+  if (man.state !== '5' || man.on || man.label !== 'Play' || !/Step 5 of 7: Take Breaks/.test(man.status) || man.segs.slice(0, 4).some((v) => v !== 100) || man.segs[4] !== 0 || !/Phase 2/.test(man.phase)) failures.push(`method auto: manual stop ${JSON.stringify(man)}`);
+  // Finishing: reaching step 7 and completing it stops with "Replay".
+  await page.click('.step-btn[data-step="7"]');
+  await page.click('#auto-toggle');
+  await page.mouse.move(5, 5);
+  const fin = await page.waitForFunction(() => document.getElementById('auto-toggle').textContent.trim() === 'Replay', null, { timeout: 12000 }).then(() => true).catch(() => false);
+  const finState = await page.evaluate(() => ({ state: document.getElementById('method-stage').dataset.state, seg7: parseFloat(document.querySelectorAll('#auto-bar span')[6].style.getPropertyValue('--p')) }));
+  if (!fin || finState.state !== '7' || finState.seg7 !== 100) failures.push(`method auto: finish fin=${fin} ${JSON.stringify(finState)}`);
+  await ctx.close();
+
+  const rctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, reducedMotion: 'reduce' });
+  const rpage = await rctx.newPage();
+  await rpage.goto(base + '/', { waitUntil: 'load' });
+  await rpage.evaluate(() => document.getElementById('method').scrollIntoView({ block: 'start' }));
+  await rpage.waitForTimeout(1500);
+  const rm = await rpage.evaluate(() => ({ state: document.getElementById('method-stage').dataset.state, on: document.getElementById('method').classList.contains('auto-on'), btn: getComputedStyle(document.getElementById('auto-toggle')).display, note: getComputedStyle(document.getElementById('auto-note')).display, slides: [...document.querySelectorAll('.method-slides .slide')].filter((d) => !d.hidden).length }));
+  if (rm.state !== '1' || rm.on || rm.btn !== 'none' || rm.note !== 'none' || rm.slides !== 1) failures.push(`method auto reduced motion: ${JSON.stringify(rm)}`);
+  await rctx.close();
+
+  const nctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, javaScriptEnabled: false });
+  const npage = await nctx.newPage();
+  await npage.goto(base + '/', { waitUntil: 'load' });
+  const nj = await npage.evaluate(() => ({ slides: [...document.querySelectorAll('.method-slides .slide')].filter((d) => getComputedStyle(d).display !== 'none' && getComputedStyle(d).visibility !== 'hidden').length, strip: getComputedStyle(document.querySelector('.step-strip')).display, bar: getComputedStyle(document.getElementById('auto-bar')).display, btn: getComputedStyle(document.getElementById('auto-toggle')).display }));
+  if (nj.slides !== 7 || nj.strip !== 'none' || nj.bar !== 'none' || nj.btn !== 'none') failures.push(`method auto no-js: ${JSON.stringify(nj)}`);
+  await nctx.close();
+
+  const mctx = await browser.newContext({ viewport: { width: 375, height: 740 }, hasTouch: true, isMobile: true });
+  const mpage = await mctx.newPage();
+  await mpage.goto(base + '/', { waitUntil: 'load' });
+  const mob = await mpage.evaluate(() => ({ note: getComputedStyle(document.getElementById('auto-note')).display, targets: [...document.querySelectorAll('.step-btn, #auto-toggle, #step-prev, #step-next')].every((b) => { const r = b.getBoundingClientRect(); return r.width >= 44 && r.height >= 44; }), scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }));
+  if (mob.note !== 'none' || !mob.targets || mob.scroll > mob.client) failures.push(`method auto phone: ${JSON.stringify(mob)}`);
+  await mctx.close();
+  report.push(`method auto: armed on view=${armed}, fills=${p1 > 0}, hover hold=${Math.abs(h2 - h1) <= 0.5}, advanced=${adv}, pause/play ok=${pz.pressed === 'true' && q3 > q2}, manual stop=${!man.on}, finish=${fin}, reduced-motion off=${!rm.on}, no-js slides=${nj.slides}`);
 }
 
 await browser.close();
