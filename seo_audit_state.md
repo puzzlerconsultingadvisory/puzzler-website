@@ -90,6 +90,13 @@ APEX RESULTS (added later on 2026-09-11 once the bare domain was allowlisted): `
 [OFF-PAGE] [SEVERITY: Info] [VERIFIED] — Search Console property verified and sitemap submitted by the site owner on 2026-09-11 (reported by the user; the verification file is confirmed live). Coverage / indexation data typically takes several days to appear; the Loop 1 "absent from index" finding stays open until then.
 REFLECT: Everything that was blocked on live HTTP access has now been observed directly on both hosts; only third-party hosts (social profiles, Calendly, HeyGen) remain unreachable. Verified.
 
+
+### Loop 11 — Resolutions confirmed live (2026-09-11, later)
+- Vercel domain settings changed by the owner: bare domain now connected to Production; `www` set to "308 Permanent Redirect" to the bare domain. Verified with curl: `https://puzzlerconsultingadvisory.com/` → 200 (body byte-identical to `main`); `https://www…/` → 308 → bare domain; `http://www…/` → 308 → https → 308 → bare domain; verification file, robots.txt, sitemap.xml and `/making-the-pieces-fit` all 200 on the bare domain; unknown path 404. HSTS present on both hosts.
+- **Loop 10 High finding "Canonical host mismatch" → RESOLVED.** Every canonical, og:url and sitemap entry now names the host that serves the content, and www consolidates with a permanent redirect. No code change was needed.
+- Search Console: owner added the DNS TXT record (`google-site-verification=amlKusDAHXgvAMMRxSgIe_sUql-i34HQWlCyTyudGLQ`, confirmed propagated at 8.8.8.8 and 1.1.1.1 alongside the existing SPF record), verified a **Domain property** covering both hosts, and submitted sitemap.xml on it. The earlier URL-prefix verification via the HTML file remains in place.
+- Still open from Loop 1: whether the homepage is indexed (High). Check Search Console → Pages and URL Inspection on `/` from ~2026-09-15.
+
 ### Loop 5 — On-page SEO (2026-09-10)
 PLAN: Title/description length and keyword presence on all pages; H1/H2 wording vs. buyer search intent; keyword density for the services actually offered; image alt; OG/Twitter consistency; duplicate titles.
 
@@ -139,6 +146,6 @@ REFLECT: Blocked for stated reason; partial context logged, not asserted as fact
 - NEEDS HUMAN: decision on the three dormant pages (delete vs rebuild as spoke pages).
 - RESOLVED 2026-09-11: both hosts were added to the allowlist and all HTTP-layer checks were run live (Loop 10, including the apex results). Only plain-HTTP on the apex remains unobservable (the proxy denies non-TLS CONNECT), which is immaterial because HSTS is set.
 - BLOCKED (quota): Google PageSpeed Insights API returned HTTP 429 (daily quota exhausted for the shared unauthenticated project); CrUX API returned 403 (needs API key). Field Core Web Vitals are PENDING VERIFICATION; lab data comes from local Lighthouse instead.
-- IN PROGRESS: Search Console verified and sitemap submitted 2026-09-11. Re-check Coverage and URL Inspection on `/` in 3–7 days to confirm indexation and close the Loop 1 High finding.
+- IN PROGRESS: Search Console Domain property verified via DNS TXT and sitemap submitted 2026-09-11. Re-check Pages and URL Inspection on `/` from 2026-09-15 to confirm indexation and close the Loop 1 High finding.
 
-## Iteration Count: 10
+## Iteration Count: 11
