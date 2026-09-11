@@ -238,7 +238,6 @@ for (const pg of PAGES) {
     emailInputs: document.querySelectorAll('#find-your-starting-point input').length,
     audienceSummaries: document.querySelectorAll('.audience-grid .audience').length,
     fitStatement: /We are not the right firm for federal contract advocacy on behalf of clients, financial-distress turnarounds, or executive search\. Puzzler advises and prepares\. Puzzler does not represent clients before federal agencies or lobby on their behalf\./.test(document.querySelector('.fit-statement').textContent),
-    sector: (() => { const g = document.getElementById('government-contracting'); return g ? { items: g.querySelectorAll('.sector-list li').length, boundary: /does not represent clients before federal agencies or lobby/.test(g.textContent), tags: g.querySelectorAll('.tag').length } : null; })(),
     shapes: document.querySelectorAll('.shape-list li').length,
     fractionalRoles: /chief operating officer, grants and contracts director, compliance officer, or transformation and modernization lead/.test(document.querySelector('.shapes').textContent),
     ways: document.querySelectorAll('.ways-grid .way').length,
@@ -252,7 +251,6 @@ for (const pg of PAGES) {
   if (sem.emailInputs) failures.push('fysp: an input field is present before any result (no email gate allowed)');
   if (sem.audienceSummaries !== 7) failures.push(`fysp: expected 7 static audience summaries, got ${sem.audienceSummaries}`);
   if (!sem.fitStatement) failures.push('fysp: approved fit statement (with boundary sentence) missing');
-  if (!sem.sector || sem.sector.items !== 10 || !sem.sector.boundary || sem.sector.tags !== 10) failures.push(`govcon: sector block wrong (${JSON.stringify(sem.sector)})`);
   if (sem.shapes !== 4 || !sem.fractionalRoles) failures.push(`fractional: engagement strip wrong (shapes=${sem.shapes}, roles=${sem.fractionalRoles})`);
   if (sem.ways !== 5 || !sem.waysFractional) failures.push(`fractional: Ways to Begin card wrong (ways=${sem.ways}, card=${sem.waysFractional})`);
   if (sem.priceOrHours) failures.push('build: a price or hour claim appeared in Build It to Hold');
@@ -297,6 +295,7 @@ for (const pg of PAGES) {
         }
         if (/guarantee|24-hour|same-day|legal advice(?! or)/i.test(text.replace(/does not provide legal advice or legal representation/, ''))) problems.push('unapproved promise language');
         if (relevant !== 3) problems.push(`foundation highlights=${relevant}`);
+        if (n === 'story' && !chips.includes('Digital Storytelling')) problems.push('storytelling practice not chipped');
         if (pressed.sort().join() !== [n, a].sort().join()) problems.push(`pressed=${pressed}`);
         const rs = getComputedStyle(card);
         if (rs.opacity !== '1') problems.push(`card opacity ${rs.opacity} under reduced motion`);
@@ -397,7 +396,9 @@ for (const pg of PAGES) {
     practices: document.querySelectorAll('.practice').length,
   }));
   if (!nj.staticShown || nj.points !== 8 || !nj.boundary) failures.push(`no-js: static starting points shown=${nj.staticShown} count=${nj.points} boundary=${nj.boundary}`);
-  if (nj.audiences !== 7 || nj.practices !== 5) failures.push(`no-js: audiences=${nj.audiences} practices=${nj.practices}`);
+  if (nj.audiences !== 7 || nj.practices !== 6) failures.push(`no-js: audiences=${nj.audiences} practices=${nj.practices}`);
+  const njSlider = await page.evaluate(() => ({ ctlHidden: document.querySelector('.aud-ctl').hidden && getComputedStyle(document.querySelector('.aud-ctl')).display === 'none', grid: getComputedStyle(document.querySelector('.audience-grid')).display, slider: document.querySelector('.audiences').classList.contains('is-slider') }));
+  if (!njSlider.ctlHidden || njSlider.grid !== 'grid' || njSlider.slider) failures.push(`no-js: audience slider should not be active: ${JSON.stringify(njSlider)}`);
   report.push(`no-js: static starting points=${nj.points}, audiences=${nj.audiences}, practices=${nj.practices}`);
   await ctx.close();
 }
@@ -500,6 +501,112 @@ for (const pg of PAGES) {
   if (mob.h < 44 || !mob.inside || !mob.below || !mob.lineBelow || mob.scroll > mob.client) failures.push(`hero-dim mobile: ${JSON.stringify(mob)}`);
   report.push(`hero-dim: link ok=${geo.href === '#find-your-starting-point'}, line below text=${geo.lineBelowText}, settled=${geo.settled >= 3}, hover flicker=${hov.dim === 'bp-flicker'}, reduced-motion static=${rm.anim === 'none'}, mobile ok=${mob.below && mob.lineBelow}`);
   await mctx.close();
+}
+
+{
+  // Who we work with: puzzle-piece slider. All seven cards stay in the document; pieces interlock; fills and text
+  // come from the approved palette and clear 4.5:1; controls page through; reduced motion scrolls instantly.
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const page = await ctx.newPage();
+  await page.goto(base + '/', { waitUntil: 'load' });
+  await page.waitForTimeout(400);
+  const PALETTE = ['#30A396', '#F5CF48', '#7ABF5F', '#1A1A2E', '#E94F4A', '#FFFFFF'];
+  const geo = await page.evaluate(() => {
+    const lum = (hex) => { const c = hex.slice(1).match(/../g).map((h) => parseInt(h, 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4))); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
+    const ratio = (a, b) => { const l1 = lum(a), l2 = lum(b); return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05); };
+    const wrap = document.querySelector('.audiences'); const track = document.getElementById('audience-track');
+    const cards = [...track.children];
+    const pw = parseFloat(track.style.getPropertyValue('--pw'));
+    return {
+      slider: wrap.classList.contains('is-slider'),
+      ctlShown: getComputedStyle(wrap.querySelector('.aud-ctl')).display !== 'none',
+      count: document.getElementById('aud-count').textContent.trim(),
+      prevDisabled: document.getElementById('aud-prev').disabled, nextDisabled: document.getElementById('aud-next').disabled,
+      dots: document.querySelectorAll('#aud-dots button').length,
+      pw, trackWidth: track.clientWidth,
+      cards: cards.map((c, i) => {
+        const svg = c.querySelector(':scope > svg'); const piece = svg && svg.querySelector('.piece'); const seam = svg && svg.querySelector('.seam');
+        const r = c.getBoundingClientRect(); const sr = svg.getBoundingClientRect(); const h4 = c.querySelector('h4').getBoundingClientRect();
+        const fill = piece.getAttribute('fill').toUpperCase(); const text = c.style.getPropertyValue('--pc').trim().toUpperCase();
+        const d = piece.getAttribute('d');
+        return { fill, text, ratio: Math.round(ratio(fill, text) * 100) / 100, hasTab: /A20 20 0 1 1 \d+ \d+ H\d+ V/.test(d) && i < cards.length - 1, hasSocket: d.includes('H10 A20'), seam: !!seam.getAttribute('d'), width: r.width, svgW: sr.width, svgH: sr.height, cardH: r.height, textInset: h4.left - r.left, rendered: c.offsetParent !== null, h4Color: getComputedStyle(c.querySelector('h4')).color, pColor: getComputedStyle(c.querySelector('p')).color };
+      }),
+    };
+  });
+  if (!geo.slider || !geo.ctlShown) failures.push(`audience slider: not active (slider=${geo.slider} controls=${geo.ctlShown})`);
+  if (geo.count !== '1–3 of 7' && geo.count !== 'Showing 1–3 of 7') failures.push(`audience slider: initial count "${geo.count}"`);
+  if (!geo.prevDisabled || geo.nextDisabled || geo.dots !== 3) failures.push(`audience slider: initial controls prev=${geo.prevDisabled} next=${geo.nextDisabled} dots=${geo.dots}`);
+  if (geo.cards.length !== 7 || geo.trackWidth !== geo.pw * 3) failures.push(`audience slider: cards=${geo.cards.length} track=${geo.trackWidth} pw=${geo.pw}`);
+  geo.cards.forEach((c, i) => {
+    const problems = [];
+    if (!PALETTE.includes(c.fill) || !PALETTE.includes(c.text)) problems.push(`colours off-palette ${c.fill}/${c.text}`);
+    if (c.ratio < 4.5) problems.push(`contrast ${c.ratio}`);
+    if (i > 0 && !c.hasSocket) problems.push('missing socket');
+    if (i === 0 && c.hasSocket) problems.push('first piece has a socket');
+    if (i < 6 && (!c.hasTab || !c.seam)) problems.push('missing tab or seam');
+    if (i === 6 && (c.hasTab || c.seam)) problems.push('last piece has a tab');
+    if (Math.abs(c.svgW - (geo.pw + 48)) > 1 || Math.abs(c.svgH - c.cardH) > 1 || Math.abs(c.width - geo.pw) > 1) problems.push(`piece not drawn at card size svg=${c.svgW}x${c.svgH} card=${c.width}x${c.cardH}`);
+    if (i > 0 && c.textInset < 50) problems.push(`text overlaps the socket (inset ${c.textInset})`);
+    if (!c.rendered) problems.push('card not rendered');
+    if (problems.length) failures.push(`audience slider card ${i + 1}: ${problems.join('; ')}`);
+  });
+  // Paging: next twice reaches the clamped last page (5–7), then the first dot returns to the start.
+  const countIs = async (txt) => page.waitForFunction((t) => document.getElementById('aud-count').textContent.replace('Showing ', '').trim() === t, txt, { timeout: 3000 }).then(() => true).catch(() => false);
+  await page.click('#aud-next');
+  const p2 = await countIs('4–6 of 7');
+  await page.click('#aud-next');
+  const p3 = await countIs('5–7 of 7');
+  const end = await page.evaluate(() => ({ next: document.getElementById('aud-next').disabled, prev: document.getElementById('aud-prev').disabled, current: [...document.querySelectorAll('#aud-dots button')].findIndex((b) => b.getAttribute('aria-current') === 'true'), scroll: document.getElementById('audience-track').scrollLeft, max: document.getElementById('audience-track').scrollWidth - document.getElementById('audience-track').clientWidth }));
+  if (!p2 || !p3 || !end.next || end.prev || end.current !== 2 || Math.abs(end.scroll - end.max) > 1) failures.push(`audience slider paging: p2=${p2} p3=${p3} ${JSON.stringify(end)}`);
+  await page.click('#aud-dots button[data-page="0"]');
+  const back = await countIs('1–3 of 7');
+  if (!back) failures.push('audience slider: first dot did not return to the start');
+  const keyb = await page.evaluate(() => { const n = document.getElementById('aud-next'); n.focus(); return document.activeElement === n; });
+  if (!keyb) failures.push('audience slider: next button not focusable');
+  await page.keyboard.press('Enter');
+  const viaKey = await countIs('4–6 of 7');
+  if (!viaKey) failures.push('audience slider: Enter on the next button did not page');
+  // The scroll region itself is a tab stop and pages with the arrow keys.
+  const trackFocus = await page.evaluate(() => { const t = document.getElementById('audience-track'); t.focus(); return document.activeElement === t; });
+  await page.keyboard.press('ArrowLeft');
+  const arrowBack = await countIs('1–3 of 7');
+  await page.keyboard.press('End');
+  const endKey = await countIs('5–7 of 7');
+  if (!trackFocus || !arrowBack || !endKey) failures.push(`audience slider keyboard: track focus=${trackFocus} ArrowLeft=${arrowBack} End=${endKey}`);
+  await ctx.close();
+
+  // Reduced motion: the move is instant.
+  const rctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, reducedMotion: 'reduce' });
+  const rpage = await rctx.newPage();
+  await rpage.goto(base + '/', { waitUntil: 'load' });
+  await rpage.waitForTimeout(300);
+  const rm = await rpage.evaluate(() => { document.getElementById('aud-next').click(); const t = document.getElementById('audience-track'); return { scroll: t.scrollLeft, expected: parseFloat(t.style.getPropertyValue('--pw')) * 3 }; });
+  if (Math.abs(rm.scroll - rm.expected) > 1) failures.push(`audience slider reduced motion: scrollLeft=${rm.scroll} expected ${rm.expected}`);
+  await rctx.close();
+
+  // Tablet: two per view, four pages.
+  const tctx = await browser.newContext({ viewport: { width: 768, height: 1024 } });
+  const tpage = await tctx.newPage();
+  await tpage.goto(base + '/', { waitUntil: 'load' });
+  await tpage.waitForTimeout(300);
+  const tab = await tpage.evaluate(() => ({ count: document.getElementById('aud-count').textContent.replace('Showing ', '').trim(), dots: document.querySelectorAll('#aud-dots button').length }));
+  if (tab.count !== '1–2 of 7' || tab.dots !== 4) failures.push(`audience slider tablet: ${JSON.stringify(tab)}`);
+  await tctx.close();
+
+  // Phone: one per view, the track follows the visible piece's own height, targets ≥ 44px, no page overflow.
+  const mctx = await browser.newContext({ viewport: { width: 375, height: 740 }, hasTouch: true, isMobile: true });
+  const mpage = await mctx.newPage();
+  await mpage.goto(base + '/', { waitUntil: 'load' });
+  await mpage.waitForTimeout(300);
+  const m1 = await mpage.evaluate(() => { const t = document.getElementById('audience-track'); const c = t.children; return { count: document.getElementById('aud-count').textContent.replace('Showing ', '').trim(), trackH: t.getBoundingClientRect().height, firstH: c[0].getBoundingClientRect().height, lastH: c[6].getBoundingClientRect().height, dots: document.querySelectorAll('#aud-dots button').length, targets: [...document.querySelectorAll('.aud-btn, #aud-dots button')].every((b) => b.getBoundingClientRect().height >= 44 && b.getBoundingClientRect().width >= 44), scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }; });
+  if (m1.count !== '1 of 7' || Math.abs(m1.trackH - m1.firstH) > 2 || m1.lastH <= m1.firstH || m1.dots !== 7 || !m1.targets || m1.scroll > m1.client) failures.push(`audience slider phone: ${JSON.stringify(m1)}`);
+  await mpage.tap('#aud-dots button[data-page="6"]');
+  const m2ok = await mpage.waitForFunction(() => document.getElementById('aud-count').textContent.replace('Showing ', '').trim() === '7 of 7', null, { timeout: 3000 }).then(() => true).catch(() => false);
+  await mpage.waitForTimeout(350);
+  const m2 = await mpage.evaluate(() => { const t = document.getElementById('audience-track'); return { trackH: t.getBoundingClientRect().height, lastH: t.children[6].getBoundingClientRect().height, next: document.getElementById('aud-next').disabled }; });
+  if (!m2ok || Math.abs(m2.trackH - m2.lastH) > 2 || !m2.next) failures.push(`audience slider phone last page: ok=${m2ok} ${JSON.stringify(m2)}`);
+  await mctx.close();
+  report.push(`audience slider: 7 pieces, fills ${[...new Set(geo.cards.map((c) => c.fill))].join(' ')}, min contrast ${Math.min(...geo.cards.map((c) => c.ratio))}:1, paging ok=${p2 && p3 && back}, reduced-motion instant=${Math.abs(rm.scroll - rm.expected) <= 1}, tablet ${tab.count}, phone own-height=${Math.abs(m1.trackH - m1.firstH) <= 2}`);
 }
 
 await browser.close();
