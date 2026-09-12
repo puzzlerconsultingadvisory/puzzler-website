@@ -211,13 +211,14 @@
     padding: 22px 30px 8px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 2px;
     position: relative;
     z-index: 1;
   }
   .contact a {
     display: flex;
     align-items: center;
+    min-height: 44px;   /* full-height touch target on every row */
     gap: 14px;
     color: var(--white);
     text-decoration: none;
@@ -302,6 +303,17 @@
     margin-bottom: 4px;
     letter-spacing: 0.01em;
   }
+  .card-foot .social { display: flex; justify-content: center; gap: 6px; margin: 14px 0 8px; }
+  .card-foot .social a { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--rule); border-radius: 4px; color: var(--teal); text-decoration: none; transition: border-color .2s, color .2s; }
+  .card-foot .social a svg { width: 20px; height: 20px; }
+  .card-foot .social a:hover, .card-foot .social a:focus-visible { border-color: var(--teal); color: #fff; }
+  /* Signature bars: a brief brighten-and-thicken sweep every five seconds, then rest. Off under reduced motion. */
+  @keyframes sig-pulse { 0%, 8%, 100% { filter: brightness(1); transform: scaleY(1); } 4% { filter: brightness(1.6); transform: scaleY(1.6); } }
+  .sig-bar > div { animation: sig-pulse 5s ease-in-out infinite; transform-origin: center; }
+  .sig-bar > .s2 { animation-delay: .08s; }
+  .sig-bar > .s3 { animation-delay: .16s; }
+  .sig-bar > .s4 { animation-delay: .24s; }
+  .sig-bar > .s5 { animation-delay: .32s; }
   .card-foot small {
     font-weight: 500;
     font-size: 8.5px;
@@ -353,6 +365,7 @@
       transform: none;
       transition: none;
     }
+    .sig-bar > div { animation: none; }
   }
 </style>
 </head>
@@ -410,13 +423,14 @@
           </span>
           <span>puzzlerconsultingadvisory.com</span>
         </a>
-        <a href="https://www.linkedin.com/company/puzzlerconsultingadvisory" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <a href="https://puzzlerconsultingadvisory.com/#pieces-in-motion" target="_blank" rel="noopener" aria-label="Digital storytelling: Pieces in Motion">
           <span class="icon" aria-hidden="true">
-            <svg focusable="false" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor">
-              <path d="M3 1.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM1.6 5.5h2.8v9H1.6zM6 5.5h2.7v1.3c.4-.7 1.4-1.5 2.8-1.5 3 0 3.5 2 3.5 4.5v4.7h-2.8V10.4c0-1-.2-2.3-1.5-2.3-1.4 0-1.7 1-1.7 2.2v4.2H6z"/>
+            <svg focusable="false" aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="1.5" y="3" width="13" height="10" rx="1"/>
+              <path d="M6.5 6l3.5 2-3.5 2z" fill="currentColor" stroke="none"/>
             </svg>
           </span>
-          <span>linkedin.com/company/puzzlerconsultingadvisory</span>
+          <span>Digital storytelling: Pieces in Motion</span>
         </a>
       </section>
 
@@ -431,6 +445,12 @@
 
       <footer class="card-foot">
         <p class="tagline">Making the pieces fit for nonprofits, small businesses, and organizations doing meaningful work.</p>
+        <nav class="social" aria-label="Social media">
+          <a href="https://www.linkedin.com/company/puzzlerconsultingadvisory" target="_blank" rel="noopener" aria-label="LinkedIn"><svg focusable="false" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor"><path d="M3 1.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM1.6 5.5h2.8v9H1.6zM6 5.5h2.7v1.3c.4-.7 1.4-1.5 2.8-1.5 3 0 3.5 2 3.5 4.5v4.7h-2.8V10.4c0-1-.2-2.3-1.5-2.3-1.4 0-1.7 1-1.7 2.2v4.2H6z"/></svg></a>
+          <a href="https://www.threads.net/@puzzler_consulting_advisory" target="_blank" rel="noopener" aria-label="Threads"><svg focusable="false" aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11.6 7.6c-.3-2.8-2-4.3-4.3-4.3C4.6 3.3 3 5.4 3 8s1.6 4.7 4.4 4.7c2 0 3.5-1 3.9-2.6.3-1.4-.5-2.6-2.3-2.7-1.4-.1-2.5.5-2.5 1.5s.9 1.4 1.8 1.4c1.7 0 2.3-1.3 2.3-3"/></svg></a>
+          <a href="https://www.tiktok.com/@puzzlerconsulting" target="_blank" rel="noopener" aria-label="TikTok"><svg focusable="false" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor"><path d="M9.2 1h2.2c.2 1.6 1.2 2.6 2.8 2.8v2.2c-1 0-2-.3-2.8-.9v5.2A4.1 4.1 0 1 1 7.3 6.2v2.3a1.9 1.9 0 1 0 1.9 1.9z"/></svg></a>
+          <a href="https://www.youtube.com/@puzzlerconsulting" target="_blank" rel="noopener" aria-label="YouTube"><svg focusable="false" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor"><path d="M14.6 4.6c-.2-.7-.7-1.2-1.4-1.4C12 2.9 8 2.9 8 2.9s-4 0-5.2.3c-.7.2-1.2.7-1.4 1.4C1.1 5.8 1.1 8 1.1 8s0 2.2.3 3.4c.2.7.7 1.2 1.4 1.4 1.2.3 5.2.3 5.2.3s4 0 5.2-.3c.7-.2 1.2-.7 1.4-1.4.3-1.2.3-3.4.3-3.4s0-2.2-.3-3.4zM6.6 10.3V5.7L10.3 8z"/></svg></a>
+        </nav>
         <small>© MMXXVI · Puzzler Consulting &amp; Advisory LLC</small>
       </footer>
 
