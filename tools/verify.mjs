@@ -856,6 +856,38 @@ for (const pg of PAGES) {
   report.push(`phone layout: height=${st.height}px, folds closed=${st.bodiesHidden}/16, ways rows=${st.waysRows}, swipe row=${st.pimSwipe}, bar ok=${!during.hidden && during.away && !rest && !up}, sheet ok=${sheet.links === 8 && sheet.here === 'method'}, desktop untouched=${dk.btns === 0 && dk.bodies === 0}, no-js ok=${nj.btns === 0 && nj.bodies === 0}`);
 }
 
+{
+  // Digital card: storytelling row, four social icons (44 px, labelled, new tab), the bar pulse every 5 s and off under reduced motion.
+  const ctx = await browser.newContext({ viewport: { width: 375, height: 860 }, hasTouch: true, isMobile: true });
+  const page = await ctx.newPage();
+  await page.goto(base + '/puzzler_card.html', { waitUntil: 'load' });
+  await page.waitForTimeout(500);
+  const card = await page.evaluate(() => {
+    const story = document.querySelector('.contact a[aria-label^="Digital storytelling"]');
+    const social = [...document.querySelectorAll('.card-foot .social a')];
+    const seg = document.querySelector('.sig-bar > .s1'); const cs = getComputedStyle(seg);
+    return {
+      story: story ? { href: story.href, text: story.textContent.trim(), h: story.getBoundingClientRect().height } : null,
+      linkedinRowGone: !document.querySelector('.contact a[aria-label="LinkedIn"]'),
+      social: social.map((a) => ({ label: a.getAttribute('aria-label'), host: new URL(a.href).host, blank: a.target === '_blank' && /noopener/.test(a.rel), w: a.getBoundingClientRect().width, h: a.getBoundingClientRect().height })),
+      anim: cs.animationName, dur: cs.animationDuration, count: cs.animationIterationCount,
+      vcardHasLinkedIn: /linkedin\.com\/company\/puzzlerconsultingadvisory/.test(document.documentElement.outerHTML),
+    };
+  });
+  if (!card.story || !/#pieces-in-motion$/.test(card.story.href) || card.story.text !== 'Digital storytelling: Pieces in Motion' || card.story.h < 44 || !card.linkedinRowGone) failures.push(`card: storytelling row ${JSON.stringify(card.story)} linkedinRowGone=${card.linkedinRowGone}`);
+  const hosts = card.social.map((s) => s.host).join();
+  if (card.social.length !== 4 || hosts !== 'www.linkedin.com,www.threads.net,www.tiktok.com,www.youtube.com' || card.social.some((s) => !s.blank || s.w < 44 || s.h < 44 || !s.label)) failures.push(`card: social icons ${JSON.stringify(card.social)}`);
+  if (card.anim !== 'sig-pulse' || card.dur !== '5s' || card.count !== 'infinite') failures.push(`card: pulse ${card.anim} ${card.dur} ${card.count}`);
+  await ctx.close();
+  const rctx = await browser.newContext({ viewport: { width: 375, height: 860 }, reducedMotion: 'reduce' });
+  const rpage = await rctx.newPage();
+  await rpage.goto(base + '/puzzler_card.html', { waitUntil: 'load' });
+  const rm = await rpage.evaluate(() => getComputedStyle(document.querySelector('.sig-bar > .s1')).animationName);
+  if (rm !== 'none') failures.push(`card: pulse should be off under reduced motion (${rm})`);
+  await rctx.close();
+  report.push(`card: storytelling row=${!!card.story}, social icons=${card.social.length}, pulse=${card.anim} ${card.dur}, reduced-motion off=${rm === 'none'}`);
+}
+
 await browser.close();
 server.close();
 
