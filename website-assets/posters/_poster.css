@@ -1,6 +1,6 @@
 /* Shared styles for the 1920×1080 video posters. Rendered by tools/build-social-preview.mjs. Not served publicly.
-   Navy blueprint surface (BP-03 grid) matches the homepage hero. The four-piece mark is omitted on Navy
-   (Brand Standards §8.1: full-colour mark on white / pale gray only). The mono-white variant now exists at assets/brand/puzzler_logo_mono_white.svg (2026-09-24); the posters have not been regenerated with it yet. */
+   Navy blueprint surface (BP-03 grid) matches the homepage hero. The mark is the mono-white variant
+   (assets/brand/puzzler_logo_mono_white.svg), the only form Brand Standards §8.1 allows on Navy; the full-colour mark never appears here. */
 @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; src: url('../../fonts/poppins-500.woff2') format('woff2'); }
 @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; src: url('../../fonts/poppins-600.woff2') format('woff2'); }
 @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 800; src: url('../../fonts/poppins-800.woff2') format('woff2'); }
@@ -26,4 +26,5 @@ body { font-family: 'Poppins', sans-serif; color: var(--white); -webkit-font-smo
 .title { font-size: 128px; font-weight: 800; letter-spacing: 0.08em; line-height: 1; margin-left: 0.08em; text-transform: uppercase; }
 .desc { font-size: 40px; font-weight: 600; letter-spacing: 0.30em; text-transform: uppercase; color: var(--on-dark-soft); margin-left: 0.30em; }
 .line { font-size: 64px; font-weight: 600; font-style: italic; letter-spacing: -0.01em; color: var(--teal); line-height: 1.1; }
+.mark { width: 150px; height: 150px; display: block; }
 .rule { height: 2px; width: 120px; background: rgba(255, 255, 255, 0.14); }
