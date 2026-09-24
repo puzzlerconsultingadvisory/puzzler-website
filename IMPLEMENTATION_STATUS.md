@@ -48,14 +48,14 @@ No framework was introduced.
 |---|---|---|
 | BR-01 | `puzzler_logo_4piece.svg` | **Resolved mid-session.** Retrieved byte-exact from the Drive bundle (6,345 bytes) to `assets/brand/`. Now used, unmodified, in the homepage header. |
 | BR-02 | `puzzler_logo_4piece_1024.png` | Present in Drive. Binary transfer through the Drive connector corrupted the file (size mismatch), so it was discarded rather than kept. Copy manually to `assets/brand/`. Not required by any page yet. |
-| BR-03 | `puzzler_logo_300_transparent.png`, `_1.png` | Present in Drive under `review-required/full-lockup-candidates/`. Same transfer problem; not on disk. Selection still pending (§4). |
+| BR-03 | `puzzler_logo_300_transparent.png`, `_1.png` | **Closed 2026-09-24.** The founder confirmed the four-piece mark on its own is the official logo, so there is no separate full lockup to select. The pages keep setting the mark file beside the Poppins wordmark. The two candidate files were retired: their Drive folder was moved to `98_QUARANTINE — REVIEW BEFORE DELETION` (renamed with the retirement note). Nothing was copied to the repo. |
 | — | `Puzzler_Brand_Standards_v1_0.docx` | **Read in full from Drive.** Its rules were applied (pillar definitions, naming rule, logo-on-background matrix, closing block treatment). Copy the file to `docs/` when the bundle is dropped in. |
 | BP-01 | `Puzzler Consulting Blueprint Hero.png` | Viewed in-session (supplied as an image) and present in Drive `references/`. Used for composition direction only; not on disk, not embedded. |
 | PIM-01 | *The Falcon and the Shadow* trailer + poster | Not in the bundle (no canonical selection). |
 | PIM-02 | `Lock - Engine of Focus.png` | In Drive `assets/pieces-in-motion/` (1.6 MB). Too large for the connector channel; copy manually. Destination link confirmed (§3). |
 | PIM-03 | `QUIET_MIND_Option_C_20s_Master_Loop.mp4` | In Drive (3.8 MB). Copy manually; then produce the 1280×720 poster. |
 | PIM-04 | `IGNITE.mp4` (131 MB, source master) + `IGNITE_keyframe_E_bronze_fall_16x9_candidate.png` (review) | Stay in Drive. Never load the master on the homepage. |
-| — | Mono-white mark variant | Required by Brand Standards §8.1 for any logo on a Navy surface (secondary page headers). Not in the bundle. |
+| — | Mono-white mark variant | **Resolved 2026-09-24 at the founder's direction.** `assets/brand/puzzler_logo_mono_white.svg` is derived from the approved `puzzler_logo_4piece.svg`: identical piece geometry, the four fills replaced by white, and a 14-unit (of 1024) transparent seam masked along the piece edges so the cuts stay visible in a single colour (a plain recolour renders as a solid white square because the pieces are flush). No geometry was drawn or altered. It is now placed in the Navy headers of privacy, terms, making-the-pieces-fit, and the card page, and mirrored to the Drive bundle at `public/assets/brand/`. |
 | AB-01 | Founder portrait | Not required for homepage launch. |
 | — | Approved homepage architecture / responsive behavior specification documents | Not in repo, upload, or bundle. Section inventory and order follow `docs/Puzzler_Website_Claude_Code_Handoff_v1_0.md` §4. Section copy that is not present in existing approved firm materials is marked `<!-- DRAFT COPY -->` in the HTML and listed in §4. |
 
@@ -65,7 +65,7 @@ No missing asset was fabricated, approximated, or silently replaced.
 
 | # | Conflict | Resolution |
 |---|---|---|
-| C1 | `index.html`, `privacy.html`, `terms.html`, `making-the-pieces-fit.html`, `puzzler_card.html` draw the four-piece mark with inline `<polygon>` geometry (excluded by asset map §10). `puzzler_card.html` also flew and rotated it 720° in an intro animation. | Code-drawn marks removed everywhere; card intro removed. Homepage header now uses the approved SVG file on a white surface. Secondary pages have Navy headers, so their slots stay commented until the mono-white variant is supplied. |
+| C1 | `index.html`, `privacy.html`, `terms.html`, `making-the-pieces-fit.html`, `puzzler_card.html` draw the four-piece mark with inline `<polygon>` geometry (excluded by asset map §10). `puzzler_card.html` also flew and rotated it 720° in an intro animation. | Code-drawn marks removed everywhere; card intro removed. Homepage header now uses the approved SVG file on a white surface. Secondary pages have Navy headers; their slots were enabled on 2026-09-24 with the derived mono-white variant (§1.3). |
 | C2 | `index.html` head is duplicated (two charsets, two titles, two OG blocks). | Rebuild head once with a single approved metadata set. |
 | C3 | Homepage hero used drifting, rotating puzzle pieces, a continuously pulsing signature bar, and a bobbing scroll cue (violates "no flying pieces / continuous motion"). | Replaced with the Blueprint Puzzle system: static grid, one-time trace that settles. Signature bar is static. |
 | C4 | `--teal-glow: #4FC0B3`, `--teal-dark: #287F76`, `--navy-mid: #2E3450`, `--navy-light: #2A2A45` used widely; none are in the approved palette. | Replaced with approved tokens only. Teal `#30A396` on Navy measures 5.5:1 (AA for body text). On white / Pale Gray / Accent Background teal measures 2.8–3.1:1, so on light sections teal is used only for rules, icons, and large headings; body text is Navy. |
@@ -95,6 +95,7 @@ No missing asset was fabricated, approximated, or silently replaced.
 - Favicon set, touch icon, social preview (WEB-01/02/03) — resolved 2026-09-09.
 - Pieces in Motion media, posters, and destination links (PIM-01..04, WEB-04).
 - Founder portrait (AB-01).
+- Full lockup: none. The mark alone is the official logo (BR-03 closed 2026-09-24).
 - Final approval of draft section copy (§4).
 
 ### 1.7 Planned implementation sequence
@@ -220,8 +221,7 @@ Removed: `files short video.zip` (transfer package in the web root).
 - **Hero callout (2026-09-10).** Six treatments were mocked up (A–F) and E1 chosen by the founder. The flicker is deliberately restrained to satisfy the Blueprint Puzzle rule against strobing and continuous decoration: three opacity dips over 0.75 s, once per hover or focus, then steady.
 - **Practice highlight placement.** The result marks its three practices in the foundation list above the tool (text badge "Relevant to your starting point"). If a visitor never scrolls back up, the same three appear as chips in the result, so nothing is lost; say if the badge is unwanted.
 - **Earlier link.** `https://youtu.be/v64HNRW10ZM` was supplied in-session before the LOCK link was confirmed and is no longer used anywhere. Say which project it belongs to if it should appear on the site.
-- **Full lockup (BR-03).** Choose candidate A or B, or supply the original vector.
-- **Mono-white mark variant.** Needed for the Navy headers on privacy, terms, making-the-pieces-fit, and the card page (slots are ready and commented).
+- **Video posters with the mono-white mark.** The Navy posters still omit the mark (their sources predate the variant). Regenerate them from `website-assets/posters/` with the mark added if it is wanted there; say so.
 - **Founder note on the homepage.** Retained from the approved release; not in the handoff §4 inventory. Keep or move to a future About page.
 - **Draft copy to approve or replace** (each marked `<!-- DRAFT COPY -->` in `index.html`): Operator Gap heading and bridging paragraph; Method intro sentence; the seven Method step descriptions; Who We Serve heading; Ways to Begin heading.
 - **Falcon and the Shadow** trailer selection and poster; **IGNITE** keyframe verification and preview.
@@ -251,7 +251,7 @@ node shots-fysp.mjs <need> <audience>            # interaction screenshots at 14
 Blockers before public launch (nothing here blocks continued development):
 1. Copy the Pieces in Motion media and produce posters/previews (§4 items 2–3); until then the cards show the Navy poster treatment with "in preparation" status.
 2. Approve or replace the draft copy.
-3. Select the full lockup and obtain the mono-white mark for the secondary pages.
+3. ~~Select the full lockup and obtain the mono-white mark for the secondary pages.~~ Closed 2026-09-24 (§1.3).
 4. ~~Produce WEB-01/02/03 derivatives from BR-01 and the final design.~~ Done 2026-09-09.
 5. Confirm the scheduling destination (Calendly, existing), analytics (Fathom + Vercel, existing), and privacy/terms copy (existing pages) per handoff §3.
 
