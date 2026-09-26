@@ -12,6 +12,7 @@ const PAGES = [
   ['/', 'index.html', 'monthly', '1.0'],
   ['/capability-brief', 'capability-brief.html', 'yearly', '0.6'],
   ['/making-the-pieces-fit', 'making-the-pieces-fit.html', 'yearly', '0.6'],
+  ['/5-things-to-know-about-a-fit-call', '5-things-to-know-about-a-fit-call.html', 'yearly', '0.6'],
   ['/privacy.html', 'privacy.html', 'yearly', '0.3'],
   ['/terms.html', 'terms.html', 'yearly', '0.3'],
 ];

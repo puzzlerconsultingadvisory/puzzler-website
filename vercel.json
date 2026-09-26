@@ -7,6 +7,10 @@
     {
       "source": "/capability-brief",
       "destination": "/capability-brief.html"
+    },
+    {
+      "source": "/5-things-to-know-about-a-fit-call",
+      "destination": "/5-things-to-know-about-a-fit-call.html"
     }
   ],
   "redirects": [
@@ -23,6 +27,11 @@
     {
       "source": "/capability-brief.html",
       "destination": "/capability-brief",
+      "permanent": true
+    },
+    {
+      "source": "/5-things-to-know-about-a-fit-call.html",
+      "destination": "/5-things-to-know-about-a-fit-call",
       "permanent": true
     }
   ],
