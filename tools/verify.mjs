@@ -969,6 +969,13 @@ for (const pg of PAGES) {
     await nc.close();
     report.push(`fit-call board: reduced-motion instant=${/^0s/.test(rm.t)}, no-js text shown=${nj.items === 5}`);
   }
+  {
+    // Short URL /5things → the page (a permanent redirect in vercel.json; Vercel applies it, so it is checked in the config).
+    const cfg = JSON.parse(await readFile(join(root, 'vercel.json'), 'utf8'));
+    const short = (cfg.redirects || []).find((r) => r.source === '/5things');
+    if (!short || short.destination !== '/5-things-to-know-about-a-fit-call' || short.permanent !== true) failures.push(`short url: /5things redirect missing or wrong ${JSON.stringify(short)}`);
+    report.push(`short url: /5things → ${short ? short.destination : 'missing'} (permanent=${short ? short.permanent : false})`);
+  }
   report.push(`fit-call card: links=${card ? card.links.length : 0}, details form opens from #fold-reach=${reach.open}`);
 }
 

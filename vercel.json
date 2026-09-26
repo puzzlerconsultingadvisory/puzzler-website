@@ -33,6 +33,11 @@
       "source": "/5-things-to-know-about-a-fit-call.html",
       "destination": "/5-things-to-know-about-a-fit-call",
       "permanent": true
+    },
+    {
+      "source": "/5things",
+      "destination": "/5-things-to-know-about-a-fit-call",
+      "permanent": true
     }
   ],
   "headers": [
