@@ -930,13 +930,26 @@ for (const pg of PAGES) {
     const end = await p2.evaluate(() => ({ drawn: document.querySelectorAll('.trace .seg.drawn').length, doneHidden: document.getElementById('done').hidden, doneHref: document.getElementById('done').href, nextHidden: document.getElementById('place-next').hidden, k: document.getElementById('panel-k').textContent, h: document.getElementById('panel-h').textContent, trayEmpty: document.querySelectorAll('.tray .piece').length === 0, focus: document.activeElement && document.activeElement.id, overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth }));
     await p2.click('.piece[data-piece="4"]'); await p2.waitForTimeout(200);
     const revisit = await p2.evaluate(() => document.getElementById('panel-h').textContent);
+    // Drag: piece 2 onto slot 1 returns to the tray with a nudge; piece 2 onto slot 2 settles in; a plain tap still places.
+    await p2.reload({ waitUntil: 'load' }); await p2.waitForTimeout(300);
+    const centre = async (sel) => { const r = await p2.locator(sel).boundingBox(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; };
+    const dragTo = async (from, to) => { await p2.mouse.move(from.x, from.y); await p2.mouse.down(); for (let i = 1; i <= 8; i++) { await p2.mouse.move(from.x + (to.x - from.x) * i / 8, from.y + (to.y - from.y) * i / 8); await p2.waitForTimeout(16); } await p2.mouse.up(); await p2.waitForTimeout(600); };
+    await dragTo(await centre('.piece[data-piece="2"]'), await centre('#row .slot[data-slot="1"]'));
+    const wrong = await p2.evaluate(() => ({ inTray: !!document.querySelector('.tray .piece[data-piece="2"]'), hint: document.getElementById('board-hint').textContent, transform: getComputedStyle(document.querySelector('.piece[data-piece="2"]')).transform }));
+    await dragTo(await centre('.piece[data-piece="2"]'), await centre('#row .slot[data-slot="2"]'));
+    const right = await p2.evaluate(() => ({ inSlot: !!document.querySelector('#row .slot[data-slot="2"] .piece[data-piece="2"]'), h: document.getElementById('panel-h').textContent, transform: getComputedStyle(document.querySelector('.piece[data-piece="2"]')).transform, over: document.querySelectorAll('.slot.over').length }));
+    await p2.click('.piece[data-piece="5"]'); await p2.waitForTimeout(700);
+    const tapAfter = await p2.evaluate(() => !!document.querySelector('#row .slot[data-slot="5"] .piece[data-piece="5"]'));
+    const dragOk = wrong.inTray && /^Not that slot\. Piece 2 goes second\./.test(wrong.hint) && (wrong.transform === 'none' || wrong.transform === 'matrix(1, 0, 0, 1, 0, 0)')
+      && right.inSlot && right.h === 'Come with the real challenge' && (right.transform === 'none' || right.transform === 'matrix(1, 0, 0, 1, 0, 0)') && right.over === 0 && tapAfter;
+    if (!dragOk) failures.push(`fit-call board drag @${vp.width}: ${JSON.stringify({ wrong, right, tapAfter })}`);
     const ok = start.js && start.pieces === 5 && start.slots === 5 && start.small === 0 && /^Place the first piece/.test(start.nextText) && start.doneHidden && start.drawn === 0 && !start.logoPath
       && three.inSlot && three.h === 'Expect questions' && three.k === '3 of 5' && three.drawn === 0 && (three.transform === 'none' || three.transform === 'matrix(1, 0, 0, 1, 0, 0)')
       && mid.placed && mid.drawn === 2 && mid.hint === '3 of 5 in place' && mid.h === 'Come with the real challenge'
       && end.drawn === 4 && !end.doneHidden && /calendly\.com\/mark-puzzlerconsultingandadvisory\/30min/.test(end.doneHref) && end.nextHidden && end.k === 'All five in place' && end.h === 'There is no pressure' && end.trayEmpty && end.focus === 'done' && !end.overflow
       && revisit === 'Fit works both ways';
     if (!ok) failures.push(`fit-call board @${vp.width}: ${JSON.stringify({ start, three, mid, end, revisit })}`);
-    report.push(`fit-call board @${vp.width}: pieces=${start.pieces}, tap 3→slot 3=${three.inSlot}, next/keyboard ok=${mid.placed}, trace ${end.drawn}/4, done → Calendly=${/calendly/.test(end.doneHref)}`);
+    report.push(`fit-call board @${vp.width}: pieces=${start.pieces}, tap 3→slot 3=${three.inSlot}, next/keyboard ok=${mid.placed}, trace ${end.drawn}/4, done → Calendly=${/calendly/.test(end.doneHref)}, drag wrong slot returns=${wrong.inTray}, drag right slot sets=${right.inSlot}`);
     await c2.close();
   }
   {
