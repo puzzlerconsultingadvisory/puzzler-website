@@ -56,6 +56,7 @@ No framework was introduced.
 | PIM-03 | `QUIET_MIND_Option_C_20s_Master_Loop.mp4` | In Drive (3.8 MB). Copy manually; then produce the 1280×720 poster. |
 | PIM-04 | `IGNITE.mp4` (131 MB, source master) + `IGNITE_keyframe_E_bronze_fall_16x9_candidate.png` (review) | Stay in Drive. Never load the master on the homepage. |
 | — | Mono-white mark variant | **Resolved 2026-09-24 at the founder's direction.** `assets/brand/puzzler_logo_mono_white.svg` is derived from the approved `puzzler_logo_4piece.svg`: identical piece geometry, the four fills replaced by white, and a 14-unit (of 1024) transparent seam masked along the piece edges so the cuts stay visible in a single colour (a plain recolour renders as a solid white square because the pieces are flush). No geometry was drawn or altered. It is now placed in the Navy headers of privacy, terms, making-the-pieces-fit, and the card page, and mirrored to the Drive bundle at `public/assets/brand/`. |
+| — | Fit Call slide originals (five 9:16 images, *5 Things to Know About a Fit Call*) | **Placeholder in place (2026-09-26).** The founder supplied the five slides in-session as a 2000×675 contact sheet; the individual full-size files were shown but not transferred, the published TikTok set is blocked from the build sandbox, and Drive holds no copy. The page uses the 354×628 panels cut from the sheet, which is below web quality. Drop the originals into `website-assets/fit-call-slides/` as `slide-1.png` … `slide-5.png` and run `python3 tools/build-fit-call-slides.py`; nothing else changes. |
 | AB-01 | Founder portrait | Not required for homepage launch. |
 | — | Approved homepage architecture / responsive behavior specification documents | Not in repo, upload, or bundle. Section inventory and order follow `docs/Puzzler_Website_Claude_Code_Handoff_v1_0.md` §4. Section copy that is not present in existing approved firm materials is marked `<!-- DRAFT COPY -->` in the HTML and listed in §4. |
 
@@ -132,6 +133,7 @@ Every row below was built, passed `npm test` in `tools/` (asset guard, HTML vali
 | Pieces in Motion | **Complete** | Locked title and subtitle. Three named cards (Falcon, LOCK, QUIET MIND), each a click-to-play YouTube facade (thumbnail + play control, `youtube-nocookie` player loads only on activation, plain link without scripting). Destinations confirmed by the founder. No filler card. |
 | A Note from Mark | **Complete** (retention to confirm) | Existing approved founder note and record. Not in the handoff's homepage inventory; see §4. |
 | Fit Call | **Complete** | Approved copy, Calendly, email, phone, social links. Contact details form added 2026-09-09 (mailto-based; see §4). |
+| 5 Things to Know About a Fit Call (slides page) | **Complete** (slide files are placeholders, §1.3) | Added 2026-09-26 at the founder's request: `/5-things-to-know-about-a-fit-call` (clean URL in `vercel.json`, in the sitemap), a Navy secondary page in the video-page pattern with the mono-white mark, the approved Fit Call sentence as the lede, a five-slide carousel (native horizontal scroll-snap; script adds previous/next, dots, arrow keys and a live status; no third-party library; swipe works without script), a text version of the five points, Book a Fit Call, the "Prefer we reach out?" link to the details form, and the ethics boundary line. Slide 5's own "Ready to see if the pieces fit?" button is part of the image, so that whole slide links to Calendly. The Ways to Begin Fit Call card became a three-link card: the title and "Schedule on Calendly" go to Calendly, "5 Things to Know About a Fit Call" (above) goes to the page, and "Prefer we reach out?" (below) goes to `#fold-reach`, which now opens the details fold on phones and focuses the name field. `verify` covers the card's links and heights, the fold opening, and the carousel at 375 and 1280 (axe clean). |
 | Close + footer | **Complete** | Positioning line in Teal, brand line in Poppins Light faded white (Brand Standards §10.2); legal links. |
 | Secondary pages (privacy, terms, making-the-pieces-fit, capability-brief, card) | **Brand-compliant** | Code-drawn marks removed, unapproved tokens removed, Google Fonts removed, contrast fixed, naming rule applied, card intro animation removed. Layout otherwise untouched. |
 | Metadata | **Complete** | Single head; approved title/description; canonical; OG/Twitter use the WEB-03 preview (1200×630) on every public page. |
@@ -223,6 +225,7 @@ Removed: `files short video.zip` (transfer package in the web root).
 - **Earlier link.** `https://youtu.be/v64HNRW10ZM` was supplied in-session before the LOCK link was confirmed and is no longer used anywhere. Say which project it belongs to if it should appear on the site.
 - **Founder note on the homepage.** Retained from the approved release; not in the handoff §4 inventory. Keep or move to a future About page.
 - **Draft copy to approve or replace** (each marked `<!-- DRAFT COPY -->` in `index.html`): Operator Gap heading and bridging paragraph; Method intro sentence; the seven Method step descriptions; Who We Serve heading; Ways to Begin heading.
+- **Fit Call slides (2026-09-26, founder request).** The five slides are published as supplied. The same-day review stands for the founder's decision: they are set in faces other than Poppins; slides 1 and 5 carry a full-colour, redrawn mark on Navy (Brand Standards §8.1 allows only the mono-white mark there); the voice moves between "I" and "we"; and "Better conversations. Brighter outcomes." and "Discover / Explore / Align / Build" appear nowhere else on the site. The page's own copy uses only approved lines. The slide files are low-resolution placeholders until the originals are dropped in (§1.3).
 - **Falcon and the Shadow** trailer selection and poster; **IGNITE** keyframe verification and preview.
 
 ---
@@ -236,9 +239,10 @@ cd tools
 npm install                 # playwright 1.56.1, axe-core, html-validate (Chromium expected via PLAYWRIGHT_BROWSERS_PATH)
 npm run build               # regenerate hero layers + Method states/CSS from the masters
 npm run check:assets        # excluded files, code-drawn logos, unapproved tokens, overlay parity, logo-slot state
-npm run validate            # html-validate on the six public pages
+npm run validate            # html-validate on the public pages
 npm run verify              # serves the repo, runs browser checks (incl. all 36 starting-point combinations, keyboard, reduced motion, mobile, no-JS), writes tools/output/report.md + screenshots
 npm test                    # all three
+python3 build-fit-call-slides.py                 # web copies of the Fit Call slides from website-assets/fit-call-slides/ (or npm run build:fit-call-slides)
 node shots-section.mjs <prefix> '#practices'      # merged section at 375 / 768 / 1024 / 1440 → tools/output/sections/
 node shots-fysp.mjs <need> <audience>            # interaction screenshots at 1440 and 375 (e.g. compliance nonprofit)
 ```

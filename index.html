@@ -583,7 +583,15 @@
   .way .ico { width: 30px; height: 30px; color: var(--teal); }
   .way h3 { font-size: 19px; }
   .way p { color: var(--ink-soft); font-size: 15px; flex: 1; }
-  .way .go { font-weight: 600; font-size: 14px; color: var(--navy); white-space: nowrap; }
+  .way .go { font-weight: 600; font-size: 14px; color: var(--navy); white-space: nowrap; text-decoration: none; }
+  .way a.go:hover { text-decoration: underline; text-decoration-color: var(--teal); text-underline-offset: 3px; }
+  /* Fit Call card with three links (h3 → Calendly, slides page, Calendly, details form) */
+  .way h3 a { color: inherit; text-decoration: none; }
+  .way h3 a:hover { color: var(--teal); }
+  .way-links { display: flex; flex-direction: column; gap: 8px; }
+  .way .more { font-weight: 500; font-size: 14px; color: var(--navy); text-decoration: none; }
+  .way .more:hover { text-decoration: underline; text-decoration-color: var(--teal); text-underline-offset: 3px; }
+  .way-links a { align-self: flex-start; }
 
   /* ─── Pieces in Motion ─────────────────────────────────────────── */
   .pim-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 40px; margin-bottom: 40px; }
@@ -753,6 +761,13 @@
     .way h3 { font-size: 16px; margin: 0; }
     .way p, .way .go { display: none; }
     .way::after { content: "→"; color: var(--teal); font-weight: 600; }
+    .way-multi { grid-template-rows: auto auto; row-gap: 0; }
+    .way-multi h3 a { display: inline-flex; align-items: center; min-height: 44px; }
+    .way-multi .ico, .way-multi h3, .way-multi::after { grid-row: 1; }
+    .way-multi h3 { grid-column: 2; }
+    .way-multi::after { grid-column: 3; }
+    .way-multi .way-links { grid-column: 2; grid-row: 2; flex-direction: row; flex-wrap: wrap; gap: 0 16px; }
+    .way-multi .more { font-size: 13.5px; min-height: 44px; display: inline-flex; align-items: center; }
     /* Pieces in Motion: swipe row */
     .js .pim-grid { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; max-width: none; padding-bottom: 4px; }
     .js .pim-grid::-webkit-scrollbar { display: none; }
@@ -1430,12 +1445,17 @@
       <h2 class="h2" id="ways-title">Start where it’s easiest to start.</h2>
       <p class="lead">Every engagement begins the same way: with a conversation. Tell us where you are, where you’re trying to get to, and what’s in the way.</p>
       <div class="ways-grid">
-        <a class="way" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">
+        <!-- Fit Call card: three links (2026-09-26, founder request), so it is a div rather than one anchor. -->
+        <div class="way way-multi">
           <svg focusable="false" class="ico" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="22" height="20" rx="2"/><path d="M4 12h22M10 3v6M20 3v6"/><path d="M10 18h4"/></svg>
-          <h3>Book a Fit Call</h3>
+          <h3><a href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Book a Fit Call</a></h3>
           <p>Thirty minutes. No pitch, no commitment. You’ll leave with a clear sense of fit and one specific suggestion you can act on.</p>
-          <span class="go">Schedule on Calendly →</span>
-        </a>
+          <div class="way-links">
+            <a class="more" href="/5-things-to-know-about-a-fit-call">5 Things to Know About a Fit Call →</a>
+            <a class="go" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Schedule on Calendly →</a>
+            <a class="more" href="#fold-reach">Prefer we reach out? →</a>
+          </div>
+        </div>
         <a class="way" href="/capability-brief">
           <svg focusable="false" class="ico" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="15" cy="15" r="11"/><path d="M12.5 10.5l7 4.5-7 4.5z"/></svg>
           <h3>Watch the Capability Brief</h3>
@@ -2040,10 +2060,15 @@
     }
   }
   Array.prototype.forEach.call(document.querySelectorAll('.reach-form'), prepReachForm);
-  /* A link to #speaking-inquiry (the Ways to Begin card) opens the form and puts focus in it. */
+  /* A link to #speaking-inquiry (the Ways to Begin card) or #fold-reach (the Fit Call details form) opens the form and puts focus in it. */
   function openLinkedReach() {
-    var d = window.location.hash && document.querySelector(window.location.hash + '.reach');
-    if (!d || !d.open) { if (d) { if (window.openFoldsAround) window.openFoldsAround(d); d.open = true; var first = d.querySelector('input'); if (first) first.focus({ preventScroll: true }); } }
+    var h = window.location.hash, el = null;
+    if (!h || h.length < 2) return;
+    try { el = document.querySelector(h); } catch (e) { return; }
+    if (!el || !el.matches('.reach, .fold')) return;
+    if (window.openFoldsAround) window.openFoldsAround(el);
+    if (el.matches('.reach') && !el.open) el.open = true;
+    var first = el.querySelector('input'); if (first) first.focus({ preventScroll: true });
   }
   window.addEventListener('hashchange', openLinkedReach);
   openLinkedReach();

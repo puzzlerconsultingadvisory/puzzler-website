@@ -19,7 +19,7 @@ const outDir = join(here, 'output', 'screens');
 await mkdir(outDir, { recursive: true });
 
 const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.mjs': 'text/javascript', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.ico': 'image/x-icon', '.woff2': 'font/woff2', '.json': 'application/json', '.webmanifest': 'application/manifest+json', '.mp4': 'video/mp4', '.xml': 'application/xml', '.txt': 'text/plain' };
-const REWRITES = { '/making-the-pieces-fit': '/making-the-pieces-fit.html', '/capability-brief': '/capability-brief.html' };
+const REWRITES = { '/making-the-pieces-fit': '/making-the-pieces-fit.html', '/capability-brief': '/capability-brief.html', '/5-things-to-know-about-a-fit-call': '/5-things-to-know-about-a-fit-call.html' };
 
 const server = createServer(async (req, res) => {
   let p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
@@ -46,6 +46,7 @@ const PAGES = [
   { path: '/making-the-pieces-fit', name: 'making-the-pieces-fit', viewports: [VIEWPORTS[0], VIEWPORTS[2]] },
   { path: '/capability-brief', name: 'capability-brief', viewports: [VIEWPORTS[0], VIEWPORTS[2]] },
   { path: '/puzzler_card.html', name: 'card', viewports: [VIEWPORTS[0], VIEWPORTS[2]] },
+  { path: '/5-things-to-know-about-a-fit-call', name: 'fit-call-slides', viewports: [VIEWPORTS[0], VIEWPORTS[2]] },
 ];
 const THIRD_PARTY = /usefathom\.com|vercel-insights\.com|heygen\.com|calendly\.com|linkedin\.com|gstatic|googleapis|youtube|ytimg/;
 
@@ -795,7 +796,7 @@ for (const pg of PAGES) {
       bodiesHidden: [...document.querySelectorAll('.fold-body')].filter((b) => getComputedStyle(b).display === 'none').length,
       btnsTall: [...document.querySelectorAll('.fold-btn')].every((b) => b.getBoundingClientRect().height >= 44),
       expanded: [...document.querySelectorAll('.fold-btn')].every((b) => b.getAttribute('aria-expanded') === 'false'),
-      waysRows: [...document.querySelectorAll('.ways-grid .way')].every((w) => { const r = w.getBoundingClientRect(); return r.height >= 44 && r.height < 90 && getComputedStyle(w.querySelector('p')).display === 'none'; }),
+      waysRows: [...document.querySelectorAll('.ways-grid .way')].every((w) => { const r = w.getBoundingClientRect(); return r.height >= 44 && r.height < (w.classList.contains('way-multi') ? 170 : 90) && getComputedStyle(w.querySelector('p')).display === 'none'; }),
       pimSwipe: getComputedStyle(document.querySelector('.pim-grid')).overflowX === 'auto' && document.querySelectorAll('#pim-dots button').length === 3,
       closeHidden: getComputedStyle(document.querySelector('.close')).display === 'none',
       barHidden: document.getElementById('m-bar').hidden,
@@ -886,6 +887,55 @@ for (const pg of PAGES) {
   if (rm !== 'none') failures.push(`card: pulse should be off under reduced motion (${rm})`);
   await rctx.close();
   report.push(`card: storytelling row=${!!card.story}, social icons=${card.social.length}, pulse=${card.anim} ${card.dur}, reduced-motion off=${rm === 'none'}`);
+}
+
+{
+  // Fit Call card (three links) and the slides page carousel (2026-09-26).
+  const ctx = await browser.newContext({ viewport: { width: 375, height: 740 }, hasTouch: true, isMobile: true });
+  const page = await ctx.newPage();
+  await page.goto(base + '/', { waitUntil: 'load' });
+  await page.waitForTimeout(500);
+  const card = await page.evaluate(() => {
+    const c = document.querySelector('.way-multi'); if (!c) return null;
+    const links = [...c.querySelectorAll('a')].map((a) => ({ text: a.textContent.replace(/\s+/g, ' ').trim(), href: a.getAttribute('href'), h: a.getBoundingClientRect().height }));
+    return { nested: !!c.closest('a'), links };
+  });
+  const want = ['https://calendly.com/mark-puzzlerconsultingandadvisory/30min', '/5-things-to-know-about-a-fit-call', 'https://calendly.com/mark-puzzlerconsultingandadvisory/30min', '#fold-reach'];
+  if (!card || card.nested || card.links.map((l) => l.href).join() !== want.join()) failures.push(`fit-call card: ${JSON.stringify(card)}`);
+  else if (card.links[1].h < 24 || card.links[3].h < 24 || !/^5 Things to Know About a Fit Call/.test(card.links[1].text) || !/^Prefer we reach out\?/.test(card.links[3].text)) failures.push(`fit-call card (phone): ${JSON.stringify(card.links)}`);
+  await page.click('.way-multi a[href="#fold-reach"]');
+  await page.waitForTimeout(400);
+  const reach = await page.evaluate(() => ({ open: document.getElementById('fold-reach').classList.contains('is-open'), focus: document.activeElement && document.activeElement.id }));
+  if (!reach.open || reach.focus !== 'reach-fit-name') failures.push(`fit-call card: #fold-reach link did not open the details form ${JSON.stringify(reach)}`);
+  await ctx.close();
+
+  for (const vp of [{ width: 375, height: 740 }, { width: 1280, height: 800 }]) {
+    const c2 = await browser.newContext({ viewport: vp });
+    const p2 = await c2.newPage();
+    await p2.goto(base + '/5-things-to-know-about-a-fit-call', { waitUntil: 'load' });
+    await p2.waitForTimeout(400);
+    const before = await p2.evaluate(() => ({
+      js: document.documentElement.classList.contains('js'),
+      slides: document.querySelectorAll('#slides .slide').length,
+      imgs: [...document.querySelectorAll('#slides img')].every((i) => i.alt.trim().length > 20 && i.naturalWidth > 0),
+      dots: document.querySelectorAll('#dots .dot').length,
+      current: [...document.querySelectorAll('#dots .dot')].findIndex((d) => d.getAttribute('aria-current') === 'true'),
+      cta5: (document.querySelector('#slide-5 a') || {}).href || '',
+      reach: (document.querySelector('.cta a.more') || {}).getAttribute('href'),
+      prevOff: document.getElementById('prev').disabled,
+    }));
+    await p2.click('#next'); await p2.waitForTimeout(700);
+    const afterNext = await p2.evaluate(() => [...document.querySelectorAll('#dots .dot')].findIndex((d) => d.getAttribute('aria-current') === 'true'));
+    await p2.focus('#slides'); await p2.keyboard.press('End'); await p2.waitForTimeout(700);
+    const afterEnd = await p2.evaluate(() => ({ current: [...document.querySelectorAll('#dots .dot')].findIndex((d) => d.getAttribute('aria-current') === 'true'), nextOff: document.getElementById('next').disabled, status: document.getElementById('status').textContent }));
+    await p2.click('#dots li:first-child .dot'); await p2.waitForTimeout(700);
+    const afterDot = await p2.evaluate(() => Math.round(document.getElementById('slides').scrollLeft));
+    const ok = before.js && before.slides === 5 && before.imgs && before.dots === 5 && before.current === 0 && before.prevOff && /calendly\.com\/mark-puzzlerconsultingandadvisory\/30min/.test(before.cta5) && before.reach === '/#fold-reach' && afterNext === 1 && afterEnd.current === 4 && afterEnd.nextOff && afterEnd.status === 'Slide 5 of 5' && afterDot === 0;
+    if (!ok) failures.push(`fit-call slides @${vp.width}: ${JSON.stringify({ before, afterNext, afterEnd, afterDot })}`);
+    report.push(`fit-call slides @${vp.width}: slides=${before.slides}, next→${afterNext + 1}, End→${afterEnd.current + 1}, slide 5 → Calendly=${/calendly/.test(before.cta5)}`);
+    await c2.close();
+  }
+  report.push(`fit-call card: links=${card ? card.links.length : 0}, details form opens from #fold-reach=${reach.open}`);
 }
 
 await browser.close();
