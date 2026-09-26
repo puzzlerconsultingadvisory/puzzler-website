@@ -976,6 +976,34 @@ for (const pg of PAGES) {
     if (!short || short.destination !== '/5-things-to-know-about-a-fit-call' || short.permanent !== true) failures.push(`short url: /5things redirect missing or wrong ${JSON.stringify(short)}`);
     report.push(`short url: /5things → ${short ? short.destination : 'missing'} (permanent=${short ? short.permanent : false})`);
   }
+  {
+    // Header: second button "Prefer we reach out?" (Teal fill) beside Book a Fit Call; one line at 1280, Menu collapse at 1024, in the phone menu.
+    const hd = {};
+    for (const w of [1280, 1024, 375]) {
+      const c = await browser.newContext({ viewport: { width: w, height: 800 }, hasTouch: w === 375 }); const pg = await c.newPage();
+      await pg.goto(base + '/', { waitUntil: 'load' }); await pg.waitForTimeout(400);
+      hd[w] = await pg.evaluate(() => {
+        const alt = document.querySelector('.primary-nav a.cta-alt'); const cta = document.querySelector('.primary-nav a.cta:not(.cta-alt)');
+        const bar = document.querySelector('.site-header .bar').getBoundingClientRect(); const ul = document.querySelector('.primary-nav ul');
+        const cs = alt ? getComputedStyle(alt) : null;
+        return { href: alt && alt.getAttribute('href'), text: alt && alt.textContent.trim(), bg: cs && cs.backgroundColor, color: cs && cs.color,
+          toggle: getComputedStyle(document.querySelector('.nav-toggle')).display, navShown: getComputedStyle(document.querySelector('.primary-nav')).display,
+          oneLine: alt && cta && Math.abs(alt.getBoundingClientRect().top - cta.getBoundingClientRect().top) < 2 && alt.getBoundingClientRect().height < 50 && ul.getBoundingClientRect().right <= bar.right + 1,
+          rightOfCta: alt && cta && alt.getBoundingClientRect().left >= cta.getBoundingClientRect().right };
+      });
+      if (w !== 1280) {
+        await pg.click('.nav-toggle'); await pg.waitForTimeout(300);
+        hd[w].menu = await pg.evaluate(() => { const alt = document.querySelector('.primary-nav a.cta-alt'); const r = alt.getBoundingClientRect(); return { visible: r.height >= 44, belowCta: r.top > document.querySelector('.primary-nav a.cta:not(.cta-alt)').getBoundingClientRect().bottom }; });
+        if (w === 375) { await pg.click('.primary-nav a.cta-alt'); await pg.waitForTimeout(400); hd[w].opened = await pg.evaluate(() => ({ fold: document.getElementById('fold-reach').classList.contains('is-open'), focus: document.activeElement && document.activeElement.id })); }
+      }
+      await c.close();
+    }
+    const ok = hd[1280].href === '#fold-reach' && hd[1280].text === 'Prefer we reach out?' && hd[1280].bg === 'rgb(48, 163, 150)' && hd[1280].color === 'rgb(26, 26, 46)' && hd[1280].toggle === 'none' && hd[1280].oneLine && hd[1280].rightOfCta
+      && hd[1024].toggle !== 'none' && hd[1024].navShown === 'none' && hd[1024].menu.visible && hd[1024].menu.belowCta
+      && hd[375].toggle !== 'none' && hd[375].menu.visible && hd[375].menu.belowCta && hd[375].opened.fold && hd[375].opened.focus === 'reach-fit-name';
+    if (!ok) failures.push(`header second button: ${JSON.stringify(hd)}`);
+    report.push(`header: second button one line at 1280=${hd[1280].oneLine}, Menu at 1024=${hd[1024].toggle !== 'none'}, phone menu→form opens=${hd[375].opened && hd[375].opened.fold}`);
+  }
   report.push(`fit-call card: links=${card ? card.links.length : 0}, details form opens from #fold-reach=${reach.open}`);
 }
 

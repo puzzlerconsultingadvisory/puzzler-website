@@ -221,6 +221,20 @@
   .primary-nav a:hover { color: var(--navy); background: var(--pale); }
   .primary-nav a.cta { margin-left: 10px; color: var(--white); background: var(--navy); font-weight: 600; padding-inline: 18px; }
   .primary-nav a.cta:hover { background: var(--teal); color: var(--navy); }
+  /* Second header button (2026-09-26): Teal fill, Navy text, to the Fit Call details form. */
+  .primary-nav a.cta-alt { margin-left: 8px; color: var(--navy); background: var(--teal); }
+  .primary-nav a.cta-alt:hover { background: var(--navy); color: var(--white); }
+  /* Two buttons: keep the full nav on one line from 1101px; below that the header collapses to the Menu button like phones. */
+  @media (min-width: 1101px) { .primary-nav a { white-space: nowrap; padding-inline: 11px; } .primary-nav a.cta { padding-inline: 16px; } .site-header .bar { gap: 16px; } }
+  @media (max-width: 1100px) {
+    .nav-toggle { display: inline-flex; }
+    .primary-nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--white); border-bottom: 1px solid var(--rule-light); padding: 8px var(--gutter) 16px; }
+    .primary-nav.open { display: block; }
+    .primary-nav ul { flex-direction: column; align-items: stretch; gap: 2px; }
+    .primary-nav a { min-height: 48px; font-size: 16px; }
+    .primary-nav a.cta { margin: 8px 0 0; justify-content: center; }
+    .primary-nav a.cta-alt { margin-top: 8px; }
+  }
 
   /* ─── Hero (Blueprint Puzzle field) ─────────────────────────────── */
   .hero {
@@ -706,12 +720,6 @@
     .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 760px) {
-    .nav-toggle { display: inline-flex; }
-    .primary-nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--white); border-bottom: 1px solid var(--rule-light); padding: 8px var(--gutter) 16px; }
-    .primary-nav.open { display: block; }
-    .primary-nav ul { flex-direction: column; align-items: stretch; gap: 2px; }
-    .primary-nav a { min-height: 48px; font-size: 16px; }
-    .primary-nav a.cta { margin: 8px 0 0; justify-content: center; }
     .brand-word .desc { font-size: 8px; letter-spacing: 0.16em; white-space: nowrap; }
     /* Decorative animation is removed on small screens; the static field remains. */
     .hero-field .connections { display: none; }
@@ -922,6 +930,7 @@
         <li><a href="#pieces-in-motion">Pieces in Motion</a></li>
         <li><a href="#note">A Note from Mark</a></li>
         <li><a class="cta" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min">Book a Fit Call</a></li>
+        <li><a class="cta cta-alt" href="#fold-reach">Prefer we reach out?</a></li>
       </ul>
     </nav>
   </div>
