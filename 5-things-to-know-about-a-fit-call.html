@@ -80,6 +80,12 @@
   .piece{position:relative;width:80px;height:80px;padding:0;border:0;background:none;cursor:pointer;display:block;transform-origin:center;will-change:transform;color:var(--navy);
     filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
   .piece svg{display:block;width:100%;height:100%;overflow:visible}
+  .tray .piece{touch-action:none}
+  .piece.dragging{transition:none !important;z-index:5;cursor:grabbing;filter:drop-shadow(0 14px 18px rgba(0,0,0,.55))}
+  .piece.dragging .shape{transform:none}
+  .piece.returning{transition:transform .35s ease-out}
+  .slot.over .outline{stroke:var(--teal);stroke-dasharray:none;stroke-width:2}
+  .slot.over .n{color:var(--teal)}
   .piece .shape{transition:transform .2s ease,filter .2s ease}
   .piece:hover .shape,.piece:focus-visible .shape{transform:translateY(-3px)}
   .piece:focus-visible{outline:3px solid var(--yellow);outline-offset:4px;border-radius:12px}
@@ -175,7 +181,7 @@
     <section class="board" aria-labelledby="board-title">
       <h2 class="sr" id="board-title">The five things, one piece at a time</h2>
       <div class="board-visual">
-        <p class="board-hint" id="board-hint">Tap a piece to set it in place</p>
+        <p class="board-hint" id="board-hint">Drag or tap a piece to set it in place</p>
         <div class="row" id="row">
           <div class="slot" data-slot="1"><svg class="outline" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M8 8H80V38A12 12 0 1 1 80 62V92H8V62A12 12 0 1 0 8 38Z"/></svg><span class="n">1</span></div>
           <div class="slot" data-slot="2"><svg class="outline" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M8 8H80V38A12 12 0 1 1 80 62V92H8V62A12 12 0 1 0 8 38Z"/></svg><span class="n">2</span></div>
@@ -195,7 +201,7 @@
       <div class="panel" id="panel" aria-live="polite">
         <p class="k" id="panel-k">5 things to know</p>
         <h2 id="panel-h">A Fit Call, one piece at a time</h2>
-        <p class="start" id="panel-p1">Each piece is one thing to know. Set all five and see whether the pieces fit.</p>
+        <p class="start" id="panel-p1">Each piece is one thing to know. Drag it to its slot, or tap it. Set all five and see whether the pieces fit.</p>
         <p id="panel-p2"></p>
         <div class="board-actions">
           <button class="btn-ghost" type="button" id="place-next">Place the first piece →</button>
@@ -265,13 +271,14 @@
       for (var i = 1; i <= 5; i++) { if (!placed[i]) { next = i; break; } }
       segs.forEach(function (l) { var n = +l.getAttribute('data-seg'); l.classList.toggle('drawn', !!(placed[n - 1] && placed[n])); });
       ticks.forEach(function (t) { t.classList.toggle('lit', !!placed[+t.getAttribute('data-tick')]); });
-      if (next) { nextBtn.hidden = false; nextBtn.textContent = (c ? 'Place the next piece' : 'Place the first piece') + ' →'; done.hidden = true; hint.textContent = c ? c + ' of 5 in place' : 'Tap a piece to set it in place'; }
+      if (next) { nextBtn.hidden = false; nextBtn.textContent = (c ? 'Place the next piece' : 'Place the first piece') + ' →'; done.hidden = true; hint.textContent = c ? c + ' of 5 in place' : 'Drag or tap a piece to set it in place'; }
       else { nextBtn.hidden = true; done.hidden = false; hint.textContent = 'All five in place'; k.textContent = 'All five in place'; }
     }
     function place(n) {
       var piece = pieces[n - 1], slot = slots[n - 1];
       if (placed[n]) { show(n); return; }
       var first = piece.getBoundingClientRect();
+      piece.style.transform = '';
       slot.appendChild(piece); slot.classList.add('filled'); piece.classList.add('placed'); placed[n] = true;
       if (!reduce.matches) {
         var last = piece.getBoundingClientRect();
@@ -286,7 +293,50 @@
       show(n); refresh();
       if (count() === 5) { done.focus({ preventScroll: true }); window.setTimeout(function () { tray.hidden = true; }, reduce.matches ? 0 : 650); }
     }
-    pieces.forEach(function (b) { b.addEventListener('click', function () { place(+b.getAttribute('data-piece')); }); });
+    var ordinal = ['', 'first', 'second', 'third', 'fourth', 'fifth'];
+    var drag = null;   /* { piece, n, x0, y0, moved, over } */
+    function slotAt(x, y) {
+      var el = document.elementFromPoint(x, y); var slot = el && el.closest ? el.closest('.slot') : null;
+      return slot && !slot.classList.contains('filled') ? slot : null;
+    }
+    function clearOver() { slots.forEach(function (sl) { sl.classList.remove('over'); }); }
+    pieces.forEach(function (b) {
+      var n = +b.getAttribute('data-piece');
+      b.addEventListener('click', function () { if (b.dataset.dragged) { delete b.dataset.dragged; return; } place(n); });
+      b.addEventListener('pointerdown', function (e) {
+        if (placed[n] || e.button) return;
+        drag = { piece: b, n: n, x0: e.clientX, y0: e.clientY, moved: false, id: e.pointerId };
+        try { b.setPointerCapture(e.pointerId); } catch (err) {}
+      });
+      b.addEventListener('pointermove', function (e) {
+        if (!drag || drag.piece !== b) return;
+        var dx = e.clientX - drag.x0, dy = e.clientY - drag.y0;
+        if (!drag.moved) { if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return; drag.moved = true; b.classList.add('dragging'); b.style.pointerEvents = 'none'; }
+        b.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+        var over = slotAt(e.clientX, e.clientY);
+        if (over !== drag.over) { clearOver(); if (over) over.classList.add('over'); drag.over = over; }
+      });
+      function finish(e, cancelled) {
+        if (!drag || drag.piece !== b) return;
+        var d = drag; drag = null;
+        try { b.releasePointerCapture(d.id); } catch (err) {}
+        if (!d.moved) return;                       /* a plain tap: the click handler places it */
+        b.dataset.dragged = '1';
+        var target = cancelled ? null : slotAt(e.clientX, e.clientY);   /* read before the piece can catch the pointer again */
+        b.classList.remove('dragging'); b.style.pointerEvents = '';
+        clearOver();
+        if (target && +target.getAttribute('data-slot') === n) {
+          /* place() measures the piece where it was dropped, so it settles from there into the slot */
+          place(n); b.style.transform = ''; return;
+        }
+        if (target) hint.textContent = 'Not that slot. Piece ' + n + ' goes ' + ordinal[n] + '.';
+        if (reduce.matches) { b.style.transform = ''; return; }
+        b.classList.add('returning'); b.style.transform = '';
+        b.addEventListener('transitionend', function te() { b.classList.remove('returning'); b.removeEventListener('transitionend', te); });
+      }
+      b.addEventListener('pointerup', function (e) { finish(e, false); });
+      b.addEventListener('pointercancel', function (e) { finish(e, true); });
+    });
     nextBtn.addEventListener('click', function () { for (var i = 1; i <= 5; i++) { if (!placed[i]) { place(i); break; } } });
     refresh();
   })();
