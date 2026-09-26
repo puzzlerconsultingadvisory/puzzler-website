@@ -15,8 +15,7 @@
     "build:icons": "node build-favicons.mjs",
     "build": "npm run build:hero && npm run build:method && npm run build:social && npm run build:icons",
     "build:sitemap": "node build-sitemap.mjs",
-    "build:video-posters": "python3 build-video-posters.py",
-    "build:fit-call-slides": "python3 build-fit-call-slides.py"
+    "build:video-posters": "python3 build-video-posters.py"
   },
   "devDependencies": {
     "axe-core": "4.10.3",

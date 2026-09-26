@@ -914,26 +914,47 @@ for (const pg of PAGES) {
     const p2 = await c2.newPage();
     await p2.goto(base + '/5-things-to-know-about-a-fit-call', { waitUntil: 'load' });
     await p2.waitForTimeout(400);
-    const before = await p2.evaluate(() => ({
+    const start = await p2.evaluate(() => ({
       js: document.documentElement.classList.contains('js'),
-      slides: document.querySelectorAll('#slides .slide').length,
-      imgs: [...document.querySelectorAll('#slides img')].every((i) => i.alt.trim().length > 20 && i.naturalWidth > 0),
-      dots: document.querySelectorAll('#dots .dot').length,
-      current: [...document.querySelectorAll('#dots .dot')].findIndex((d) => d.getAttribute('aria-current') === 'true'),
-      cta5: (document.querySelector('#slide-5 a') || {}).href || '',
-      reach: (document.querySelector('.cta a.more') || {}).getAttribute('href'),
-      prevOff: document.getElementById('prev').disabled,
+      pieces: document.querySelectorAll('.tray .piece').length, slots: document.querySelectorAll('#row .slot').length,
+      small: [...document.querySelectorAll('.piece, #place-next')].filter((el) => el.getBoundingClientRect().height < 44 || el.getBoundingClientRect().width < 44).length,
+      nextText: document.getElementById('place-next').textContent.trim(), doneHidden: document.getElementById('done').hidden,
+      drawn: document.querySelectorAll('.trace .seg.drawn').length, logoPath: !!document.querySelector('.piece path[d^="M45"], .piece polygon'),
     }));
-    await p2.click('#next'); await p2.waitForTimeout(700);
-    const afterNext = await p2.evaluate(() => [...document.querySelectorAll('#dots .dot')].findIndex((d) => d.getAttribute('aria-current') === 'true'));
-    await p2.focus('#slides'); await p2.keyboard.press('End'); await p2.waitForTimeout(700);
-    const afterEnd = await p2.evaluate(() => ({ current: [...document.querySelectorAll('#dots .dot')].findIndex((d) => d.getAttribute('aria-current') === 'true'), nextOff: document.getElementById('next').disabled, status: document.getElementById('status').textContent }));
-    await p2.click('#dots li:first-child .dot'); await p2.waitForTimeout(700);
-    const afterDot = await p2.evaluate(() => Math.round(document.getElementById('slides').scrollLeft));
-    const ok = before.js && before.slides === 5 && before.imgs && before.dots === 5 && before.current === 0 && before.prevOff && /calendly\.com\/mark-puzzlerconsultingandadvisory\/30min/.test(before.cta5) && before.reach === '/#fold-reach' && afterNext === 1 && afterEnd.current === 4 && afterEnd.nextOff && afterEnd.status === 'Slide 5 of 5' && afterDot === 0;
-    if (!ok) failures.push(`fit-call slides @${vp.width}: ${JSON.stringify({ before, afterNext, afterEnd, afterDot })}`);
-    report.push(`fit-call slides @${vp.width}: slides=${before.slides}, next→${afterNext + 1}, End→${afterEnd.current + 1}, slide 5 → Calendly=${/calendly/.test(before.cta5)}`);
+    await p2.click('.piece[data-piece="3"]'); await p2.waitForTimeout(700);
+    const three = await p2.evaluate(() => ({ inSlot: !!document.querySelector('#row .slot[data-slot="3"] .piece[data-piece="3"]'), h: document.getElementById('panel-h').textContent, k: document.getElementById('panel-k').textContent, drawn: document.querySelectorAll('.trace .seg.drawn').length, transform: getComputedStyle(document.querySelector('.piece[data-piece="3"]')).transform }));
+    await p2.click('#place-next'); await p2.waitForTimeout(700);   // places piece 1 (the lowest unplaced)
+    await p2.focus('.piece[data-piece="2"]'); await p2.keyboard.press('Enter'); await p2.waitForTimeout(700);
+    const mid = await p2.evaluate(() => ({ placed: [1, 2, 3].every((n) => !!document.querySelector('#row .slot[data-slot="' + n + '"] .piece[data-piece="' + n + '"]')), drawn: document.querySelectorAll('.trace .seg.drawn').length, hint: document.getElementById('board-hint').textContent, h: document.getElementById('panel-h').textContent }));
+    await p2.click('#place-next'); await p2.waitForTimeout(700); await p2.click('#place-next'); await p2.waitForTimeout(800);
+    const end = await p2.evaluate(() => ({ drawn: document.querySelectorAll('.trace .seg.drawn').length, doneHidden: document.getElementById('done').hidden, doneHref: document.getElementById('done').href, nextHidden: document.getElementById('place-next').hidden, k: document.getElementById('panel-k').textContent, h: document.getElementById('panel-h').textContent, trayEmpty: document.querySelectorAll('.tray .piece').length === 0, focus: document.activeElement && document.activeElement.id, overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth }));
+    await p2.click('.piece[data-piece="4"]'); await p2.waitForTimeout(200);
+    const revisit = await p2.evaluate(() => document.getElementById('panel-h').textContent);
+    const ok = start.js && start.pieces === 5 && start.slots === 5 && start.small === 0 && /^Place the first piece/.test(start.nextText) && start.doneHidden && start.drawn === 0 && !start.logoPath
+      && three.inSlot && three.h === 'Expect questions' && three.k === '3 of 5' && three.drawn === 0 && (three.transform === 'none' || three.transform === 'matrix(1, 0, 0, 1, 0, 0)')
+      && mid.placed && mid.drawn === 2 && mid.hint === '3 of 5 in place' && mid.h === 'Come with the real challenge'
+      && end.drawn === 4 && !end.doneHidden && /calendly\.com\/mark-puzzlerconsultingandadvisory\/30min/.test(end.doneHref) && end.nextHidden && end.k === 'All five in place' && end.h === 'There is no pressure' && end.trayEmpty && end.focus === 'done' && !end.overflow
+      && revisit === 'Fit works both ways';
+    if (!ok) failures.push(`fit-call board @${vp.width}: ${JSON.stringify({ start, three, mid, end, revisit })}`);
+    report.push(`fit-call board @${vp.width}: pieces=${start.pieces}, tap 3→slot 3=${three.inSlot}, next/keyboard ok=${mid.placed}, trace ${end.drawn}/4, done → Calendly=${/calendly/.test(end.doneHref)}`);
     await c2.close();
+  }
+  {
+    // Reduced motion: a placed piece has no transition; no script: the board hides and the full text shows.
+    const rc = await browser.newContext({ viewport: { width: 1280, height: 800 }, reducedMotion: 'reduce' });
+    const rp = await rc.newPage();
+    await rp.goto(base + '/5-things-to-know-about-a-fit-call', { waitUntil: 'load' });
+    await rp.click('.piece[data-piece="1"]');
+    const rm = await rp.evaluate(() => ({ t: getComputedStyle(document.querySelector('.piece[data-piece="1"]')).transitionDuration, seg: getComputedStyle(document.querySelector('.trace .seg')).transitionDuration, inSlot: !!document.querySelector('#row .slot[data-slot="1"] .piece') }));
+    if (!rm.inSlot || !/^0s/.test(rm.t) || !/^0s/.test(rm.seg)) failures.push(`fit-call board reduced-motion: ${JSON.stringify(rm)}`);
+    await rc.close();
+    const nc = await browser.newContext({ viewport: { width: 1280, height: 800 }, javaScriptEnabled: false });
+    const np = await nc.newPage();
+    await np.goto(base + '/5-things-to-know-about-a-fit-call', { waitUntil: 'load' });
+    const nj = await np.evaluate(() => ({ tray: getComputedStyle(document.querySelector('.tray')).display, panel: getComputedStyle(document.querySelector('.panel')).display, items: [...document.querySelectorAll('.read li')].filter((li) => li.getBoundingClientRect().height > 0).length, summary: getComputedStyle(document.querySelector('.read summary')).display }));
+    if (nj.tray !== 'none' || nj.panel !== 'none' || nj.items !== 5 || nj.summary !== 'none') failures.push(`fit-call board no-js: ${JSON.stringify(nj)}`);
+    await nc.close();
+    report.push(`fit-call board: reduced-motion instant=${/^0s/.test(rm.t)}, no-js text shown=${nj.items === 5}`);
   }
   report.push(`fit-call card: links=${card ? card.links.length : 0}, details form opens from #fold-reach=${reach.open}`);
 }

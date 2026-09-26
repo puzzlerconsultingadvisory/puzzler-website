@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>5 Things to Know About a Fit Call — Puzzler Consulting &amp; Advisory Services</title>
-<meta name="description" content="What to expect from a 30-minute Fit Call with Puzzler: a conversation, not a pitch. Five short slides on how it works, then book on Calendly or leave your details." />
+<meta name="description" content="What to expect from a 30-minute Fit Call with Puzzler: a conversation, not a pitch. Five things to know, one piece at a time, then book on Calendly or leave your details." />
 <link rel="canonical" href="https://puzzlerconsultingadvisory.com/5-things-to-know-about-a-fit-call" />
 <meta property="og:title" content="5 Things to Know About a Fit Call — Puzzler Consulting &amp; Advisory Services" />
 <meta property="og:description" content="A Fit Call is a conversation, not a pitch. Five things to know before you book." />
@@ -25,7 +25,6 @@
 <link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-400.woff2" crossorigin />
 <link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-700.woff2" crossorigin />
 <link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-800.woff2" crossorigin />
-<link rel="preload" as="image" href="/assets/fit-call/slide-1.webp" />
 <style>
   /* Poppins, self-hosted (latin) */
   @font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/poppins-400.woff2') format('woff2'); }
@@ -56,34 +55,77 @@
   h1{font-weight:700;font-size:clamp(26px,5vw,44px);line-height:1.08;text-align:center;margin-bottom:8px}
   .lede{font-size:clamp(13px,2.2vw,15.5px);color:rgba(255,255,255,.62);text-align:center;max-width:540px;margin-bottom:26px;line-height:1.6}
 
-  /* ── Carousel: native horizontal scroll with snap; the buttons and dots need script ── */
-  .carousel{width:100%;max-width:420px;margin:0 auto}
-  .track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;
-    border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.5);border:1px solid rgba(48,163,150,.22);background:#000}
-  .track::-webkit-scrollbar{display:none}
-  .track:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
-  .slide{flex:0 0 100%;scroll-snap-align:center;scroll-snap-stop:always;margin:0}
-  .slide img{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover}
-  .slide a{display:block}
-  .slide a:focus-visible{outline:3px solid var(--yellow);outline-offset:-3px}
-  .controls{display:none;align-items:center;justify-content:center;gap:14px;margin-top:16px}
-  .js .controls{display:flex}
-  .nav{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.06);color:#fff;
-    display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s,border-color .15s}
-  .nav:hover{background:rgba(255,255,255,.14);border-color:#fff}
-  .nav:disabled{opacity:.35;cursor:default}
-  .nav:disabled:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.4)}
-  .nav svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-  .nav:focus-visible,.dot:focus-visible,.btn:focus-visible,.more:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
-  .dots{display:flex;gap:2px;list-style:none}
-  .dot{width:28px;height:28px;border:0;background:none;padding:0;display:grid;place-items:center;cursor:pointer}
-  .dot::before{content:"";width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .15s,transform .15s}
-  .dot[aria-current="true"]::before{background:var(--teal);transform:scale(1.25)}
+  /* ── The board: five pieces set into a row, one tap each; the trace between them draws once and settles ── */
+  .board{width:100%;max-width:760px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:22px;align-items:start}
+  .board-visual{position:relative;border-radius:14px;border:1px solid rgba(48,163,150,.22);padding:26px 18px 20px;
+    background:
+      linear-gradient(rgba(48,163,150,.07) 1px, transparent 1px) 0 0 / 24px 24px,
+      linear-gradient(90deg, rgba(48,163,150,.07) 1px, transparent 1px) 0 0 / 24px 24px,
+      #0F0F1F}
+  .board-hint{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);text-align:center;margin-bottom:16px}
+  .row{display:flex;justify-content:center;margin:0 auto}
+  .slot{position:relative;width:80px;height:80px;flex:none}
+  .slot .outline{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:rgba(255,255,255,.28);stroke-width:1.5;stroke-dasharray:4 4}
+  .slot .n{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;font-size:13px;font-weight:600;color:rgba(255,255,255,.35);pointer-events:none}
+  .slot.filled .outline,.slot.filled .n{visibility:hidden}
+  .trace{display:block;width:400px;max-width:100%;height:26px;margin:2px auto 0;overflow:visible}
+  .trace .base{stroke:rgba(255,255,255,.22);stroke-width:1.5;stroke-dasharray:3 5}
+  .trace .tick{fill:rgba(255,255,255,.35)}
+  .trace .seg{stroke:var(--teal);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .5s ease-out}
+  .trace .seg.drawn{stroke-dashoffset:0}
+  .trace .tick.lit{fill:var(--teal)}
+  .tray{display:flex;justify-content:center;gap:10px;margin-top:22px;flex-wrap:wrap}
+  .tray[hidden]{display:none}
+  .cell{width:80px;height:80px;flex:none}
+  .piece{position:relative;width:80px;height:80px;padding:0;border:0;background:none;cursor:pointer;display:block;transform-origin:center;will-change:transform;color:var(--navy);
+    filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
+  .piece svg{display:block;width:100%;height:100%;overflow:visible}
+  .piece .shape{transition:transform .2s ease,filter .2s ease}
+  .piece:hover .shape,.piece:focus-visible .shape{transform:translateY(-3px)}
+  .piece:focus-visible{outline:3px solid var(--yellow);outline-offset:4px;border-radius:12px}
+  .piece .num{position:absolute;left:8%;right:20%;top:50%;transform:translateY(-50%);text-align:center;font-weight:800;font-size:26px;line-height:1;pointer-events:none}
+  .piece.c5 .num{color:var(--navy)}
+  .piece.placed{cursor:pointer;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
+  .piece.placed:hover .shape{transform:none}
+  .piece.current .shape{filter:brightness(1.12)}
+  .piece.placed .num{color:var(--navy)}
+  .c1 .shape{fill:var(--coral)}.c2 .shape{fill:var(--yellow)}.c3 .shape{fill:var(--green)}.c4 .shape{fill:var(--teal)}.c5 .shape{fill:#F4F4F8}
+  .panel{border-radius:14px;border:1px solid rgba(48,163,150,.22);background:rgba(255,255,255,.04);padding:22px 22px 24px;min-height:200px}
+  .panel .k{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+  .panel h2{font-weight:700;font-size:clamp(20px,2.6vw,26px);line-height:1.15;margin-bottom:10px}
+  .panel p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.78)}
+  .panel p+p{margin-top:8px}
+  .panel .start{color:rgba(255,255,255,.62)}
+  .board-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:18px}
+  .btn-ghost{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:10px 20px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-weight:600;font-size:14px;cursor:pointer;transition:background .15s,border-color .15s}
+  .btn-ghost:hover{background:rgba(255,255,255,.14);border-color:#fff}
+  .btn-ghost:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+  .btn-ghost[hidden]{display:none}
+  .done{display:inline-flex;align-items:center;gap:9px;min-height:44px;background:var(--teal);color:var(--navy);text-decoration:none;font-weight:600;font-size:15px;padding:11px 24px;border-radius:999px;transition:background .15s}
+  .done:hover{background:#fff}
+  .done[hidden]{display:none}
+  .done:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  .hint{margin-top:10px;font-size:12.5px;color:rgba(255,255,255,.5);text-align:center}
-  .js .hint{display:none}
+  /* Without script the board cannot be played: show the finished row and the five points in full. */
+  html:not(.js) .tray,html:not(.js) .board-actions,html:not(.js) .board-hint,html:not(.js) .panel{display:none}
+  html:not(.js) .read{display:block}
+  html:not(.js) .read summary{display:none}
+  html:not(.js) .read ol{padding-top:18px}
+  @media (min-width:760px){
+    .board{grid-template-columns:minmax(0,440px) minmax(0,1fr)}
+    .panel{min-height:100%}
+  }
+  @media (max-width:420px){
+    .slot,.cell,.piece{width:62px;height:62px}
+    .piece .num{font-size:21px}
+    .trace{width:310px}
+    .tray{gap:6px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .trace .seg,.piece,.piece .shape,.btn-ghost,.done,.btn,.eyebrow a{transition:none !important}
+  }
 
-  /* Text version of the five slides */
+  /* Text version of the five points (also the no-script view) */
   .read{width:100%;max-width:540px;margin:26px auto 0;border:1px solid rgba(48,163,150,.22);border-radius:12px;background:rgba(255,255,255,.04)}
   .read summary{cursor:pointer;padding:14px 18px;font-weight:600;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
   .read summary::-webkit-details-marker{display:none}
@@ -110,7 +152,6 @@
   .ftxt a{color:rgba(255,255,255,.8);text-decoration:underline;text-underline-offset:2px}
   .ftxt a:hover{color:var(--teal)}
   @media (max-width:600px){header{padding-top:20px}main{padding-top:24px}}
-  @media (prefers-reduced-motion: reduce){.track{scroll-behavior:auto}.nav,.dot::before,.btn,.eyebrow a{transition:none}}
 </style>
 </head>
 <body>
@@ -128,45 +169,43 @@
     <h1>5 Things to Know About a Fit Call</h1>
     <p class="lede">Thirty minutes. No pitch, no commitment. You’ll leave with a clear sense of fit and one specific suggestion you can act on.</p>
 
-    <!-- Slides supplied by the founder on 2026-09-26. Files: assets/fit-call/slide-N.webp, built by tools/build-fit-call-slides.py. -->
-    <section class="carousel" aria-roledescription="carousel" aria-label="5 things to know about a Fit Call">
-      <div class="track" id="slides" tabindex="0" aria-label="Slides. Use the left and right arrow keys to move between them.">
-        <figure class="slide" id="slide-1" aria-roledescription="slide" aria-label="1 of 5">
-          <img src="/assets/fit-call/slide-1.webp" width="1080" height="1920" alt="1. It is a conversation. A Fit Call is not a sales presentation. It is an honest conversation about where you are, what is changing and what kind of support would be useful." decoding="async">
-        </figure>
-        <figure class="slide" id="slide-2" aria-roledescription="slide" aria-label="2 of 5">
-          <img src="/assets/fit-call/slide-2.webp" width="1080" height="1920" alt="2. Come with the real challenge. You do not need to arrive with a perfectly defined problem. Tell me what feels stuck, unclear, disconnected or harder than it should be." loading="lazy" decoding="async">
-        </figure>
-        <figure class="slide" id="slide-3" aria-roledescription="slide" aria-label="3 of 5">
-          <img src="/assets/fit-call/slide-3.webp" width="1080" height="1920" alt="3. Expect questions. Good consulting begins with listening. I may ask about your goals, people, processes, timing and what you have already tried." loading="lazy" decoding="async">
-        </figure>
-        <figure class="slide" id="slide-4" aria-roledescription="slide" aria-label="4 of 5">
-          <img src="/assets/fit-call/slide-4.webp" width="1080" height="1920" alt="4. Fit works both ways. You are deciding whether you trust my approach. I am determining whether Puzzler has the right experience, capacity and services to help you move forward." loading="lazy" decoding="async">
-        </figure>
-        <figure class="slide" id="slide-5" aria-roledescription="slide" aria-label="5 of 5">
-          <!-- The slide's own "Ready to see if the pieces fit?" button is part of the image, so the whole slide books the call. -->
-          <a href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min" title="Book a Fit Call on Calendly">
-            <img src="/assets/fit-call/slide-5.webp" width="1080" height="1920" alt="5. There is no pressure. A Fit Call may lead to an engagement, a referral or simply greater clarity about your next step. The goal is not to force a piece into place. It is to discover what truly fits. Ready to see if the pieces fit? Book a Fit Call on Calendly." loading="lazy" decoding="async">
-          </a>
-        </figure>
+    <!-- The board (2026-09-26): five pieces, one per point, set into a row one tap at a time. The pieces are generic
+         jigsaw shapes drawn in code, not the four-piece mark. Motion is user-initiated, runs once per piece and settles;
+         reduced motion removes the transitions; without script the finished row and the full text show instead. -->
+    <section class="board" aria-labelledby="board-title">
+      <h2 class="sr" id="board-title">The five things, one piece at a time</h2>
+      <div class="board-visual">
+        <p class="board-hint" id="board-hint">Tap a piece to set it in place</p>
+        <div class="row" id="row">
+          <div class="slot" data-slot="1"><svg class="outline" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M8 8H80V38A12 12 0 1 1 80 62V92H8V62A12 12 0 1 0 8 38Z"/></svg><span class="n">1</span></div>
+          <div class="slot" data-slot="2"><svg class="outline" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M8 8H80V38A12 12 0 1 1 80 62V92H8V62A12 12 0 1 0 8 38Z"/></svg><span class="n">2</span></div>
+          <div class="slot" data-slot="3"><svg class="outline" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M8 8H80V38A12 12 0 1 1 80 62V92H8V62A12 12 0 1 0 8 38Z"/></svg><span class="n">3</span></div>
+          <div class="slot" data-slot="4"><svg class="outline" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M8 8H80V38A12 12 0 1 1 80 62V92H8V62A12 12 0 1 0 8 38Z"/></svg><span class="n">4</span></div>
+          <div class="slot" data-slot="5"><svg class="outline" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M8 8H80V38A12 12 0 1 1 80 62V92H8V62A12 12 0 1 0 8 38Z"/></svg><span class="n">5</span></div>
+        </div>
+        <svg class="trace" viewBox="0 0 400 26" aria-hidden="true" focusable="false"><line class="base" x1="40" y1="13" x2="360" y2="13"/><line class="seg" data-seg="2" x1="40" y1="13" x2="120" y2="13" pathLength="1"/><line class="seg" data-seg="3" x1="120" y1="13" x2="200" y2="13" pathLength="1"/><line class="seg" data-seg="4" x1="200" y1="13" x2="280" y2="13" pathLength="1"/><line class="seg" data-seg="5" x1="280" y1="13" x2="360" y2="13" pathLength="1"/><circle class="tick" data-tick="1" cx="40" cy="13" r="3"/><circle class="tick" data-tick="2" cx="120" cy="13" r="3"/><circle class="tick" data-tick="3" cx="200" cy="13" r="3"/><circle class="tick" data-tick="4" cx="280" cy="13" r="3"/><circle class="tick" data-tick="5" cx="360" cy="13" r="3"/></svg>
+        <div class="tray" id="tray">
+          <div class="cell"><button class="piece c1" type="button" data-piece="1" aria-label="Piece 1: It is a conversation"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path class="shape" d="M8 8H80V38A12 12 0 1 1 80 62V92H8V62A12 12 0 1 0 8 38Z"/></svg><span class="num" aria-hidden="true">1</span></button></div>
+          <div class="cell"><button class="piece c2" type="button" data-piece="2" aria-label="Piece 2: Come with the real challenge"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path class="shape" d="M8 8H80V38A12 12 0 1 1 80 62V92H8V62A12 12 0 1 0 8 38Z"/></svg><span class="num" aria-hidden="true">2</span></button></div>
+          <div class="cell"><button class="piece c3" type="button" data-piece="3" aria-label="Piece 3: Expect questions"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path class="shape" d="M8 8H80V38A12 12 0 1 1 80 62V92H8V62A12 12 0 1 0 8 38Z"/></svg><span class="num" aria-hidden="true">3</span></button></div>
+          <div class="cell"><button class="piece c4" type="button" data-piece="4" aria-label="Piece 4: Fit works both ways"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path class="shape" d="M8 8H80V38A12 12 0 1 1 80 62V92H8V62A12 12 0 1 0 8 38Z"/></svg><span class="num" aria-hidden="true">4</span></button></div>
+          <div class="cell"><button class="piece c5" type="button" data-piece="5" aria-label="Piece 5: There is no pressure"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path class="shape" d="M8 8H80V38A12 12 0 1 1 80 62V92H8V62A12 12 0 1 0 8 38Z"/></svg><span class="num" aria-hidden="true">5</span></button></div>
+        </div>
       </div>
-      <div class="controls">
-        <button class="nav" type="button" id="prev" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <ol class="dots" id="dots">
-          <li><button class="dot" type="button" aria-label="Slide 1" aria-current="true"></button></li>
-          <li><button class="dot" type="button" aria-label="Slide 2"></button></li>
-          <li><button class="dot" type="button" aria-label="Slide 3"></button></li>
-          <li><button class="dot" type="button" aria-label="Slide 4"></button></li>
-          <li><button class="dot" type="button" aria-label="Slide 5"></button></li>
-        </ol>
-        <button class="nav" type="button" id="next" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="panel" id="panel" aria-live="polite">
+        <p class="k" id="panel-k">5 things to know</p>
+        <h2 id="panel-h">A Fit Call, one piece at a time</h2>
+        <p class="start" id="panel-p1">Each piece is one thing to know. Set all five and see whether the pieces fit.</p>
+        <p id="panel-p2"></p>
+        <div class="board-actions">
+          <button class="btn-ghost" type="button" id="place-next">Place the first piece →</button>
+          <a class="done" id="done" href="https://calendly.com/mark-puzzlerconsultingandadvisory/30min" hidden>Ready to see if the pieces fit? →</a>
+        </div>
       </div>
-      <p class="sr" id="status" aria-live="polite"></p>
-      <p class="hint">Swipe or scroll sideways to see all five slides.</p>
     </section>
 
     <details class="read">
-      <summary>Prefer to read the five points?</summary>
+      <summary>Read all five points</summary>
       <ol>
         <li><strong>It is a conversation.</strong> A Fit Call is not a sales presentation. It is an honest conversation about where you are, what is changing and what kind of support would be useful.</li>
         <li><strong>Come with the real challenge.</strong> You do not need to arrive with a perfectly defined problem. Tell me what feels stuck, unclear, disconnected or harder than it should be.</li>
@@ -196,44 +235,60 @@
 
   <script>
   (function () {
-    var track = document.getElementById('slides'); if (!track) return;
+    var row = document.getElementById('row'); if (!row) return;
     document.documentElement.classList.add('js');
-    var slides = Array.prototype.slice.call(track.querySelectorAll('.slide'));
-    var dots = Array.prototype.slice.call(document.querySelectorAll('#dots .dot'));
-    var prev = document.getElementById('prev'), next = document.getElementById('next'), status = document.getElementById('status');
+    var points = [
+      ['It is a conversation', 'A Fit Call is not a sales presentation.', 'It is an honest conversation about where you are, what is changing and what kind of support would be useful.'],
+      ['Come with the real challenge', 'You do not need to arrive with a perfectly defined problem.', 'Tell me what feels stuck, unclear, disconnected or harder than it should be.'],
+      ['Expect questions', 'Good consulting begins with listening.', 'I may ask about your goals, people, processes, timing and what you have already tried.'],
+      ['Fit works both ways', 'You are deciding whether you trust my approach.', 'I am determining whether Puzzler has the right experience, capacity and services to help you move forward.'],
+      ['There is no pressure', 'A Fit Call may lead to an engagement, a referral or simply greater clarity about your next step.', 'The goal is not to force a piece into place. It is to discover what truly fits.']
+    ];
+    var pieces = Array.prototype.slice.call(document.querySelectorAll('.piece'));
+    var slots = Array.prototype.slice.call(row.querySelectorAll('.slot'));
+    var segs = Array.prototype.slice.call(document.querySelectorAll('.trace .seg'));
+    var ticks = Array.prototype.slice.call(document.querySelectorAll('.trace .tick'));
+    var k = document.getElementById('panel-k'), h = document.getElementById('panel-h'), p1 = document.getElementById('panel-p1'), p2 = document.getElementById('panel-p2');
+    var nextBtn = document.getElementById('place-next'), done = document.getElementById('done'), hint = document.getElementById('board-hint'), tray = document.getElementById('tray');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    var current = 0, raf = 0, settling = 0;
+    var placed = [];
 
-    function index() { return Math.max(0, Math.min(slides.length - 1, Math.round(track.scrollLeft / track.clientWidth))); }
-    function paint(i) {
-      current = i;
-      dots.forEach(function (d, n) { if (n === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
-      prev.disabled = i === 0; next.disabled = i === slides.length - 1;
-      status.textContent = 'Slide ' + (i + 1) + ' of ' + slides.length;
+    function show(n) {
+      var pt = points[n - 1];
+      pieces.forEach(function (b) { b.classList.toggle('current', +b.getAttribute('data-piece') === n); });
+      k.textContent = n + ' of 5';
+      h.textContent = pt[0]; p1.textContent = pt[1]; p1.className = ''; p2.textContent = pt[2];
     }
-    function go(i) {
-      i = Math.max(0, Math.min(slides.length - 1, i));
-      paint(i);
-      track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: reduce.matches ? 'auto' : 'smooth' });
-      window.clearTimeout(settling);
-      settling = window.setTimeout(function () { settling = 0; paint(index()); }, reduce.matches ? 50 : 700);
+    function count() { return placed.filter(Boolean).length; }
+    function refresh() {
+      var c = count(), next = 0;
+      for (var i = 1; i <= 5; i++) { if (!placed[i]) { next = i; break; } }
+      segs.forEach(function (l) { var n = +l.getAttribute('data-seg'); l.classList.toggle('drawn', !!(placed[n - 1] && placed[n])); });
+      ticks.forEach(function (t) { t.classList.toggle('lit', !!placed[+t.getAttribute('data-tick')]); });
+      if (next) { nextBtn.hidden = false; nextBtn.textContent = (c ? 'Place the next piece' : 'Place the first piece') + ' →'; done.hidden = true; hint.textContent = c ? c + ' of 5 in place' : 'Tap a piece to set it in place'; }
+      else { nextBtn.hidden = true; done.hidden = false; hint.textContent = 'All five in place'; k.textContent = 'All five in place'; }
     }
-    track.addEventListener('scroll', function () {
-      if (settling || raf) return;
-      raf = window.requestAnimationFrame(function () { raf = 0; var i = index(); if (i !== current) paint(i); });
-    }, { passive: true });
-    track.addEventListener('scrollend', function () { window.clearTimeout(settling); settling = 0; paint(index()); });
-    prev.addEventListener('click', function () { go(current - 1); });
-    next.addEventListener('click', function () { go(current + 1); });
-    dots.forEach(function (d, n) { d.addEventListener('click', function () { go(n); }); });
-    track.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { e.preventDefault(); go(current + 1); }
-      else if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1); }
-      else if (e.key === 'Home') { e.preventDefault(); go(0); }
-      else if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
-    });
-    window.addEventListener('resize', function () { track.scrollTo({ left: slides[current].offsetLeft - track.offsetLeft, behavior: 'auto' }); });
-    paint(0);
+    function place(n) {
+      var piece = pieces[n - 1], slot = slots[n - 1];
+      if (placed[n]) { show(n); return; }
+      var first = piece.getBoundingClientRect();
+      slot.appendChild(piece); slot.classList.add('filled'); piece.classList.add('placed'); placed[n] = true;
+      if (!reduce.matches) {
+        var last = piece.getBoundingClientRect();
+        var dx = first.left - last.left, dy = first.top - last.top;
+        piece.style.transition = 'none';
+        piece.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+        piece.getBoundingClientRect();
+        piece.style.transition = 'transform .55s cubic-bezier(.2,.7,.2,1)';
+        piece.style.transform = '';
+        piece.addEventListener('transitionend', function te() { piece.style.transition = ''; piece.removeEventListener('transitionend', te); });
+      }
+      show(n); refresh();
+      if (count() === 5) { done.focus({ preventScroll: true }); window.setTimeout(function () { tray.hidden = true; }, reduce.matches ? 0 : 650); }
+    }
+    pieces.forEach(function (b) { b.addEventListener('click', function () { place(+b.getAttribute('data-piece')); }); });
+    nextBtn.addEventListener('click', function () { for (var i = 1; i <= 5; i++) { if (!placed[i]) { place(i); break; } } });
+    refresh();
   })();
   </script>
 </body>
